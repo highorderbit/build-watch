@@ -3,7 +3,7 @@
 //
 
 #import "BuildWatchAppDelegate.h"
-#import "RootViewController.h"
+#import "ServerViewController.h"
 
 @implementation BuildWatchAppDelegate
 

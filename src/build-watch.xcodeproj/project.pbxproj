@@ -12,9 +12,9 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
-		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
+		28C286E10D94DF7D0034E888 /* ServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* ServerViewController.m */; };
 		9149DF710F39053200A0E32C /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149DF6D0F39053200A0E32C /* MainWindow.xib */; };
-		9149DF720F39053200A0E32C /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149DF6F0F39053200A0E32C /* RootViewController.xib */; };
+		9149DF720F39053200A0E32C /* ServerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149DF6F0F39053200A0E32C /* ServerView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,12 +25,12 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AAE50D9B0CCF005BE974 /* build_watch_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = build_watch_Prefix.pch; sourceTree = "<group>"; };
-		28C286DF0D94DF7D0034E888 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		28C286DF0D94DF7D0034E888 /* ServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerViewController.h; sourceTree = "<group>"; };
+		28C286E00D94DF7D0034E888 /* ServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9149DF6E0F39053200A0E32C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		9149DF700F39053200A0E32C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
+		9149DF700F39053200A0E32C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ServerView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,8 +50,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
-				28C286E00D94DF7D0034E888 /* RootViewController.m */,
+				28C286DF0D94DF7D0034E888 /* ServerViewController.h */,
+				28C286E00D94DF7D0034E888 /* ServerViewController.m */,
 				1D3623240D0F684500981E51 /* BuildWatchAppDelegate.h */,
 				1D3623250D0F684500981E51 /* BuildWatchAppDelegate.m */,
 			);
@@ -91,7 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				9149DF6D0F39053200A0E32C /* MainWindow.xib */,
-				9149DF6F0F39053200A0E32C /* RootViewController.xib */,
+				9149DF6F0F39053200A0E32C /* ServerView.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 			);
 			name = Resources;
@@ -157,7 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9149DF710F39053200A0E32C /* MainWindow.xib in Resources */,
-				9149DF720F39053200A0E32C /* RootViewController.xib in Resources */,
+				9149DF720F39053200A0E32C /* ServerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,7 +170,7 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* BuildWatchAppDelegate.m in Sources */,
-				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
+				28C286E10D94DF7D0034E888 /* ServerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,12 +185,12 @@
 			name = MainWindow.xib;
 			sourceTree = "<group>";
 		};
-		9149DF6F0F39053200A0E32C /* RootViewController.xib */ = {
+		9149DF6F0F39053200A0E32C /* ServerView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				9149DF700F39053200A0E32C /* en */,
 			);
-			name = RootViewController.xib;
+			name = ServerView.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
