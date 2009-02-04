@@ -3,16 +3,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ServerSelector.h"
+
+@class BuildWatchAppController;
+@class ServerViewController;
 
 @interface BuildWatchAppDelegate : NSObject <UIApplicationDelegate>
 {
     UIWindow *window;
     UINavigationController *navigationController;
+
+    BuildWatchAppController * appController;
+    NSObject<ServerSelector> * serverSelector;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *
     navigationController;
+@property (nonatomic, retain) IBOutlet NSObject<ServerSelector> *
+    serverSelector;
+
+@property (nonatomic, retain) IBOutlet BuildWatchAppController * appController;
 
 @end
 

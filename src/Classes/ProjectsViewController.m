@@ -7,11 +7,28 @@
 @implementation ProjectsViewController
 
 @synthesize tableView;
+@synthesize projects;
+@synthesize delegate;
 
 - (void) dealloc
 {
     [tableView release];
+    [projects release];
+    [delegate release];
     [super dealloc];
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    NSLog(@"%@: Awaking from nib.", self);
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
+    [tableView deselectRowAtIndexPath:selectedRow animated:NO];
 }
 
 #pragma mark UITableViewDelegate
@@ -24,7 +41,7 @@
 - (NSInteger) tableView:(UITableView *)tv
   numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return projects.count;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tv
@@ -43,7 +60,7 @@
          autorelease];
     
     // Set up the cell
-    cell.text = [NSString stringWithFormat:@"project %d", indexPath.row];
+    cell.text = [projects objectAtIndex:indexPath.row];
     
     return cell;
 }
@@ -51,7 +68,16 @@
 - (void)      tableView:(UITableView *)tv
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic -- create and push a new view controller
+    [delegate userDidSelectProject:[projects objectAtIndex:indexPath.row]];
+}
+
+#pragma mark Accessors
+
+- (void)setProjects:(NSArray *)someProjects
+{
+    [projects release];
+    projects = [someProjects retain];
+    [tableView reloadData];
 }
 
 @end

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05E911050F3A056F00E646F6 /* BuildWatchAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E911040F3A056F00E646F6 /* BuildWatchAppController.m */; };
+		05E911100F3A11F700E646F6 /* MockServerPersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E9110F0F3A11F700E646F6 /* MockServerPersistentStore.m */; };
+		05E911E70F3A453300E646F6 /* UIServerSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E911E60F3A453300E646F6 /* UIServerSelector.m */; };
+		05E9121F0F3A4E7100E646F6 /* UIProjectSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E9121E0F3A4E7100E646F6 /* UIProjectSelector.m */; };
 		1D3623260D0F684500981E51 /* BuildWatchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* BuildWatchAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -20,6 +24,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05E911030F3A056F00E646F6 /* BuildWatchAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildWatchAppController.h; sourceTree = "<group>"; };
+		05E911040F3A056F00E646F6 /* BuildWatchAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildWatchAppController.m; sourceTree = "<group>"; };
+		05E911070F3A111500E646F6 /* ServerPersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerPersistentStore.h; sourceTree = "<group>"; };
+		05E9110E0F3A11F700E646F6 /* MockServerPersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockServerPersistentStore.h; sourceTree = "<group>"; };
+		05E9110F0F3A11F700E646F6 /* MockServerPersistentStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockServerPersistentStore.m; sourceTree = "<group>"; };
+		05E911E50F3A453300E646F6 /* UIServerSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIServerSelector.h; sourceTree = "<group>"; };
+		05E911E60F3A453300E646F6 /* UIServerSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIServerSelector.m; sourceTree = "<group>"; };
+		05E9121A0F3A4E6800E646F6 /* ProjectSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectSelector.h; sourceTree = "<group>"; };
+		05E9121B0F3A4E6800E646F6 /* ProjectSelectorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectSelectorDelegate.h; sourceTree = "<group>"; };
+		05E9121C0F3A4E6800E646F6 /* ServerSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerSelector.h; sourceTree = "<group>"; };
+		05E9121D0F3A4E7100E646F6 /* UIProjectSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIProjectSelector.h; sourceTree = "<group>"; };
+		05E9121E0F3A4E7100E646F6 /* UIProjectSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIProjectSelector.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* BuildWatchAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildWatchAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* BuildWatchAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildWatchAppDelegate.m; sourceTree = "<group>"; };
@@ -55,12 +71,24 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				05E9121A0F3A4E6800E646F6 /* ProjectSelector.h */,
+				05E9121B0F3A4E6800E646F6 /* ProjectSelectorDelegate.h */,
+				05E9121C0F3A4E6800E646F6 /* ServerSelector.h */,
 				28C286DF0D94DF7D0034E888 /* ServerViewController.h */,
 				28C286E00D94DF7D0034E888 /* ServerViewController.m */,
 				1D3623240D0F684500981E51 /* BuildWatchAppDelegate.h */,
 				1D3623250D0F684500981E51 /* BuildWatchAppDelegate.m */,
 				9149DFFF0F39142400A0E32C /* ProjectsViewController.h */,
 				9149E0000F39142400A0E32C /* ProjectsViewController.m */,
+				05E911030F3A056F00E646F6 /* BuildWatchAppController.h */,
+				05E911040F3A056F00E646F6 /* BuildWatchAppController.m */,
+				05E911070F3A111500E646F6 /* ServerPersistentStore.h */,
+				05E9110E0F3A11F700E646F6 /* MockServerPersistentStore.h */,
+				05E9110F0F3A11F700E646F6 /* MockServerPersistentStore.m */,
+				05E911E50F3A453300E646F6 /* UIServerSelector.h */,
+				05E911E60F3A453300E646F6 /* UIServerSelector.m */,
+				05E9121D0F3A4E7100E646F6 /* UIProjectSelector.h */,
+				05E9121E0F3A4E7100E646F6 /* UIProjectSelector.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -181,6 +209,10 @@
 				1D3623260D0F684500981E51 /* BuildWatchAppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* ServerViewController.m in Sources */,
 				9149E0010F39142400A0E32C /* ProjectsViewController.m in Sources */,
+				05E911050F3A056F00E646F6 /* BuildWatchAppController.m in Sources */,
+				05E911100F3A11F700E646F6 /* MockServerPersistentStore.m in Sources */,
+				05E911E70F3A453300E646F6 /* UIServerSelector.m in Sources */,
+				05E9121F0F3A4E7100E646F6 /* UIProjectSelector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

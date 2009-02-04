@@ -9,11 +9,21 @@
 @implementation ServerViewController
 
 @synthesize tableView;
+@synthesize servers;
+@synthesize delegate;
 
 - (void) dealloc
 {
     [tableView release];
+    [servers release];
+    [delegate release];
     [super dealloc];
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    NSLog(@"%@: Awaking from nib.", self);
 }
 
 - (void) viewDidLoad
@@ -39,7 +49,7 @@
 - (NSInteger) tableView:(UITableView *)tv
   numberOfRowsInSection:(NSInteger)section
 {
-    return 30;
+    return servers.count;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tv
@@ -56,30 +66,32 @@
             [[[UITableViewCell alloc]
               initWithFrame:CGRectZero reuseIdentifier:CellIdentifier]
              autorelease];
-    
+
     // Set up the cell
-    cell.text = [NSString stringWithFormat:@"server %d", indexPath.row];
-    
+    cell.text = [servers objectAtIndex:indexPath.row];
+
     return cell;
 }
 
 - (void)      tableView:(UITableView *)tv
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ProjectsViewController * projectsViewController =
-        [[ProjectsViewController alloc]
-         initWithNibName:@"ProjectsView" bundle:nil];
-    
-    [self.navigationController
-     pushViewController:projectsViewController animated:YES];
-    
-    [projectsViewController release];
+    [delegate userDidSelectServer:[servers objectAtIndex:indexPath.row]];
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView *)tv
           accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     return UITableViewCellAccessoryDisclosureIndicator;
+}
+
+#pragma mark Accessors
+
+- (void)setServers:(NSArray *)someServers
+{
+    [servers release];
+    servers = [someServers retain];
+    [tableView reloadData];
 }
 
 @end

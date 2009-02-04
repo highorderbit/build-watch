@@ -3,12 +3,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ServerSelector.h"
+#import "ServerSelectorDelegate.h"
 
-@interface ServerViewController : UIViewController <UITableViewDelegate>
+@interface ServerViewController : UIViewController
+                                  < UITableViewDelegate >
 {
     UITableView * tableView;
+
+    NSArray * servers;
+    NSObject<ServerSelectorDelegate> * delegate;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView * tableView;
+@property (nonatomic, retain) NSArray * servers;
+@property (nonatomic, retain) NSObject<ServerSelectorDelegate> * delegate;
 
 @end
