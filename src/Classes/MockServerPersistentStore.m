@@ -1,8 +1,4 @@
 //
-//  MockServerPersistentStore.m
-//  build-watch
-//
-//  Created by John A. Debay on 2/4/09.
 //  Copyright 2009 High Order Bit, Inc.. All rights reserved.
 //
 
