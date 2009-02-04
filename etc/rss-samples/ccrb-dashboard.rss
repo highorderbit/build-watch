@@ -1,0 +1,25 @@
+<rss version="2.0">
+  <channel>
+    <title>CruiseControl RSS feed</title>
+    <link>http://10.0.1.100:3333/</link>
+    <description>CruiseControl projects and their build statuses</description>
+    <language>en-us</language>
+    <ttl>10</ttl>
+    <item>
+      <title>BrokenApp build 7.10 failed</title>
+      <description>&lt;pre&gt;Build was manually requested
+&lt;/pre&gt;</description>
+      <pubDate>Tue, 03 Feb 2009 04:34:11 Z</pubDate>
+      <guid>http://10.0.1.100:3333/builds/BrokenApp/7.10</guid>
+      <link>http://10.0.1.100:3333/builds/BrokenApp/7.10</link>
+    </item>
+    <item>
+      <title>RandomApp build 4.5 success</title>
+      <description>&lt;pre&gt;Build was manually requested
+&lt;/pre&gt;</description>
+      <pubDate>Tue, 03 Feb 2009 03:50:25 Z</pubDate>
+      <guid>http://10.0.1.100:3333/builds/RandomApp/4.5</guid>
+      <link>http://10.0.1.100:3333/builds/RandomApp/4.5</link>
+    </item>
+  </channel>
+</rss>
