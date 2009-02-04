@@ -4,7 +4,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ServerViewController : UIViewController <UITableViewDelegate>
+@interface ProjectsViewController : UIViewController <UITableViewDelegate>
 {
     UITableView * tableView;
 }

@@ -4,28 +4,52 @@
 
 #import "ServerViewController.h"
 #import "BuildWatchAppDelegate.h"
+#import "ProjectsViewController.h"
 
 @implementation ServerViewController
 
-- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+@synthesize tableView;
+
+- (void) dealloc
+{
+    [tableView release];
+    [super dealloc];
+}
+
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+    self.navigationItem.title = @"Servers";
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
+    [tableView deselectRowAtIndexPath:selectedRow animated:NO];
+}
+
+#pragma mark UITableViewDelegate
+
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tv
 {
     return 1;
 }
 
-- (NSInteger) tableView:(UITableView *)tableView
+- (NSInteger) tableView:(UITableView *)tv
   numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 30;
 }
 
-- (UITableViewCell *) tableView:(UITableView *)tableView
+- (UITableViewCell *) tableView:(UITableView *)tv
           cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell =
-        [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell * cell =
+        [tv dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil)
         cell =
@@ -34,35 +58,28 @@
              autorelease];
     
     // Set up the cell
-    cell.text = [NSString stringWithFormat:@"row %d", indexPath.row];
+    cell.text = [NSString stringWithFormat:@"server %d", indexPath.row];
     
     return cell;
 }
 
-- (void)      tableView:(UITableView *)tableView
+- (void)      tableView:(UITableView *)tv
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic -- create and push a new view controller
-}
-
-- (BOOL) shouldAutorotateToInterfaceOrientation:
-    (UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (void) didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview
-    [super didReceiveMemoryWarning];
+    ProjectsViewController * projectsViewController =
+        [[ProjectsViewController alloc]
+         initWithNibName:@"ProjectsView" bundle:nil];
     
-    // Release anything that's not essential, such as cached data
+    [self.navigationController
+     pushViewController:projectsViewController animated:YES];
+    
+    [projectsViewController release];
 }
 
-- (void) dealloc
+- (UITableViewCellAccessoryType) tableView:(UITableView *)tv
+          accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    [super dealloc];
+    return UITableViewCellAccessoryDisclosureIndicator;
 }
 
 @end

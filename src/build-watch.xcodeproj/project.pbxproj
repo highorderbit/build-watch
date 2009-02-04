@@ -15,6 +15,8 @@
 		28C286E10D94DF7D0034E888 /* ServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* ServerViewController.m */; };
 		9149DF710F39053200A0E32C /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149DF6D0F39053200A0E32C /* MainWindow.xib */; };
 		9149DF720F39053200A0E32C /* ServerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149DF6F0F39053200A0E32C /* ServerView.xib */; };
+		9149E0010F39142400A0E32C /* ProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9149E0000F39142400A0E32C /* ProjectsViewController.m */; };
+		9149E0040F39167600A0E32C /* ProjectsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149E0020F39167600A0E32C /* ProjectsView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,9 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9149DF6E0F39053200A0E32C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		9149DF700F39053200A0E32C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ServerView.xib; sourceTree = "<group>"; };
+		9149DFFF0F39142400A0E32C /* ProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewController.h; sourceTree = "<group>"; };
+		9149E0000F39142400A0E32C /* ProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsViewController.m; sourceTree = "<group>"; };
+		9149E0030F39167600A0E32C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ProjectsView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +59,8 @@
 				28C286E00D94DF7D0034E888 /* ServerViewController.m */,
 				1D3623240D0F684500981E51 /* BuildWatchAppDelegate.h */,
 				1D3623250D0F684500981E51 /* BuildWatchAppDelegate.m */,
+				9149DFFF0F39142400A0E32C /* ProjectsViewController.h */,
+				9149E0000F39142400A0E32C /* ProjectsViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -93,6 +100,7 @@
 				9149DF6D0F39053200A0E32C /* MainWindow.xib */,
 				9149DF6F0F39053200A0E32C /* ServerView.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				9149E0020F39167600A0E32C /* ProjectsView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -158,6 +166,7 @@
 			files = (
 				9149DF710F39053200A0E32C /* MainWindow.xib in Resources */,
 				9149DF720F39053200A0E32C /* ServerView.xib in Resources */,
+				9149E0040F39167600A0E32C /* ProjectsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +180,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* BuildWatchAppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* ServerViewController.m in Sources */,
+				9149E0010F39142400A0E32C /* ProjectsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +201,14 @@
 				9149DF700F39053200A0E32C /* en */,
 			);
 			name = ServerView.xib;
+			sourceTree = "<group>";
+		};
+		9149E0020F39167600A0E32C /* ProjectsView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9149E0030F39167600A0E32C /* en */,
+			);
+			name = ProjectsView.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
