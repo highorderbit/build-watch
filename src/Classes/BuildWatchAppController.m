@@ -14,6 +14,8 @@
 - (void) setServers:(NSDictionary *)newServers;
 - (void) setServerNames:(NSDictionary *)newServerNames;
 - (void) setProjectDisplayNames:(NSDictionary *)newProjectDisplayNames;
+- (void) removeMissingProjectPropertiesWithProjects:(NSArray *)newProjects
+                                          andServer:(NSString *)server;
 + (NSString *) keyForProject:(NSString *)project andServer:(NSString *)server;
 @end
 
@@ -76,13 +78,14 @@
 #pragma mark Some protocol implementation
 
 - (void) report:(ServerReport *)report receivedFrom:(NSString *)server
-{    
+{
+    // Update project display names
     for (ProjectReport * projReport in [report projectReports])
-        [projectDisplayNames setObject:projReport.name
-                                forKey:[[self class]
-                                        keyForProject:projReport.name
-                                        andServer:server]];
+        [projectDisplayNames
+         setObject:projReport.name
+         forKey:[[self class] keyForProject:projReport.name andServer:server]];
     
+    // Set projects for server
     NSMutableArray * projects = [[NSMutableArray alloc] init];
     
     for (ProjectReport * projReport in [report projectReports])
@@ -90,8 +93,11 @@
 
     [servers setObject:projects forKey:server];
 
+    [self removeMissingProjectPropertiesWithProjects:projects andServer:server];
+    
     [projects release];
     
+    // update project ids
     NSMutableArray * projectIds = [[NSMutableArray alloc] init];
     
     for (ProjectReport * projReport in [report projectReports])
@@ -101,12 +107,11 @@
     
     if([activeServer isEqual:server])
         [projectSelector selectProjectFrom:projectIds];
-    
+
     [projectIds release];
     
     //
     // 1. Update UI for toolbar.
-    // 2. Tell relevant view controller(s) to update themselves.
     //
 }
 
@@ -147,9 +152,11 @@
 - (NSString *) displayNameForProject:(NSString *)project
 {
     NSString * displayName = [projectDisplayNames objectForKey:project];
-    NSAssert1(
+    NSAssert2(
         displayName != nil,
-              @"Unable to find display name for project %@", project);
+        @"Unable to find display name for project %@.  Display names: %@",
+        project,
+        projectDisplayNames);
     
     return displayName;
 }
@@ -229,6 +236,21 @@
         [newProjectDisplayNames mutableCopy];
     [projectDisplayNames release];
     projectDisplayNames = tempProjectDisplayNames;
+}
+
+- (void) removeMissingProjectPropertiesWithProjects:(NSArray *)newProjects
+                                          andServer:(NSString *)server
+{
+    NSMutableArray * missingProjectIds = [[NSMutableArray alloc] init];
+    // find missing projects and create keys from them
+    for (NSString * project in [servers objectForKey:server])
+        if (![newProjects containsObject:project])
+            [missingProjectIds
+             addObject:[[self class]keyForProject:project andServer:server]];
+    
+    [projectDisplayNames removeObjectsForKeys:missingProjectIds];
+    
+    [missingProjectIds release];
 }
 
 #pragma mark static utility functions
