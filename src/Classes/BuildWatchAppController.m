@@ -161,7 +161,7 @@
     return displayName;
 }
 
-- (NSString *) displayNameForCurrentProjectCollection
+- (NSString *) displayNameForCurrentProjectGroup
 {
     return activeServer;
 }

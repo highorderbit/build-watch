@@ -28,8 +28,7 @@
 {
     [super viewWillAppear:animated];
 
-    self.navigationItem.title =
-        [delegate displayNameForCurrentProjectCollection];
+    self.navigationItem.title = [delegate displayNameForCurrentProjectGroup];
 
     NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selectedRow animated:NO];
