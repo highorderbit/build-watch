@@ -43,6 +43,10 @@ enum ActionCells
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+    self.navigationItem.title =
+        NSLocalizedString(@"projectdetails.view.title", @"");
+
     NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selectedRow animated:NO];
 }
