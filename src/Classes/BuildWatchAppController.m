@@ -3,24 +3,30 @@
 //
 
 #import "BuildWatchAppController.h"
-#import "ServerPersistentStore.h"
-#import "MockServerPersistentStore.h"
-#import "ServerSelector.h"
-#import "ServerViewController.h"
+#import "ServerReport.h"
+#import "ProjectReport.h"
 
 @class Server, Project;
+
+@interface BuildWatchAppController (Private)
+
+- (void) setActiveServer:(NSString *) activeServer;
+
+@end
 
 @implementation BuildWatchAppController
 
 @synthesize serverPersistentStore;
 @synthesize serverSelector;
 @synthesize projectSelector;
+@synthesize buildService;
 
 - (void) dealloc
 {
     [servers release];
     [serverNames release];
     [serverPersistentStore release];
+    [buildService release];
     [super dealloc];
 }
 
@@ -39,7 +45,13 @@
 - (void) start
 {
     servers = [[serverPersistentStore getAllServers] retain];
-    [serverSelector selectServerFrom:[servers allKeys]];
+    
+    NSArray * serverKeys = [servers allKeys];
+    
+    for (NSString * server in serverKeys)
+        [buildService refreshDataForServer:server];
+    
+    [serverSelector selectServerFrom:serverKeys];
 
     //
     // 1. Fetch existing data (server list).
@@ -53,8 +65,18 @@
 
 #pragma mark Some protocol implementation
 
-- (void) dataIsRefreshedForServer:(Server *)server
+- (void) report:(ServerReport *)report receivedFrom:(NSString *)server
 {
+    NSMutableArray * projects = [[NSMutableArray alloc] init];
+    
+    for (ProjectReport * projReport in [report projectReports])
+        [projects addObject:projReport.title];
+    
+    // TODO: save state
+    
+    if([activeServer isEqual:server])
+        [projectSelector selectProjectFrom:projects];
+    
     //
     // 1. Update UI for toolbar.
     // 2. Tell relevant view controller(s) to update themselves.
@@ -72,6 +94,7 @@
     //
 
     NSLog(@"User selected server: %@.", server);
+    [self setActiveServer:server];
     [projectSelector selectProjectFrom:[servers objectForKey:server]];
 }
 
@@ -121,6 +144,14 @@
     // 1. Update model.
     // 2. Update server controller's list of servers.
     //
+}
+
+- (void) setActiveServer:(NSString *) server
+{
+    if(activeServer != server) {
+        [activeServer release];
+        activeServer = [server retain];
+    }
 }
 
 @end

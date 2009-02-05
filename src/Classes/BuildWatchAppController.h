@@ -9,6 +9,7 @@
 #import "ServerSelectorDelegate.h"
 #import "ProjectSelector.h"
 #import "ProjectSelectorDelegate.h"
+#import "BuildService.h"
 
 @interface BuildWatchAppController : NSObject
                                      < ServerSelectorDelegate,
@@ -26,15 +27,21 @@
 
     NSObject<ServerSelector> * serverSelector;
     NSObject<ProjectSelector> * projectSelector;
+    
+    NSObject<BuildService> * buildService;
+    
+    NSString * activeServer;
 }
 
 @property (nonatomic, retain) IBOutlet NSObject<ServerPersistentStore> *
     serverPersistentStore;
+
 @property (nonatomic, retain) IBOutlet NSObject<ServerSelector> *
     serverSelector;
 @property (nonatomic, retain) IBOutlet NSObject<ProjectSelector> *
     projectSelector;
 
+@property (nonatomic, retain) IBOutlet NSObject<BuildService> * buildService;
 
 - (void) start;
  

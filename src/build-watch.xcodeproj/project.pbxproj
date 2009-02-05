@@ -21,6 +21,9 @@
 		9149DF720F39053200A0E32C /* ServerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149DF6F0F39053200A0E32C /* ServerView.xib */; };
 		9149E0010F39142400A0E32C /* ProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9149E0000F39142400A0E32C /* ProjectsViewController.m */; };
 		9149E0040F39167600A0E32C /* ProjectsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149E0020F39167600A0E32C /* ProjectsView.xib */; };
+		91F09AA50F3A63370034528C /* ProjectReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AA40F3A63370034528C /* ProjectReport.m */; };
+		91F09AA80F3A657B0034528C /* ServerReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AA70F3A657B0034528C /* ServerReport.m */; };
+		91F09AD80F3A69A50034528C /* MockBuildService.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AD70F3A69A50034528C /* MockBuildService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,14 @@
 		9149DFFF0F39142400A0E32C /* ProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewController.h; sourceTree = "<group>"; };
 		9149E0000F39142400A0E32C /* ProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsViewController.m; sourceTree = "<group>"; };
 		9149E0030F39167600A0E32C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ProjectsView.xib; sourceTree = "<group>"; };
+		91F09AA30F3A63370034528C /* ProjectReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectReport.h; sourceTree = "<group>"; };
+		91F09AA40F3A63370034528C /* ProjectReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectReport.m; sourceTree = "<group>"; };
+		91F09AA60F3A657B0034528C /* ServerReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerReport.h; sourceTree = "<group>"; };
+		91F09AA70F3A657B0034528C /* ServerReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerReport.m; sourceTree = "<group>"; };
+		91F09AAA0F3A66970034528C /* BuildService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildService.h; sourceTree = "<group>"; };
+		91F09AAD0F3A67090034528C /* BuildServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildServiceDelegate.h; sourceTree = "<group>"; };
+		91F09AD60F3A69A50034528C /* MockBuildService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockBuildService.h; sourceTree = "<group>"; };
+		91F09AD70F3A69A50034528C /* MockBuildService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockBuildService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +82,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				91F09AA60F3A657B0034528C /* ServerReport.h */,
+				91F09AA70F3A657B0034528C /* ServerReport.m */,
 				05E9121A0F3A4E6800E646F6 /* ProjectSelector.h */,
 				05E9121B0F3A4E6800E646F6 /* ProjectSelectorDelegate.h */,
 				05E9121C0F3A4E6800E646F6 /* ServerSelector.h */,
@@ -89,6 +102,12 @@
 				05E911E60F3A453300E646F6 /* UIServerSelector.m */,
 				05E9121D0F3A4E7100E646F6 /* UIProjectSelector.h */,
 				05E9121E0F3A4E7100E646F6 /* UIProjectSelector.m */,
+				91F09AA30F3A63370034528C /* ProjectReport.h */,
+				91F09AA40F3A63370034528C /* ProjectReport.m */,
+				91F09AAA0F3A66970034528C /* BuildService.h */,
+				91F09AAD0F3A67090034528C /* BuildServiceDelegate.h */,
+				91F09AD60F3A69A50034528C /* MockBuildService.h */,
+				91F09AD70F3A69A50034528C /* MockBuildService.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -213,6 +232,9 @@
 				05E911100F3A11F700E646F6 /* MockServerPersistentStore.m in Sources */,
 				05E911E70F3A453300E646F6 /* UIServerSelector.m in Sources */,
 				05E9121F0F3A4E7100E646F6 /* UIProjectSelector.m in Sources */,
+				91F09AA50F3A63370034528C /* ProjectReport.m in Sources */,
+				91F09AA80F3A657B0034528C /* ServerReport.m in Sources */,
+				91F09AD80F3A69A50034528C /* MockBuildService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
