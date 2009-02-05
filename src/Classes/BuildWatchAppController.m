@@ -139,14 +139,6 @@
     [projectReporter reportDetailsForProject:project];
 }
 
-#pragma mark ProjectReporterDelegate protocol implementation
-
-- (NSString *) displayNameForProjectId:(NSString *)projectId
-{
-    NSLog(@"User wants display name for project: %@.", projectId);
-    return projectId;
-}
-
 - (void) userDidDeselectServer
 {
     [self setActiveServer:nil]; 
@@ -161,6 +153,14 @@
     
     return displayName;
 }
+
+#pragma mark ProjectReporterDelegate protocol implementation
+
+- (NSString *) displayNameForProjectId:(NSString *)projectId
+{
+    return [self displayNameForProject:projectId];
+}
+
 
 - (void) userDidHideProjects:(NSArray *)projects
 {

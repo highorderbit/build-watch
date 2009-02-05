@@ -77,7 +77,7 @@ enum ActionCells
 
     switch (indexPath.section) {
         case kProjectDetailSection:
-            cell.text = [delegate displayNameForProjectId:projectId];
+            cell.text = [delegate displayNameForProject:projectId];
             break;
 
         case kProjectActionSection:

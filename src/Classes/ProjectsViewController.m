@@ -60,7 +60,9 @@
          autorelease];
     
     // Set up the cell
-    cell.text = [projects objectAtIndex:indexPath.row];
+    
+    cell.text =
+        [delegate displayNameForProject:[projects objectAtIndex:indexPath.row]];
     
     return cell;
 }

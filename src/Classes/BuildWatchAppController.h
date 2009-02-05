@@ -4,7 +4,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ServerPersistentStore.h"
+#import "BuildWatchPersistentStore.h"
 #import "ServerSelector.h"
 #import "ServerSelectorDelegate.h"
 #import "ProjectSelector.h"
@@ -20,13 +20,15 @@
 {
     // Servers are a list of URL strings.
     //     (NSString *) server url -> (NSArray *) project names (NSString *)
-    NSDictionary * servers;
+    NSMutableDictionary * servers;
 
     // Server names are mapped as follows:
     //     (NSString *) server url -> (NSString *) server name
-    NSDictionary * serverNames;
+    NSMutableDictionary * serverNames;
+    
+    NSMutableDictionary * projectDisplayNames;
 
-    NSObject<ServerPersistentStore> * serverPersistentStore;
+    NSObject<BuildWatchPersistentStore> * persistentStore;
 
     NSObject<ServerSelector> * serverSelector;
     NSObject<ProjectSelector> * projectSelector;
@@ -37,8 +39,8 @@
     NSString * activeServer;
 }
 
-@property (nonatomic, retain) IBOutlet NSObject<ServerPersistentStore> *
-    serverPersistentStore;
+@property (nonatomic, retain) IBOutlet NSObject<BuildWatchPersistentStore> *
+    persistentStore;
 
 @property (nonatomic, retain) IBOutlet NSObject<ServerSelector> *
     serverSelector;

@@ -7,6 +7,6 @@
 
 @protocol ProjectReporterDelegate
 
-- (NSString *) displayNameForProjectId:(NSString *)projectId;
+- (NSString *) displayNameForProject:(NSString *)projectId;
 
 @end
