@@ -161,6 +161,11 @@
     return displayName;
 }
 
+- (NSString *) displayNameForCurrentProjectCollection
+{
+    return activeServer;
+}
+
 - (void) userDidHideProjects:(NSArray *)projects
 {
     //

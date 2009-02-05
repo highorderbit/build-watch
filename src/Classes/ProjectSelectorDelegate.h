@@ -12,4 +12,6 @@
 
 - (NSString *) displayNameForProject:(NSString *)project;
 
+- (NSString *) displayNameForCurrentProjectCollection;
+
 @end
