@@ -9,11 +9,14 @@
 #import "ServerSelectorDelegate.h"
 #import "ProjectSelector.h"
 #import "ProjectSelectorDelegate.h"
+#import "ProjectReporter.h"
+#import "ProjectReporterDelegate.h"
 #import "BuildService.h"
 
 @interface BuildWatchAppController : NSObject
                                      < ServerSelectorDelegate,
-                                       ProjectSelectorDelegate >
+                                       ProjectSelectorDelegate,
+                                       ProjectReporterDelegate >
 {
     // Servers are a list of URL strings.
     //     (NSString *) server url -> (NSArray *) project names (NSString *)
@@ -29,6 +32,7 @@
 
     NSObject<ServerSelector> * serverSelector;
     NSObject<ProjectSelector> * projectSelector;
+    NSObject<ProjectReporter> * projectReporter;
     
     NSObject<BuildService> * buildService;
     
@@ -42,6 +46,8 @@
     serverSelector;
 @property (nonatomic, retain) IBOutlet NSObject<ProjectSelector> *
     projectSelector;
+@property (nonatomic, retain) IBOutlet NSObject<ProjectReporter> *
+    projectReporter;
 
 @property (nonatomic, retain) IBOutlet NSObject<BuildService> * buildService;
 
