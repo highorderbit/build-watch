@@ -17,13 +17,13 @@
 {
     // Servers are a list of URL strings.
     //     (NSString *) server url -> (NSArray *) project names (NSString *)
-    NSDictionary * servers;
+    NSMutableDictionary * servers;
 
     // Server names are mapped as follows:
     //     (NSString *) server url -> (NSString *) server name
-    NSDictionary * serverNames;
+    NSMutableDictionary * serverNames;
     
-    NSDictionary * projectDisplayNames;
+    NSMutableDictionary * projectDisplayNames;
 
     NSObject<BuildWatchPersistentStore> * persistentStore;
 

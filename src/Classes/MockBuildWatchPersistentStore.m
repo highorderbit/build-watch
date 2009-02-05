@@ -109,21 +109,21 @@
 + (NSDictionary *) mockProjectDisplayNameList
 {
     return [NSDictionary dictionaryWithObjectsAndKeys:
-            @"http://builder/my-server/|Build Watch", @"Build Watch",
-            @"http://builder/my-server/|Website", @"Website",
-            @"http://builder/my-server/|Git Website", @"Git Website",
-            @"http://apple.com/builder/|Mail", @"Mail",
-            @"http://apple.com/builder/|Address Book", @"Address Book",
-            @"http://apple.com/builder/|Safari", @"Safari",
-            @"http://microsoft.com/TeamSystem/default.aspx|Windows 7",
+            @"Build Watch", @"http://builder/my-server/|Build Watch",
+            @"Website", @"http://builder/my-server/|Website",
+            @"Git Website", @"http://builder/my-server/|Git Website",
+            @"Mail", @"http://apple.com/builder/|Mail",
+            @"Address Book", @"http://apple.com/builder/|Address Book",
+            @"Safari", @"http://apple.com/builder/|Safari",
             @"Windows 7",
+            @"http://microsoft.com/TeamSystem/default.aspx|Windows 7",
+            @"Visual Studio Team System 2007", 
             @"http://microsoft.com/TeamSystem/default.aspx|Visual Studio Team System 2007",
-            @"Visual Studio Team System 2007",
-            @"http://microsoft.com/TeamSystem/default.aspx|Microsoft Office System 2009",
             @"Microsoft Office System 2009",
-            @"http://openoffice.org/builds/|OpenOffice", @"OpenOffice",
-            @"http://openoffice.org/builds/|KDE", @"KDE",
-            @"http://openoffice.org/builds/|GNOME", @"GNOME",
+            @"http://microsoft.com/TeamSystem/default.aspx|Microsoft Office System 2009",
+            @"OpenOffice", @"http://openoffice.org/builds/|OpenOffice",
+            @"KDE", @"http://openoffice.org/builds/|KDE", 
+            @"GNOME", @"http://openoffice.org/builds/|GNOME",
             nil];
 }
 
