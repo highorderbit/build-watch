@@ -9,14 +9,17 @@
 @class Server, Project;
 
 @interface BuildWatchAppController (Private)
-
+- (NSArray *) projectIdsForServer:(NSString *)server;
 - (void) setActiveServer:(NSString *) activeServer;
-
+- (void) setServers:(NSDictionary *)newServers;
+- (void) setServerNames:(NSDictionary *)newServerNames;
+- (void) setProjectDisplayNames:(NSDictionary *)newProjectDisplayNames;
++ (NSString *) keyForProject:(NSString *)project andServer:(NSString *)server;
 @end
 
 @implementation BuildWatchAppController
 
-@synthesize serverPersistentStore;
+@synthesize persistentStore;
 @synthesize serverSelector;
 @synthesize projectSelector;
 @synthesize projectReporter;
@@ -26,10 +29,11 @@
 {
     [servers release];
     [serverNames release];
-    [serverPersistentStore release];
-    [projectSelector release];
+    [serverSelector release];
     [projectSelector release];
     [projectReporter release];
+    [projectDisplayNames release];
+    [persistentStore release];
     [buildService release];
     [super dealloc];
 }
@@ -48,7 +52,9 @@
 
 - (void) start
 {
-    servers = [[serverPersistentStore getAllServers] retain];
+    [self setServers:[persistentStore getServers]];
+    [self setServerNames:[persistentStore getServerNames]];
+    [self setProjectDisplayNames:[persistentStore getProjDisplayNames]];
     
     NSArray * serverKeys = [servers allKeys];
     
@@ -70,16 +76,33 @@
 #pragma mark Some protocol implementation
 
 - (void) report:(ServerReport *)report receivedFrom:(NSString *)server
-{
+{    
+    for (ProjectReport * projReport in [report projectReports])
+        [projectDisplayNames setObject:projReport.name
+                                forKey:[[self class]
+                                        keyForProject:projReport.name
+                                        andServer:server]];
+    
     NSMutableArray * projects = [[NSMutableArray alloc] init];
     
     for (ProjectReport * projReport in [report projectReports])
         [projects addObject:projReport.name];
+
+    [servers setObject:projects forKey:server];
+
+    [projects release];
     
-    // TODO: save state
+    NSMutableArray * projectIds = [[NSMutableArray alloc] init];
+    
+    for (ProjectReport * projReport in [report projectReports])
+        [projectIds addObject:[[self class]
+                               keyForProject:projReport.name
+                                   andServer:server]];
     
     if([activeServer isEqual:server])
-        [projectSelector selectProjectFrom:projects];
+        [projectSelector selectProjectFrom:projectIds];
+    
+    [projectIds release];
     
     //
     // 1. Update UI for toolbar.
@@ -99,10 +122,10 @@
 
     NSLog(@"User selected server: %@.", server);
     [self setActiveServer:server];
-    [projectSelector selectProjectFrom:[servers objectForKey:server]];
+    [projectSelector selectProjectFrom:[self projectIdsForServer:server]];
 }
 
-#pragma mark Some (potentially different) protocol implementation
+#pragma mark ProjectSelectorDelegate protocol implementation
 
 - (void) userDidSelectProject:(NSString *)project
 {
@@ -122,6 +145,21 @@
 {
     NSLog(@"User wants display name for project: %@.", projectId);
     return projectId;
+}
+
+- (void) userDidDeselectServer
+{
+    [self setActiveServer:nil]; 
+}
+
+- (NSString *) displayNameForProject:(NSString *)project
+{
+    NSString * displayName = [projectDisplayNames objectForKey:project];
+    NSAssert1(
+        displayName != nil,
+              @"Unable to find display name for project %@", project);
+    
+    return displayName;
 }
 
 - (void) userDidHideProjects:(NSArray *)projects
@@ -159,12 +197,53 @@
     //
 }
 
+- (NSArray *) projectIdsForServer:(NSString *)server
+{
+    NSMutableArray * projectIds = [NSMutableArray array];
+    
+    for (NSString * project in [servers objectForKey:server])
+        [projectIds addObject:
+         [BuildWatchAppController keyForProject:project andServer:server]];
+    
+    return projectIds;
+}
+
+#pragma mark Accessors
+
 - (void) setActiveServer:(NSString *) server
 {
-    if(activeServer != server) {
-        [activeServer release];
-        activeServer = [server retain];
-    }
+    [server retain];
+    [activeServer release];
+    activeServer = server;
+}
+
+- (void) setServers:(NSDictionary *)newServers
+{
+    NSMutableDictionary * tempServers = [newServers mutableCopy];
+    [servers release];
+    servers = tempServers;
+}
+
+- (void) setServerNames:(NSDictionary *)newServerNames
+{
+    NSMutableDictionary * tempServerNames = [newServerNames mutableCopy];
+    [serverNames release];
+    serverNames = tempServerNames;
+}
+
+- (void) setProjectDisplayNames:(NSDictionary *)newProjectDisplayNames;
+{
+    NSMutableDictionary * tempProjectDisplayNames =
+        [newProjectDisplayNames mutableCopy];
+    [projectDisplayNames release];
+    projectDisplayNames = tempProjectDisplayNames;
+}
+
+#pragma mark static utility functions
+
++ (NSString *) keyForProject:(NSString *)project andServer:(NSString *)server
+{
+    return [NSString stringWithFormat:@"%@|%@", server, project];
 }
 
 @end
