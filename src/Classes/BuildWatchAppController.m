@@ -19,6 +19,7 @@
 @synthesize serverPersistentStore;
 @synthesize serverSelector;
 @synthesize projectSelector;
+@synthesize projectReporter;
 @synthesize buildService;
 
 - (void) dealloc
@@ -26,6 +27,9 @@
     [servers release];
     [serverNames release];
     [serverPersistentStore release];
+    [projectSelector release];
+    [projectSelector release];
+    [projectReporter release];
     [buildService release];
     [super dealloc];
 }
@@ -109,6 +113,15 @@
     //
 
     NSLog(@"User selected project: %@.", project);
+    [projectReporter reportDetailsForProject:project];
+}
+
+#pragma mark ProjectReporterDelegate protocol implementation
+
+- (NSString *) displayNameForProjectId:(NSString *)projectId
+{
+    NSLog(@"User wants display name for project: %@.", projectId);
+    return projectId;
 }
 
 - (void) userDidHideProjects:(NSArray *)projects
