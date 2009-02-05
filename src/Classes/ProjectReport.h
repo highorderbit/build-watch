@@ -5,15 +5,17 @@
 #import <UIKit/UIKit.h>
 
 @interface ProjectReport : NSObject {
-    NSString * title;
+    NSString * name;
     NSString * description;
     NSDate * pubDate;
     NSString * link;
+    BOOL buildSucceeded;
 }
 
-@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * description;
 @property (nonatomic, retain) NSDate * pubDate;
 @property (nonatomic, retain) NSString * link;
+@property (nonatomic, assign) BOOL buildSucceeded;
 
 @end

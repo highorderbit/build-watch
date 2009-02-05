@@ -73,7 +73,7 @@
     NSMutableArray * projects = [[NSMutableArray alloc] init];
     
     for (ProjectReport * projReport in [report projectReports])
-        [projects addObject:projReport.title];
+        [projects addObject:projReport.name];
     
     // TODO: save state
     

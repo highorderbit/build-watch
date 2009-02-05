@@ -6,6 +6,10 @@
 #import "ServerReport.h"
 #import "ProjectReport.h"
 
+@interface MockBuildService (Private)
++ (BOOL)buildSucceededFromProjectName:(NSString *)projectName;
+@end
+
 @implementation MockBuildService
 
 @synthesize delegate;
@@ -24,10 +28,11 @@
     NSString * server = (NSString *)timer.userInfo;
     
     ServerReport * report = [[ServerReport alloc] init];
+    report.name = @"CruiseControl RSS feed";
     report.link = server;
     
     ProjectReport * projReport1 = [[ProjectReport alloc] init];
-    projReport1.title = @"BrokenApp build 7.10 failed";
+    projReport1.name = @"BrokenApp build 7.10 failed";
     projReport1.description =
         @"&lt;pre&gt;Build was manually requested&lt;/pre&gt;";
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
@@ -35,14 +40,18 @@
     projReport1.pubDate =
         [dateFormatter dateFromString:@"Tue, 03 Feb 2009 04:34:11 Z"];
     projReport1.link = @"http://10.0.1.100:3333/builds/BrokenApp/7.10";
+    projReport1.buildSucceeded =
+        [[self class] buildSucceededFromProjectName:projReport1.name];
     
     ProjectReport * projReport2 = [[ProjectReport alloc] init];
-    projReport2.title = @"RandomApp build 4.5 success";
+    projReport2.name = @"RandomApp build 4.5 success";
     projReport2.description =
         @"&lt;pre&gt;Build was manually requested&lt;/pre&gt;";
     projReport2.pubDate =
         [dateFormatter dateFromString:@"Tue, 03 Feb 2009 03:50:25 Z"];
     projReport2.link = @"http://10.0.1.100:3333/builds/RandomApp/4.5";
+    projReport2.buildSucceeded =
+        [[self class] buildSucceededFromProjectName:projReport2.name];
     
     [dateFormatter release];
     
@@ -58,6 +67,16 @@
     [report release];
     
     [server release];
+}
+
++ (BOOL)buildSucceededFromProjectName:(NSString *)projectName
+{
+    static const NSRange NOT_FOUND = { NSNotFound, 0 };
+    static NSString * FAILED_STRING = @"failed";
+
+    NSRange where = [projectName rangeOfString:FAILED_STRING];
+    return where.location == NOT_FOUND.location &&
+           where.length == NOT_FOUND.length;
 }
 
 @end
