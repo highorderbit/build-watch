@@ -16,7 +16,7 @@
 
 @implementation BuildWatchAppController
 
-@synthesize serverPersistentStore;
+@synthesize persistentStore;
 @synthesize serverSelector;
 @synthesize projectSelector;
 @synthesize buildService;
@@ -25,7 +25,8 @@
 {
     [servers release];
     [serverNames release];
-    [serverPersistentStore release];
+    [projectDisplayNames release];
+    [persistentStore release];
     [buildService release];
     [super dealloc];
 }
@@ -44,7 +45,9 @@
 
 - (void) start
 {
-    servers = [[serverPersistentStore getAllServers] retain];
+    servers = [[persistentStore getServers] retain];
+    serverNames = [[persistentStore getServerNames] retain];
+    projectDisplayNames = [[persistentStore getProjDisplayNames] retain];
     
     NSArray * serverKeys = [servers allKeys];
     

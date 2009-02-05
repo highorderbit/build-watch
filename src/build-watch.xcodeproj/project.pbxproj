@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		05E911050F3A056F00E646F6 /* BuildWatchAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E911040F3A056F00E646F6 /* BuildWatchAppController.m */; };
-		05E911100F3A11F700E646F6 /* MockServerPersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E9110F0F3A11F700E646F6 /* MockServerPersistentStore.m */; };
+		05E911100F3A11F700E646F6 /* MockBuildWatchPersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E9110F0F3A11F700E646F6 /* MockBuildWatchPersistentStore.m */; };
 		05E911E70F3A453300E646F6 /* UIServerSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E911E60F3A453300E646F6 /* UIServerSelector.m */; };
 		05E9121F0F3A4E7100E646F6 /* UIProjectSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E9121E0F3A4E7100E646F6 /* UIProjectSelector.m */; };
 		1D3623260D0F684500981E51 /* BuildWatchAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* BuildWatchAppDelegate.m */; };
@@ -29,9 +29,9 @@
 /* Begin PBXFileReference section */
 		05E911030F3A056F00E646F6 /* BuildWatchAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildWatchAppController.h; sourceTree = "<group>"; };
 		05E911040F3A056F00E646F6 /* BuildWatchAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildWatchAppController.m; sourceTree = "<group>"; };
-		05E911070F3A111500E646F6 /* ServerPersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerPersistentStore.h; sourceTree = "<group>"; };
-		05E9110E0F3A11F700E646F6 /* MockServerPersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockServerPersistentStore.h; sourceTree = "<group>"; };
-		05E9110F0F3A11F700E646F6 /* MockServerPersistentStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockServerPersistentStore.m; sourceTree = "<group>"; };
+		05E911070F3A111500E646F6 /* BuildWatchPersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildWatchPersistentStore.h; sourceTree = "<group>"; };
+		05E9110E0F3A11F700E646F6 /* MockBuildWatchPersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockBuildWatchPersistentStore.h; sourceTree = "<group>"; };
+		05E9110F0F3A11F700E646F6 /* MockBuildWatchPersistentStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockBuildWatchPersistentStore.m; sourceTree = "<group>"; };
 		05E911E50F3A453300E646F6 /* UIServerSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIServerSelector.h; sourceTree = "<group>"; };
 		05E911E60F3A453300E646F6 /* UIServerSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIServerSelector.m; sourceTree = "<group>"; };
 		05E9121A0F3A4E6800E646F6 /* ProjectSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectSelector.h; sourceTree = "<group>"; };
@@ -95,9 +95,9 @@
 				9149E0000F39142400A0E32C /* ProjectsViewController.m */,
 				05E911030F3A056F00E646F6 /* BuildWatchAppController.h */,
 				05E911040F3A056F00E646F6 /* BuildWatchAppController.m */,
-				05E911070F3A111500E646F6 /* ServerPersistentStore.h */,
-				05E9110E0F3A11F700E646F6 /* MockServerPersistentStore.h */,
-				05E9110F0F3A11F700E646F6 /* MockServerPersistentStore.m */,
+				05E911070F3A111500E646F6 /* BuildWatchPersistentStore.h */,
+				05E9110E0F3A11F700E646F6 /* MockBuildWatchPersistentStore.h */,
+				05E9110F0F3A11F700E646F6 /* MockBuildWatchPersistentStore.m */,
 				05E911E50F3A453300E646F6 /* UIServerSelector.h */,
 				05E911E60F3A453300E646F6 /* UIServerSelector.m */,
 				05E9121D0F3A4E7100E646F6 /* UIProjectSelector.h */,
@@ -229,7 +229,7 @@
 				28C286E10D94DF7D0034E888 /* ServerViewController.m in Sources */,
 				9149E0010F39142400A0E32C /* ProjectsViewController.m in Sources */,
 				05E911050F3A056F00E646F6 /* BuildWatchAppController.m in Sources */,
-				05E911100F3A11F700E646F6 /* MockServerPersistentStore.m in Sources */,
+				05E911100F3A11F700E646F6 /* MockBuildWatchPersistentStore.m in Sources */,
 				05E911E70F3A453300E646F6 /* UIServerSelector.m in Sources */,
 				05E9121F0F3A4E7100E646F6 /* UIProjectSelector.m in Sources */,
 				91F09AA50F3A63370034528C /* ProjectReport.m in Sources */,
