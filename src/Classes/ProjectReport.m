@@ -6,14 +6,15 @@
 
 @implementation ProjectReport
 
-@synthesize title;
+@synthesize name;
 @synthesize description;
 @synthesize pubDate;
 @synthesize link;
+@synthesize buildSucceeded;
 
 - (void)dealloc
 {
-    [title release];
+    [name release];
     [description release];
     [pubDate release];
     [link release];

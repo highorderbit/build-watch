@@ -7,11 +7,13 @@
 
 @implementation ServerReport
 
+@synthesize name;
 @synthesize link;
 @synthesize projectReports;
 
 - (void)dealloc
 {
+    [name release];
     [link release];
     [projectReports release];
     [super dealloc];
