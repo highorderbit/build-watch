@@ -132,6 +132,11 @@
      selectProjectFrom:[self projectIdsForServer:serverGroupName]];
 }
 
+- (BOOL)canServerGroupBeDeleted:(NSString *)serverGroupName
+{
+    return ![serverGroupName isEqual:@"All"];
+}
+
 #pragma mark ProjectSelectorDelegate protocol implementation
 
 - (void) userDidSelectProject:(NSString *)project

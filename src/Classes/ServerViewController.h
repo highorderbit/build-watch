@@ -12,11 +12,15 @@
     UITableView * tableView;
 
     NSArray * serverGroupNames;
+    NSArray * visibleServerGroupNames;
     NSObject<ServerGroupNameSelectorDelegate> * delegate;
+
+    UIBarButtonItem * addBarButtonItem;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView * tableView;
 @property (nonatomic, retain) NSArray * serverGroupNames;
+@property (nonatomic, retain) NSArray * visibleServerGroupNames;
 @property (nonatomic, retain)
     NSObject<ServerGroupNameSelectorDelegate> * delegate;
 
