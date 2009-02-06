@@ -11,6 +11,7 @@
 		053A95150F3B9BF60092763D /* ProjectReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 053A95140F3B9BF60092763D /* ProjectReportViewController.m */; };
 		059CBD480F3BA40900010F3F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 059CBD460F3BA40900010F3F /* Localizable.strings */; };
 		059CBDC20F3BAE7400010F3F /* ProjectReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059CBDC00F3BAE7400010F3F /* ProjectReportView.xib */; };
+		059CBE090F3BC7C800010F3F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 059CBE080F3BC7C800010F3F /* Icon.png */; };
 		05E911050F3A056F00E646F6 /* BuildWatchAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E911040F3A056F00E646F6 /* BuildWatchAppController.m */; };
 		05E911100F3A11F700E646F6 /* MockBuildWatchPersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E9110F0F3A11F700E646F6 /* MockBuildWatchPersistentStore.m */; };
 		05E911E70F3A453300E646F6 /* UIServerSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E911E60F3A453300E646F6 /* UIServerSelector.m */; };
@@ -38,6 +39,7 @@
 		053A95140F3B9BF60092763D /* ProjectReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectReportViewController.m; sourceTree = "<group>"; };
 		059CBD470F3BA40900010F3F /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		059CBDC10F3BAE7400010F3F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ProjectReportView.xib; sourceTree = "<group>"; };
+		059CBE080F3BC7C800010F3F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		05E911030F3A056F00E646F6 /* BuildWatchAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildWatchAppController.h; sourceTree = "<group>"; };
 		05E911040F3A056F00E646F6 /* BuildWatchAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildWatchAppController.m; sourceTree = "<group>"; };
 		05E911070F3A111500E646F6 /* BuildWatchPersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildWatchPersistentStore.h; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				059CBE080F3BC7C800010F3F /* Icon.png */,
 				9149DF6D0F39053200A0E32C /* MainWindow.xib */,
 				9149DF6F0F39053200A0E32C /* ServerView.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -236,6 +239,7 @@
 				9149E0040F39167600A0E32C /* ProjectsView.xib in Resources */,
 				059CBD480F3BA40900010F3F /* Localizable.strings in Resources */,
 				059CBDC20F3BAE7400010F3F /* ProjectReportView.xib in Resources */,
+				059CBE090F3BC7C800010F3F /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
