@@ -113,14 +113,20 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
         [projectIds addObject:[[self class]
                                keyForProject:projReport.name
                                    andServer:server]];
-    
-    // TODO: change this to compare server against regex and send all projects
-    //       in active server group
-    if([activeServerGroupName isEqual:server])
-        [projectSelector selectProjectFrom:projectIds];
 
     [projectIds release];
     
+    // Push updates to project selector
+    NSString * serverGroupPattern =
+        [serverGroupPatterns objectForKey:activeServerGroupName];
+    BOOL serverMatchesActiveGroupNameRegEx =
+        [server isMatchedByRegex:serverGroupPattern];
+    NSArray * projectIdsForActiveServerGroup =
+        [self projectIdsForServerGroupName:activeServerGroupName];
+    
+    if(serverMatchesActiveGroupNameRegEx)
+        [projectSelector selectProjectFrom:projectIdsForActiveServerGroup];
+
     //
     // 1. Update UI for toolbar.
     //
