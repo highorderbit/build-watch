@@ -17,6 +17,10 @@
  */
 - (NSDictionary *)getServers;
 
+- (void) saveServerGroupPatterns:(NSDictionary *)serverGroupPatterns;
+
+- (NSDictionary *)getServerGroupPatterns;
+
 - (void)saveServerNames:(NSDictionary *)serverNames;
 
 - (NSDictionary *)getServerNames;

@@ -9,6 +9,7 @@
                                        < BuildWatchPersistentStore >
 {
     NSDictionary * servers;
+    NSDictionary * serverGroupPatterns;
     NSDictionary * serverNames;
     NSDictionary * projectDisplayNames;
 }

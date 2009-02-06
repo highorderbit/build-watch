@@ -6,8 +6,9 @@
 
 @interface MockBuildWatchPersistentStore (Private)
 + (NSDictionary *) mockServerList;
++ (NSDictionary *) mockServerGroupPatternsList;
 + (NSDictionary *) mockServerNameList;
-+ (NSDictionary *) mockProjectDisplayNameList;
++ (NSDictionary *) mockProjectDisplayNamesList;
 @end
 
 @implementation MockBuildWatchPersistentStore
@@ -15,6 +16,7 @@
 - (void) dealloc
 {
     [servers release];
+    [serverGroupPatterns release];
     [serverNames release];
     [projectDisplayNames release];
     [super dealloc];
@@ -23,11 +25,12 @@
 - (id) init
 {
     if (self = [super init]) {
-        servers = [[MockBuildWatchPersistentStore mockServerList] retain];
-        serverNames =
-            [[MockBuildWatchPersistentStore  mockServerNameList] retain];
+        servers = [[[self class] mockServerList] retain];
+        serverGroupPatterns =
+            [[[self class] mockServerGroupPatternsList] retain];
+        serverNames = [[[self class]  mockServerNameList] retain];
         projectDisplayNames =
-            [[MockBuildWatchPersistentStore mockProjectDisplayNameList] retain];
+            [[[self class] mockProjectDisplayNamesList] retain];
     }
     
     return self;
@@ -44,6 +47,17 @@
 - (NSDictionary *)getServers
 {
     return servers;
+}
+
+- (void) saveServerGroupPatterns:(NSDictionary *)newServerGroupPatterns
+{
+    [serverGroupPatterns release];
+    serverGroupPatterns = [newServerGroupPatterns copy];
+}
+
+- (NSDictionary *)getServerGroupPatterns
+{
+    return serverGroupPatterns;
 }
 
 - (void) saveServerNames:(NSDictionary *)newServerNames
@@ -96,6 +110,18 @@
         nil, nil];
 }
 
++ (NSDictionary *) mockServerGroupPatternsList
+{
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+            @"^http://builder/my-server/$", @"http://builder/my-server/",
+            @"^http://apple.com/builder/$", @"http://apple.com/builder/",
+            @"^http://microsoft.com/TeamSystem/default.aspx$",
+            @"http://microsoft.com/TeamSystem/default.aspx",
+            @"^http://openoffice.org/builds/$",
+            @"http://openoffice.org/builds/",
+            @".*", @"All", nil];
+}
+
 + (NSDictionary *) mockServerNameList
 {
     return [NSDictionary dictionaryWithObjectsAndKeys:
@@ -106,7 +132,7 @@
             @"OpenOfice Builds", @"http://openoffice.org/builds/", nil];
 }
 
-+ (NSDictionary *) mockProjectDisplayNameList
++ (NSDictionary *) mockProjectDisplayNamesList
 {
     return [NSDictionary dictionaryWithObjectsAndKeys:
             @"Build Watch", @"http://builder/my-server/|Build Watch",

@@ -22,6 +22,10 @@
     //     (NSString *) server url -> (NSArray *) project names (NSString *)
     NSMutableDictionary * servers;
 
+    // Server groups are mapped as follows:
+    //     (NSString *) groupName -> (NSString *) reg ex of matching servers
+    NSMutableDictionary * serverGroupPatterns;
+    
     // Server names are mapped as follows:
     //     (NSString *) server url -> (NSString *) server name
     NSMutableDictionary * serverNames;

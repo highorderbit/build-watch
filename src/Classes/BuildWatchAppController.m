@@ -11,11 +11,13 @@
 @interface BuildWatchAppController (Private)
 - (void) setActiveServerGroupName:(NSString *) activeServer;
 - (void) setServers:(NSDictionary *)newServers;
+- (void) setServerGroupPatterns:(NSDictionary *)newServerGroupPatterns;
 - (void) setServerNames:(NSDictionary *)newServerNames;
 - (void) setProjectDisplayNames:(NSDictionary *)newProjectDisplayNames;
 - (void) removeMissingProjectPropertiesWithProjects:(NSArray *)newProjects
                                           andServer:(NSString *)server;
 - (NSArray *) projectIdsForServer:(NSString *)server;
+- (NSArray *) projectIdsForServerGroupName:(NSString *)serverGroupName;
 - (NSArray *) serverGroupNames;
 + (NSString *) keyForProject:(NSString *)project andServer:(NSString *)server;
 @end
@@ -31,6 +33,7 @@
 - (void) dealloc
 {
     [servers release];
+    [serverGroupPatterns release];
     [serverNames release];
     [serverGroupNameSelector release];
     [projectSelector release];
@@ -56,6 +59,7 @@
 - (void) start
 {
     [self setServers:[persistentStore getServers]];
+    [self setServerGroupPatterns:[persistentStore getServerGroupPatterns]];
     [self setServerNames:[persistentStore getServerNames]];
     [self setProjectDisplayNames:[persistentStore getProjDisplayNames]];
     
@@ -64,7 +68,8 @@
     for (NSString * server in serverKeys)
         [buildService refreshDataForServer:server];
     
-    [serverGroupNameSelector selectServerGroupNamesFrom:[self serverGroupNames]];
+    [serverGroupNameSelector
+     selectServerGroupNamesFrom:[self serverGroupNames]];
 
     //
     // 1. Fetch existing data (server list).
@@ -106,6 +111,8 @@
                                keyForProject:projReport.name
                                    andServer:server]];
     
+    // TODO: change this to compare server against regex and send all projects
+    //       in active server group
     if([activeServerGroupName isEqual:server])
         [projectSelector selectProjectFrom:projectIds];
 
@@ -129,7 +136,7 @@
     NSLog(@"User selected server group name: %@.", serverGroupName);
     [self setActiveServerGroupName:serverGroupName];
     [projectSelector
-     selectProjectFrom:[self projectIdsForServer:serverGroupName]];
+     selectProjectFrom:[self projectIdsForServerGroupName:serverGroupName]]; 
 }
 
 #pragma mark ProjectSelectorDelegate protocol implementation
@@ -219,6 +226,14 @@
     servers = tempServers;
 }
 
+- (void) setServerGroupPatterns:(NSDictionary *)newServerGroupPatterns
+{
+    NSMutableDictionary * tempGroupNamePatterns =
+        [newServerGroupPatterns mutableCopy];
+    [serverGroupPatterns release];
+    serverGroupPatterns = tempGroupNamePatterns;
+}
+
 - (void) setServerNames:(NSDictionary *)newServerNames
 {
     NSMutableDictionary * tempServerNames = [newServerNames mutableCopy];
@@ -243,6 +258,20 @@
     for (NSString * project in [servers objectForKey:server])
         [projectIds addObject:
          [BuildWatchAppController keyForProject:project andServer:server]];
+    
+    return projectIds;
+}
+
+- (NSArray *) projectIdsForServerGroupName:(NSString *)serverGroupName
+{
+    NSMutableArray * projectIds =[[[NSMutableArray alloc] init] autorelease];
+    NSString * regEx = [serverGroupPatterns objectForKey:serverGroupName];
+    NSPredicate * regExPred =
+        [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regEx];
+    
+    for (NSString * server in [servers allKeys])
+        if ([regExPred evaluateWithObject:server] == YES)
+            [projectIds addObjectsFromArray:[self projectIdsForServer:server]];
     
     return projectIds;
 }
