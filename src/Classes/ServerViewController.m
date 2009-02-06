@@ -100,6 +100,21 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     return UITableViewCellAccessoryDisclosureIndicator;
 }
 
+- (UITableViewCellEditingStyle) tableView:(UITableView *)tv
+            editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.editing)
+        return UITableViewCellEditingStyleDelete;
+
+    NSString * serverGroupName =
+        [visibleServerGroupNames objectAtIndex:indexPath.row];
+
+    // return 'none' style for non-deletable server groups to disable the
+    // swipe-to-delete motion for those cells
+    return [delegate canServerGroupBeDeleted:serverGroupName] ?
+        UITableViewCellEditingStyleDelete : UITableViewCellEditingStyleNone;
+}
+
 - (void)     tableView:(UITableView *)tv
     commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
     forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -112,8 +127,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         [serverGroupNames removeObject:serverGroupName];
         [delegate deleteServerGroupWithName:serverGroupName];
 
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-                         withRowAnimation:UITableViewRowAnimationFade];
+        [tableView deleteRowsAtIndexPaths:
+            [NSArray arrayWithObject:indexPath]
+                    withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
