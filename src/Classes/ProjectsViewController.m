@@ -27,6 +27,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+    self.navigationItem.title = [delegate displayNameForCurrentProjectGroup];
+
     NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selectedRow animated:NO];
 }
@@ -71,6 +74,12 @@
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [delegate userDidSelectProject:[projects objectAtIndex:indexPath.row]];
+}
+
+- (UITableViewCellAccessoryType) tableView:(UITableView *)tv
+          accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellAccessoryDisclosureIndicator;
 }
 
 #pragma mark Accessors

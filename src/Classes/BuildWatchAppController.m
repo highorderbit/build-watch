@@ -25,12 +25,16 @@
 @synthesize persistentStore;
 @synthesize serverGroupNameSelector;
 @synthesize projectSelector;
+@synthesize projectReporter;
 @synthesize buildService;
 
 - (void) dealloc
 {
     [servers release];
     [serverNames release];
+    [serverGroupNameSelector release];
+    [projectSelector release];
+    [projectReporter release];
     [projectDisplayNames release];
     [persistentStore release];
     [buildService release];
@@ -139,6 +143,7 @@
     //
 
     NSLog(@"User selected project: %@.", project);
+    [projectReporter reportDetailsForProject:project];
 }
 
 - (void) userDidDeselectServerGroupName
@@ -156,6 +161,11 @@
         projectDisplayNames);
     
     return displayName;
+}
+
+- (NSString *) displayNameForCurrentProjectGroup
+{
+    return activeServerGroupName;
 }
 
 - (void) userDidHideProjects:(NSArray *)projects

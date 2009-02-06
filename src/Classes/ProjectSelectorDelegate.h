@@ -12,4 +12,6 @@
 
 - (void) userDidDeselectServerGroupName;
 
+- (NSString *) displayNameForCurrentProjectGroup;
+
 @end
