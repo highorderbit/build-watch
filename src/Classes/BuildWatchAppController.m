@@ -5,6 +5,7 @@
 #import "BuildWatchAppController.h"
 #import "ServerReport.h"
 #import "ProjectReport.h"
+#import "RegexKitLite.h"
 
 @class Server, Project;
 
@@ -284,11 +285,9 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 {
     NSMutableArray * projectIds =[[[NSMutableArray alloc] init] autorelease];
     NSString * regEx = [serverGroupPatterns objectForKey:serverGroupName];
-    NSPredicate * regExPred =
-        [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regEx];
     
     for (NSString * server in [servers allKeys])
-        if ([regExPred evaluateWithObject:server] == YES)
+        if ([server isMatchedByRegex:regEx])
             [projectIds addObjectsFromArray:[self projectIdsForServer:server]];
     
     return projectIds;
