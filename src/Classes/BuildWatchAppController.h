@@ -5,14 +5,14 @@
 #import <Foundation/Foundation.h>
 
 #import "BuildWatchPersistentStore.h"
-#import "ServerSelector.h"
-#import "ServerSelectorDelegate.h"
+#import "ServerGroupNameSelector.h"
+#import "ServerGroupNameSelectorDelegate.h"
 #import "ProjectSelector.h"
 #import "ProjectSelectorDelegate.h"
 #import "BuildService.h"
 
 @interface BuildWatchAppController : NSObject
-                                     < ServerSelectorDelegate,
+                                     < ServerGroupNameSelectorDelegate,
                                        ProjectSelectorDelegate >
 {
     // Servers are a list of URL strings.
@@ -27,19 +27,19 @@
 
     NSObject<BuildWatchPersistentStore> * persistentStore;
 
-    NSObject<ServerSelector> * serverSelector;
+    NSObject<ServerGroupNameSelector> * serverGroupNameSelector;
     NSObject<ProjectSelector> * projectSelector;
     
     NSObject<BuildService> * buildService;
     
-    NSString * activeServer;
+    NSString * activeServerGroupName;
 }
 
 @property (nonatomic, retain) IBOutlet NSObject<BuildWatchPersistentStore> *
     persistentStore;
 
-@property (nonatomic, retain) IBOutlet NSObject<ServerSelector> *
-    serverSelector;
+@property (nonatomic, retain) IBOutlet NSObject<ServerGroupNameSelector> *
+    serverGroupNameSelector;
 @property (nonatomic, retain) IBOutlet NSObject<ProjectSelector> *
     projectSelector;
 

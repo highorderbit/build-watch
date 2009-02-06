@@ -8,8 +8,8 @@
 
 - (void) userDidSelectProject:(NSString *)project;
 
-- (void) userDidDeselectServer;
-
 - (NSString *) displayNameForProject:(NSString *)project;
+
+- (void) userDidDeselectServerGroupName;
 
 @end

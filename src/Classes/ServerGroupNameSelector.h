@@ -4,9 +4,8 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol ServerGroupNameSelector
 
-@protocol ServerSelector
-
-- (void)selectServerFrom:(NSArray *)someServers;
+- (void)selectServerGroupNamesFrom:(NSArray *)someServerGroupNames;
 
 @end

@@ -21,9 +21,9 @@
 
 #pragma mark ServerSelector protocol methods
 
-- (void) selectServerFrom:(NSArray *)someServers
+- (void) selectServerGroupNamesFrom:(NSArray *)someServerGroupNames
 {
-    self.serverViewController.servers = someServers;
+    self.serverViewController.serverGroupNames = someServerGroupNames;
     [self.navigationController pushViewController:self.serverViewController
                                          animated:YES];
 }

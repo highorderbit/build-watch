@@ -36,7 +36,7 @@
 		05E911E60F3A453300E646F6 /* UIServerSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIServerSelector.m; sourceTree = "<group>"; };
 		05E9121A0F3A4E6800E646F6 /* ProjectSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectSelector.h; sourceTree = "<group>"; };
 		05E9121B0F3A4E6800E646F6 /* ProjectSelectorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectSelectorDelegate.h; sourceTree = "<group>"; };
-		05E9121C0F3A4E6800E646F6 /* ServerSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerSelector.h; sourceTree = "<group>"; };
+		05E9121C0F3A4E6800E646F6 /* ServerGroupNameSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerGroupNameSelector.h; sourceTree = "<group>"; };
 		05E9121D0F3A4E7100E646F6 /* UIProjectSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIProjectSelector.h; sourceTree = "<group>"; };
 		05E9121E0F3A4E7100E646F6 /* UIProjectSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIProjectSelector.m; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -55,6 +55,7 @@
 		9149DFFF0F39142400A0E32C /* ProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewController.h; sourceTree = "<group>"; };
 		9149E0000F39142400A0E32C /* ProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsViewController.m; sourceTree = "<group>"; };
 		9149E0030F39167600A0E32C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ProjectsView.xib; sourceTree = "<group>"; };
+		91DC9DB20F3BB3CD003F87CF /* ServerGroupNameSelectorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerGroupNameSelectorDelegate.h; sourceTree = "<group>"; };
 		91F09AA30F3A63370034528C /* ProjectReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectReport.h; sourceTree = "<group>"; };
 		91F09AA40F3A63370034528C /* ProjectReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectReport.m; sourceTree = "<group>"; };
 		91F09AA60F3A657B0034528C /* ServerReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerReport.h; sourceTree = "<group>"; };
@@ -86,7 +87,7 @@
 				91F09AA70F3A657B0034528C /* ServerReport.m */,
 				05E9121A0F3A4E6800E646F6 /* ProjectSelector.h */,
 				05E9121B0F3A4E6800E646F6 /* ProjectSelectorDelegate.h */,
-				05E9121C0F3A4E6800E646F6 /* ServerSelector.h */,
+				05E9121C0F3A4E6800E646F6 /* ServerGroupNameSelector.h */,
 				28C286DF0D94DF7D0034E888 /* ServerViewController.h */,
 				28C286E00D94DF7D0034E888 /* ServerViewController.m */,
 				1D3623240D0F684500981E51 /* BuildWatchAppDelegate.h */,
@@ -108,6 +109,7 @@
 				91F09AAD0F3A67090034528C /* BuildServiceDelegate.h */,
 				91F09AD60F3A69A50034528C /* MockBuildService.h */,
 				91F09AD70F3A69A50034528C /* MockBuildService.m */,
+				91DC9DB20F3BB3CD003F87CF /* ServerGroupNameSelectorDelegate.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";

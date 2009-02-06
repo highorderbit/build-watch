@@ -120,9 +120,9 @@
 			</object>
 			<object class="IBUICustomObject" id="1061950094"/>
 			<object class="IBUICustomObject" id="711100591"/>
-			<object class="IBUICustomObject" id="998985087"/>
 			<object class="IBUICustomObject" id="651608659"/>
 			<object class="IBUICustomObject" id="1008333446"/>
+			<object class="IBUICustomObject" id="998985087"/>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -158,30 +158,6 @@
 						<reference key="destination" ref="1061950094"/>
 					</object>
 					<int key="connectionID">42</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">serverSelector</string>
-						<reference key="source" ref="1061950094"/>
-						<reference key="destination" ref="998985087"/>
-					</object>
-					<int key="connectionID">46</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">navigationController</string>
-						<reference key="source" ref="998985087"/>
-						<reference key="destination" ref="701001926"/>
-					</object>
-					<int key="connectionID">47</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">delegate</string>
-						<reference key="source" ref="998985087"/>
-						<reference key="destination" ref="1061950094"/>
-					</object>
-					<int key="connectionID">48</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
@@ -238,6 +214,30 @@
 						<reference key="destination" ref="711100591"/>
 					</object>
 					<int key="connectionID">57</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="998985087"/>
+						<reference key="destination" ref="1061950094"/>
+					</object>
+					<int key="connectionID">60</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">serverGroupNameSelector</string>
+						<reference key="source" ref="1061950094"/>
+						<reference key="destination" ref="998985087"/>
+					</object>
+					<int key="connectionID">61</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">navigationController</string>
+						<reference key="source" ref="998985087"/>
+						<reference key="destination" ref="701001926"/>
+					</object>
+					<int key="connectionID">62</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -356,11 +356,6 @@
 						<reference key="parent" ref="957960031"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">45</int>
-						<reference key="object" ref="998985087"/>
-						<reference key="parent" ref="957960031"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">49</int>
 						<reference key="object" ref="651608659"/>
 						<reference key="parent" ref="957960031"/>
@@ -368,6 +363,11 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">54</int>
 						<reference key="object" ref="1008333446"/>
+						<reference key="parent" ref="957960031"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">59</int>
+						<reference key="object" ref="998985087"/>
 						<reference key="parent" ref="957960031"/>
 					</object>
 				</object>
@@ -396,12 +396,12 @@
 					<string>35.IBPluginDependency</string>
 					<string>36.CustomClassName</string>
 					<string>36.IBPluginDependency</string>
-					<string>45.CustomClassName</string>
-					<string>45.IBPluginDependency</string>
 					<string>49.CustomClassName</string>
 					<string>49.IBPluginDependency</string>
 					<string>54.CustomClassName</string>
 					<string>54.IBPluginDependency</string>
+					<string>59.CustomClassName</string>
+					<string>59.IBPluginDependency</string>
 					<string>9.IBEditorWindowLastContentRect</string>
 					<string>9.IBPluginDependency</string>
 				</object>
@@ -435,11 +435,11 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>MockBuildWatchPersistentStore</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>UIServerSelector</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIProjectSelector</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>MockBuildService</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>UIServerSelector</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{666, 437}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -465,7 +465,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">57</int>
+			<int key="maxID">62</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -480,7 +480,7 @@
 							<string>buildService</string>
 							<string>persistentStore</string>
 							<string>projectSelector</string>
-							<string>serverSelector</string>
+							<string>serverGroupNameSelector</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -504,7 +504,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>appController</string>
 							<string>navigationController</string>
-							<string>serverSelector</string>
+							<string>serverGroupNameSelector</string>
 							<string>toolbar</string>
 							<string>window</string>
 						</object>
@@ -540,6 +540,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/MockBuildService.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">MockBuildWatchPersistentStore</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/MockBuildWatchPersistentStore.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

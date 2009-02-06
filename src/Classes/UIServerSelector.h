@@ -3,29 +3,28 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ServerSelector.h"
-#import "ServerSelectorDelegate.h"
+#import "ServerGroupNameSelector.h"
+#import "ServerGroupNameSelectorDelegate.h"
 
 @class ServerViewController;
 
 @interface UIServerSelector : NSObject
-                              < ServerSelector >
+                              < ServerGroupNameSelector >
 {
-    NSObject<ServerSelectorDelegate> * delegate;
+    NSObject<ServerGroupNameSelectorDelegate> * delegate;
     UINavigationController * navigationController;
     ServerViewController * serverViewController;
 }
 
-
-@property (nonatomic, retain) IBOutlet NSObject<ServerSelectorDelegate> *
-    delegate;
-@property (nonatomic, retain) IBOutlet UINavigationController *
-    navigationController;
-@property (nonatomic, retain, readonly) ServerViewController *
-    serverViewController;
+@property (nonatomic, retain) IBOutlet
+    NSObject<ServerGroupNameSelectorDelegate> * delegate;
+@property (nonatomic, retain) IBOutlet
+    UINavigationController * navigationController;
+@property (nonatomic, retain, readonly)
+    ServerViewController * serverViewController;
 
 #pragma mark ServerSelector protocol methods
 
-- (void) selectServerFrom:(NSArray *)someServers;
+- (void) selectServerGroupNamesFrom:(NSArray *)someServerGroupNames;
 
 @end

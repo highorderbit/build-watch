@@ -9,13 +9,13 @@
 @implementation ServerViewController
 
 @synthesize tableView;
-@synthesize servers;
+@synthesize serverGroupNames;
 @synthesize delegate;
 
 - (void) dealloc
 {
     [tableView release];
-    [servers release];
+    [serverGroupNames release];
     [delegate release];
     [super dealloc];
 }
@@ -49,7 +49,7 @@
 - (NSInteger) tableView:(UITableView *)tv
   numberOfRowsInSection:(NSInteger)section
 {
-    return servers.count;
+    return serverGroupNames.count;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tv
@@ -68,7 +68,7 @@
              autorelease];
 
     // Set up the cell
-    cell.text = [servers objectAtIndex:indexPath.row];
+    cell.text = [serverGroupNames objectAtIndex:indexPath.row];
 
     return cell;
 }
@@ -76,7 +76,8 @@
 - (void)      tableView:(UITableView *)tv
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [delegate userDidSelectServer:[servers objectAtIndex:indexPath.row]];
+    [delegate
+     userDidSelectServerGroupName:[serverGroupNames objectAtIndex:indexPath.row]];
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView *)tv
@@ -87,10 +88,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 #pragma mark Accessors
 
-- (void)setServers:(NSArray *)someServers
+- (void)setServerGroupNames:(NSArray *)someServerGroupNames
 {
-    [servers release];
-    servers = [someServers retain];
+    [someServerGroupNames retain];
+    [serverGroupNames release];
+    serverGroupNames = someServerGroupNames;
+    
     [tableView reloadData];
 }
 

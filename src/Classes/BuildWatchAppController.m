@@ -9,20 +9,21 @@
 @class Server, Project;
 
 @interface BuildWatchAppController (Private)
-- (NSArray *) projectIdsForServer:(NSString *)server;
-- (void) setActiveServer:(NSString *) activeServer;
+- (void) setActiveServerGroupName:(NSString *) activeServer;
 - (void) setServers:(NSDictionary *)newServers;
 - (void) setServerNames:(NSDictionary *)newServerNames;
 - (void) setProjectDisplayNames:(NSDictionary *)newProjectDisplayNames;
 - (void) removeMissingProjectPropertiesWithProjects:(NSArray *)newProjects
                                           andServer:(NSString *)server;
+- (NSArray *) projectIdsForServer:(NSString *)server;
+- (NSArray *) serverGroupNames;
 + (NSString *) keyForProject:(NSString *)project andServer:(NSString *)server;
 @end
 
 @implementation BuildWatchAppController
 
 @synthesize persistentStore;
-@synthesize serverSelector;
+@synthesize serverGroupNameSelector;
 @synthesize projectSelector;
 @synthesize buildService;
 
@@ -59,7 +60,7 @@
     for (NSString * server in serverKeys)
         [buildService refreshDataForServer:server];
     
-    [serverSelector selectServerFrom:serverKeys];
+    [serverGroupNameSelector selectServerGroupNamesFrom:[self serverGroupNames]];
 
     //
     // 1. Fetch existing data (server list).
@@ -101,7 +102,7 @@
                                keyForProject:projReport.name
                                    andServer:server]];
     
-    if([activeServer isEqual:server])
+    if([activeServerGroupName isEqual:server])
         [projectSelector selectProjectFrom:projectIds];
 
     [projectIds release];
@@ -113,7 +114,7 @@
 
 #pragma mark ServerSelectorDelegate protocol implementation
 
-- (void) userDidSelectServer:(NSString *)server
+- (void) userDidSelectServerGroupName:(NSString *)serverGroupName
 {
     //
     // 1. Load data from model as appropriate.
@@ -121,9 +122,10 @@
     // 3. Orchestrate the display of the projects controller's view.
     //
 
-    NSLog(@"User selected server: %@.", server);
-    [self setActiveServer:server];
-    [projectSelector selectProjectFrom:[self projectIdsForServer:server]];
+    NSLog(@"User selected server group name: %@.", serverGroupName);
+    [self setActiveServerGroupName:serverGroupName];
+    [projectSelector
+     selectProjectFrom:[self projectIdsForServer:serverGroupName]];
 }
 
 #pragma mark ProjectSelectorDelegate protocol implementation
@@ -139,9 +141,9 @@
     NSLog(@"User selected project: %@.", project);
 }
 
-- (void) userDidDeselectServer
+- (void) userDidDeselectServerGroupName
 {
-    [self setActiveServer:nil]; 
+    [self setActiveServerGroupName:nil]; 
 }
 
 - (NSString *) displayNameForProject:(NSString *)project
@@ -191,24 +193,13 @@
     //
 }
 
-- (NSArray *) projectIdsForServer:(NSString *)server
-{
-    NSMutableArray * projectIds = [NSMutableArray array];
-    
-    for (NSString * project in [servers objectForKey:server])
-        [projectIds addObject:
-         [BuildWatchAppController keyForProject:project andServer:server]];
-    
-    return projectIds;
-}
-
 #pragma mark Accessors
 
-- (void) setActiveServer:(NSString *) server
+- (void) setActiveServerGroupName:(NSString *) server
 {
     [server retain];
-    [activeServer release];
-    activeServer = server;
+    [activeServerGroupName release];
+    activeServerGroupName = server;
 }
 
 - (void) setServers:(NSDictionary *)newServers
@@ -233,6 +224,19 @@
     projectDisplayNames = tempProjectDisplayNames;
 }
 
+#pragma mark Private helper functions
+
+- (NSArray *) projectIdsForServer:(NSString *)server
+{
+    NSMutableArray * projectIds = [NSMutableArray array];
+    
+    for (NSString * project in [servers objectForKey:server])
+        [projectIds addObject:
+         [BuildWatchAppController keyForProject:project andServer:server]];
+    
+    return projectIds;
+}
+
 - (void) removeMissingProjectPropertiesWithProjects:(NSArray *)newProjects
                                           andServer:(NSString *)server
 {
@@ -246,6 +250,14 @@
     [projectDisplayNames removeObjectsForKeys:missingProjectIds];
     
     [missingProjectIds release];
+}
+
+- (NSArray *) serverGroupNames
+{
+    NSMutableArray * serverGroupNames = [[servers allKeys] mutableCopy];
+    [serverGroupNames addObject:@"All"];
+    
+    return serverGroupNames;
 }
 
 #pragma mark static utility functions

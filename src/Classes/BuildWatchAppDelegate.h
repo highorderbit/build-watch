@@ -3,7 +3,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ServerSelector.h"
+#import "ServerGroupNameSelector.h"
 
 @class BuildWatchAppController;
 @class ServerViewController;
@@ -15,15 +15,15 @@
     UIToolbar * toolbar;
 
     BuildWatchAppController * appController;
-    NSObject<ServerSelector> * serverSelector;
+    NSObject<ServerGroupNameSelector> * serverGroupNameSelector;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UINavigationController *
     navigationController;
 @property (nonatomic, retain) IBOutlet UIToolbar * toolbar;
-@property (nonatomic, retain) IBOutlet NSObject<ServerSelector> *
-    serverSelector;
+@property (nonatomic, retain) IBOutlet NSObject<ServerGroupNameSelector> *
+    serverGroupNameSelector;
 
 @property (nonatomic, retain) IBOutlet BuildWatchAppController * appController;
 
