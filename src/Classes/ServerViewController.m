@@ -136,11 +136,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     [alert show];
 }
 
-- (void)editServers
-{
-    [tableView setEditing:YES animated:YES];
-}
-
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
