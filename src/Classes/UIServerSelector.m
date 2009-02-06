@@ -23,7 +23,7 @@
 
 - (void) selectServerGroupNamesFrom:(NSArray *)someServerGroupNames
 {
-    self.serverViewController.serverGroupNames = someServerGroupNames;
+    [self.serverViewController setServerGroupNames:someServerGroupNames];
     [self.navigationController pushViewController:self.serverViewController
                                          animated:YES];
 }

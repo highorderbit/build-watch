@@ -9,7 +9,6 @@
 @implementation ServerViewController
 
 @synthesize tableView;
-@synthesize serverGroupNames;
 @synthesize visibleServerGroupNames;
 @synthesize delegate;
 
@@ -70,12 +69,11 @@
 - (UITableViewCell *) tableView:(UITableView *)tv
           cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     static NSString *CellIdentifier = @"Cell";
-    
+
     UITableViewCell * cell =
         [tv dequeueReusableCellWithIdentifier:CellIdentifier];
-    
+
     if (cell == nil)
         cell =
             [[[UITableViewCell alloc]
@@ -92,7 +90,8 @@
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [delegate
-     userDidSelectServerGroupName:[visibleServerGroupNames objectAtIndex:indexPath.row]];
+     userDidSelectServerGroupName:
+        [visibleServerGroupNames objectAtIndex:indexPath.row]];
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView *)tv
@@ -100,6 +99,24 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return UITableViewCellAccessoryDisclosureIndicator;
 }
+
+- (void)     tableView:(UITableView *)tv
+    commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+    forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSString * serverGroupName =
+            [visibleServerGroupNames objectAtIndex:indexPath.row];
+
+        [visibleServerGroupNames removeObjectAtIndex:indexPath.row];
+        [serverGroupNames removeObject:serverGroupName];
+        [delegate deleteServerGroupWithName:serverGroupName];
+
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                         withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
 
 #pragma mark Server manipulation buttons
 
@@ -162,9 +179,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)setServerGroupNames:(NSArray *)someServerGroupNames
 {
-    [someServerGroupNames retain];
+    NSMutableArray * tmp = [someServerGroupNames mutableCopy];
     [serverGroupNames release];
-    serverGroupNames = someServerGroupNames;
+    serverGroupNames = tmp;
 
     self.visibleServerGroupNames = serverGroupNames;
     

@@ -8,6 +8,8 @@
 
 @class Server, Project;
 
+static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
+
 @interface BuildWatchAppController (Private)
 - (void) setActiveServerGroupName:(NSString *) activeServer;
 - (void) setServers:(NSDictionary *)newServers;
@@ -132,9 +134,20 @@
      selectProjectFrom:[self projectIdsForServer:serverGroupName]];
 }
 
-- (BOOL)canServerGroupBeDeleted:(NSString *)serverGroupName
+- (BOOL) canServerGroupBeDeleted:(NSString *)serverGroupName
 {
-    return ![serverGroupName isEqual:@"All"];
+    return ![serverGroupName isEqual:
+        NSLocalizedString(SERVER_GROUP_NAME_ALL, @"")];
+}
+
+- (void) deleteServerGroupWithName:(NSString *)serverGroupName
+{
+    NSArray * projectIds = [self projectIdsForServer:serverGroupName];
+    for (NSString * projectId in projectIds)
+        [projectDisplayNames removeObjectForKey:projectId];
+
+    [servers removeObjectForKey:serverGroupName];
+    [serverNames removeObjectForKey:serverGroupName];
 }
 
 #pragma mark ProjectSelectorDelegate protocol implementation
@@ -270,7 +283,7 @@
 - (NSArray *) serverGroupNames
 {
     NSMutableArray * serverGroupNames = [[servers allKeys] mutableCopy];
-    [serverGroupNames addObject:@"All"];
+    [serverGroupNames addObject:NSLocalizedString(SERVER_GROUP_NAME_ALL, @"")];
     
     return serverGroupNames;
 }
