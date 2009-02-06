@@ -9,6 +9,7 @@
 {
     UITableView * tableView;
     NSArray * projects;
+    NSArray * visibleProjects;
     NSObject<ProjectSelectorDelegate> * delegate;
 }
 

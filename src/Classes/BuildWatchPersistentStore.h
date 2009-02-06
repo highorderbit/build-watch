@@ -19,14 +19,18 @@
 
 - (void) saveServerGroupPatterns:(NSDictionary *)serverGroupPatterns;
 
-- (NSDictionary *)getServerGroupPatterns;
+- (NSDictionary *) getServerGroupPatterns;
 
-- (void)saveServerNames:(NSDictionary *)serverNames;
+- (void) saveServerNames:(NSDictionary *)serverNames;
 
-- (NSDictionary *)getServerNames;
+- (NSDictionary *) getServerNames;
 
-- (void)saveProjDisplayNames:(NSDictionary *)projDisplayNames;
+- (void) saveProjectDisplayNames:(NSDictionary *)projectDisplayNames;
 
-- (NSDictionary *)getProjDisplayNames;
+- (NSDictionary *) getProjectDisplayNames;
+
+- (void) saveProjectTrackedStates:(NSDictionary *)projectTrackedStates;
+
+- (NSDictionary *) getProjectTrackedStates;
 
 @end

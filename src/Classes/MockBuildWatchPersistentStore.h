@@ -12,6 +12,7 @@
     NSDictionary * serverGroupPatterns;
     NSDictionary * serverNames;
     NSDictionary * projectDisplayNames;
+    NSDictionary * projectTrackedStates;
 }
 
 @end

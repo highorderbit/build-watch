@@ -14,6 +14,7 @@
 {
     [tableView release];
     [projects release];
+    [visibleProjects release];
     [delegate release];
     [super dealloc];
 }
@@ -44,7 +45,7 @@
 - (NSInteger) tableView:(UITableView *)tv
   numberOfRowsInSection:(NSInteger)section
 {
-    return projects.count;
+    return visibleProjects.count;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tv
@@ -65,7 +66,8 @@
     // Set up the cell
     
     cell.text =
-        [delegate displayNameForProject:[projects objectAtIndex:indexPath.row]];
+        [delegate
+         displayNameForProject:[visibleProjects objectAtIndex:indexPath.row]];
     
     return cell;
 }
@@ -73,7 +75,8 @@
 - (void)      tableView:(UITableView *)tv
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [delegate userDidSelectProject:[projects objectAtIndex:indexPath.row]];
+    [delegate
+     userDidSelectProject:[visibleProjects objectAtIndex:indexPath.row]];
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView *)tv
@@ -84,10 +87,19 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 #pragma mark Accessors
 
-- (void)setProjects:(NSArray *)someProjects
+- (void) setProjects:(NSArray *)someProjects
 {
     [projects release];
     projects = [someProjects retain];
+
+    [visibleProjects release];
+    NSMutableArray * tempVisibleProjects = [[NSMutableArray alloc] init];
+    for (NSString * project in someProjects)
+        if ([delegate trackedStateForProject:project])
+            [tempVisibleProjects addObject:project];
+    
+    visibleProjects = tempVisibleProjects;
+    
     [tableView reloadData];
 }
 

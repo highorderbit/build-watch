@@ -17,6 +17,9 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 - (void) setServerGroupPatterns:(NSDictionary *)newServerGroupPatterns;
 - (void) setServerNames:(NSDictionary *)newServerNames;
 - (void) setProjectDisplayNames:(NSDictionary *)newProjectDisplayNames;
+- (void) setProjectTrackedStates:(NSDictionary *)newProjectTrackedStates;
+- (void) updatePropertiesForProjectReports:(NSArray *)projectReports
+                                withServer:(NSString *)server;
 - (void) removeMissingProjectPropertiesWithProjects:(NSArray *)newProjects
                                           andServer:(NSString *)server;
 - (NSArray *) projectIdsForServer:(NSString *)server;
@@ -42,6 +45,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [projectSelector release];
     [projectReporter release];
     [projectDisplayNames release];
+    [projectTrackedStates release];
     [persistentStore release];
     [buildService release];
     [super dealloc];
@@ -64,7 +68,8 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [self setServers:[persistentStore getServers]];
     [self setServerGroupPatterns:[persistentStore getServerGroupPatterns]];
     [self setServerNames:[persistentStore getServerNames]];
-    [self setProjectDisplayNames:[persistentStore getProjDisplayNames]];
+    [self setProjectDisplayNames:[persistentStore getProjectDisplayNames]];
+    [self setProjectTrackedStates:[persistentStore getProjectTrackedStates]];
     
     NSArray * serverKeys = [servers allKeys];
     
@@ -88,11 +93,8 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
 - (void) report:(ServerReport *)report receivedFrom:(NSString *)server
 {
-    // Update project display names
-    for (ProjectReport * projReport in [report projectReports])
-        [projectDisplayNames
-         setObject:projReport.name
-         forKey:[[self class] keyForProject:projReport.name andServer:server]];
+    [self updatePropertiesForProjectReports:[report projectReports]
+                                 withServer:server];
     
     // Set projects for server
     NSMutableArray * projects = [[NSMutableArray alloc] init];
@@ -117,16 +119,17 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [projectIds release];
     
     // Push updates to project selector
-    NSString * serverGroupPattern =
-        [serverGroupPatterns objectForKey:activeServerGroupName];
-    BOOL serverMatchesActiveGroupNameRegEx =
-        [server isMatchedByRegex:serverGroupPattern];
-    NSArray * projectIdsForActiveServerGroup =
-        [self projectIdsForServerGroupName:activeServerGroupName];
+    if(activeServerGroupName != nil) {
+        NSString * serverGroupPattern =
+            [serverGroupPatterns objectForKey:activeServerGroupName];
+        BOOL serverMatchesActiveGroupNameRegEx =
+            [server isMatchedByRegex:serverGroupPattern];
+        NSArray * projectIdsForActiveServerGroup =
+            [self projectIdsForServerGroupName:activeServerGroupName];
     
-    if(serverMatchesActiveGroupNameRegEx)
-        [projectSelector selectProjectFrom:projectIdsForActiveServerGroup];
-
+        if(serverMatchesActiveGroupNameRegEx)
+            [projectSelector selectProjectFrom:projectIdsForActiveServerGroup];
+    }
     //
     // 1. Update UI for toolbar.
     //
@@ -198,6 +201,11 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 - (NSString *) displayNameForCurrentProjectGroup
 {
     return activeServerGroupName;
+}
+
+- (BOOL) trackedStateForProject:(NSString *)project
+{
+    return [[projectTrackedStates objectForKey:project] boolValue];
 }
 
 - (void) userDidHideProjects:(NSArray *)projects
@@ -274,6 +282,14 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     projectDisplayNames = tempProjectDisplayNames;
 }
 
+- (void) setProjectTrackedStates:(NSDictionary *)newProjectTrackedStates
+{
+    NSMutableDictionary * tempProjectTrackedStates =
+        [newProjectTrackedStates mutableCopy];
+    [projectTrackedStates release];
+    projectTrackedStates = tempProjectTrackedStates;
+}
+
 #pragma mark Private helper functions
 
 - (NSArray *) projectIdsForServer:(NSString *)server
@@ -299,6 +315,19 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     return projectIds;
 }
 
+- (void) updatePropertiesForProjectReports:(NSArray *)projectReports
+                                withServer:(NSString *)server
+{
+    for (ProjectReport * projReport in projectReports) {
+        NSString * projectKey =
+        [[self class] keyForProject:projReport.name andServer:server];
+        
+        [projectDisplayNames setObject:projReport.name forKey:projectKey];
+        [projectTrackedStates setObject:[NSNumber numberWithBool:YES]
+                                 forKey:projectKey];
+    }
+}
+
 - (void) removeMissingProjectPropertiesWithProjects:(NSArray *)newProjects
                                           andServer:(NSString *)server
 {
@@ -310,6 +339,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
              addObject:[[self class]keyForProject:project andServer:server]];
     
     [projectDisplayNames removeObjectsForKeys:missingProjectIds];
+    [projectTrackedStates removeObjectsForKeys:missingProjectIds];
     
     [missingProjectIds release];
 }

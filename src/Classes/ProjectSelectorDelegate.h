@@ -10,6 +10,8 @@
 
 - (NSString *) displayNameForProject:(NSString *)project;
 
+- (BOOL) trackedStateForProject:(NSString *)project;
+
 - (void) userDidDeselectServerGroupName;
 
 - (NSString *) displayNameForCurrentProjectGroup;
