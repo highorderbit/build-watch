@@ -235,6 +235,17 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     }
 }
 
+#pragma mark StatePersister implementation
+
+- (void) persistState
+{
+    [persistentStore saveServers:servers];
+    [persistentStore saveServerGroupPatterns:serverGroupPatterns];
+    [persistentStore saveServerNames:serverNames];
+    [persistentStore saveProjectDisplayNames:projectDisplayNames];
+    [persistentStore saveProjectTrackedStates:projectTrackedStates];
+}
+
 #pragma mark Accessors
 
 - (void) setActiveServerGroupName:(NSString *) server
@@ -315,8 +326,6 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
         [[self class] keyForProject:projReport.name andServer:server];
         
         [projectDisplayNames setObject:projReport.name forKey:projectKey];
-        [projectTrackedStates setObject:[NSNumber numberWithBool:YES]
-                                 forKey:projectKey];
     }
 }
 

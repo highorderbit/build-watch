@@ -57,9 +57,9 @@
     [appController start];
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application
+- (void) applicationWillTerminate:(UIApplication *)application
 {
-    // Save data if appropriate
+    [appController persistState];
 }
 
 @end
