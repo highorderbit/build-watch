@@ -124,9 +124,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         NSString * serverGroupName =
             [visibleServerGroupNames objectAtIndex:indexPath.row];
 
-        [visibleServerGroupNames removeObjectAtIndex:indexPath.row];
         [serverGroupNames removeObject:serverGroupName];
         [delegate deleteServerGroupWithName:serverGroupName];
+        // remove locally last to avoid deallocating prematurely
+        [visibleServerGroupNames removeObjectAtIndex:indexPath.row];
 
         [tableView deleteRowsAtIndexPaths:
             [NSArray arrayWithObject:indexPath]
