@@ -35,6 +35,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 @synthesize projectSelector;
 @synthesize projectReporter;
 @synthesize buildService;
+@synthesize serverDataRefresherDelegate;
 
 - (void) dealloc
 {
@@ -70,11 +71,8 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [self setServerNames:[persistentStore getServerNames]];
     [self setProjectDisplayNames:[persistentStore getProjectDisplayNames]];
     [self setProjectTrackedStates:[persistentStore getProjectTrackedStates]];
-    
-    NSArray * serverKeys = [servers allKeys];
-    
-    for (NSString * server in serverKeys)
-        [buildService refreshDataForServer:server];
+        
+    [self refreshAllServerData];
     
     [serverGroupNameSelector
      selectServerGroupNamesFrom:[self serverGroupNames]];
@@ -93,6 +91,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
 - (void) report:(ServerReport *)report receivedFrom:(NSString *)server
 {
+    [serverDataRefresherDelegate didRefreshDataForServer:server];
     [self updatePropertiesForProjectReports:[report projectReports]
                                  withServer:server];
     
@@ -247,6 +246,18 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     // 1. Update model.
     // 2. Update server controller's list of servers.
     //
+}
+
+#pragma mark ServerDataRefresher implementation
+
+- (void) refreshAllServerData
+{
+    NSArray * serverKeys = [servers allKeys];
+    
+    for (NSString * server in serverKeys) {
+        [serverDataRefresherDelegate refreshingDataForServer:server];
+        [buildService refreshDataForServer:server];
+    }
 }
 
 #pragma mark Accessors

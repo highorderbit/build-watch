@@ -23,6 +23,8 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28C286E10D94DF7D0034E888 /* ServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* ServerViewController.m */; };
 		911EDBD20F3CA58A00E17BC0 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 911EDBD10F3CA58A00E17BC0 /* RegexKitLite.m */; };
+		911EDDFE0F3D0DC300E17BC0 /* UIServerDataRefresher.m in Sources */ = {isa = PBXBuildFile; fileRef = 911EDDFD0F3D0DC300E17BC0 /* UIServerDataRefresher.m */; };
+		911EDE2F0F3D1B0D00E17BC0 /* UIServerDataRefresherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 911EDE2E0F3D1B0D00E17BC0 /* UIServerDataRefresherDelegate.m */; };
 		9149DF710F39053200A0E32C /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149DF6D0F39053200A0E32C /* MainWindow.xib */; };
 		9149DF720F39053200A0E32C /* ServerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149DF6F0F39053200A0E32C /* ServerView.xib */; };
 		9149E0010F39142400A0E32C /* ProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9149E0000F39142400A0E32C /* ProjectsViewController.m */; };
@@ -66,6 +68,12 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		911EDBD00F3CA58A00E17BC0 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		911EDBD10F3CA58A00E17BC0 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		911EDDE40F3D0C4800E17BC0 /* ServerDataRefresher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerDataRefresher.h; sourceTree = "<group>"; };
+		911EDDFC0F3D0DC300E17BC0 /* UIServerDataRefresher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIServerDataRefresher.h; sourceTree = "<group>"; };
+		911EDDFD0F3D0DC300E17BC0 /* UIServerDataRefresher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIServerDataRefresher.m; sourceTree = "<group>"; };
+		911EDE250F3D120700E17BC0 /* ServerDataRefresherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerDataRefresherDelegate.h; sourceTree = "<group>"; };
+		911EDE2D0F3D1B0D00E17BC0 /* UIServerDataRefresherDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIServerDataRefresherDelegate.h; sourceTree = "<group>"; };
+		911EDE2E0F3D1B0D00E17BC0 /* UIServerDataRefresherDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIServerDataRefresherDelegate.m; sourceTree = "<group>"; };
 		9149DF6E0F39053200A0E32C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		9149DF700F39053200A0E32C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ServerView.xib; sourceTree = "<group>"; };
 		9149DFFF0F39142400A0E32C /* ProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewController.h; sourceTree = "<group>"; };
@@ -99,6 +107,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				911EDE2D0F3D1B0D00E17BC0 /* UIServerDataRefresherDelegate.h */,
+				911EDE2E0F3D1B0D00E17BC0 /* UIServerDataRefresherDelegate.m */,
 				911EDBD00F3CA58A00E17BC0 /* RegexKitLite.h */,
 				911EDBD10F3CA58A00E17BC0 /* RegexKitLite.m */,
 				91F09AA60F3A657B0034528C /* ServerReport.h */,
@@ -133,6 +143,10 @@
 				053A95110F3B998B0092763D /* UIProjectReporter.m */,
 				053A95130F3B9BF60092763D /* ProjectReportViewController.h */,
 				053A95140F3B9BF60092763D /* ProjectReportViewController.m */,
+				911EDDE40F3D0C4800E17BC0 /* ServerDataRefresher.h */,
+				911EDDFC0F3D0DC300E17BC0 /* UIServerDataRefresher.h */,
+				911EDDFD0F3D0DC300E17BC0 /* UIServerDataRefresher.m */,
+				911EDE250F3D120700E17BC0 /* ServerDataRefresherDelegate.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -269,6 +283,8 @@
 				053A95120F3B998B0092763D /* UIProjectReporter.m in Sources */,
 				053A95150F3B9BF60092763D /* ProjectReportViewController.m in Sources */,
 				911EDBD20F3CA58A00E17BC0 /* RegexKitLite.m in Sources */,
+				911EDDFE0F3D0DC300E17BC0 /* UIServerDataRefresher.m in Sources */,
+				911EDE2F0F3D1B0D00E17BC0 /* UIServerDataRefresherDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

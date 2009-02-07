@@ -12,11 +12,14 @@
 #import "ProjectReporter.h"
 #import "ProjectReporterDelegate.h"
 #import "BuildService.h"
+#import "ServerDataRefresher.h"
+#import "ServerDataRefresherDelegate.h"
 
 @interface BuildWatchAppController : NSObject
                                      < ServerGroupNameSelectorDelegate,
                                        ProjectSelectorDelegate,
-                                       ProjectReporterDelegate >
+                                       ProjectReporterDelegate,
+                                       ServerDataRefresher>
 {
     // Servers are a list of URL strings.
     //     (NSString *) server url -> (NSArray *) project names (NSString *)
@@ -42,6 +45,8 @@
     
     NSObject<BuildService> * buildService;
     
+    NSObject<ServerDataRefresherDelegate> * serverDataRefresherDelegate;
+    
     NSString * activeServerGroupName;
 }
 
@@ -57,6 +62,11 @@
 
 @property (nonatomic, retain) IBOutlet NSObject<BuildService> * buildService;
 
+@property (nonatomic, retain) IBOutlet NSObject<ServerDataRefresherDelegate> *
+    serverDataRefresherDelegate;
+
 - (void) start;
+
+
  
 @end
