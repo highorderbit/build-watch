@@ -8,6 +8,6 @@
 
 @protocol ServerReportBuilder
 
-- (ServerReport *)serverReportFromData:(NSData *)data;
+- (ServerReport *)serverReportFromData:(NSData *)data error:(NSError **)error;
 
 @end

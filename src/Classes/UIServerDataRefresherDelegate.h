@@ -14,6 +14,8 @@
     UIActivityIndicatorView * activityIndicator;
     UILabel * updateLabel;
     IBOutlet UIView * view;
+
+    NSMutableDictionary * failedServerRequests;
 }
 
 @end

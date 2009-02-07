@@ -4,6 +4,13 @@
 
 #import "UIServerDataRefresherDelegate.h"
 
+@interface UIServerDataRefresherDelegate (Private)
+- (void) showRefreshInProgressView;
+- (void) showRefreshCompletedView;
++ (NSString *) titleForFailedRequestsAlert:(NSDictionary *)requests;
++ (NSString *) messageForFailedRequestsAlert:(NSDictionary *)requests;
+@end
+
 
 @implementation UIServerDataRefresherDelegate
 
@@ -13,6 +20,7 @@
     [activityIndicator release];
     [updateLabel release];
     [view release];
+    [failedServerRequests release];
     [super dealloc];
 }
 
@@ -44,40 +52,112 @@
     updateLabel.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
     CGRect updateLabelFrame = CGRectMake(10, 1, 165, 38);
     [updateLabel setFrame:updateLabelFrame];
+
+    failedServerRequests = [[NSMutableDictionary alloc] init];
 }
 
 - (void) refreshingDataForServer:(NSString *)server
 {
-    if (numOutstandingRequests == 0) {
-        [view addSubview:activityIndicator];
-        [view addSubview:refreshLabel];
-        
-        [activityIndicator startAnimating];
-        
-        [updateLabel removeFromSuperview];
-    }
-    
+    if (numOutstandingRequests == 0)
+        [self showRefreshInProgressView];
+
     numOutstandingRequests++;
 }
 
 - (void) didRefreshDataForServer:(NSString *)server
 {
-    if (numOutstandingRequests == 1) {
-        [refreshLabel removeFromSuperview];
-        [activityIndicator stopAnimating];
-        
-        NSDate * currentDate = [NSDate date];
-        NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"M/d/yy h:mm aa";
-        NSString * dateString = [dateFormatter stringFromDate:currentDate];
-        
-        [updateLabel setText:[NSString stringWithFormat:@"Updated %@", dateString]];
-        [view addSubview:updateLabel];
-        
-        [dateFormatter release];
-    }
-    
+    if (numOutstandingRequests == 1)
+        [self showRefreshCompletedView];
+
     numOutstandingRequests--;
+}
+
+- (void) failedToRefreshDataForServer:(NSString *)server error:(NSError *)error
+{
+    [failedServerRequests setObject:error forKey:server];
+
+    if (numOutstandingRequests == 1) {
+        [self showRefreshCompletedView];
+
+        NSString * title =
+            [[self class] titleForFailedRequestsAlert:failedServerRequests];
+        NSString * message =
+            [[self class] messageForFailedRequestsAlert:failedServerRequests];
+        NSString * viewDetailsButtonTitle =
+            NSLocalizedString(@"server.refresh.failed.details", @"");
+        NSString * okButtonTitle =
+            NSLocalizedString(@"server.refresh.failed.ok", @"");
+
+        UIAlertView * alert =
+            [[[UIAlertView alloc]
+              initWithTitle:title
+                    message:message
+                   delegate:self
+          cancelButtonTitle:viewDetailsButtonTitle
+          otherButtonTitles:okButtonTitle, nil]
+             autorelease];
+
+        [alert show];
+    }
+
+    numOutstandingRequests--;
+}
+
+#pragma mark UIAlertView delegate functions
+
+- (void)       alertView:(UIAlertView *)alertView
+    clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    // TODO: Provide implementation
+}
+
+- (void) showRefreshCompletedView
+{
+    [refreshLabel removeFromSuperview];
+    [activityIndicator stopAnimating];
+
+    NSDate * currentDate = [NSDate date];
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"M/d/yy h:mm aa";
+    NSString * dateString = [dateFormatter stringFromDate:currentDate];
+
+    [updateLabel setText:[NSString stringWithFormat:@"Updated %@", dateString]];
+    [view addSubview:updateLabel];
+
+    [dateFormatter release];
+}
+
+- (void) showRefreshInProgressView
+{
+    [view addSubview:activityIndicator];
+    [view addSubview:refreshLabel];
+
+    [activityIndicator startAnimating];
+
+    [updateLabel removeFromSuperview];
+
+    [failedServerRequests removeAllObjects];
+}
+
+#pragma mark Message formatting helper methods
+
++ (NSString *) titleForFailedRequestsAlert:(NSDictionary *)requests
+{
+    NSString * formatString = requests.count == 1 ?
+        NSLocalizedString(@"server.refresh.failed.title.singular", @"") :
+        NSLocalizedString(@"server.refresh.failed.title.plural", @"");
+
+    return [NSString stringWithFormat:formatString, requests.count];
+}
+
++ (NSString *) messageForFailedRequestsAlert:(NSDictionary *)requests
+{
+    NSMutableString * message = [NSMutableString string];
+
+    for (NSString * serverUrl in [requests allKeys])
+        [message appendFormat:@"%@\n", serverUrl];
+
+    return message;
 }
 
 @end

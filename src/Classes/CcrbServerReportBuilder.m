@@ -16,20 +16,35 @@
 @implementation CcrbServerReportBuilder
 
 - (ServerReport *)serverReportFromData:(NSData *)data
+                                 error:(NSError **)error
 {
+    NSString * xmlString =
+        [[[NSString alloc]
+          initWithData:data encoding:NSUTF8StringEncoding]
+          autorelease];
+
     ServerReport * report = [ServerReport report];
 
-    NSLog(@"Parsing XML received from server: '%@'.",
-          [[[NSString alloc]
-            initWithData:data encoding:NSUTF8StringEncoding]
-           autorelease]);
-    CXMLDocument * xml = [[CXMLDocument alloc]
-        initWithData:data options:0 error:nil];
+    CXMLDocument * xmlDoc =
+        [[CXMLDocument alloc]
+         initWithXMLString:xmlString options:0 error:error];
 
-    NSArray * channels = [[xml rootElement] elementsForName:@"channel"];
-    NSAssert1(channels.count == 1, @"Expected 1 element in 'channel' node, but "
-        "got %d from server.", channels.count);
+    if (*error) {
+        NSLog(@"Failed to parse XML: '%@', error: '%@'.", xmlString, *error);
+        return nil;
+    }
 
+    NSArray * channels = [[xmlDoc rootElement] elementsForName:@"channel"];
+    if (channels.count != 1) {
+        *error = [NSError errorWithDomain:@"BuildWatchErrorDomain"
+                                     code:1
+                                 userInfo:nil];
+        NSLog(@"Failed to parse XML: '%@', returning error: '%@'.", xmlString,
+            *error);
+
+        return nil;
+    }
+        
     CXMLElement * channel = [channels objectAtIndex:0];
 
     report.name =
