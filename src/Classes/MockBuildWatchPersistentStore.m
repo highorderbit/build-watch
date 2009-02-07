@@ -9,6 +9,7 @@
 + (NSDictionary *) mockServerGroupPatternsList;
 + (NSDictionary *) mockServerNameList;
 + (NSDictionary *) mockProjectDisplayNamesList;
++ (NSDictionary *) mockProjectTrackedStates;
 @end
 
 @implementation MockBuildWatchPersistentStore
@@ -19,6 +20,7 @@
     [serverGroupPatterns release];
     [serverNames release];
     [projectDisplayNames release];
+    [projectTrackedStates release];
     [super dealloc];
 }
 
@@ -31,6 +33,7 @@
         serverNames = [[[self class]  mockServerNameList] retain];
         projectDisplayNames =
             [[[self class] mockProjectDisplayNamesList] retain];
+        projectTrackedStates = [[[self class] mockProjectTrackedStates] retain];
     }
     
     return self;
@@ -71,15 +74,26 @@
     return serverNames;
 }
 
-- (void) saveProjDisplayNames:(NSDictionary *)newProjDisplayNames
+- (void) saveProjectDisplayNames:(NSDictionary *)newProjDisplayNames
 {
     [projectDisplayNames release];
     projectDisplayNames = [newProjDisplayNames copy];
 }
 
-- (NSDictionary *) getProjDisplayNames
+- (NSDictionary *) getProjectDisplayNames
 {
     return projectDisplayNames;
+}
+
+- (void) saveProjectTrackedStates:(NSDictionary *)newProjectTrackedStates
+{
+    [projectTrackedStates release];
+    projectTrackedStates = [newProjectTrackedStates copy];
+}
+
+- (NSDictionary *) getProjectTrackedStates
+{
+    return projectTrackedStates;
 }
 
 #pragma mark Private methods
@@ -151,6 +165,33 @@
             @"KDE", @"http://openoffice.org/builds/|KDE", 
             @"GNOME", @"http://openoffice.org/builds/|GNOME",
             nil];
+}
+
++ (NSDictionary *) mockProjectTrackedStates
+{
+    return [NSDictionary dictionaryWithObjectsAndKeys:
+            [NSNumber numberWithBool:YES],
+            @"http://builder/my-server/|Build Watch",
+            [NSNumber numberWithBool:YES],
+            @"http://builder/my-server/|Website",
+            [NSNumber numberWithBool:YES],
+            @"http://builder/my-server/|Git Website",
+            [NSNumber numberWithBool:YES],
+            @"http://apple.com/builder/|Mail",
+            [NSNumber numberWithBool:YES],
+            @"http://apple.com/builder/|Address Book",
+            [NSNumber numberWithBool:YES], @"http://apple.com/builder/|Safari",
+            [NSNumber numberWithBool:YES],
+            @"http://microsoft.com/TeamSystem/default.aspx|Windows 7",
+            [NSNumber numberWithBool:YES], 
+            @"http://microsoft.com/TeamSystem/default.aspx|Visual Studio Team System 2007",
+            [NSNumber numberWithBool:NO],
+            @"http://microsoft.com/TeamSystem/default.aspx|Microsoft Office System 2009",
+            [NSNumber numberWithBool:YES],
+            @"http://openoffice.org/builds/|OpenOffice",
+            [NSNumber numberWithBool:YES], @"http://openoffice.org/builds/|KDE", 
+            [NSNumber numberWithBool:YES],
+            @"http://openoffice.org/builds/|GNOME", nil];
 }
 
 @end

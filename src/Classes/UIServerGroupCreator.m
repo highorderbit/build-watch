@@ -31,6 +31,7 @@
 
 - (void) createServerGroup
 {
+    [self.addServerNavigationController popToRootViewControllerAnimated:NO];
     [self.rootNavigationController
         presentModalViewController:self.addServerNavigationController
                           animated:YES];

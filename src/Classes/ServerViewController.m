@@ -32,8 +32,8 @@
                               target:self
                               action:@selector(addServerGroup)];
 
-    [self.navigationItem setRightBarButtonItem:addBarButtonItem animated:NO];
-    [self.navigationItem setLeftBarButtonItem:self.editButtonItem animated:NO];
+    [self.navigationItem setLeftBarButtonItem:addBarButtonItem animated:NO];
+    [self.navigationItem setRightBarButtonItem:self.editButtonItem animated:NO];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -118,7 +118,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)     tableView:(UITableView *)tv
     commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-    forRowAtIndexPath:(NSIndexPath *)indexPath
+     forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSString * serverGroupName =
@@ -133,7 +133,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                     withRowAnimation:UITableViewRowAnimationFade];
     }
 }
-
 
 #pragma mark Server manipulation buttons
 
@@ -162,13 +161,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
     if (editing) {
         self.visibleServerGroupNames = visible;
-        [self.navigationItem setRightBarButtonItem:nil animated:YES];
+        [self.navigationItem setLeftBarButtonItem:nil animated:YES];
         [tableView deleteRowsAtIndexPaths:indexPaths
                          withRowAnimation:UITableViewRowAnimationTop];
     } else {
         self.visibleServerGroupNames = serverGroupNames;
         [self.navigationItem
-            setRightBarButtonItem:addBarButtonItem animated:YES];
+            setLeftBarButtonItem:addBarButtonItem animated:YES];
         [tableView insertRowsAtIndexPaths:indexPaths
                          withRowAnimation:UITableViewRowAnimationTop];
     }

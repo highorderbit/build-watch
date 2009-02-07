@@ -27,6 +27,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28C286E10D94DF7D0034E888 /* ServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* ServerViewController.m */; };
+		911EDBD20F3CA58A00E17BC0 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 911EDBD10F3CA58A00E17BC0 /* RegexKitLite.m */; };
 		9149DF710F39053200A0E32C /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149DF6D0F39053200A0E32C /* MainWindow.xib */; };
 		9149DF720F39053200A0E32C /* ServerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149DF6F0F39053200A0E32C /* ServerView.xib */; };
 		9149E0010F39142400A0E32C /* ProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9149E0000F39142400A0E32C /* ProjectsViewController.m */; };
@@ -80,6 +81,8 @@
 		28C286E00D94DF7D0034E888 /* ServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		911EDBD00F3CA58A00E17BC0 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		911EDBD10F3CA58A00E17BC0 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		9149DF6E0F39053200A0E32C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		9149DF700F39053200A0E32C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ServerView.xib; sourceTree = "<group>"; };
 		9149DFFF0F39142400A0E32C /* ProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewController.h; sourceTree = "<group>"; };
@@ -113,6 +116,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				911EDBD00F3CA58A00E17BC0 /* RegexKitLite.h */,
+				911EDBD10F3CA58A00E17BC0 /* RegexKitLite.m */,
 				91F09AA60F3A657B0034528C /* ServerReport.h */,
 				91F09AA70F3A657B0034528C /* ServerReport.m */,
 				05E9121A0F3A4E6800E646F6 /* ProjectSelector.h */,
@@ -297,6 +302,7 @@
 				059CBF2E0F3C821900010F3F /* UIServerGroupCreator.m in Sources */,
 				0524CCDF0F3C8A0900C020FE /* AddServerViewController.m in Sources */,
 				0524CE3A0F3CBA5F00C020FE /* EditServerDetailsViewController.m in Sources */,
+				911EDBD20F3CA58A00E17BC0 /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +389,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = build_watch_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "Build Watch";
 			};
 			name = Distribution;
@@ -397,6 +404,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = build_watch_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "Build Watch";
 			};
 			name = Debug;
@@ -409,6 +417,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = build_watch_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = "build-watch";
 			};
 			name = Release;
