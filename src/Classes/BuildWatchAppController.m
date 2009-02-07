@@ -79,42 +79,46 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 - (void) report:(ServerReport *)report receivedFrom:(NSString *)server
 {
     [serverDataRefresherDelegate didRefreshDataForServer:server];
-    [self updatePropertiesForProjectReports:[report projectReports]
-                                 withServer:server];
+    if ([servers objectForKey:server]) {
+        [self updatePropertiesForProjectReports:[report projectReports]
+                                     withServer:server];
     
-    // Set projects for server
-    NSMutableArray * projects = [[NSMutableArray alloc] init];
+        // Set projects for server
+        NSMutableArray * projects = [[NSMutableArray alloc] init];
     
-    for (ProjectReport * projReport in [report projectReports])
-        [projects addObject:projReport.name];
+        for (ProjectReport * projReport in [report projectReports])
+            [projects addObject:projReport.name];
 
-    [servers setObject:projects forKey:server];
+        [servers setObject:projects forKey:server];
 
-    [self removeMissingProjectPropertiesWithProjects:projects andServer:server];
+        [self removeMissingProjectPropertiesWithProjects:projects
+                                               andServer:server];
     
-    [projects release];
+        [projects release];
     
-    // update project ids
-    NSMutableArray * projectIds = [[NSMutableArray alloc] init];
+        // update project ids
+        NSMutableArray * projectIds = [[NSMutableArray alloc] init];
     
-    for (ProjectReport * projReport in [report projectReports])
-        [projectIds addObject:[[self class]
-                               keyForProject:projReport.name
-                                   andServer:server]];
+        for (ProjectReport * projReport in [report projectReports])
+            [projectIds addObject:[[self class]
+                    keyForProject:projReport.name
+                        andServer:server]];
 
-    [projectIds release];
+        [projectIds release];
     
-    // Push updates to project selector
-    if(activeServerGroupName != nil) {
-        NSString * serverGroupPattern =
-            [serverGroupPatterns objectForKey:activeServerGroupName];
-        BOOL serverMatchesActiveGroupNameRegEx =
-            [server isMatchedByRegex:serverGroupPattern];
-        NSArray * projectIdsForActiveServerGroup =
-            [self projectIdsForServerGroupName:activeServerGroupName];
+        // Push updates to project selector
+        if(activeServerGroupName != nil) {
+            NSString * serverGroupPattern =
+                [serverGroupPatterns objectForKey:activeServerGroupName];
+            BOOL serverMatchesActiveGroupNameRegEx =
+                [server isMatchedByRegex:serverGroupPattern];
+            NSArray * projectIdsForActiveServerGroup =
+                [self projectIdsForServerGroupName:activeServerGroupName];
     
-        if(serverMatchesActiveGroupNameRegEx)
-            [projectSelector selectProjectFrom:projectIdsForActiveServerGroup];
+            if (serverMatchesActiveGroupNameRegEx)
+                [projectSelector
+                    selectProjectFrom:projectIdsForActiveServerGroup];
+        }
     }
 }
 
