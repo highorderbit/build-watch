@@ -54,18 +54,6 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [super dealloc];
 }
 
-/*
-- (id) initWithPersistentStore:(NSObject<ServerPersistentStore> *)persistentStore
-             andServerSelector:(NSObject<ServerSelector> *)aServerSelector
-{
-    if (self = [super init]) {
-        serverPersistentStore = [persistentStore retain];
-        serverSelector = [aServerSelector retain];
-    }
-    return self;
-}
- */
-
 - (void) start
 {
     [self setServers:[persistentStore getServers]];
@@ -84,15 +72,6 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
     [serverGroupNameSelector
      selectServerGroupNamesFrom:[self serverGroupNames]];
-
-    //
-    // 1. Fetch existing data (server list).
-    // 2. Start refresh of data from network.
-    //     2.1: UI is updated.
-    //     2.2: Start network communication.
-    // 3. Hand something a list of servers to display.
-    // 4. Tell something to display the list. ?
-    //
 }
 
 #pragma mark Some protocol implementation
@@ -137,21 +116,12 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
         if(serverMatchesActiveGroupNameRegEx)
             [projectSelector selectProjectFrom:projectIdsForActiveServerGroup];
     }
-    //
-    // 1. Update UI for toolbar.
-    //
 }
 
 #pragma mark ServerSelectorDelegate protocol implementation
 
 - (void) userDidSelectServerGroupName:(NSString *)serverGroupName
 {
-    //
-    // 1. Load data from model as appropriate.
-    // 2. Give data to projects controller.
-    // 3. Orchestrate the display of the projects controller's view.
-    //
-
     NSLog(@"User selected server group name: %@.", serverGroupName);
     [self setActiveServerGroupName:serverGroupName];
     [projectSelector
@@ -216,12 +186,6 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
 - (void) userDidSelectProject:(NSString *)project
 {
-    //
-    // 1. Load data from model as appropriate.
-    // 2. Give data to project controller.
-    // 3. Orchestrate the display of the project controller's view.
-    //
-
     NSLog(@"User selected project: %@.", project);
     [projectReporter reportDetailsForProject:project];
 }
@@ -257,41 +221,6 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 {
     [projectTrackedStates setObject:[NSNumber numberWithBool:state]
                              forKey:project];
-}
-
-- (void) userDidHideProjects:(NSArray *)projects
-{
-    //
-    // 1. Update model.
-    // 2. Orchestrate the updating of the display. (?)
-    // 3. Notify other UI elements of change as needed.
-    //
-}
-
-- (void) userDidShowProjects:(NSArray *)projects
-{
-    //
-    // 1. Update model.
-    // 2. Orchestrate the updating of the display. (?)
-    // 3. Notify other UI elements of change as needed.
-    //
-}
-
-- (void) userDidAddServers:(NSArray *)servers
-{
-    //
-    // 1. Save servers/update model.
-    // 2. Start refresh of server data (if necessary).
-    // 3. Update server controller's list of servers.
-    //
-}
-
-- (void) userDidRemoveServers:(NSArray *)servers
-{
-    //
-    // 1. Update model.
-    // 2. Update server controller's list of servers.
-    //
 }
 
 #pragma mark ServerDataRefresher implementation
