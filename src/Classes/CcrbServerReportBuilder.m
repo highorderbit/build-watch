@@ -19,10 +19,6 @@
 {
     ServerReport * report = [ServerReport report];
 
-    NSLog(@"Parsing XML received from server: '%@'.",
-          [[[NSString alloc]
-            initWithData:data encoding:NSUTF8StringEncoding]
-           autorelease]);
     CXMLDocument * xml = [[CXMLDocument alloc]
         initWithData:data options:0 error:nil];
 
