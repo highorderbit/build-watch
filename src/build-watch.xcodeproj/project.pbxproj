@@ -34,6 +34,12 @@
 		9149DF720F39053200A0E32C /* ServerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149DF6F0F39053200A0E32C /* ServerView.xib */; };
 		9149E0010F39142400A0E32C /* ProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9149E0000F39142400A0E32C /* ProjectsViewController.m */; };
 		9149E0040F39167600A0E32C /* ProjectsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149E0020F39167600A0E32C /* ProjectsView.xib */; };
+		91D9ABC90F3DFC270035454C /* PListBuildWatchPersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D9ABC80F3DFC270035454C /* PListBuildWatchPersistentStore.m */; };
+		91D9ABD40F3DFE350035454C /* Servers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABD30F3DFE350035454C /* Servers.plist */; };
+		91D9ABD80F3E01DE0035454C /* ServerGroupPatterns.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABD70F3E01DE0035454C /* ServerGroupPatterns.plist */; };
+		91D9ABDA0F3E02BE0035454C /* ProjectDisplayNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABD90F3E02BE0035454C /* ProjectDisplayNames.plist */; };
+		91D9ABDC0F3E03B50035454C /* ProjectTrackedStates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABDB0F3E03B50035454C /* ProjectTrackedStates.plist */; };
+		91D9AC570F3E12A60035454C /* ServerNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9AC560F3E12A60035454C /* ServerNames.plist */; };
 		91F09AA50F3A63370034528C /* ProjectReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AA40F3A63370034528C /* ProjectReport.m */; };
 		91F09AA80F3A657B0034528C /* ServerReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AA70F3A657B0034528C /* ServerReport.m */; };
 		91F09AD80F3A69A50034528C /* MockBuildService.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AD70F3A69A50034528C /* MockBuildService.m */; };
@@ -96,6 +102,13 @@
 		9149DFFF0F39142400A0E32C /* ProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewController.h; sourceTree = "<group>"; };
 		9149E0000F39142400A0E32C /* ProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsViewController.m; sourceTree = "<group>"; };
 		9149E0030F39167600A0E32C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ProjectsView.xib; sourceTree = "<group>"; };
+		91D9ABC70F3DFC270035454C /* PListBuildWatchPersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PListBuildWatchPersistentStore.h; sourceTree = "<group>"; };
+		91D9ABC80F3DFC270035454C /* PListBuildWatchPersistentStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PListBuildWatchPersistentStore.m; sourceTree = "<group>"; };
+		91D9ABD30F3DFE350035454C /* Servers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Servers.plist; sourceTree = "<group>"; };
+		91D9ABD70F3E01DE0035454C /* ServerGroupPatterns.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServerGroupPatterns.plist; sourceTree = "<group>"; };
+		91D9ABD90F3E02BE0035454C /* ProjectDisplayNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectDisplayNames.plist; sourceTree = "<group>"; };
+		91D9ABDB0F3E03B50035454C /* ProjectTrackedStates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectTrackedStates.plist; sourceTree = "<group>"; };
+		91D9AC560F3E12A60035454C /* ServerNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServerNames.plist; sourceTree = "<group>"; };
 		91DC9DB20F3BB3CD003F87CF /* ServerGroupNameSelectorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerGroupNameSelectorDelegate.h; sourceTree = "<group>"; };
 		91F09AA30F3A63370034528C /* ProjectReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectReport.h; sourceTree = "<group>"; };
 		91F09AA40F3A63370034528C /* ProjectReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectReport.m; sourceTree = "<group>"; };
@@ -174,6 +187,8 @@
 				0524CE380F3CBA5F00C020FE /* EditServerDetailsViewController.h */,
 				0524CE390F3CBA5F00C020FE /* EditServerDetailsViewController.m */,
 				0524CEFC0F3CE52E00C020FE /* EditServerDetailsViewControllerDelegate.h */,
+				91D9ABC70F3DFC270035454C /* PListBuildWatchPersistentStore.h */,
+				91D9ABC80F3DFC270035454C /* PListBuildWatchPersistentStore.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -210,6 +225,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				91D9AC560F3E12A60035454C /* ServerNames.plist */,
 				059CBE080F3BC7C800010F3F /* Icon.png */,
 				9149DF6D0F39053200A0E32C /* MainWindow.xib */,
 				9149DF6F0F39053200A0E32C /* ServerView.xib */,
@@ -219,6 +235,10 @@
 				0524CCB90F3C86DB00C020FE /* AddServerView.xib */,
 				059CBD460F3BA40900010F3F /* Localizable.strings */,
 				0524CE5C0F3CBC6600C020FE /* EditServerDetailsView.xib */,
+				91D9ABD30F3DFE350035454C /* Servers.plist */,
+				91D9ABD70F3E01DE0035454C /* ServerGroupPatterns.plist */,
+				91D9ABD90F3E02BE0035454C /* ProjectDisplayNames.plist */,
+				91D9ABDB0F3E03B50035454C /* ProjectTrackedStates.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -290,6 +310,11 @@
 				059CBE090F3BC7C800010F3F /* Icon.png in Resources */,
 				0524CCBB0F3C86DB00C020FE /* AddServerView.xib in Resources */,
 				0524CE5E0F3CBC6600C020FE /* EditServerDetailsView.xib in Resources */,
+				91D9ABD40F3DFE350035454C /* Servers.plist in Resources */,
+				91D9ABD80F3E01DE0035454C /* ServerGroupPatterns.plist in Resources */,
+				91D9ABDA0F3E02BE0035454C /* ProjectDisplayNames.plist in Resources */,
+				91D9ABDC0F3E03B50035454C /* ProjectTrackedStates.plist in Resources */,
+				91D9AC570F3E12A60035454C /* ServerNames.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +344,7 @@
 				911EDBD20F3CA58A00E17BC0 /* RegexKitLite.m in Sources */,
 				911EDDFE0F3D0DC300E17BC0 /* UIServerDataRefresher.m in Sources */,
 				911EDE2F0F3D1B0D00E17BC0 /* UIServerDataRefresherDelegate.m in Sources */,
+				91D9ABC90F3DFC270035454C /* PListBuildWatchPersistentStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

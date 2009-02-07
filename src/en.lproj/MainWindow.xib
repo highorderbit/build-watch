@@ -98,14 +98,14 @@
 				</object>
 			</object>
 			<object class="IBUICustomObject" id="1061950094"/>
-			<object class="IBUICustomObject" id="711100591"/>
 			<object class="IBUICustomObject" id="998985087"/>
 			<object class="IBUICustomObject" id="651608659"/>
 			<object class="IBUICustomObject" id="995833791"/>
 			<object class="IBUICustomObject" id="207792850"/>
 			<object class="IBUICustomObject" id="1008333446"/>
-			<object class="IBUICustomObject" id="91505108"/>
-			<object class="IBUICustomObject" id="264683940"/>
+			<object class="IBUICustomObject" id="711100591"/>
+			<object class="IBUICustomObject" id="302798476"/>
+			<object class="IBUICustomObject" id="261731241"/>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -208,14 +208,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">persistentStore</string>
-						<reference key="source" ref="1061950094"/>
-						<reference key="destination" ref="711100591"/>
-					</object>
-					<int key="connectionID">57</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="995833791"/>
 						<reference key="destination" ref="1061950094"/>
@@ -273,7 +265,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">view</string>
-						<reference key="source" ref="91505108"/>
+						<reference key="source" ref="711100591"/>
 						<reference key="destination" ref="398656380"/>
 					</object>
 					<int key="connectionID">70</int>
@@ -282,7 +274,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">serverDataRefresherDelegate</string>
 						<reference key="source" ref="1061950094"/>
-						<reference key="destination" ref="91505108"/>
+						<reference key="destination" ref="711100591"/>
 					</object>
 					<int key="connectionID">71</int>
 				</object>
@@ -290,17 +282,25 @@
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">refreshAllServerData:</string>
 						<reference key="source" ref="647746191"/>
-						<reference key="destination" ref="264683940"/>
+						<reference key="destination" ref="302798476"/>
 					</object>
 					<int key="connectionID">73</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">refresher</string>
-						<reference key="source" ref="264683940"/>
+						<reference key="source" ref="302798476"/>
 						<reference key="destination" ref="1061950094"/>
 					</object>
 					<int key="connectionID">74</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">persistentStore</string>
+						<reference key="source" ref="1061950094"/>
+						<reference key="destination" ref="261731241"/>
+					</object>
+					<int key="connectionID">78</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -408,11 +408,6 @@
 						<reference key="parent" ref="957960031"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">36</int>
-						<reference key="object" ref="711100591"/>
-						<reference key="parent" ref="957960031"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">45</int>
 						<reference key="object" ref="998985087"/>
 						<reference key="parent" ref="957960031"/>
@@ -439,12 +434,17 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">69</int>
-						<reference key="object" ref="91505108"/>
+						<reference key="object" ref="711100591"/>
 						<reference key="parent" ref="957960031"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">72</int>
-						<reference key="object" ref="264683940"/>
+						<reference key="object" ref="302798476"/>
+						<reference key="parent" ref="957960031"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">77</int>
+						<reference key="object" ref="261731241"/>
 						<reference key="parent" ref="957960031"/>
 					</object>
 				</object>
@@ -470,8 +470,6 @@
 					<string>30.IBPluginDependency</string>
 					<string>35.CustomClassName</string>
 					<string>35.IBPluginDependency</string>
-					<string>36.CustomClassName</string>
-					<string>36.IBPluginDependency</string>
 					<string>45.CustomClassName</string>
 					<string>45.IBPluginDependency</string>
 					<string>49.CustomClassName</string>
@@ -486,6 +484,8 @@
 					<string>69.IBPluginDependency</string>
 					<string>72.CustomClassName</string>
 					<string>72.IBPluginDependency</string>
+					<string>77.CustomClassName</string>
+					<string>77.IBPluginDependency</string>
 					<string>9.IBEditorWindowLastContentRect</string>
 					<string>9.IBPluginDependency</string>
 				</object>
@@ -516,8 +516,6 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>BuildWatchAppController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>MockBuildWatchPersistentStore</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIServerSelector</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIProjectSelector</string>
@@ -531,6 +529,8 @@
 					<string>UIServerDataRefresherDelegate</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIServerDataRefresher</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>PListBuildWatchPersistentStore</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{384, 369}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -556,7 +556,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">74</int>
+			<int key="maxID">78</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -640,19 +640,11 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">MockBuildWatchPersistentStore</string>
+					<string key="className">PListBuildWatchPersistentStore</string>
 					<string key="superclassName">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/MockBuildWatchPersistentStore.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">MockBuildWatchPersistentStore</string>
-					<string key="superclassName">NSObject</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBUserSource</string>
-						<string key="minorKey"/>
+						<string key="minorKey">Classes/PListBuildWatchPersistentStore.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
