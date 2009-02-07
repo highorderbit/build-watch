@@ -9,5 +9,5 @@
 @protocol BuildServiceDelegate
 - (void) report:(ServerReport *)report receivedFrom:(NSString *)serverUrl;
 - (void) attemptToGetReportFromServer:(NSString *)serverUrl
-                      failedWithError:(NSError *)error;
+                     didFailWithError:(NSError *)error;
 @end

@@ -74,7 +74,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
      selectServerGroupNamesFrom:[self serverGroupNames]];
 }
 
-#pragma mark Some protocol implementation
+#pragma mark BuildServiceDelegate implementation
 
 - (void) report:(ServerReport *)report receivedFrom:(NSString *)server
 {
@@ -120,6 +120,14 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
                     selectProjectFrom:projectIdsForActiveServerGroup];
         }
     }
+}
+
+- (void) attemptToGetReportFromServer:(NSString *)serverUrl
+                     didFailWithError:(NSError *)error
+{
+    NSLog(@"Failed to refresh server: '%@'. '%@'.", serverUrl, error);
+    [serverDataRefresherDelegate failedToRefreshDataForServer:serverUrl
+                                                        error:error];
 }
 
 #pragma mark ServerSelectorDelegate protocol implementation

@@ -12,6 +12,7 @@
 #import "ProjectReporter.h"
 #import "ProjectReporterDelegate.h"
 #import "BuildService.h"
+#import "BuildServiceDelegate.h"
 #import "ServerDataRefresher.h"
 #import "ServerDataRefresherDelegate.h"
 #import "ServerGroupCreator.h"
@@ -20,6 +21,7 @@
                                      < ServerGroupNameSelectorDelegate,
                                        ProjectSelectorDelegate,
                                        ProjectReporterDelegate,
+                                       BuildServiceDelegate,
                                        ServerDataRefresher >
 {
     // Servers are a list of URL strings.

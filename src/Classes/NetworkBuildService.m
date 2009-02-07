@@ -58,9 +58,16 @@
     NSObject<ServerReportBuilder> * builder =
         [[CcrbServerReportBuilder alloc] init];
 
-    ServerReport * report = [builder serverReportFromData:data];
+    NSString * serverUrl = [self serverUrlForUpdater:updater];
 
-    [delegate report:report receivedFrom:[self serverUrlForUpdater:updater]];
+    NSError * error = nil;
+    ServerReport * report = [builder serverReportFromData:data error:&error];
+
+    if (error)
+        [delegate
+            attemptToGetReportFromServer:serverUrl didFailWithError:error];
+    else
+        [delegate report:report receivedFrom:serverUrl];
 
     [self destroyUpdater:updater];
 }
@@ -69,7 +76,7 @@
 didFailWithError:(NSError *)error
 {
     [delegate attemptToGetReportFromServer:[self serverUrlForUpdater:updater]
-                           failedWithError:error];
+                          didFailWithError:error];
     [self destroyUpdater:updater];
 }
 

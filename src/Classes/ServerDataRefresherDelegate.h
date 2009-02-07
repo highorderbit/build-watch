@@ -10,4 +10,6 @@
 
 - (void) didRefreshDataForServer:(NSString *)server;
 
+- (void) failedToRefreshDataForServer:(NSString *)server error:(NSError *)error;
+
 @end
