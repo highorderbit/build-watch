@@ -35,12 +35,13 @@
 
 - (void) startUpdate
 {
+    NSAssert(connection == nil, @"Starting an update when an update already "
+        "exists.");
     [self setData:[NSData data]];
     NSURLRequest * req = [NSURLRequest requestWithURL:url];
-    connection = [[NSURLConnection connectionWithRequest:req
-                                                delegate:self] retain];
-
-    [connection start];
+    connection = [[NSURLConnection alloc] initWithRequest:req
+                                                 delegate:self
+                                         startImmediately:YES];
 }
 
 - (void) cancelUpdate
@@ -58,11 +59,15 @@
 - (void) connectionDidFinishLoading:(NSURLConnection *)conn
 {
     [delegate updater:self didReceiveData:data];
+    [connection release];
+    connection = nil;
 }
 
 - (void)connection:(NSURLConnection *)conn didFailWithError:(NSError *)error
 {
     [delegate updater:self didFailWithError:error];
+    [connection release];
+    connection = nil;
 }
 
 #pragma mark Accessors

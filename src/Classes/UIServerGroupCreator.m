@@ -63,8 +63,6 @@
 
 - (void) report:(ServerReport *)report receivedFrom:(NSString *)serverUrl
 {
-    // TODO: add error handling code
-
     NSLog(@"Received build report: '%@' from server: '%@'.", report, serverUrl);
 
     EditServerDetailsViewController * controller =
@@ -78,6 +76,7 @@
 - (void) attemptToGetReportFromServer:(NSString *)serverUrl
                       failedWithError:(NSError *)error
 {
+    // TODO: add error handling code
     NSLog(@"Failed to get report from server: '%@', error: '%@'.", serverUrl,
         error);
 }
