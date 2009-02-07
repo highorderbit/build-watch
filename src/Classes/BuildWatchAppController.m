@@ -78,8 +78,8 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
 - (void) report:(ServerReport *)report receivedFrom:(NSString *)server
 {
+    [serverDataRefresherDelegate didRefreshDataForServer:server];
     if ([servers objectForKey:server]) {
-        [serverDataRefresherDelegate didRefreshDataForServer:server];
         [self updatePropertiesForProjectReports:[report projectReports]
                                      withServer:server];
     
