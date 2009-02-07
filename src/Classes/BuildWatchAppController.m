@@ -326,6 +326,10 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
         [[self class] keyForProject:projReport.name andServer:server];
         
         [projectDisplayNames setObject:projReport.name forKey:projectKey];
+        
+        if (![projectTrackedStates objectForKey:projectKey])
+            [projectTrackedStates setObject:[NSNumber numberWithBool:YES]
+                                     forKey:projectKey];
     }
 }
 
