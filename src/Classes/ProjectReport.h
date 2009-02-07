@@ -18,4 +18,6 @@
 @property (nonatomic, retain) NSString * link;
 @property (nonatomic, assign) BOOL buildSucceeded;
 
++ (id)report;
+
 @end

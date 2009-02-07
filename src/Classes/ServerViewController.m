@@ -191,7 +191,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void) setVisibleServerGroupNames:(NSMutableArray *)anotherArray
 {
-    NSLog(@"Setting visible server group names.");
     [anotherArray retain];
     [visibleServerGroupNames release];
     visibleServerGroupNames = anotherArray;
