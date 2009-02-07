@@ -107,7 +107,7 @@
                                   @"GNOME",
                                   nil],
         @"http://openoffice.org/builds/",
-        nil, nil];
+        nil];
 }
 
 + (NSDictionary *) mockServerGroupPatternsList

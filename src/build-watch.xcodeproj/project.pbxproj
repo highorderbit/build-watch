@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0524CCBB0F3C86DB00C020FE /* AddServerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0524CCB90F3C86DB00C020FE /* AddServerView.xib */; };
+		0524CCDF0F3C8A0900C020FE /* AddServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0524CCDE0F3C8A0900C020FE /* AddServerViewController.m */; };
+		0524CE3A0F3CBA5F00C020FE /* EditServerDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0524CE390F3CBA5F00C020FE /* EditServerDetailsViewController.m */; };
+		0524CE5E0F3CBC6600C020FE /* EditServerDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0524CE5C0F3CBC6600C020FE /* EditServerDetailsView.xib */; };
 		053A95120F3B998B0092763D /* UIProjectReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 053A95110F3B998B0092763D /* UIProjectReporter.m */; };
 		053A95150F3B9BF60092763D /* ProjectReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 053A95140F3B9BF60092763D /* ProjectReportViewController.m */; };
 		059CBD480F3BA40900010F3F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 059CBD460F3BA40900010F3F /* Localizable.strings */; };
 		059CBDC20F3BAE7400010F3F /* ProjectReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059CBDC00F3BAE7400010F3F /* ProjectReportView.xib */; };
 		059CBE090F3BC7C800010F3F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 059CBE080F3BC7C800010F3F /* Icon.png */; };
+		059CBF2E0F3C821900010F3F /* UIServerGroupCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 059CBF2D0F3C821900010F3F /* UIServerGroupCreator.m */; };
 		05E911050F3A056F00E646F6 /* BuildWatchAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E911040F3A056F00E646F6 /* BuildWatchAppController.m */; };
 		05E911100F3A11F700E646F6 /* MockBuildWatchPersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E9110F0F3A11F700E646F6 /* MockBuildWatchPersistentStore.m */; };
 		05E911E70F3A453300E646F6 /* UIServerSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E911E60F3A453300E646F6 /* UIServerSelector.m */; };
@@ -32,6 +37,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0524CCBA0F3C86DB00C020FE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AddServerView.xib; sourceTree = "<group>"; };
+		0524CCDD0F3C8A0900C020FE /* AddServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddServerViewController.h; sourceTree = "<group>"; };
+		0524CCDE0F3C8A0900C020FE /* AddServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddServerViewController.m; sourceTree = "<group>"; };
+		0524CD850F3C9DC000C020FE /* AddServerViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddServerViewControllerDelegate.h; sourceTree = "<group>"; };
+		0524CE380F3CBA5F00C020FE /* EditServerDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditServerDetailsViewController.h; sourceTree = "<group>"; };
+		0524CE390F3CBA5F00C020FE /* EditServerDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditServerDetailsViewController.m; sourceTree = "<group>"; };
+		0524CE5D0F3CBC6600C020FE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/EditServerDetailsView.xib; sourceTree = "<group>"; };
+		0524CEFC0F3CE52E00C020FE /* EditServerDetailsViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditServerDetailsViewControllerDelegate.h; sourceTree = "<group>"; };
 		053A950D0F3B99230092763D /* ProjectReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectReporter.h; sourceTree = "<group>"; };
 		053A95100F3B998B0092763D /* UIProjectReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIProjectReporter.h; sourceTree = "<group>"; };
 		053A95110F3B998B0092763D /* UIProjectReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIProjectReporter.m; sourceTree = "<group>"; };
@@ -40,6 +53,10 @@
 		059CBD470F3BA40900010F3F /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		059CBDC10F3BAE7400010F3F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ProjectReportView.xib; sourceTree = "<group>"; };
 		059CBE080F3BC7C800010F3F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		059CBF210F3C7BB100010F3F /* ServerGroupCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerGroupCreator.h; sourceTree = "<group>"; };
+		059CBF250F3C7E6D00010F3F /* ServerGroupCreatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerGroupCreatorDelegate.h; sourceTree = "<group>"; };
+		059CBF2C0F3C821900010F3F /* UIServerGroupCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIServerGroupCreator.h; sourceTree = "<group>"; };
+		059CBF2D0F3C821900010F3F /* UIServerGroupCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIServerGroupCreator.m; sourceTree = "<group>"; };
 		05E911030F3A056F00E646F6 /* BuildWatchAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildWatchAppController.h; sourceTree = "<group>"; };
 		05E911040F3A056F00E646F6 /* BuildWatchAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildWatchAppController.m; sourceTree = "<group>"; };
 		05E911070F3A111500E646F6 /* BuildWatchPersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildWatchPersistentStore.h; sourceTree = "<group>"; };
@@ -128,6 +145,16 @@
 				053A95110F3B998B0092763D /* UIProjectReporter.m */,
 				053A95130F3B9BF60092763D /* ProjectReportViewController.h */,
 				053A95140F3B9BF60092763D /* ProjectReportViewController.m */,
+				059CBF210F3C7BB100010F3F /* ServerGroupCreator.h */,
+				059CBF250F3C7E6D00010F3F /* ServerGroupCreatorDelegate.h */,
+				059CBF2C0F3C821900010F3F /* UIServerGroupCreator.h */,
+				059CBF2D0F3C821900010F3F /* UIServerGroupCreator.m */,
+				0524CCDD0F3C8A0900C020FE /* AddServerViewController.h */,
+				0524CCDE0F3C8A0900C020FE /* AddServerViewController.m */,
+				0524CD850F3C9DC000C020FE /* AddServerViewControllerDelegate.h */,
+				0524CE380F3CBA5F00C020FE /* EditServerDetailsViewController.h */,
+				0524CE390F3CBA5F00C020FE /* EditServerDetailsViewController.m */,
+				0524CEFC0F3CE52E00C020FE /* EditServerDetailsViewControllerDelegate.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -170,7 +197,9 @@
 				8D1107310486CEB800E47090 /* Info.plist */,
 				9149E0020F39167600A0E32C /* ProjectsView.xib */,
 				059CBDC00F3BAE7400010F3F /* ProjectReportView.xib */,
+				0524CCB90F3C86DB00C020FE /* AddServerView.xib */,
 				059CBD460F3BA40900010F3F /* Localizable.strings */,
+				0524CE5C0F3CBC6600C020FE /* EditServerDetailsView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -240,6 +269,8 @@
 				059CBD480F3BA40900010F3F /* Localizable.strings in Resources */,
 				059CBDC20F3BAE7400010F3F /* ProjectReportView.xib in Resources */,
 				059CBE090F3BC7C800010F3F /* Icon.png in Resources */,
+				0524CCBB0F3C86DB00C020FE /* AddServerView.xib in Resources */,
+				0524CE5E0F3CBC6600C020FE /* EditServerDetailsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,12 +294,31 @@
 				91F09AD80F3A69A50034528C /* MockBuildService.m in Sources */,
 				053A95120F3B998B0092763D /* UIProjectReporter.m in Sources */,
 				053A95150F3B9BF60092763D /* ProjectReportViewController.m in Sources */,
+				059CBF2E0F3C821900010F3F /* UIServerGroupCreator.m in Sources */,
+				0524CCDF0F3C8A0900C020FE /* AddServerViewController.m in Sources */,
+				0524CE3A0F3CBA5F00C020FE /* EditServerDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		0524CCB90F3C86DB00C020FE /* AddServerView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0524CCBA0F3C86DB00C020FE /* en */,
+			);
+			name = AddServerView.xib;
+			sourceTree = "<group>";
+		};
+		0524CE5C0F3CBC6600C020FE /* EditServerDetailsView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0524CE5D0F3CBC6600C020FE /* en */,
+			);
+			name = EditServerDetailsView.xib;
+			sourceTree = "<group>";
+		};
 		059CBD460F3BA40900010F3F /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -8,8 +8,12 @@
 
 - (void) userDidSelectServerGroupName:(NSString *)serverGroupName;
 
+- (NSString *) displayNameForServerGroupName:(NSString *)serverGroupName;
+
 - (BOOL) canServerGroupBeDeleted:(NSString *)serverGroupName;
 
 - (void) deleteServerGroupWithName:(NSString *)serverGroupName;
+
+- (void) createServerGroup;
 
 @end

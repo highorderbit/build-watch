@@ -12,6 +12,7 @@
 #import "ProjectReporter.h"
 #import "ProjectReporterDelegate.h"
 #import "BuildService.h"
+#import "ServerGroupCreator.h"
 
 @interface BuildWatchAppController : NSObject
                                      < ServerGroupNameSelectorDelegate,
@@ -37,7 +38,9 @@
     NSObject<ServerGroupNameSelector> * serverGroupNameSelector;
     NSObject<ProjectSelector> * projectSelector;
     NSObject<ProjectReporter> * projectReporter;
-    
+
+    NSObject<ServerGroupCreator> * serverGroupCreator;
+
     NSObject<BuildService> * buildService;
     
     NSString * activeServerGroupName;
@@ -52,6 +55,9 @@
     projectSelector;
 @property (nonatomic, retain) IBOutlet NSObject<ProjectReporter> *
     projectReporter;
+
+@property (nonatomic, retain) IBOutlet NSObject<ServerGroupCreator> *
+    serverGroupCreator;
 
 @property (nonatomic, retain) IBOutlet NSObject<BuildService> * buildService;
 

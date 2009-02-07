@@ -30,6 +30,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 @synthesize serverGroupNameSelector;
 @synthesize projectSelector;
 @synthesize projectReporter;
+@synthesize serverGroupCreator;
 @synthesize buildService;
 
 - (void) dealloc
@@ -42,6 +43,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [projectReporter release];
     [projectDisplayNames release];
     [persistentStore release];
+    [serverGroupCreator release];
     [buildService release];
     [super dealloc];
 }
@@ -62,7 +64,13 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 {
     [self setServers:[persistentStore getServers]];
     [self setServerGroupPatterns:[persistentStore getServerGroupPatterns]];
-    [self setServerNames:[persistentStore getServerNames]];
+
+    NSMutableDictionary * allServerNames =
+        [[[persistentStore getServerNames] mutableCopy] autorelease];
+    NSString * allLocalizedName = NSLocalizedString(SERVER_GROUP_NAME_ALL, @"");
+    [allServerNames setObject:allLocalizedName forKey:allLocalizedName];
+    [self setServerNames:allServerNames];
+
     [self setProjectDisplayNames:[persistentStore getProjDisplayNames]];
     
     NSArray * serverKeys = [servers allKeys];
@@ -141,6 +149,11 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
      selectProjectFrom:[self projectIdsForServerGroupName:serverGroupName]]; 
 }
 
+- (NSString *) displayNameForServerGroupName:(NSString *)serverGroupName
+{
+    return [serverNames objectForKey:serverGroupName];
+}
+
 - (BOOL) canServerGroupBeDeleted:(NSString *)serverGroupName
 {
     return ![serverGroupName isEqual:
@@ -155,6 +168,39 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
     [servers removeObjectForKey:serverGroupName];
     [serverNames removeObjectForKey:serverGroupName];
+}
+
+- (void) createServerGroup
+{
+    [serverGroupCreator createServerGroup];
+}
+
+#pragma mark ServerGroupCreatorDelegate protocol implementation
+
+- (void) serverGroupCreatedWithName:(NSString *)serverName
+              andInitialBuildReport:(ServerReport *)report
+{
+    NSLog(@"Server group created: '%@', initial report: '%@'.",
+          serverName, report);
+
+    /*
+     * Consider refactoring into a dedicated 'add server group' function.
+     */
+
+    NSMutableArray * projectNames = [NSMutableArray array];
+    for (ProjectReport * projectReport in report.projectReports)
+        [projectNames addObject:projectReport.name];
+    [servers setObject:projectNames forKey:report.link];
+
+    [serverGroupPatterns
+        setObject:[NSString stringWithFormat:@"^%@$", report.link]
+           forKey:report.link];
+    [serverNames setObject:serverName forKey:report.link];
+
+    [self report:report receivedFrom:report.link];
+
+    [serverGroupNameSelector 
+     selectServerGroupNamesFrom:[self serverGroupNames]];
 }
 
 #pragma mark ProjectSelectorDelegate protocol implementation
@@ -190,7 +236,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
 - (NSString *) displayNameForCurrentProjectGroup
 {
-    return activeServerGroupName;
+    return [serverNames objectForKey:activeServerGroupName];
 }
 
 - (void) userDidHideProjects:(NSArray *)projects
@@ -208,23 +254,6 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     // 1. Update model.
     // 2. Orchestrate the updating of the display. (?)
     // 3. Notify other UI elements of change as needed.
-    //
-}
-
-- (void) userDidAddServers:(NSArray *)servers
-{
-    //
-    // 1. Save servers/update model.
-    // 2. Start refresh of server data (if necessary).
-    // 3. Update server controller's list of servers.
-    //
-}
-
-- (void) userDidRemoveServers:(NSArray *)servers
-{
-    //
-    // 1. Update model.
-    // 2. Update server controller's list of servers.
     //
 }
 
@@ -311,7 +340,8 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
 - (NSArray *) serverGroupNames
 {
-    NSMutableArray * serverGroupNames = [[servers allKeys] mutableCopy];
+    NSMutableArray * serverGroupNames =
+        [[[servers allKeys] mutableCopy] autorelease];
     [serverGroupNames addObject:NSLocalizedString(SERVER_GROUP_NAME_ALL, @"")];
     
     return serverGroupNames;
