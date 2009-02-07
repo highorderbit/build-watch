@@ -208,6 +208,12 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     return [[projectTrackedStates objectForKey:project] boolValue];
 }
 
+- (void) setTrackedState:(BOOL)state onProject:(NSString *)project
+{
+    [projectTrackedStates setObject:[NSNumber numberWithBool:state]
+                             forKey:project];
+}
+
 - (void) userDidHideProjects:(NSArray *)projects
 {
     //
