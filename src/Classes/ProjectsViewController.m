@@ -34,14 +34,14 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = [delegate displayNameForCurrentProjectGroup];
-    
     [self.navigationItem setRightBarButtonItem:self.editButtonItem animated:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+    self.navigationItem.title = [delegate displayNameForCurrentProjectGroup];
 
     NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selectedRow animated:NO];
