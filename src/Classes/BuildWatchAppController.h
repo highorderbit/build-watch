@@ -14,6 +14,7 @@
 #import "BuildService.h"
 #import "ServerDataRefresher.h"
 #import "ServerDataRefresherDelegate.h"
+#import "ServerGroupCreator.h"
 
 @interface BuildWatchAppController : NSObject
                                      < ServerGroupNameSelectorDelegate,
@@ -42,7 +43,9 @@
     NSObject<ServerGroupNameSelector> * serverGroupNameSelector;
     NSObject<ProjectSelector> * projectSelector;
     NSObject<ProjectReporter> * projectReporter;
-    
+
+    NSObject<ServerGroupCreator> * serverGroupCreator;
+
     NSObject<BuildService> * buildService;
     
     NSObject<ServerDataRefresherDelegate> * serverDataRefresherDelegate;
@@ -59,6 +62,9 @@
     projectSelector;
 @property (nonatomic, retain) IBOutlet NSObject<ProjectReporter> *
     projectReporter;
+
+@property (nonatomic, retain) IBOutlet NSObject<ServerGroupCreator> *
+    serverGroupCreator;
 
 @property (nonatomic, retain) IBOutlet NSObject<BuildService> * buildService;
 

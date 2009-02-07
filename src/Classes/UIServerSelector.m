@@ -24,8 +24,9 @@
 - (void) selectServerGroupNamesFrom:(NSArray *)someServerGroupNames
 {
     [self.serverViewController setServerGroupNames:someServerGroupNames];
-    [self.navigationController pushViewController:self.serverViewController
-                                         animated:YES];
+    if (self.navigationController.visibleViewController != serverViewController)
+        [self.navigationController pushViewController:self.serverViewController
+                                             animated:YES];
 }
 
 #pragma mark Accessors

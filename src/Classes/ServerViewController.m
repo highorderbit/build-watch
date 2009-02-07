@@ -30,7 +30,7 @@
     addBarButtonItem = [[UIBarButtonItem alloc]
          initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                               target:self
-                              action:@selector(addServer)];
+                              action:@selector(addServerGroup)];
 
     [self.navigationItem setLeftBarButtonItem:addBarButtonItem animated:NO];
     [self.navigationItem setRightBarButtonItem:self.editButtonItem animated:NO];
@@ -81,7 +81,8 @@
              autorelease];
 
     // Set up the cell
-    cell.text = [visibleServerGroupNames objectAtIndex:indexPath.row];
+    cell.text = [delegate displayNameForServerGroupName:
+        [visibleServerGroupNames objectAtIndex:indexPath.row]];
 
     return cell;
 }
@@ -135,20 +136,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 #pragma mark Server manipulation buttons
 
-- (void)addServer
+- (void)addServerGroup
 {
-    NSString * title = @"All your server are belong to us";
-    NSString * message = @"This feature has not yet been implemented.";
-    NSString * cancelTitle = @"Make Your Time";
-
-    UIAlertView * alert = [[[UIAlertView alloc]
-        initWithTitle:title
-              message:message
-             delegate:self
-    cancelButtonTitle:cancelTitle
-    otherButtonTitles:nil] autorelease];
-
-    [alert show];
+    [delegate createServerGroup];
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
@@ -187,15 +177,24 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 #pragma mark Accessors
 
-- (void)setServerGroupNames:(NSArray *)someServerGroupNames
+- (void) setServerGroupNames:(NSArray *)someServerGroupNames
 {
     NSMutableArray * tmp = [someServerGroupNames mutableCopy];
     [serverGroupNames release];
     serverGroupNames = tmp;
 
-    self.visibleServerGroupNames = serverGroupNames;
-    
+    [visibleServerGroupNames release];
+    visibleServerGroupNames = [someServerGroupNames mutableCopy];
+
     [tableView reloadData];
+}
+
+- (void) setVisibleServerGroupNames:(NSMutableArray *)anotherArray
+{
+    NSLog(@"Setting visible server group names.");
+    [anotherArray retain];
+    [visibleServerGroupNames release];
+    visibleServerGroupNames = anotherArray;
 }
 
 @end

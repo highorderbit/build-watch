@@ -8,7 +8,6 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="30"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -37,7 +36,7 @@
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 			</object>
 			<object class="IBUIToolbar" id="10342245">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">266</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -54,7 +53,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 44}</string>
-				<reference key="NSSuperview"/>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<object class="NSMutableArray" key="IBUIItems">
@@ -104,9 +102,10 @@
 			<object class="IBUICustomObject" id="998985087"/>
 			<object class="IBUICustomObject" id="651608659"/>
 			<object class="IBUICustomObject" id="995833791"/>
+			<object class="IBUICustomObject" id="207792850"/>
 			<object class="IBUICustomObject" id="1008333446"/>
-			<object class="IBUICustomObject" id="395983370"/>
-			<object class="IBUICustomObject" id="568243388"/>
+			<object class="IBUICustomObject" id="91505108"/>
+			<object class="IBUICustomObject" id="264683940"/>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -249,35 +248,59 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">refresher</string>
-						<reference key="source" ref="395983370"/>
-						<reference key="destination" ref="1061950094"/>
+						<string key="label">rootNavigationController</string>
+						<reference key="source" ref="207792850"/>
+						<reference key="destination" ref="701001926"/>
 					</object>
-					<int key="connectionID">64</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">refreshAllServerData:</string>
-						<reference key="source" ref="647746191"/>
-						<reference key="destination" ref="395983370"/>
-					</object>
-					<int key="connectionID">65</int>
+					<int key="connectionID">66</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">serverDataRefresherDelegate</string>
+						<string key="label">serverGroupCreator</string>
 						<reference key="source" ref="1061950094"/>
-						<reference key="destination" ref="568243388"/>
+						<reference key="destination" ref="207792850"/>
+					</object>
+					<int key="connectionID">67</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="207792850"/>
+						<reference key="destination" ref="1061950094"/>
 					</object>
 					<int key="connectionID">68</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">view</string>
-						<reference key="source" ref="568243388"/>
+						<reference key="source" ref="91505108"/>
 						<reference key="destination" ref="398656380"/>
 					</object>
-					<int key="connectionID">69</int>
+					<int key="connectionID">70</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">serverDataRefresherDelegate</string>
+						<reference key="source" ref="1061950094"/>
+						<reference key="destination" ref="91505108"/>
+					</object>
+					<int key="connectionID">71</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">refreshAllServerData:</string>
+						<reference key="source" ref="647746191"/>
+						<reference key="destination" ref="264683940"/>
+					</object>
+					<int key="connectionID">73</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">refresher</string>
+						<reference key="source" ref="264683940"/>
+						<reference key="destination" ref="1061950094"/>
+					</object>
+					<int key="connectionID">74</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -411,12 +434,17 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">63</int>
-						<reference key="object" ref="395983370"/>
+						<reference key="object" ref="207792850"/>
 						<reference key="parent" ref="957960031"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">66</int>
-						<reference key="object" ref="568243388"/>
+						<int key="objectID">69</int>
+						<reference key="object" ref="91505108"/>
+						<reference key="parent" ref="957960031"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">72</int>
+						<reference key="object" ref="264683940"/>
 						<reference key="parent" ref="957960031"/>
 					</object>
 				</object>
@@ -454,8 +482,10 @@
 					<string>58.IBPluginDependency</string>
 					<string>63.CustomClassName</string>
 					<string>63.IBPluginDependency</string>
-					<string>66.CustomClassName</string>
-					<string>66.IBPluginDependency</string>
+					<string>69.CustomClassName</string>
+					<string>69.IBPluginDependency</string>
+					<string>72.CustomClassName</string>
+					<string>72.IBPluginDependency</string>
 					<string>9.IBEditorWindowLastContentRect</string>
 					<string>9.IBPluginDependency</string>
 				</object>
@@ -475,7 +505,7 @@
 					</object>
 					<string>{{357, 490}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{21, 812}, {320, 44}}</string>
+					<string>{{21, 1067}, {320, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -496,11 +526,13 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIProjectReporter</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>UIServerDataRefresher</string>
+					<string>UIServerGroupCreator</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIServerDataRefresherDelegate</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{666, 437}, {320, 480}}</string>
+					<string>UIServerDataRefresher</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>{{384, 369}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
@@ -524,7 +556,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">69</int>
+			<int key="maxID">74</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -541,10 +573,12 @@
 							<string>projectReporter</string>
 							<string>projectSelector</string>
 							<string>serverDataRefresherDelegate</string>
+							<string>serverGroupCreator</string>
 							<string>serverGroupNameSelector</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSObject</string>
 							<string>NSObject</string>
 							<string>NSObject</string>
 							<string>NSObject</string>
@@ -689,6 +723,35 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/UIServerDataRefresherDelegate.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIServerGroupCreator</string>
+					<string key="superclassName">NSObject</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>delegate</string>
+							<string>rootNavigationController</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSObject</string>
+							<string>UINavigationController</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/UIServerGroupCreator.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UIServerGroupCreator</string>
+					<string key="superclassName">NSObject</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBUserSource</string>
+						<string key="minorKey"/>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
