@@ -46,6 +46,7 @@
     [cancelButtonItem release];
 
     serverUrlTextView.font = [UIFont systemFontOfSize:20.0];
+    serverUrlTextView.clearButtonMode = UITextFieldViewModeWhileEditing;
 }
 
 - (void) viewWillAppear:(BOOL)animated
