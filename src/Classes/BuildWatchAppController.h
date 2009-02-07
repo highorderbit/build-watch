@@ -20,7 +20,7 @@
                                      < ServerGroupNameSelectorDelegate,
                                        ProjectSelectorDelegate,
                                        ProjectReporterDelegate,
-                                       ServerDataRefresher>
+                                       ServerDataRefresher >
 {
     // Servers are a list of URL strings.
     //     (NSString *) server url -> (NSArray *) project names (NSString *)
@@ -73,6 +73,6 @@
 
 - (void) start;
 
-
+- (void) persistState;
  
 @end
