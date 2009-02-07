@@ -12,6 +12,11 @@
 @synthesize link;
 @synthesize buildSucceeded;
 
++ (id)report
+{
+    return [[[[self class] alloc] init] autorelease];
+}
+
 - (void)dealloc
 {
     [name release];

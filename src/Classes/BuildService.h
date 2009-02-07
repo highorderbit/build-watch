@@ -5,5 +5,5 @@
 #import <UIKit/UIKit.h>
 
 @protocol BuildService
-- (void) refreshDataForServer:(NSString *)server;
+- (void) refreshDataForServer:(NSString *)serverUrl;
 @end

@@ -5,7 +5,7 @@
 #import "UIServerGroupCreator.h"
 #import "AddServerViewController.h"
 #import "EditServerDetailsViewController.h"
-#import "MockBuildService.h"
+#import "NetworkBuildService.h"
 
 @implementation UIServerGroupCreator
 
@@ -61,11 +61,11 @@
 
 #pragma mark BuildServiceDelegate protocol implementation
 
-- (void) report:(ServerReport *)report receivedFrom:(NSString *)server
+- (void) report:(ServerReport *)report receivedFrom:(NSString *)serverUrl
 {
     // TODO: add error handling code
 
-    NSLog(@"Received build report: '%@' from server: '%@'.", report, server);
+    NSLog(@"Received build report: '%@' from server: '%@'.", report, serverUrl);
 
     EditServerDetailsViewController * controller =
         self.editServerDetailsViewController;
@@ -73,6 +73,13 @@
 
     [self.addServerNavigationController
         pushViewController:controller animated:YES];
+}
+
+- (void) attemptToGetReportFromServer:(NSString *)serverUrl
+                      failedWithError:(NSError *)error
+{
+    NSLog(@"Failed to get report from server: '%@', error: '%@'.", serverUrl,
+        error);
 }
 
 #pragma mark Accessors
@@ -114,8 +121,8 @@
 {
     if (buildService == nil) {
         // Instantiate concrete type in order to set delegate member.
-        MockBuildService * service = [[MockBuildService alloc] init];
-        service.delegate = self;
+        NSObject<BuildService> * service =
+            [[NetworkBuildService alloc] initWithDelegate:self];
         buildService = service;
     }
 

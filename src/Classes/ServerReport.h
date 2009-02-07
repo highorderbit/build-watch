@@ -14,4 +14,18 @@
 @property (nonatomic, retain) NSString * link;
 @property (nonatomic, retain) NSArray * projectReports;
 
++ (id)report;
++ (id)reportWithName:(NSString *)aName
+                link:(NSString *)aLink;
++ (id)reportWithName:(NSString *)aName
+                link:(NSString *)aLink
+      projectReports:(NSArray *)someReports;
+
+- (id)init;
+- (id)initWithName:(NSString *)aName
+              link:(NSString *)aLink;
+- (id)initWithName:(NSString *)aName
+              link:(NSString *)aLink
+           reports:(NSArray *)someReports;
+
 @end
