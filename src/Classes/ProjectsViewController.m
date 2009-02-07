@@ -37,7 +37,7 @@
     [self.navigationItem setRightBarButtonItem:self.editButtonItem animated:NO];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 
@@ -45,6 +45,13 @@
 
     NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selectedRow animated:NO];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [delegate userDidDeselectServerGroupName];
 }
 
 #pragma mark UITableViewDelegate
