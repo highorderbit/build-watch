@@ -53,6 +53,8 @@
 		91D9ABDA0F3E02BE0035454C /* ProjectDisplayNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABD90F3E02BE0035454C /* ProjectDisplayNames.plist */; };
 		91D9ABDC0F3E03B50035454C /* ProjectTrackedStates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABDB0F3E03B50035454C /* ProjectTrackedStates.plist */; };
 		91D9AC570F3E12A60035454C /* ServerNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9AC560F3E12A60035454C /* ServerNames.plist */; };
+		91D9ADDC0F3E3B050035454C /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ADDA0F3E3B050035454C /* AboutView.xib */; };
+		91D9ADE20F3E47720035454C /* AboutDisplayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D9ADE10F3E47720035454C /* AboutDisplayer.m */; };
 		91F09AA50F3A63370034528C /* ProjectReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AA40F3A63370034528C /* ProjectReport.m */; };
 		91F09AA80F3A657B0034528C /* ServerReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AA70F3A657B0034528C /* ServerReport.m */; };
 		91F09AD80F3A69A50034528C /* MockBuildService.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AD70F3A69A50034528C /* MockBuildService.m */; };
@@ -153,6 +155,9 @@
 		91D9ABD90F3E02BE0035454C /* ProjectDisplayNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectDisplayNames.plist; sourceTree = "<group>"; };
 		91D9ABDB0F3E03B50035454C /* ProjectTrackedStates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectTrackedStates.plist; sourceTree = "<group>"; };
 		91D9AC560F3E12A60035454C /* ServerNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServerNames.plist; sourceTree = "<group>"; };
+		91D9ADDB0F3E3B050035454C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AboutView.xib; sourceTree = "<group>"; };
+		91D9ADE00F3E47720035454C /* AboutDisplayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutDisplayer.h; sourceTree = "<group>"; };
+		91D9ADE10F3E47720035454C /* AboutDisplayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutDisplayer.m; sourceTree = "<group>"; };
 		91DC9DB20F3BB3CD003F87CF /* ServerGroupNameSelectorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerGroupNameSelectorDelegate.h; sourceTree = "<group>"; };
 		91F09AA30F3A63370034528C /* ProjectReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectReport.h; sourceTree = "<group>"; };
 		91F09AA40F3A63370034528C /* ProjectReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectReport.m; sourceTree = "<group>"; };
@@ -288,6 +293,8 @@
 				05FE3CFD0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.m */,
 				91D9ABC70F3DFC270035454C /* PListBuildWatchPersistentStore.h */,
 				91D9ABC80F3DFC270035454C /* PListBuildWatchPersistentStore.m */,
+				91D9ADE00F3E47720035454C /* AboutDisplayer.h */,
+				91D9ADE10F3E47720035454C /* AboutDisplayer.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -338,6 +345,7 @@
 				91D9ABD70F3E01DE0035454C /* ServerGroupPatterns.plist */,
 				91D9ABD90F3E02BE0035454C /* ProjectDisplayNames.plist */,
 				91D9ABDB0F3E03B50035454C /* ProjectTrackedStates.plist */,
+				91D9ADDA0F3E3B050035454C /* AboutView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -414,6 +422,7 @@
 				91D9ABDA0F3E02BE0035454C /* ProjectDisplayNames.plist in Resources */,
 				91D9ABDC0F3E03B50035454C /* ProjectTrackedStates.plist in Resources */,
 				91D9AC570F3E12A60035454C /* ServerNames.plist in Resources */,
+				91D9ADDC0F3E3B050035454C /* AboutView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +466,7 @@
 				911EDDFE0F3D0DC300E17BC0 /* UIServerDataRefresher.m in Sources */,
 				911EDE2F0F3D1B0D00E17BC0 /* UIServerDataRefresherDelegate.m in Sources */,
 				91D9ABC90F3DFC270035454C /* PListBuildWatchPersistentStore.m in Sources */,
+				91D9ADE20F3E47720035454C /* AboutDisplayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +527,14 @@
 				9149E0030F39167600A0E32C /* en */,
 			);
 			name = ProjectsView.xib;
+			sourceTree = "<group>";
+		};
+		91D9ADDA0F3E3B050035454C /* AboutView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91D9ADDB0F3E3B050035454C /* en */,
+			);
+			name = AboutView.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
