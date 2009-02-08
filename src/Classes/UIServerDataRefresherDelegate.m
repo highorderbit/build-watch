@@ -88,7 +88,7 @@
         NSString * okButtonTitle =
             NSLocalizedString(@"server.refresh.failed.ok", @"");
 
-        UIAlertView * alert =
+        UIAlertView * alertView =
             [[[UIAlertView alloc]
               initWithTitle:title
                     message:message
@@ -97,7 +97,7 @@
           otherButtonTitles:okButtonTitle, nil]
              autorelease];
 
-        [alert show];
+        [alertView show];
     }
 
     numOutstandingRequests--;
@@ -108,7 +108,35 @@
 - (void)       alertView:(UIAlertView *)alertView
     clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    // TODO: Provide implementation
+    //
+    // Present an alert for each failed server refresh attempt.
+    //
+
+    if (buttonIndex == 0 && failedServerRequests.count > 0) {
+        NSString * serverUrl = [[failedServerRequests allKeys] objectAtIndex:0];
+        NSError * error = [failedServerRequests objectForKey:serverUrl];
+
+        NSString * title = serverUrl;
+        NSString * message = error.localizedDescription;
+
+        NSString * viewNextButtonTitle = failedServerRequests.count == 1 ?
+            nil : NSLocalizedString(@"server.refresh.failed.next", @"");
+        NSString * okButtonTitle =
+            NSLocalizedString(@"server.refresh.failed.ok", @"");
+
+        UIAlertView * nextAlert =
+            [[[UIAlertView alloc]
+              initWithTitle:title
+                    message:message
+                   delegate:self
+          cancelButtonTitle:viewNextButtonTitle
+          otherButtonTitles:okButtonTitle, nil]
+             autorelease];
+
+        [nextAlert show];
+
+        [failedServerRequests removeObjectForKey:serverUrl];
+    }
 }
 
 - (void) showRefreshCompletedView

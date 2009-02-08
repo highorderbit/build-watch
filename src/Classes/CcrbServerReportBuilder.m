@@ -11,6 +11,8 @@
 @interface CcrbServerReportBuilder (Private)
 + (NSString *)projectNameFromProjectTitle:(NSString *)projectTitle;
 + (BOOL)buildSucceededFromProjectTitle:(NSString *)projectTitle;
++ (NSError *)xmlParseError:(NSString *)localizedDescription
+             withRootCause:(NSError *)rootCause;
 @end
 
 @implementation CcrbServerReportBuilder
@@ -30,15 +32,20 @@
          initWithXMLString:xmlString options:0 error:error];
 
     if (*error) {
-        NSLog(@"Failed to parse XML: '%@', error: '%@'.", xmlString, *error);
+        *error = [[self class]
+            xmlParseError:NSLocalizedString(@"xml.parse.failed", @"")
+            withRootCause:*error];
+        NSLog(@"Failed to parse XML: '%@', returning error: '%@'.", xmlString,
+            *error);
+
         return nil;
     }
 
     NSArray * channels = [[xmlDoc rootElement] elementsForName:@"channel"];
     if (channels.count != 1) {
-        *error = [NSError errorWithDomain:@"BuildWatchErrorDomain"
-                                     code:1
-                                 userInfo:nil];
+        *error = [[self class]
+            xmlParseError:NSLocalizedString(@"xml.parse.failed", @"")
+            withRootCause:*error];
         NSLog(@"Failed to parse XML: '%@', returning error: '%@'.", xmlString,
             *error);
 
@@ -106,6 +113,20 @@
 
     NSRange where = [projectTitle rangeOfString:FAILED_STRING];
     return NSEqualRanges(where, NSMakeRange(NSNotFound, 0));
+}
+
+#pragma mark Helper functions
+
++ (NSError *)xmlParseError:(NSString *)localizedDescription
+             withRootCause:(NSError *)rootCause
+{
+    NSDictionary * userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+        localizedDescription, NSLocalizedDescriptionKey,
+        rootCause.localizedDescription, NSLocalizedFailureReasonErrorKey,
+        nil];
+
+    return [NSError
+        errorWithDomain:@"BuildWatchErrorDomain" code:1 userInfo:userInfo];
 }
 
 @end
