@@ -27,8 +27,6 @@
 {
     [super viewDidLoad];
 
-    self.navigationItem.title = NSLocalizedString(@"addserver.view.title", @"");
-
     UIBarButtonItem * connectButtonItem = [[UIBarButtonItem alloc]
         initWithTitle:NSLocalizedString(@"addserver.nav.connect.title", @"")
                 style:UIBarButtonItemStyleDone
@@ -52,6 +50,8 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+    self.navigationItem.title = NSLocalizedString(@"addserver.view.title", @"");
 
     self.navigationItem.rightBarButtonItem.enabled =
         serverUrlTextView.text.length > 0;
@@ -107,6 +107,12 @@
 {
     self.navigationItem.rightBarButtonItem.enabled =
         !(range.location == 0 && range.length == 1);
+    return YES;
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField
+{
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     return YES;
 }
 
