@@ -78,7 +78,9 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
 - (void) report:(ServerReport *)report receivedFrom:(NSString *)server
 {
-    [serverDataRefresherDelegate didRefreshDataForServer:server];
+    [serverDataRefresherDelegate
+     didRefreshDataForServer:server
+                 displayName:[serverNames objectForKey:server]];
     if ([servers objectForKey:server]) {
         [self updatePropertiesForProjectReports:[report projectReports]
                                      withServer:server];
@@ -126,8 +128,10 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
                      didFailWithError:(NSError *)error
 {
     NSLog(@"Failed to refresh server: '%@'. '%@'.", serverUrl, error);
-    [serverDataRefresherDelegate failedToRefreshDataForServer:serverUrl
-                                                        error:error];
+    [serverDataRefresherDelegate
+     failedToRefreshDataForServer:serverUrl
+                      displayName:[serverNames objectForKey:serverUrl]
+                            error:error];
 }
 
 #pragma mark ServerSelectorDelegate protocol implementation
@@ -242,7 +246,9 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     NSArray * serverKeys = [servers allKeys];
     
     for (NSString * server in serverKeys) {
-        [serverDataRefresherDelegate refreshingDataForServer:server];
+        [serverDataRefresherDelegate
+         refreshingDataForServer:server
+                     displayName:[serverNames objectForKey:server]];
         [buildService refreshDataForServer:server];
     }
 }
