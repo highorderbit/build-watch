@@ -52,6 +52,8 @@
     [super viewWillAppear:animated];
 
     self.navigationItem.title = NSLocalizedString(@"addserver.view.title", @"");
+    self.navigationItem.prompt =
+        NSLocalizedString(@"addserver.view.prompt", @"");
 
     self.navigationItem.rightBarButtonItem.enabled =
         serverUrlTextView.text.length > 0;
