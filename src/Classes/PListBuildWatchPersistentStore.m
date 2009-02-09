@@ -50,6 +50,27 @@
     return [PListUtils readDictionaryFromPList:@"ProjectDisplayNames"];
 }
 
+- (void) saveProjectDescriptions:(NSDictionary *)projectDescriptions
+{
+    [PListUtils writeDictionary:projectDescriptions
+                        toPList:@"ProjectDescriptions"];
+}
+
+- (NSDictionary *) getProjectDescriptions
+{
+    return [PListUtils readDictionaryFromPList:@"ProjectDescriptions"];
+}
+
+- (void) saveProjectPubDates:(NSDictionary *)projectPubDates
+{
+    [PListUtils writeDictionary:projectPubDates toPList:@"ProjectPubDates"];
+}
+
+- (NSDictionary *) getProjectPubDates
+{
+    return [PListUtils readDictionaryFromPList:@"ProjectPubDates"];
+}
+
 - (void) saveProjectLinks:(NSDictionary *)projectLinks
 {
     [PListUtils writeDictionary:projectLinks toPList:@"ProjectLinks"];
@@ -58,6 +79,18 @@
 - (NSDictionary *) getProjectLinks
 {
     return [PListUtils readDictionaryFromPList:@"ProjectLinks"];
+}
+
+- (void) saveProjectBuildSucceededStates:
+    (NSDictionary *)projectBuildSucceededStates
+{
+    [PListUtils writeDictionary:projectBuildSucceededStates
+                        toPList:@"ProjectBuildSucceededStates"];
+}
+
+- (NSDictionary *) getProjectBuildSucceededStates
+{
+    return [PListUtils readDictionaryFromPList:@"ProjectBuildSucceededStates"];
 }
 
 - (void) saveProjectTrackedStates:(NSDictionary *)projectTrackedStates

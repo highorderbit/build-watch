@@ -36,9 +36,17 @@
     //     (NSString *) server url -> (NSString *) server name
     NSMutableDictionary * serverNames;
     
+    // Various project properties, mapped as follows:
+    //     (NSString *) project id -> property value
     NSMutableDictionary * projectDisplayNames;
-    NSMutableDictionary * projectTrackedStates;
+    NSMutableDictionary * projectDescriptions;
+    NSMutableDictionary * projectPubDates;
     NSMutableDictionary * projectLinks;
+    NSMutableDictionary * projectBuildSucceededStates;
+    
+    // Project tracked states, set by user, mapped as follows:
+    //     (NSString *) project id -> (NSNumber *) tracked
+    NSMutableDictionary * projectTrackedStates;
 
     NSObject<BuildWatchPersistentStore> * persistentStore;
 
