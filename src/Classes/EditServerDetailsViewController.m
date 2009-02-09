@@ -57,7 +57,7 @@ enum DetailsSectionRows
     [saveButtonItem release];
     [cancelButtonItem release];
 
-    serverNameTextField.font = [UIFont systemFontOfSize:20.0];
+    serverNameTextField.font = [UIFont systemFontOfSize:16.0];
     serverNameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
 }
 

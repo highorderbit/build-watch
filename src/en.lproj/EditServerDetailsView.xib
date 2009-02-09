@@ -9,6 +9,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="5"/>
+			<integer value="6"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -48,7 +49,7 @@
 						<int key="IBUIStyle">1</int>
 						<int key="IBUISeparatorStyle">1</int>
 						<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
-						<float key="IBUIRowHeight">6.000000e+01</float>
+						<float key="IBUIRowHeight">4.400000e+01</float>
 						<float key="IBUISectionHeaderHeight">1.000000e+01</float>
 						<float key="IBUISectionFooterHeight">1.000000e+01</float>
 					</object>
@@ -64,9 +65,10 @@
 				</object>
 			</object>
 			<object class="IBUITextField" id="416479840">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
-				<string key="NSFrameSize">{290, 56}</string>
+				<string key="NSFrameSize">{290, 42}</string>
+				<reference key="NSSuperview"/>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<int key="IBUIContentVerticalAlignment">0</int>
@@ -196,10 +198,10 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>EditServerDetailsViewController</string>
 					<string>UIResponder</string>
-					<string>{{749, 59}, {320, 480}}</string>
+					<string>{{295, 372}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{0, 1078}, {290, 56}}</string>
+					<string>{{0, 814}, {290, 42}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
 			</object>
