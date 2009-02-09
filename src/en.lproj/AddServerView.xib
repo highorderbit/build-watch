@@ -80,7 +80,6 @@
 					<bytes key="NSWhite">MAA</bytes>
 					<reference key="NSCustomColorSpace" ref="612541311"/>
 				</object>
-				<bool key="IBUIClearsOnBeginEditing">YES</bool>
 				<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 				<float key="IBUIMinimumFontSize">1.700000e+01</float>
 				<object class="IBUITextInputTraits" key="IBUITextInputTraits">

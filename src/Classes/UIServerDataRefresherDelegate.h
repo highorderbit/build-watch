@@ -16,6 +16,7 @@
     IBOutlet UIView * view;
 
     NSMutableDictionary * failedServerRequests;
+    NSMutableDictionary * serverDisplayNames;
 }
 
 @end

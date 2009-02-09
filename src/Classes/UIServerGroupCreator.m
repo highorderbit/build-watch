@@ -79,6 +79,19 @@
     // TODO: add error handling code
     NSLog(@"Failed to get report from server: '%@', error: '%@'.", serverUrl,
         error);
+
+    UIAlertView * alertView =
+        [[[UIAlertView alloc]
+          initWithTitle:NSLocalizedString(@"addserver.error.alert.title", @"")
+                message:error.localizedDescription
+               delegate:self
+      cancelButtonTitle:NSLocalizedString(@"addserver.error.alert.ok", @"")
+      otherButtonTitles:nil]
+         autorelease];
+
+    [alertView show];
+
+    [addServerViewController viewWillAppear:NO];
 }
 
 #pragma mark Accessors

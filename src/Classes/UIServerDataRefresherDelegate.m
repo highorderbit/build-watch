@@ -7,8 +7,10 @@
 @interface UIServerDataRefresherDelegate (Private)
 - (void) showRefreshInProgressView;
 - (void) showRefreshCompletedView;
-+ (NSString *) titleForFailedRequestsAlert:(NSDictionary *)requests;
-+ (NSString *) messageForFailedRequestsAlert:(NSDictionary *)requests;
++ (NSString *) titleForFailedRequestsAlert:(NSDictionary *)requests
+                              displayNames:(NSDictionary *)displayNames;
++ (NSString *) messageForFailedRequestsAlert:(NSDictionary *)requests
+                                displayNames:(NSDictionary *)displayNames;
 @end
 
 
@@ -21,6 +23,7 @@
     [updateLabel release];
     [view release];
     [failedServerRequests release];
+    [serverDisplayNames release];
     [super dealloc];
 }
 
@@ -54,9 +57,12 @@
     [updateLabel setFrame:updateLabelFrame];
 
     failedServerRequests = [[NSMutableDictionary alloc] init];
+    serverDisplayNames = [[NSMutableDictionary alloc] init];
 }
 
 - (void) refreshingDataForServer:(NSString *)server
+                     displayName:(NSString *)displayName
+
 {
     if (numOutstandingRequests == 0)
         [self showRefreshInProgressView];
@@ -64,7 +70,8 @@
     numOutstandingRequests++;
 }
 
-- (void) didRefreshDataForServer:(NSString *)server
+- (void) didRefreshDataForServer:(NSString *)serverUrl
+                     displayName:(NSString *)displayName
 {
     if (numOutstandingRequests == 1)
         [self showRefreshCompletedView];
@@ -72,23 +79,28 @@
     numOutstandingRequests--;
 }
 
-- (void) failedToRefreshDataForServer:(NSString *)server error:(NSError *)error
+- (void) failedToRefreshDataForServer:(NSString *)serverUrl
+                          displayName:(NSString *)displayName
+                                error:(NSError *)error
 {
-    [failedServerRequests setObject:error forKey:server];
+    [failedServerRequests setObject:error forKey:serverUrl];
+    [serverDisplayNames setObject:displayName forKey:serverUrl];
 
     if (numOutstandingRequests == 1) {
         [self showRefreshCompletedView];
 
         NSString * title =
-            [[self class] titleForFailedRequestsAlert:failedServerRequests];
+            [[self class] titleForFailedRequestsAlert:failedServerRequests
+                                         displayNames:serverDisplayNames];
         NSString * message =
-            [[self class] messageForFailedRequestsAlert:failedServerRequests];
+            [[self class] messageForFailedRequestsAlert:failedServerRequests
+                                           displayNames:serverDisplayNames];
         NSString * viewDetailsButtonTitle =
             NSLocalizedString(@"server.refresh.failed.details", @"");
         NSString * okButtonTitle =
             NSLocalizedString(@"server.refresh.failed.ok", @"");
 
-        UIAlertView * alert =
+        UIAlertView * alertView =
             [[[UIAlertView alloc]
               initWithTitle:title
                     message:message
@@ -97,7 +109,7 @@
           otherButtonTitles:okButtonTitle, nil]
              autorelease];
 
-        [alert show];
+        [alertView show];
     }
 
     numOutstandingRequests--;
@@ -108,7 +120,37 @@
 - (void)       alertView:(UIAlertView *)alertView
     clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    // TODO: Provide implementation
+    //
+    // Present an alert for each failed server refresh attempt.
+    //
+
+    if (buttonIndex == 0 && failedServerRequests.count > 0) {
+        NSString * serverUrl = [[failedServerRequests allKeys] objectAtIndex:0];
+        NSError * error = [failedServerRequests objectForKey:serverUrl];
+
+        NSString * title = [serverDisplayNames objectForKey:serverUrl];
+        NSString * message = [NSString stringWithFormat:@"%@\n%@",
+                 serverUrl, error.localizedDescription];
+
+        NSString * viewNextButtonTitle = failedServerRequests.count == 1 ?
+            nil : NSLocalizedString(@"server.refresh.failed.next", @"");
+        NSString * okButtonTitle =
+            NSLocalizedString(@"server.refresh.failed.ok", @"");
+
+        UIAlertView * nextAlert =
+            [[[UIAlertView alloc]
+              initWithTitle:title
+                    message:message
+                   delegate:self
+          cancelButtonTitle:viewNextButtonTitle
+          otherButtonTitles:okButtonTitle, nil]
+             autorelease];
+
+        [nextAlert show];
+
+        [failedServerRequests removeObjectForKey:serverUrl];
+        [serverDisplayNames removeObjectForKey:serverUrl];
+    }
 }
 
 - (void) showRefreshCompletedView
@@ -137,11 +179,13 @@
     [updateLabel removeFromSuperview];
 
     [failedServerRequests removeAllObjects];
+    [serverDisplayNames removeAllObjects];
 }
 
 #pragma mark Message formatting helper methods
 
 + (NSString *) titleForFailedRequestsAlert:(NSDictionary *)requests
+                              displayNames:(NSDictionary *)displayNames
 {
     NSString * formatString = requests.count == 1 ?
         NSLocalizedString(@"server.refresh.failed.title.singular", @"") :
@@ -151,11 +195,12 @@
 }
 
 + (NSString *) messageForFailedRequestsAlert:(NSDictionary *)requests
+                                displayNames:(NSDictionary *)displayNames
 {
     NSMutableString * message = [NSMutableString string];
 
-    for (NSString * serverUrl in [requests allKeys])
-        [message appendFormat:@"%@\n", serverUrl];
+    for (NSString * serverUrl in [displayNames allKeys])
+        [message appendFormat:@"%@\n", [displayNames objectForKey:serverUrl]];
 
     return message;
 }

@@ -64,6 +64,9 @@ enum DetailsSectionRows
 - (void) viewWillAppear:(BOOL)animated
 {
     serverNameTextField.text = serverReport.name;
+    self.navigationItem.rightBarButtonItem.enabled =
+        serverNameTextField.text.length > 0;
+
     [serverNameTextField becomeFirstResponder];
 }
 
@@ -127,8 +130,17 @@ enum DetailsSectionRows
     shouldChangeCharactersInRange:(NSRange)range
                 replacementString:(NSString *)string
 {
+    NSLog(@"Text field should change: (%d, %d)", range.location, range.length);
+    NSLog(@"Replacement string: '%@'", string);
+
     self.navigationItem.rightBarButtonItem.enabled =
         !(range.location == 0 && range.length == 1);
+    return YES;
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField
+{
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     return YES;
 }
 
