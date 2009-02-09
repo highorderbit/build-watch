@@ -85,6 +85,39 @@
     return projectDisplayNames;
 }
 
+- (void) saveProjectDescriptions:(NSDictionary *)projectDescriptions
+{}
+
+- (NSDictionary *) getProjectDescriptions
+{
+    return nil;
+}
+
+- (void) saveProjectPubDates:(NSDictionary *)projectPubDates
+{}
+
+- (NSDictionary *) getProjectPubDates
+{
+    return nil;
+}
+
+- (void) saveProjectLinks:(NSDictionary *)projectLinks
+{}
+
+- (NSDictionary *) getProjectLinks
+{
+    return nil;
+}
+
+- (void) saveProjectBuildSucceededStates:
+    (NSDictionary *)projectBuildSucceededStates
+{}
+
+- (NSDictionary *) getProjectBuildSucceededStates
+{
+    return nil;
+}
+
 - (void) saveProjectTrackedStates:(NSDictionary *)newProjectTrackedStates
 {
     [projectTrackedStates release];

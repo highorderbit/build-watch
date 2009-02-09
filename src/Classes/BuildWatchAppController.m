@@ -17,6 +17,11 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 - (void) setServerGroupPatterns:(NSDictionary *)newServerGroupPatterns;
 - (void) setServerNames:(NSDictionary *)newServerNames;
 - (void) setProjectDisplayNames:(NSDictionary *)newProjectDisplayNames;
+- (void) setProjectDescriptions:(NSDictionary *)newProjectDescriptions;
+- (void) setProjectPubDates:(NSDictionary *)newProjectPubDates;
+- (void) setProjectLinks:(NSDictionary *)newProjectLinks;
+- (void) setProjectBuildSucceededStates:
+    (NSDictionary *)newProjectBuildSucceededStates;
 - (void) setProjectTrackedStates:(NSDictionary *)newProjectTrackedStates;
 - (void) updatePropertiesForProjectReports:(NSArray *)projectReports
                                 withServer:(NSString *)server;
@@ -47,6 +52,10 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [projectSelector release];
     [projectReporter release];
     [projectDisplayNames release];
+    [projectDescriptions release];
+    [projectPubDates release];
+    [projectLinks release];
+    [projectBuildSucceededStates release];
     [projectTrackedStates release];
     [persistentStore release];
     [serverGroupCreator release];
@@ -66,12 +75,32 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [self setServerNames:allServerNames];
 
     [self setProjectDisplayNames:[persistentStore getProjectDisplayNames]];
+    [self setProjectDescriptions:[persistentStore getProjectDescriptions]];
+    [self setProjectPubDates:[persistentStore getProjectPubDates]];
+    [self setProjectLinks:[persistentStore getProjectLinks]];
+    [self setProjectBuildSucceededStates:
+     [persistentStore getProjectBuildSucceededStates]];
+    
     [self setProjectTrackedStates:[persistentStore getProjectTrackedStates]];
-        
+    
     [self refreshAllServerData];
 
     [serverGroupNameSelector
      selectServerGroupNamesFrom:[self serverGroupNames]];
+}
+
+- (void) persistState
+{
+    [persistentStore saveServers:servers];
+    [persistentStore saveServerGroupPatterns:serverGroupPatterns];
+    [persistentStore saveServerNames:serverNames];
+    [persistentStore saveProjectDisplayNames:projectDisplayNames];
+    [persistentStore saveProjectDescriptions:projectDescriptions];
+    [persistentStore saveProjectPubDates:projectPubDates];
+    [persistentStore saveProjectLinks:projectLinks];
+    [persistentStore saveProjectBuildSucceededStates:
+     projectBuildSucceededStates];
+    [persistentStore saveProjectTrackedStates:projectTrackedStates];
 }
 
 #pragma mark BuildServiceDelegate implementation
@@ -239,6 +268,11 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
                              forKey:project];
 }
 
+- (NSString *) linkForProject:(NSString *)project
+{
+    return [projectLinks objectForKey:project];
+}
+
 #pragma mark ServerDataRefresher implementation
 
 - (void) refreshAllServerData
@@ -251,17 +285,6 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
                      displayName:[serverNames objectForKey:server]];
         [buildService refreshDataForServer:server];
     }
-}
-
-#pragma mark StatePersister implementation
-
-- (void) persistState
-{
-    [persistentStore saveServers:servers];
-    [persistentStore saveServerGroupPatterns:serverGroupPatterns];
-    [persistentStore saveServerNames:serverNames];
-    [persistentStore saveProjectDisplayNames:projectDisplayNames];
-    [persistentStore saveProjectTrackedStates:projectTrackedStates];
 }
 
 #pragma mark Accessors
@@ -301,6 +324,38 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
         [newProjectDisplayNames mutableCopy];
     [projectDisplayNames release];
     projectDisplayNames = tempProjectDisplayNames;
+}
+
+- (void) setProjectDescriptions:(NSDictionary *)newProjectDescriptions
+{
+    NSMutableDictionary * tempProjectDescriptions =
+        [newProjectDescriptions mutableCopy];
+    [projectDescriptions release];
+    projectDescriptions = tempProjectDescriptions;
+}
+
+- (void) setProjectPubDates:(NSDictionary *)newProjectPubDates
+{
+    NSMutableDictionary * tempProjectPubDates =
+        [newProjectPubDates mutableCopy];
+    [projectPubDates release];
+    projectPubDates = tempProjectPubDates;
+}
+
+- (void) setProjectLinks:(NSDictionary *)newProjectLinks
+{
+    NSMutableDictionary * tempProjectLinks = [newProjectLinks mutableCopy];
+    [projectLinks release];
+    projectLinks = tempProjectLinks;
+}
+
+- (void) setProjectBuildSucceededStates:
+    (NSDictionary *)newProjectBuildSucceededStates
+{
+    NSMutableDictionary * tempProjectBuildSucceededStates =
+        [newProjectBuildSucceededStates mutableCopy];
+    [projectBuildSucceededStates release];
+    projectBuildSucceededStates = tempProjectBuildSucceededStates;
 }
 
 - (void) setProjectTrackedStates:(NSDictionary *)newProjectTrackedStates
@@ -344,6 +399,13 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
         [[self class] keyForProject:projReport.name andServer:server];
         
         [projectDisplayNames setObject:projReport.name forKey:projectKey];
+        [projectDescriptions setObject:projReport.description
+                                forKey:projectKey];
+        [projectPubDates setObject:projReport.pubDate forKey:projectKey];
+        [projectLinks setObject:projReport.link forKey:projectKey];
+        [projectBuildSucceededStates setObject:
+         [NSNumber numberWithBool:projReport.buildSucceeded]
+                                        forKey:projectKey];
         
         if (![projectTrackedStates objectForKey:projectKey])
             [projectTrackedStates setObject:[NSNumber numberWithBool:YES]

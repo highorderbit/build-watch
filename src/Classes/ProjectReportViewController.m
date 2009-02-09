@@ -24,6 +24,7 @@ enum ActionCells
 
 @interface ProjectReportViewController (Private)
 - (NSString *) buttonTextForCellAtIndex:(NSInteger)row;
+- (void) visitWebsite;
 @end
 
 @implementation ProjectReportViewController
@@ -92,10 +93,34 @@ enum ActionCells
     return cell;
 }
 
-- (NSIndexPath *)tableView:(UITableView *)tv
-  willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSIndexPath *) tableView:(UITableView *)tv
+   willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return indexPath.section == kProjectActionSection ? indexPath : nil;
+}
+
+- (void)      tableView:(UITableView *)tv
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIAlertView * alertView =
+        [[UIAlertView alloc] initWithTitle:@"Handle button click"
+                                   message:nil
+                                  delegate:nil
+                         cancelButtonTitle:@"Cancel"
+                         otherButtonTitles:nil];
+       switch (indexPath.row) {
+        case kForceBuildCell:
+            alertView.message = @"TODO: force build";
+            [alertView show];
+            break;
+        case kEmailReportCell:
+            alertView.message = @"TODO: send email";
+            [alertView show];
+            break;
+        case kVisitWebsiteCell:
+               [self visitWebsite];
+            break;
+    }
 }
 
 #pragma mark Helper methods
@@ -115,6 +140,14 @@ enum ActionCells
 
     NSAssert1(0, @"Invalid row provided: %d.", row);
     return nil;  // return something to keep the compiler happy
+}
+
+- (void) visitWebsite
+{
+    NSString * webAddress = [delegate linkForProject:projectId];
+    NSURL * url = [[NSURL alloc] initWithString:webAddress];
+    [[UIApplication sharedApplication] openURL:url];
+    [url release];
 }
 
 #pragma mark Accessors

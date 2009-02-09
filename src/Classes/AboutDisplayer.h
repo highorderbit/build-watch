@@ -4,14 +4,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AboutDisplayer : NSObject {
+#import "PListUtils.h"
+
+@interface AboutDisplayer : UIViewController {
     UINavigationController * navController;
-    UIViewController * aboutViewController;
+    UIBarButtonItem * aboutButton;
+    UILabel * versionLabel;
 }
 
 @property (nonatomic, retain) IBOutlet UINavigationController * navController;
-@property (nonatomic, retain) IBOutlet UIViewController * aboutViewController;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem * aboutButton;
+@property (nonatomic, retain) IBOutlet UILabel * versionLabel;
 
 - (IBAction) displayAboutView:(id)sender;
+- (IBAction) displayWebsite:(id)sender;
 
 @end

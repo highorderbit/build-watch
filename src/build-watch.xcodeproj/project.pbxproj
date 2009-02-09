@@ -47,6 +47,8 @@
 		9149DF720F39053200A0E32C /* ServerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149DF6F0F39053200A0E32C /* ServerView.xib */; };
 		9149E0010F39142400A0E32C /* ProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9149E0000F39142400A0E32C /* ProjectsViewController.m */; };
 		9149E0040F39167600A0E32C /* ProjectsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149E0020F39167600A0E32C /* ProjectsView.xib */; };
+		91B4AFB50F3FBFF000AAB35B /* PListUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B4AFB40F3FBFF000AAB35B /* PListUtils.m */; };
+		91B4B06B0F3FD18200AAB35B /* IconWithGradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B4B06A0F3FD18200AAB35B /* IconWithGradient.png */; };
 		91D9ABC90F3DFC270035454C /* PListBuildWatchPersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D9ABC80F3DFC270035454C /* PListBuildWatchPersistentStore.m */; };
 		91D9ABD40F3DFE350035454C /* Servers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABD30F3DFE350035454C /* Servers.plist */; };
 		91D9ABD80F3E01DE0035454C /* ServerGroupPatterns.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABD70F3E01DE0035454C /* ServerGroupPatterns.plist */; };
@@ -55,6 +57,10 @@
 		91D9AC570F3E12A60035454C /* ServerNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9AC560F3E12A60035454C /* ServerNames.plist */; };
 		91D9ADDC0F3E3B050035454C /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ADDA0F3E3B050035454C /* AboutView.xib */; };
 		91D9ADE20F3E47720035454C /* AboutDisplayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D9ADE10F3E47720035454C /* AboutDisplayer.m */; };
+		91E151B20F409FC2006D6A59 /* ProjectLinks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91E151B10F409FC2006D6A59 /* ProjectLinks.plist */; };
+		91E1523E0F40B792006D6A59 /* ProjectBuildSucceededStates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91E1523B0F40B792006D6A59 /* ProjectBuildSucceededStates.plist */; };
+		91E1523F0F40B792006D6A59 /* ProjectDescriptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91E1523C0F40B792006D6A59 /* ProjectDescriptions.plist */; };
+		91E152400F40B792006D6A59 /* ProjectPubDates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91E1523D0F40B792006D6A59 /* ProjectPubDates.plist */; };
 		91F09AA50F3A63370034528C /* ProjectReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AA40F3A63370034528C /* ProjectReport.m */; };
 		91F09AA80F3A657B0034528C /* ServerReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AA70F3A657B0034528C /* ServerReport.m */; };
 		91F09AD80F3A69A50034528C /* MockBuildService.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AD70F3A69A50034528C /* MockBuildService.m */; };
@@ -148,6 +154,9 @@
 		9149DFFF0F39142400A0E32C /* ProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewController.h; sourceTree = "<group>"; };
 		9149E0000F39142400A0E32C /* ProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsViewController.m; sourceTree = "<group>"; };
 		9149E0030F39167600A0E32C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ProjectsView.xib; sourceTree = "<group>"; };
+		91B4AFB30F3FBFF000AAB35B /* PListUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PListUtils.h; sourceTree = "<group>"; };
+		91B4AFB40F3FBFF000AAB35B /* PListUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PListUtils.m; sourceTree = "<group>"; };
+		91B4B06A0F3FD18200AAB35B /* IconWithGradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconWithGradient.png; sourceTree = "<group>"; };
 		91D9ABC70F3DFC270035454C /* PListBuildWatchPersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PListBuildWatchPersistentStore.h; sourceTree = "<group>"; };
 		91D9ABC80F3DFC270035454C /* PListBuildWatchPersistentStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PListBuildWatchPersistentStore.m; sourceTree = "<group>"; };
 		91D9ABD30F3DFE350035454C /* Servers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Servers.plist; sourceTree = "<group>"; };
@@ -159,6 +168,10 @@
 		91D9ADE00F3E47720035454C /* AboutDisplayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutDisplayer.h; sourceTree = "<group>"; };
 		91D9ADE10F3E47720035454C /* AboutDisplayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutDisplayer.m; sourceTree = "<group>"; };
 		91DC9DB20F3BB3CD003F87CF /* ServerGroupNameSelectorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerGroupNameSelectorDelegate.h; sourceTree = "<group>"; };
+		91E151B10F409FC2006D6A59 /* ProjectLinks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectLinks.plist; sourceTree = "<group>"; };
+		91E1523B0F40B792006D6A59 /* ProjectBuildSucceededStates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectBuildSucceededStates.plist; sourceTree = "<group>"; };
+		91E1523C0F40B792006D6A59 /* ProjectDescriptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectDescriptions.plist; sourceTree = "<group>"; };
+		91E1523D0F40B792006D6A59 /* ProjectPubDates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectPubDates.plist; sourceTree = "<group>"; };
 		91F09AA30F3A63370034528C /* ProjectReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectReport.h; sourceTree = "<group>"; };
 		91F09AA40F3A63370034528C /* ProjectReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectReport.m; sourceTree = "<group>"; };
 		91F09AA60F3A657B0034528C /* ServerReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerReport.h; sourceTree = "<group>"; };
@@ -232,6 +245,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				91B4AFB30F3FBFF000AAB35B /* PListUtils.h */,
+				91B4AFB40F3FBFF000AAB35B /* PListUtils.m */,
 				05FE3CC70F3DFB5600EE7FB9 /* Vendor Libraries */,
 				91F09AA60F3A657B0034528C /* ServerReport.h */,
 				91F09AA70F3A657B0034528C /* ServerReport.m */,
@@ -331,6 +346,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				91E1523B0F40B792006D6A59 /* ProjectBuildSucceededStates.plist */,
+				91E1523C0F40B792006D6A59 /* ProjectDescriptions.plist */,
+				91E1523D0F40B792006D6A59 /* ProjectPubDates.plist */,
+				91B4B06A0F3FD18200AAB35B /* IconWithGradient.png */,
 				91D9AC560F3E12A60035454C /* ServerNames.plist */,
 				059CBE080F3BC7C800010F3F /* Icon.png */,
 				9149DF6D0F39053200A0E32C /* MainWindow.xib */,
@@ -346,6 +365,7 @@
 				91D9ABD90F3E02BE0035454C /* ProjectDisplayNames.plist */,
 				91D9ABDB0F3E03B50035454C /* ProjectTrackedStates.plist */,
 				91D9ADDA0F3E3B050035454C /* AboutView.xib */,
+				91E151B10F409FC2006D6A59 /* ProjectLinks.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -423,6 +443,11 @@
 				91D9ABDC0F3E03B50035454C /* ProjectTrackedStates.plist in Resources */,
 				91D9AC570F3E12A60035454C /* ServerNames.plist in Resources */,
 				91D9ADDC0F3E3B050035454C /* AboutView.xib in Resources */,
+				91B4B06B0F3FD18200AAB35B /* IconWithGradient.png in Resources */,
+				91E151B20F409FC2006D6A59 /* ProjectLinks.plist in Resources */,
+				91E1523E0F40B792006D6A59 /* ProjectBuildSucceededStates.plist in Resources */,
+				91E1523F0F40B792006D6A59 /* ProjectDescriptions.plist in Resources */,
+				91E152400F40B792006D6A59 /* ProjectPubDates.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +492,7 @@
 				911EDE2F0F3D1B0D00E17BC0 /* UIServerDataRefresherDelegate.m in Sources */,
 				91D9ABC90F3DFC270035454C /* PListBuildWatchPersistentStore.m in Sources */,
 				91D9ADE20F3E47720035454C /* AboutDisplayer.m in Sources */,
+				91B4AFB50F3FBFF000AAB35B /* PListUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +571,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 0.0.1;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -613,6 +640,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Debay";
+				CURRENT_PROJECT_VERSION = 0.0.1;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -630,6 +658,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 0.0.1;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;

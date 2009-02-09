@@ -9,4 +9,6 @@
 
 - (NSString *) displayNameForProject:(NSString *)projectId;
 
+- (NSString *) linkForProject:(NSString *)projectId;
+
 @end

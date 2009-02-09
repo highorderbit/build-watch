@@ -24,8 +24,12 @@
 - (void) selectProjectFrom:(NSArray *)projects
 {
     self.projectsViewController.projects = projects;
-    [self.navigationController pushViewController:self.projectsViewController
-                                         animated:YES];
+    UIViewController * topController =
+        [self.navigationController topViewController] ;
+    if (topController != self.projectsViewController)
+        [self.navigationController
+         pushViewController:self.projectsViewController
+                   animated:YES];
 }
 
 #pragma mark Accessors
