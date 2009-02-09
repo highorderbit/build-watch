@@ -44,6 +44,7 @@
     NSString * webAddress = @"http://www.sandbox.highorderbit.com/home";
     NSURL * url = [[NSURL alloc] initWithString:webAddress];
     [[UIApplication sharedApplication] openURL:url];
+    [url release];
 }
 
 @end

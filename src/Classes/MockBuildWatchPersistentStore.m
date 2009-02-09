@@ -85,6 +85,14 @@
     return projectDisplayNames;
 }
 
+- (void) saveProjectLinks:(NSDictionary *)projectLinks
+{}
+
+- (NSDictionary *) getProjectLinks
+{
+    return nil;
+}
+
 - (void) saveProjectTrackedStates:(NSDictionary *)newProjectTrackedStates
 {
     [projectTrackedStates release];

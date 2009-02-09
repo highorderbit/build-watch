@@ -17,6 +17,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 - (void) setServerGroupPatterns:(NSDictionary *)newServerGroupPatterns;
 - (void) setServerNames:(NSDictionary *)newServerNames;
 - (void) setProjectDisplayNames:(NSDictionary *)newProjectDisplayNames;
+- (void) setProjectLinks:(NSDictionary *)newProjectLinks;
 - (void) setProjectTrackedStates:(NSDictionary *)newProjectTrackedStates;
 - (void) updatePropertiesForProjectReports:(NSArray *)projectReports
                                 withServer:(NSString *)server;
@@ -48,6 +49,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [projectReporter release];
     [projectDisplayNames release];
     [projectTrackedStates release];
+    [projectLinks release];
     [persistentStore release];
     [serverGroupCreator release];
     [buildService release];
@@ -67,11 +69,22 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
     [self setProjectDisplayNames:[persistentStore getProjectDisplayNames]];
     [self setProjectTrackedStates:[persistentStore getProjectTrackedStates]];
-        
+    [self setProjectLinks:[persistentStore getProjectLinks]];
+    
     [self refreshAllServerData];
 
     [serverGroupNameSelector
      selectServerGroupNamesFrom:[self serverGroupNames]];
+}
+
+- (void) persistState
+{
+    [persistentStore saveServers:servers];
+    [persistentStore saveServerGroupPatterns:serverGroupPatterns];
+    [persistentStore saveServerNames:serverNames];
+    [persistentStore saveProjectDisplayNames:projectDisplayNames];
+    [persistentStore saveProjectLinks:projectLinks];
+    [persistentStore saveProjectTrackedStates:projectTrackedStates];
 }
 
 #pragma mark BuildServiceDelegate implementation
@@ -239,6 +252,11 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
                              forKey:project];
 }
 
+- (NSString *) linkForProject:(NSString *)project
+{
+    return [projectLinks objectForKey:project];
+}
+
 #pragma mark ServerDataRefresher implementation
 
 - (void) refreshAllServerData
@@ -251,17 +269,6 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
                      displayName:[serverNames objectForKey:server]];
         [buildService refreshDataForServer:server];
     }
-}
-
-#pragma mark StatePersister implementation
-
-- (void) persistState
-{
-    [persistentStore saveServers:servers];
-    [persistentStore saveServerGroupPatterns:serverGroupPatterns];
-    [persistentStore saveServerNames:serverNames];
-    [persistentStore saveProjectDisplayNames:projectDisplayNames];
-    [persistentStore saveProjectTrackedStates:projectTrackedStates];
 }
 
 #pragma mark Accessors
@@ -301,6 +308,13 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
         [newProjectDisplayNames mutableCopy];
     [projectDisplayNames release];
     projectDisplayNames = tempProjectDisplayNames;
+}
+
+- (void) setProjectLinks:(NSDictionary *)newProjectLinks
+{
+    NSMutableDictionary * tempProjectLinks = [newProjectLinks mutableCopy];
+    [projectLinks release];
+    projectLinks = tempProjectLinks;
 }
 
 - (void) setProjectTrackedStates:(NSDictionary *)newProjectTrackedStates

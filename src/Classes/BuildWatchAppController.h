@@ -37,8 +37,8 @@
     NSMutableDictionary * serverNames;
     
     NSMutableDictionary * projectDisplayNames;
-    
     NSMutableDictionary * projectTrackedStates;
+    NSMutableDictionary * projectLinks;
 
     NSObject<BuildWatchPersistentStore> * persistentStore;
 

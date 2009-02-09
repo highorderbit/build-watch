@@ -29,6 +29,10 @@
 
 - (NSDictionary *) getProjectDisplayNames;
 
+- (void) saveProjectLinks:(NSDictionary *)projectLinks;
+
+- (NSDictionary *) getProjectLinks;
+
 - (void) saveProjectTrackedStates:(NSDictionary *)projectTrackedStates;
 
 - (NSDictionary *) getProjectTrackedStates;

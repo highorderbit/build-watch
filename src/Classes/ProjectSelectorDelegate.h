@@ -14,6 +14,8 @@
 
 - (void) setTrackedState:(BOOL)state onProject:(NSString *)project;
 
+- (NSString *) linkForProject:(NSString *)project;
+
 - (void) userDidDeselectServerGroupName;
 
 - (NSString *) displayNameForCurrentProjectGroup;
