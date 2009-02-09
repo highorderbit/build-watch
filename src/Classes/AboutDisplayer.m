@@ -7,23 +7,43 @@
 @implementation AboutDisplayer
 
 @synthesize navController;
-@synthesize aboutViewController;
+@synthesize aboutButton;
+@synthesize versionLabel;
 
 - (void) dealloc
 {
     [navController release];
-    [aboutViewController release];
+    [aboutButton release];
+    [versionLabel release];
     [super dealloc];
 }
 
 - (void) awakeFromNib
 {
-    aboutViewController.navigationItem.title = @"About";
+    self.navigationItem.title = @"About";
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [aboutButton setEnabled:YES];
 }
 
 - (IBAction) displayAboutView:(id)sender
 {
-    [navController pushViewController:aboutViewController animated:YES];
+    [navController pushViewController:self animated:YES];
+    [aboutButton setEnabled:NO];
+    NSDictionary * infoPList = [PListUtils readDictionaryFromPList:@"Info"];
+    NSString * versionText = [infoPList objectForKey:@"CFBundleVersion"];
+    NSString * versionLabelText =
+        [NSString stringWithFormat:@"Version %@", versionText];
+    [versionLabel setText:versionLabelText];
+}
+
+- (IBAction) displayWebsite:(id)sender
+{
+    NSString * webAddress = @"http://www.sandbox.highorderbit.com/home";
+    NSURL * url = [[NSURL alloc] initWithString:webAddress];
+    [[UIApplication sharedApplication] openURL:url];
 }
 
 @end

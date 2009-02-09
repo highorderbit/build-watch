@@ -4,9 +4,9 @@
 
 #import "PListBuildWatchPersistentStore.h"
 
-@interface PListBuildWatchPersistentStore (Private)
+@interface PListBuildWatchPersistentStore (Private)/*
 + (NSDictionary *) readDictionaryFromPList:(NSString *) pList;
-+ (void) writeDictionary:(NSDictionary *)dictionary toPList:(NSString *)pList;
++ (void) writeDictionary:(NSDictionary *)dictionary toPList:(NSString *)pList;*/
 @end
 
 @implementation PListBuildWatchPersistentStore
@@ -15,60 +15,61 @@
 
 - (void) saveServers:(NSDictionary *)servers
 {
-    [[self class] writeDictionary:servers toPList:@"Servers"];
+    [PListUtils writeDictionary:servers toPList:@"Servers"];
 }
 
 - (NSDictionary *) getServers
 {
-    return [[self class] readDictionaryFromPList:@"Servers"];
+    return [PListUtils readDictionaryFromPList:@"Servers"];
 }
 
 - (void) saveServerGroupPatterns:(NSDictionary *)serverGroupPatterns
 {
-    [[self class] writeDictionary:serverGroupPatterns
+    [PListUtils writeDictionary:serverGroupPatterns
                           toPList:@"ServerGroupPatterns"];
 }
 
 - (NSDictionary *) getServerGroupPatterns
 {
-    return [[self class] readDictionaryFromPList:@"ServerGroupPatterns"];
+    return [PListUtils readDictionaryFromPList:@"ServerGroupPatterns"];
 }
 
 - (void) saveServerNames:(NSDictionary *)serverNames
 {
-    [[self class] writeDictionary:serverNames toPList:@"ServerNames"];
+    [PListUtils writeDictionary:serverNames toPList:@"ServerNames"];
 }
 
 - (NSDictionary *) getServerNames
 {
-    return [[self class] readDictionaryFromPList:@"ServerNames"];
+    return [PListUtils readDictionaryFromPList:@"ServerNames"];
 }
 
 - (void) saveProjectDisplayNames:(NSDictionary *)projectDisplayNames
 {
-    [[self class] writeDictionary:projectDisplayNames
+    [PListUtils writeDictionary:projectDisplayNames
                           toPList:@"ProjectDisplayNames"];
 }
 
 - (NSDictionary *) getProjectDisplayNames
 {
-    return [[self class] readDictionaryFromPList:@"ProjectDisplayNames"];
+    return [PListUtils readDictionaryFromPList:@"ProjectDisplayNames"];
 }
 
 - (void) saveProjectTrackedStates:(NSDictionary *)projectTrackedStates
 {
-    [[self class] writeDictionary:projectTrackedStates
+    [PListUtils writeDictionary:projectTrackedStates
                           toPList:@"ProjectTrackedStates"];
 }
 
 - (NSDictionary *) getProjectTrackedStates
 {
-    return [[self class] readDictionaryFromPList:@"ProjectTrackedStates"];
+    return [PListUtils readDictionaryFromPList:@"ProjectTrackedStates"];
 }
 
+/*
 # pragma mark Private static helper functions
 
-+ (NSDictionary *) readDictionaryFromPList:(NSString *) pList
++ (NSDictionary *) readDictionaryFromPList:(NSString *)pList
 {
     NSString * errorDesc = nil;
         NSPropertyListFormat format;
@@ -111,5 +112,5 @@
         [errorDesc release];
     }
 }
-
+*/
 @end

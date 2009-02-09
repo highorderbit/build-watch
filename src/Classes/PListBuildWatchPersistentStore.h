@@ -4,6 +4,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BuildWatchPersistentStore.h"
+#import "PListUtils.h"
 
 @interface PListBuildWatchPersistentStore : NSObject
                                           < BuildWatchPersistentStore >
