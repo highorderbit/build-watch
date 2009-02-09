@@ -11,6 +11,6 @@
   didReceiveData:(NSData *)data;
 
 - (void) updater:(NSObject<BuildStatusUpdater> *)updater
-didFailWithError:(NSError *)error;
+ didReceiveError:(NSError *)error;
 
 @end

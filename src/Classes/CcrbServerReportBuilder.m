@@ -56,7 +56,7 @@
 
     report.name =
         [[[channel elementsForName:@"title"] objectAtIndex:0] stringValue];
-    report.link =
+    report.dashboardLink =
         [[[channel elementsForName:@"link"] objectAtIndex:0] stringValue];
 
 

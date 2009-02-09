@@ -7,11 +7,13 @@
 @interface ServerReport : NSObject {
     NSString * name;
     NSString * link;
+    NSString * dashboardLink;
     NSArray * projectReports;
 }
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * link;
+@property (nonatomic, retain) NSString * dashboardLink;
 @property (nonatomic, retain) NSArray * projectReports;
 
 + (id)report;
@@ -19,6 +21,7 @@
                 link:(NSString *)aLink;
 + (id)reportWithName:(NSString *)aName
                 link:(NSString *)aLink
+       dashboardLink:(NSString *)aDashboardLink
       projectReports:(NSArray *)someReports;
 
 - (id)init;
@@ -26,6 +29,7 @@
               link:(NSString *)aLink;
 - (id)initWithName:(NSString *)aName
               link:(NSString *)aLink
+     dashboardLink:(NSString *)aDashboardLink
            reports:(NSArray *)someReports;
 
 @end

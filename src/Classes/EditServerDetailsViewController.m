@@ -13,10 +13,11 @@ enum Sections
 };
 
 static const NSInteger NUMBER_OF_ROWS_IN_SETTINGS_SECTION = 1;
-static const NSInteger NUMBER_OF_ROWS_IN_DETAILS_SECTION = 2;
+static const NSInteger NUMBER_OF_ROWS_IN_DETAILS_SECTION = 3;
 enum DetailsSectionRows
 {
-    kUrlRow,
+    kLinkRow,
+    kDashboardLinkRow,
     kNumberOfProjectsRow
 };
 
@@ -106,13 +107,21 @@ enum DetailsSectionRows
         [cell.contentView addSubview:serverNameTextField];
         cell.indentationLevel = 1;
     } else
-        cell.text = indexPath.row == kUrlRow ?
-            serverReport.link :
-            [NSString stringWithFormat:
-             NSLocalizedString(
-                @"editserverdetails.numprojects.default.formatstring",
-                @""),
-             serverReport.projectReports.count];
+        switch (indexPath.row) {
+            case kLinkRow:
+                cell.text = serverReport.link;
+                break;
+
+            case kDashboardLinkRow:
+                cell.text = serverReport.dashboardLink;
+                break;
+
+            case kNumberOfProjectsRow:
+                [NSString stringWithFormat:NSLocalizedString(
+                    @"editserverdetails.numprojects.default.formatstring", @""),
+                    serverReport.projectReports.count];
+                break;
+        }
 
     return cell;
 }
