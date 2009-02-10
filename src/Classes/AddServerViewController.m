@@ -98,6 +98,12 @@
         cell.indentationLevel = 1;  // scoot the text view in a bit
     }
 
+    for (UIView * view in [cell subviews]) {
+        CGRect frame = view.frame;
+        NSLog(@"View: '%@', (%d, %d), (%d, %d)", view, frame.origin.x,
+            frame.origin.y, frame.size.width, frame.size.height);
+    }
+
     return cell;
 }
 
