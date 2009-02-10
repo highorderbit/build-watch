@@ -43,7 +43,7 @@
     [connectButtonItem release];
     [cancelButtonItem release];
 
-    serverUrlTextView.font = [UIFont systemFontOfSize:20.0];
+    serverUrlTextView.font = [UIFont systemFontOfSize:16.0];
     serverUrlTextView.clearButtonMode = UITextFieldViewModeWhileEditing;
 }
 
