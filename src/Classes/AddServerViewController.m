@@ -173,9 +173,8 @@ static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
 {
     if (editServerUrlCell == nil) {
         editServerUrlCell =
-            [[[UITableViewCell alloc]
-              initWithFrame:CGRectZero reuseIdentifier:CellIdentifier]
-             autorelease];
+            [[UITableViewCell alloc]
+              initWithFrame:CGRectZero reuseIdentifier:CellIdentifier];
 
         CGRect textFieldFrame = CGRectMake(10, 10, 285, 22);
         UITextField * textField =

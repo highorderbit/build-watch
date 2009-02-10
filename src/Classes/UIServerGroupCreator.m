@@ -56,9 +56,10 @@
 - (void) userDidAddServerNamed:(NSString *)serverName
         withInitialBuildReport:(ServerReport *)serverReport
 {
-    [rootNavigationController dismissModalViewControllerAnimated:YES];
     [delegate serverGroupCreatedWithName:serverName
                    andInitialBuildReport:serverReport];
+
+    [rootNavigationController dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark BuildServiceDelegate protocol implementation

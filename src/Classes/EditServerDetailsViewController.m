@@ -5,6 +5,9 @@
 #import "EditServerDetailsViewController.h"
 #import "ServerReport.h"
 
+static NSString * SettingsSectionCellIdentifier = @"SettingsSectionCell";
+static NSString * DetailsSectionCellIdentifier = @"DetailsSectionCell";
+
 static const NSInteger NUMBER_OF_SECTIONS = 2;
 enum Sections
 {
@@ -32,6 +35,7 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
 @implementation EditServerDetailsViewController
 
 @synthesize tableView;
+@synthesize editServerNameCell;
 @synthesize delegate;
 @synthesize serverReport;
 @synthesize serverName;
@@ -39,6 +43,7 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
 - (void)dealloc
 {
     [tableView release];
+    [editServerNameCell release];
     [delegate release];
     [serverReport release];
     [super dealloc];
@@ -70,8 +75,23 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
     [super viewWillAppear:animated];
 
     self.serverName = serverReport.name;
+
     self.navigationItem.rightBarButtonItem.enabled =
         serverName.length > 0;
+
+    UITextField * textField = (UITextField *)
+        [self.editServerNameCell viewWithTag:SERVER_NAME_TEXT_FIELD_TAG];
+    textField.text = self.serverName;
+    [textField becomeFirstResponder];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    UITextField * textField = (UITextField *)
+        [self.editServerNameCell viewWithTag:SERVER_NAME_TEXT_FIELD_TAG];
+    [textField resignFirstResponder];
 }
 
 #pragma mark UITableView functions
@@ -91,34 +111,20 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
 - (UITableViewCell *) tableView:(UITableView *)tv
           cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * SettingsSectionCellIdentifier = @"SettingsSectionCell";
-    static NSString * DetailsSectionCellIdentifier = @"DetailsSectionCell";
-
     NSString * cellIdentifier = indexPath.section == kSettingsSection ?
         SettingsSectionCellIdentifier : DetailsSectionCellIdentifier;
 
     UITableViewCell * cell =
         [tv dequeueReusableCellWithIdentifier:cellIdentifier];
 
-    if (cell == nil) {
-        cell =
-            [[[UITableViewCell alloc]
-              initWithFrame:CGRectZero reuseIdentifier:cellIdentifier]
-             autorelease];
-
-        if (indexPath.section == kSettingsSection) {
-            CGRect textFieldFrame = CGRectMake(10, 10, 285, 22);
-            UITextField * textField =
-                [self
-                 editServerNameTextFieldWithFrame:textFieldFrame
-                                              tag:SERVER_NAME_TEXT_FIELD_TAG];
-
-            [cell.contentView addSubview:textField];
-
-            // only one text field will ever be created, so this is safe
-            [textField becomeFirstResponder];
-        }
-    }
+    if (cell == nil)
+        if (indexPath.section == kSettingsSection)
+            cell = self.editServerNameCell;
+        else
+            cell =
+                [[[UITableViewCell alloc]
+                  initWithFrame:CGRectZero reuseIdentifier:cellIdentifier]
+                 autorelease];
 
     if (indexPath.section == kSettingsSection) {
         UITextField * textField =
@@ -168,6 +174,7 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField
 {
+    self.serverName = @"";
     self.navigationItem.rightBarButtonItem.enabled = NO;
     return YES;
 }
@@ -195,6 +202,28 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
 {
     [delegate userDidCancel];
 }
+
+#pragma mark Accessors
+
+- (UITableViewCell *)editServerNameCell
+{
+    if (editServerNameCell == nil) {
+        editServerNameCell =
+            [[UITableViewCell alloc]
+              initWithFrame:CGRectZero
+            reuseIdentifier:SettingsSectionCellIdentifier];
+
+        CGRect textFieldFrame = CGRectMake(10, 10, 285, 22);
+        UITextField * textField =
+            [self editServerNameTextFieldWithFrame:textFieldFrame
+                                               tag:SERVER_NAME_TEXT_FIELD_TAG];
+
+        [editServerNameCell.contentView addSubview:textField];
+    }
+
+    return editServerNameCell;
+}
+
 
 #pragma mark Helper functions
 

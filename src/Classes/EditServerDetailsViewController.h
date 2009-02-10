@@ -13,6 +13,8 @@
                                                UITextFieldDelegate >
 {
     UITableView * tableView;
+    UITableViewCell * editServerNameCell;
+
     NSObject<EditServerDetailsViewControllerDelegate> * delegate;
 
     ServerReport * serverReport;
@@ -20,6 +22,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet UITableView * tableView;
+@property (nonatomic, readonly) UITableViewCell * editServerNameCell;
 @property (nonatomic, retain)
     NSObject<EditServerDetailsViewControllerDelegate> * delegate;
 @property (nonatomic, retain) ServerReport * serverReport;
