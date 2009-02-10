@@ -159,7 +159,7 @@ static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
         [self.editServerUrlCell viewWithTag:SERVER_URL_TEXT_FIELD_TAG];
     [textField resignFirstResponder];
 
-    [delegate addServerWithUrl:self.serverUrl];
+    [delegate addServerWithUrl:[[self.serverUrl copy] autorelease]];
 }
 
 - (void) userDidCancel

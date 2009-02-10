@@ -194,7 +194,7 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
 
 - (void) userDidSave
 {
-    [delegate userDidAddServerNamed:serverName
+    [delegate userDidAddServerNamed:[[serverName copy] autorelease]
              withInitialBuildReport:serverReport];
 }
 
