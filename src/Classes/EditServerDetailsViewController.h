@@ -8,18 +8,24 @@
 @class ServerReport;
 
 @interface EditServerDetailsViewController : UIViewController
+                                             < UITableViewDataSource,
+                                               UITableViewDelegate,
+                                               UITextFieldDelegate >
 {
     UITableView * tableView;
-    UITextField * serverNameTextField;
+    UITableViewCell * editServerNameCell;
+
     NSObject<EditServerDetailsViewControllerDelegate> * delegate;
 
     ServerReport * serverReport;
+    NSString * serverName;  // what the user provides
 }
 
 @property (nonatomic, retain) IBOutlet UITableView * tableView;
-@property (nonatomic, retain) IBOutlet UITextField * serverNameTextField;
+@property (nonatomic, readonly) UITableViewCell * editServerNameCell;
 @property (nonatomic, retain)
     NSObject<EditServerDetailsViewControllerDelegate> * delegate;
 @property (nonatomic, retain) ServerReport * serverReport;
+@property (nonatomic, retain) NSString * serverName;
 
 @end

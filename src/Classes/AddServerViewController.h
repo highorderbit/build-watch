@@ -6,15 +6,22 @@
 #import "AddServerViewControllerDelegate.h"
 
 @interface AddServerViewController : UIViewController
+                                     < UITableViewDataSource,
+                                       UITableViewDelegate,
+                                       UITextFieldDelegate >
 {
     UITableView * tableView;
-    UITextField * serverUrlTextView;
+    UITableViewCell * editServerUrlCell;
+
     NSObject<AddServerViewControllerDelegate> * delegate;
+
+    NSString * serverUrl;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView * tableView;
-@property (nonatomic, retain) IBOutlet UITextField * serverUrlTextView;
+@property (nonatomic, readonly) UITableViewCell * editServerUrlCell;
 @property (nonatomic, retain) NSObject<AddServerViewControllerDelegate> *
     delegate;
+@property (nonatomic, retain) NSString * serverUrl;
 
 @end

@@ -11,6 +11,9 @@
 
 @implementation NetworkBuildStatusUpdater
 
+@synthesize url;
+@synthesize delegate;
+
 - (id)initWithUrl:(NSURL *)aUrl
          delegate:(NSObject<BuildStatusUpdaterDelegate> *)aDelegate
 {
@@ -65,7 +68,7 @@
 
 - (void)connection:(NSURLConnection *)conn didFailWithError:(NSError *)error
 {
-    [delegate updater:self didFailWithError:error];
+    [delegate updater:self didReceiveError:error];
     [connection release];
     connection = nil;
 }

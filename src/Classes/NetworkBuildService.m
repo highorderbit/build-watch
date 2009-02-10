@@ -6,6 +6,7 @@
 #import "BuildStatusUpdater.h"
 #import "NetworkBuildStatusUpdater.h"
 #import "CcrbServerReportBuilder.h"
+#import "ServerReport.h"
 
 @interface NetworkBuildService (Private)
 - (NSObject<BuildStatusUpdater> *) createUpdaterForServerUrl:
@@ -62,6 +63,7 @@
 
     NSError * error = nil;
     ServerReport * report = [builder serverReportFromData:data error:&error];
+    report.link = [self serverUrlForUpdater:updater];
 
     if (error)
         [delegate
@@ -73,7 +75,7 @@
 }
 
 - (void) updater:(NSObject<BuildStatusUpdater> *)updater
-didFailWithError:(NSError *)error
+ didReceiveError:(NSError *)error
 {
     [delegate attemptToGetReportFromServer:[self serverUrlForUpdater:updater]
                           didFailWithError:error];

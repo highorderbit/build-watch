@@ -3,7 +3,11 @@
 //
 
 #import "EditServerDetailsViewController.h"
+#import "NameValueTableViewCell.h"
 #import "ServerReport.h"
+
+static NSString * SettingsSectionCellIdentifier = @"SettingsSectionCell";
+static NSString * DetailsSectionCellIdentifier = @"DetailsSectionCell";
 
 static const NSInteger NUMBER_OF_SECTIONS = 2;
 enum Sections
@@ -13,25 +17,34 @@ enum Sections
 };
 
 static const NSInteger NUMBER_OF_ROWS_IN_SETTINGS_SECTION = 1;
-static const NSInteger NUMBER_OF_ROWS_IN_DETAILS_SECTION = 2;
+static const NSInteger NUMBER_OF_ROWS_IN_DETAILS_SECTION = 3;
 enum DetailsSectionRows
 {
-    kUrlRow,
+    kLinkRow,
+    kDashboardLinkRow,
     kNumberOfProjectsRow
 };
+
+static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
+
+@interface EditServerDetailsViewController (Private)
+- (UITextField *)editServerNameTextFieldWithFrame:(CGRect)frame
+                                              tag:(NSInteger)tag;
+@end
 
 
 @implementation EditServerDetailsViewController
 
 @synthesize tableView;
-@synthesize serverNameTextField;
+@synthesize editServerNameCell;
 @synthesize delegate;
 @synthesize serverReport;
+@synthesize serverName;
 
 - (void)dealloc
 {
     [tableView release];
-    [serverNameTextField release];
+    [editServerNameCell release];
     [delegate release];
     [serverReport release];
     [super dealloc];
@@ -56,18 +69,30 @@ enum DetailsSectionRows
 
     [saveButtonItem release];
     [cancelButtonItem release];
-
-    serverNameTextField.font = [UIFont systemFontOfSize:16.0];
-    serverNameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    serverNameTextField.text = serverReport.name;
-    self.navigationItem.rightBarButtonItem.enabled =
-        serverNameTextField.text.length > 0;
+    [super viewWillAppear:animated];
 
-    [serverNameTextField becomeFirstResponder];
+    self.serverName = serverReport.name;
+
+    self.navigationItem.rightBarButtonItem.enabled =
+        serverName.length > 0;
+
+    UITextField * textField = (UITextField *)
+        [self.editServerNameCell viewWithTag:SERVER_NAME_TEXT_FIELD_TAG];
+    textField.text = self.serverName;
+    [textField becomeFirstResponder];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    UITextField * textField = (UITextField *)
+        [self.editServerNameCell viewWithTag:SERVER_NAME_TEXT_FIELD_TAG];
+    [textField resignFirstResponder];
 }
 
 #pragma mark UITableView functions
@@ -87,9 +112,6 @@ enum DetailsSectionRows
 - (UITableViewCell *) tableView:(UITableView *)tv
           cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * SettingsSectionCellIdentifier = @"SettingsSectionCell";
-    static NSString * DetailsSectionCellIdentifier = @"DetailsSectionCell";
-
     NSString * cellIdentifier = indexPath.section == kSettingsSection ?
         SettingsSectionCellIdentifier : DetailsSectionCellIdentifier;
 
@@ -97,22 +119,49 @@ enum DetailsSectionRows
         [tv dequeueReusableCellWithIdentifier:cellIdentifier];
 
     if (cell == nil)
-        cell =
-            [[[UITableViewCell alloc]
-              initWithFrame:CGRectZero reuseIdentifier:cellIdentifier]
-             autorelease];
+        if (indexPath.section == kSettingsSection)
+            cell = self.editServerNameCell;
+        else {
+            NSArray * nib =
+                [[NSBundle mainBundle]
+                  loadNibNamed:@"NameValueTableViewCell" 
+                         owner:self
+                       options:nil];
+            cell = [nib objectAtIndex:1];
+        }
 
     if (indexPath.section == kSettingsSection) {
-        [cell.contentView addSubview:serverNameTextField];
-        cell.indentationLevel = 1;
-    } else
-        cell.text = indexPath.row == kUrlRow ?
-            serverReport.link :
-            [NSString stringWithFormat:
-             NSLocalizedString(
-                @"editserverdetails.numprojects.default.formatstring",
-                @""),
-             serverReport.projectReports.count];
+        UITextField * textField =
+            (UITextField *) [cell viewWithTag:SERVER_NAME_TEXT_FIELD_TAG];
+        textField.text = serverName;
+    } else {
+        NameValueTableViewCell * nameValueCell =
+            (NameValueTableViewCell *) cell;
+
+        switch (indexPath.row) {
+            case kLinkRow:
+                [nameValueCell setName:
+                 NSLocalizedString(@"editserverdetails.link.label", @"")];
+                [nameValueCell setValue:serverReport.link];
+                break;
+
+            case kDashboardLinkRow:
+                [nameValueCell setName:
+                 NSLocalizedString(@"editserverdetails.dashboardlink.label",
+                    @"")];
+                [nameValueCell setValue:serverReport.dashboardLink];
+                break;
+
+            case kNumberOfProjectsRow:
+                [nameValueCell setName:
+                 NSLocalizedString(@"editserverdetails.numprojects.label",
+                    @"")];
+                [nameValueCell setValue:
+                 [NSString stringWithFormat:@"%d",
+                  serverReport.projectReports.count]];
+                break;
+        }
+    }
 
     return cell;
 }
@@ -120,8 +169,7 @@ enum DetailsSectionRows
 - (NSIndexPath *)tableView:(UITableView *)tableView
   willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // items in the details section are not selectable
-    return indexPath.section == kDetailsSection ? nil : indexPath;
+    return nil;
 }
 
 #pragma mark UITextField delegate functions
@@ -130,18 +178,25 @@ enum DetailsSectionRows
     shouldChangeCharactersInRange:(NSRange)range
                 replacementString:(NSString *)string
 {
-    NSLog(@"Text field should change: (%d, %d)", range.location, range.length);
-    NSLog(@"Replacement string: '%@'", string);
+    self.serverName =
+        [field.text stringByReplacingCharactersInRange:range withString:string];
 
     self.navigationItem.rightBarButtonItem.enabled =
         !(range.location == 0 && range.length == 1);
+
     return YES;
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField
 {
+    self.serverName = @"";
     self.navigationItem.rightBarButtonItem.enabled = NO;
     return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.serverName = textField.text;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -154,14 +209,62 @@ enum DetailsSectionRows
 
 - (void) userDidSave
 {
-    NSString * serverName = serverNameTextField.text;
-    [delegate userDidAddServerNamed:serverName
+    [delegate userDidAddServerNamed:[[serverName copy] autorelease]
              withInitialBuildReport:serverReport];
 }
 
 - (void) userDidCancel
 {
     [delegate userDidCancel];
+}
+
+#pragma mark Accessors
+
+- (UITableViewCell *)editServerNameCell
+{
+    if (editServerNameCell == nil) {
+        editServerNameCell =
+            [[UITableViewCell alloc]
+              initWithFrame:CGRectZero
+            reuseIdentifier:SettingsSectionCellIdentifier];
+
+        CGRect textFieldFrame = CGRectMake(10, 10, 285, 22);
+        UITextField * textField =
+            [self editServerNameTextFieldWithFrame:textFieldFrame
+                                               tag:SERVER_NAME_TEXT_FIELD_TAG];
+
+        [editServerNameCell.contentView addSubview:textField];
+    }
+
+    return editServerNameCell;
+}
+
+
+#pragma mark Helper functions
+
+- (UITextField *)editServerNameTextFieldWithFrame:(CGRect)frame
+                                              tag:(NSInteger)tag
+{
+     UITextField * textField =
+         [[[UITextField alloc] initWithFrame:frame] autorelease];
+
+    textField.placeholder =
+        NSLocalizedString(@"editserverdetails.servername.placeholder", @"");
+    textField.adjustsFontSizeToFitWidth = YES;
+    textField.font = [UIFont systemFontOfSize:16.0];
+    textField.minimumFontSize = 10.0;
+    textField.tag = tag;
+    textField.delegate = self;
+    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    textField.clearsOnBeginEditing = NO;
+    textField.borderStyle = UITextBorderStyleNone;
+
+    // UITextInputTraits properties
+    textField.autocorrectionType = UITextAutocorrectionTypeNo;
+    textField.returnKeyType = UIReturnKeyDone;
+    textField.enablesReturnKeyAutomatically = YES;
+
+    return textField;
 }
 
 @end

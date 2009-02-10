@@ -15,6 +15,9 @@
     NSMutableData * data;
 }
 
+@property (nonatomic, readonly) NSURL * url;
+@property (nonatomic, retain) NSObject<BuildStatusUpdaterDelegate> * delegate;
+
 - (id) initWithUrl:(NSURL *)url
           delegate:(NSObject<BuildStatusUpdaterDelegate> *)aDelegate;
 
