@@ -3,6 +3,7 @@
 //
 
 #import "EditServerDetailsViewController.h"
+#import "NameValueTableViewCell.h"
 #import "ServerReport.h"
 
 static NSString * SettingsSectionCellIdentifier = @"SettingsSectionCell";
@@ -120,32 +121,47 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
     if (cell == nil)
         if (indexPath.section == kSettingsSection)
             cell = self.editServerNameCell;
-        else
-            cell =
-                [[[UITableViewCell alloc]
-                  initWithFrame:CGRectZero reuseIdentifier:cellIdentifier]
-                 autorelease];
+        else {
+            NSArray * nib =
+                [[NSBundle mainBundle]
+                  loadNibNamed:@"NameValueTableViewCell" 
+                         owner:self
+                       options:nil];
+            cell = [nib objectAtIndex:1];
+        }
 
     if (indexPath.section == kSettingsSection) {
         UITextField * textField =
             (UITextField *) [cell viewWithTag:SERVER_NAME_TEXT_FIELD_TAG];
         textField.text = serverName;
-    } else
+    } else {
+        NameValueTableViewCell * nameValueCell =
+            (NameValueTableViewCell *) cell;
+
         switch (indexPath.row) {
             case kLinkRow:
-                cell.text = serverReport.link;
+                [nameValueCell setName:
+                 NSLocalizedString(@"editserverdetails.link.label", @"")];
+                [nameValueCell setValue:serverReport.link];
                 break;
 
             case kDashboardLinkRow:
-                cell.text = serverReport.dashboardLink;
+                [nameValueCell setName:
+                 NSLocalizedString(@"editserverdetails.dashboardlink.label",
+                    @"")];
+                [nameValueCell setValue:serverReport.dashboardLink];
                 break;
 
             case kNumberOfProjectsRow:
-                cell.text = [NSString stringWithFormat:NSLocalizedString(
-                    @"editserverdetails.numprojects.default.formatstring", @""),
-                    serverReport.projectReports.count];
+                [nameValueCell setName:
+                 NSLocalizedString(@"editserverdetails.numprojects.label",
+                    @"")];
+                [nameValueCell setValue:
+                 [NSString stringWithFormat:@"%d",
+                  serverReport.projectReports.count]];
                 break;
         }
+    }
 
     return cell;
 }
@@ -153,8 +169,7 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
 - (NSIndexPath *)tableView:(UITableView *)tableView
   willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // items in the details section are not selectable
-    return indexPath.section == kDetailsSection ? nil : indexPath;
+    return nil;
 }
 
 #pragma mark UITextField delegate functions
