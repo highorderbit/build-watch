@@ -24,6 +24,7 @@ enum ActionCells
 
 @interface ProjectReportViewController (Private)
 - (NSString *) buttonTextForCellAtIndex:(NSInteger)row;
+- (void) forceBuild;
 - (void) emailReport;
 - (void) visitWebsite;
 @end
@@ -103,22 +104,15 @@ enum ActionCells
 - (void)      tableView:(UITableView *)tv
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIAlertView * alertView =
-        [[UIAlertView alloc] initWithTitle:@"Handle button click"
-                                   message:nil
-                                  delegate:nil
-                         cancelButtonTitle:@"Cancel"
-                         otherButtonTitles:nil];
-       switch (indexPath.row) {
+    switch (indexPath.row) {
         case kForceBuildCell:
-            alertView.message = @"TODO: force build";
-            [alertView show];
+            [self forceBuild];
             break;
         case kEmailReportCell:
-               [self emailReport];
+            [self emailReport];
             break;
         case kVisitWebsiteCell:
-               [self visitWebsite];
+            [self visitWebsite];
             break;
     }
 }
@@ -140,6 +134,19 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
     NSAssert1(0, @"Invalid row provided: %d.", row);
     return nil;  // return something to keep the compiler happy
+}
+
+- (void) forceBuild
+{
+    UIAlertView * alertView =
+        [[UIAlertView alloc] initWithTitle:@"Handle button click"
+                                   message:nil
+                                  delegate:nil
+                         cancelButtonTitle:@"Cancel"
+                         otherButtonTitles:nil];
+    
+    alertView.message = @"TODO: force build";
+    [alertView show];
 }
 
 - (void) emailReport
