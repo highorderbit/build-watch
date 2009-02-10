@@ -9,6 +9,14 @@
 
 - (NSString *) displayNameForProject:(NSString *)projectId;
 
-- (NSString *) linkForProject:(NSString *)projectId;
+- (NSString *) labelForProject:(NSString *)project;
+
+- (NSString *) descriptionForProject:(NSString *)project;
+
+- (NSString *) pubDateForProject:(NSString *)project;
+
+- (NSString *) linkForProject:(NSString *)project;
+
+- (NSString *) buildSucceededStateForProject:(NSString *)project;
 
 @end
