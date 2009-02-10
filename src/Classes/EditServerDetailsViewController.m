@@ -67,6 +67,8 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+
     self.serverName = serverReport.name;
     self.navigationItem.rightBarButtonItem.enabled =
         serverName.length > 0;

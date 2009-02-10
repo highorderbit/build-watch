@@ -4,22 +4,26 @@
 
 #import "AddServerViewController.h"
 
+static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
+
 @interface AddServerViewController (Private)
 - (void) userDidSave;
 - (void) userDidCancel;
+- (UITextField *)editServerUrlTextFieldWithFrame:(CGRect)frame
+                                             tag:(NSInteger)tag;
 @end
 
 @implementation AddServerViewController
 
 @synthesize tableView;
-@synthesize serverUrlTextView;
 @synthesize delegate;
+@synthesize serverUrl;
 
 - (void)dealloc
 {
     [tableView release];
-    [serverUrlTextView release];
     [delegate release];
+    [serverUrl release];
     [super dealloc];
 }
 
@@ -42,23 +46,19 @@
 
     [connectButtonItem release];
     [cancelButtonItem release];
-
-    serverUrlTextView.font = [UIFont systemFontOfSize:16.0];
-    serverUrlTextView.clearButtonMode = UITextFieldViewModeWhileEditing;
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 
+    self.serverUrl = @"";
+
     self.navigationItem.title = NSLocalizedString(@"addserver.view.title", @"");
     self.navigationItem.prompt =
         NSLocalizedString(@"addserver.view.prompt", @"");
 
-    self.navigationItem.rightBarButtonItem.enabled =
-        serverUrlTextView.text.length > 0;
-
-    [serverUrlTextView becomeFirstResponder];
+    self.navigationItem.rightBarButtonItem.enabled = serverUrl.length > 0;
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -84,7 +84,7 @@
 - (UITableViewCell *) tableView:(UITableView *)tv
           cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString * CellIdentifier = @"Cell";
 
     UITableViewCell * cell =
         [tv dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -94,17 +94,24 @@
             [[[UITableViewCell alloc]
               initWithFrame:CGRectZero reuseIdentifier:CellIdentifier]
              autorelease];
-        [cell.contentView addSubview:serverUrlTextView];
-        cell.indentationLevel = 1;  // scoot the text view in a bit
-    }
 
-    for (UIView * view in [cell subviews]) {
-        CGRect frame = view.frame;
-        NSLog(@"View: '%@', (%d, %d), (%d, %d)", view, frame.origin.x,
-            frame.origin.y, frame.size.width, frame.size.height);
+        CGRect textFieldFrame = CGRectMake(10, 10, 285, 22);
+        UITextField * textField =
+            [self editServerUrlTextFieldWithFrame:textFieldFrame
+                                              tag:SERVER_URL_TEXT_FIELD_TAG];
+
+        [cell.contentView addSubview:textField];
+
+        [textField becomeFirstResponder];
     }
 
     return cell;
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView
+  willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;  // selection is forbidden
 }
 
 #pragma mark UITextField delegate functions
@@ -113,8 +120,12 @@
     shouldChangeCharactersInRange:(NSRange)range
                 replacementString:(NSString *)string
 {
+    self.serverUrl =
+        [field.text stringByReplacingCharactersInRange:range withString:string];
+
     self.navigationItem.rightBarButtonItem.enabled =
         !(range.location == 0 && range.length == 1);
+
     return YES;
 }
 
@@ -124,27 +135,63 @@
     return YES;
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.serverUrl = textField.text;
+}
+
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
+    [textField resignFirstResponder];
     [self userDidSave];
-    return NO;
+    return YES;
 }
 
 #pragma mark Navigation item button actions
 
 - (void) userDidSave
 {
-    [serverUrlTextView resignFirstResponder];
-    [serverUrlTextView resignFirstResponder];
+    // TODO: text field should resign first responder
+
     self.navigationItem.rightBarButtonItem.enabled = NO;
     self.navigationItem.prompt =
         NSLocalizedString(@"addserver.connecting.prompt", @"");
-    [delegate addServerWithUrl:serverUrlTextView.text];
+    [delegate addServerWithUrl:serverUrl];
 }
 
 - (void) userDidCancel
 {
     [delegate userDidCancel];
 }
+
+#pragma mark Helper functions
+
+- (UITextField *)editServerUrlTextFieldWithFrame:(CGRect)frame
+                                             tag:(NSInteger)tag
+{
+     UITextField * textField =
+         [[[UITextField alloc] initWithFrame:frame] autorelease];
+
+    textField.placeholder =
+        NSLocalizedString(@"addserver.url.placeholder", @"");
+    textField.adjustsFontSizeToFitWidth = YES;
+    textField.font = [UIFont systemFontOfSize:16.0];
+    textField.minimumFontSize = 10.0;
+    textField.tag = tag;
+    textField.delegate = self;
+    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    textField.clearsOnBeginEditing = NO;
+    textField.borderStyle = UITextBorderStyleNone;
+
+    // UITextInputTraits properties
+    textField.autocorrectionType = UITextAutocorrectionTypeNo;
+    textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    textField.returnKeyType = UIReturnKeyDone;
+    textField.keyboardType = UIKeyboardTypeURL;
+    textField.enablesReturnKeyAutomatically = YES;
+
+    return textField;
+}
+
 
 @end
