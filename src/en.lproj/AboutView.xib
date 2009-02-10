@@ -54,7 +54,7 @@
 							<double key="NSSize">1.800000e+01</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<object class="NSColor" key="IBUITextColor" id="943680419">
+						<object class="NSColor" key="IBUITextColor" id="99322230">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
 						</object>
@@ -80,7 +80,7 @@ A</string>
 							<double key="NSSize">1.400000e+01</double>
 							<int key="NSfFlags">16</int>
 						</object>
-						<reference key="IBUITextColor" ref="943680419"/>
+						<reference key="IBUITextColor" ref="99322230"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">1.000000e+01</float>
@@ -110,7 +110,7 @@ A</string>
 						<string key="IBUIDisabledTitle">www.highorderbit.com</string>
 						<string key="IBUISelectedTitle">www.highorderbit.com</string>
 						<string key="IBUINormalTitle">www.highorderbit.com</string>
-						<object class="NSColor" key="IBUIHighlightedTitleColor" id="958560493">
+						<object class="NSColor" key="IBUIHighlightedTitleColor" id="449103956">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAxIDEAA</bytes>
 						</object>
@@ -129,7 +129,7 @@ A</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="IBUIText">Version x.x.x</string>
 						<reference key="IBUIFont" ref="754523568"/>
-						<reference key="IBUITextColor" ref="943680419"/>
+						<reference key="IBUITextColor" ref="99322230"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">1.000000e+01</float>
@@ -138,7 +138,7 @@ A</string>
 				</object>
 				<string key="NSFrameSize">{320, 431}</string>
 				<reference key="NSSuperview"/>
-				<reference key="IBUIBackgroundColor" ref="958560493"/>
+				<reference key="IBUIBackgroundColor" ref="449103956"/>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">

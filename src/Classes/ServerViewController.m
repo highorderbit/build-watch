@@ -5,6 +5,7 @@
 #import "ServerViewController.h"
 #import "BuildWatchAppDelegate.h"
 #import "ProjectsViewController.h"
+#import "ServerTableViewCell.h"
 
 @implementation ServerViewController
 
@@ -71,20 +72,46 @@
 {
     static NSString *CellIdentifier = @"Cell";
 
-    UITableViewCell * cell =
+    ServerTableViewCell * cell =
+        (ServerTableViewCell *)
         [tv dequeueReusableCellWithIdentifier:CellIdentifier];
 
-    if (cell == nil)
-        cell =
-            [[[UITableViewCell alloc]
-              initWithFrame:CGRectZero reuseIdentifier:CellIdentifier]
-             autorelease];
-
-    // Set up the cell
-    cell.text = [delegate displayNameForServerGroupName:
-        [visibleServerGroupNames objectAtIndex:indexPath.row]];
-
+    if (cell == nil) {
+        NSArray * nib =
+            [[NSBundle mainBundle] loadNibNamed:@"ServerTableViewCell"
+                                          owner:nil
+                                        options:nil];
+        cell = (ServerTableViewCell *) [nib objectAtIndex:0];
+    }
+    
+    cell.nameLabel.text =
+        [delegate
+         displayNameForServerGroupName:
+         [visibleServerGroupNames objectAtIndex:indexPath.row]];
+    
+    cell.webAddressLabel.text =
+        [delegate
+         webAddressForServerGroupName:
+         [visibleServerGroupNames objectAtIndex:indexPath.row]];
+    
+    int numBroken =
+        [delegate
+         numBrokenForServerGroupName:
+         [visibleServerGroupNames objectAtIndex:indexPath.row]];
+    cell.brokenBuildsLabel.text =
+        [NSString stringWithFormat:@"%@ broken",
+         [NSNumber numberWithInt:numBroken]];
+    cell.brokenBuildsLabel.textColor =
+        numBroken == 0 ?
+        [UIColor colorWithRed:0 green:0.4 blue:0 alpha:1] : [UIColor redColor];
+    
     return cell;
+}
+
+- (CGFloat)   tableView:(UITableView *)tableView
+heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 64;
 }
 
 - (void)      tableView:(UITableView *)tv

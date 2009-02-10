@@ -27,6 +27,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
                                 withServer:(NSString *)server;
 - (void) removeMissingProjectPropertiesWithProjects:(NSArray *)newProjects
                                           andServer:(NSString *)server;
+- (NSArray *) serversMatchingGroupName:(NSString *)groupName;
 - (NSArray *) projectIdsForServer:(NSString *)server;
 - (NSArray *) projectIdsForServerGroupName:(NSString *)serverGroupName;
 - (NSArray *) serverGroupNames;
@@ -176,6 +177,35 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 - (NSString *) displayNameForServerGroupName:(NSString *)serverGroupName
 {
     return [serverNames objectForKey:serverGroupName];
+}
+
+// Get the url for single-server server groups
+- (NSString *) webAddressForServerGroupName:(NSString *)serverGroupName
+{
+    NSArray * serversInGroup = [self serversMatchingGroupName:serverGroupName];
+    NSString * webAddress;
+    int numServers = [serversInGroup count];
+    if (numServers == 1)
+        webAddress = [serversInGroup objectAtIndex:0];
+    else
+        webAddress =
+            [NSString
+             stringWithFormat:@"%@ servers",
+             [NSNumber numberWithInt:numServers]];
+    
+    return webAddress;
+}
+
+- (int) numBrokenForServerGroupName:(NSString *)serverGroupName
+{
+    int numBrokenBuilds = 0;
+    
+    NSArray * projectIds = [self projectIdsForServerGroupName:serverGroupName];
+    for (NSString * projectId in projectIds)
+        if (![[projectBuildSucceededStates objectForKey:projectId] boolValue])
+            numBrokenBuilds++;
+    
+    return numBrokenBuilds;
 }
 
 - (BOOL) canServerGroupBeDeleted:(NSString *)serverGroupName
@@ -436,6 +466,20 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [serverGroupNames addObject:NSLocalizedString(SERVER_GROUP_NAME_ALL, @"")];
     
     return serverGroupNames;
+}
+
+- (NSArray *) serversMatchingGroupName:(NSString *)groupName
+{
+    NSMutableArray * matchingServers = [NSMutableArray array];
+    for(NSString * server in [servers allKeys]) {
+        NSString * serverGroupPattern =
+        [serverGroupPatterns objectForKey:groupName];
+        
+        if ([server isMatchedByRegex:serverGroupPattern])
+            [matchingServers addObject:server];
+    }
+    
+    return matchingServers;
 }
 
 #pragma mark static utility functions

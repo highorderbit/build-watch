@@ -47,6 +47,8 @@
 		9149DF720F39053200A0E32C /* ServerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149DF6F0F39053200A0E32C /* ServerView.xib */; };
 		9149E0010F39142400A0E32C /* ProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9149E0000F39142400A0E32C /* ProjectsViewController.m */; };
 		9149E0040F39167600A0E32C /* ProjectsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149E0020F39167600A0E32C /* ProjectsView.xib */; };
+		918449EA0F4206F800082108 /* ServerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 918449E90F4206F800082108 /* ServerTableViewCell.m */; };
+		91ABDE280F4120A1003232A0 /* ServerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91ABDE260F4120A1003232A0 /* ServerTableViewCell.xib */; };
 		91B4AFB50F3FBFF000AAB35B /* PListUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B4AFB40F3FBFF000AAB35B /* PListUtils.m */; };
 		91D9ABC90F3DFC270035454C /* PListBuildWatchPersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D9ABC80F3DFC270035454C /* PListBuildWatchPersistentStore.m */; };
 		91D9ABD40F3DFE350035454C /* Servers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABD30F3DFE350035454C /* Servers.plist */; };
@@ -153,6 +155,9 @@
 		9149DFFF0F39142400A0E32C /* ProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewController.h; sourceTree = "<group>"; };
 		9149E0000F39142400A0E32C /* ProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsViewController.m; sourceTree = "<group>"; };
 		9149E0030F39167600A0E32C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ProjectsView.xib; sourceTree = "<group>"; };
+		918449E80F4206F800082108 /* ServerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerTableViewCell.h; sourceTree = "<group>"; };
+		918449E90F4206F800082108 /* ServerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerTableViewCell.m; sourceTree = "<group>"; };
+		91ABDE270F4120A1003232A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ServerTableViewCell.xib; sourceTree = "<group>"; };
 		91B4AFB30F3FBFF000AAB35B /* PListUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PListUtils.h; sourceTree = "<group>"; };
 		91B4AFB40F3FBFF000AAB35B /* PListUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PListUtils.m; sourceTree = "<group>"; };
 		91D9ABC70F3DFC270035454C /* PListBuildWatchPersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PListBuildWatchPersistentStore.h; sourceTree = "<group>"; };
@@ -243,6 +248,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				918449E80F4206F800082108 /* ServerTableViewCell.h */,
+				918449E90F4206F800082108 /* ServerTableViewCell.m */,
 				91B4AFB30F3FBFF000AAB35B /* PListUtils.h */,
 				91B4AFB40F3FBFF000AAB35B /* PListUtils.m */,
 				05FE3CC70F3DFB5600EE7FB9 /* Vendor Libraries */,
@@ -363,6 +370,7 @@
 				91D9ABDB0F3E03B50035454C /* ProjectTrackedStates.plist */,
 				91D9ADDA0F3E3B050035454C /* AboutView.xib */,
 				91E151B10F409FC2006D6A59 /* ProjectLinks.plist */,
+				91ABDE260F4120A1003232A0 /* ServerTableViewCell.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -444,6 +452,7 @@
 				91E1523E0F40B792006D6A59 /* ProjectBuildSucceededStates.plist in Resources */,
 				91E1523F0F40B792006D6A59 /* ProjectDescriptions.plist in Resources */,
 				91E152400F40B792006D6A59 /* ProjectPubDates.plist in Resources */,
+				91ABDE280F4120A1003232A0 /* ServerTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,6 +498,7 @@
 				91D9ABC90F3DFC270035454C /* PListBuildWatchPersistentStore.m in Sources */,
 				91D9ADE20F3E47720035454C /* AboutDisplayer.m in Sources */,
 				91B4AFB50F3FBFF000AAB35B /* PListUtils.m in Sources */,
+				918449EA0F4206F800082108 /* ServerTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,6 +559,14 @@
 				9149E0030F39167600A0E32C /* en */,
 			);
 			name = ProjectsView.xib;
+			sourceTree = "<group>";
+		};
+		91ABDE260F4120A1003232A0 /* ServerTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91ABDE270F4120A1003232A0 /* en */,
+			);
+			name = ServerTableViewCell.xib;
 			sourceTree = "<group>";
 		};
 		91D9ADDA0F3E3B050035454C /* AboutView.xib */ = {

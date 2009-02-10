@@ -7,7 +7,7 @@
 	<key>http://builder/my-server/|Website</key>
 	<true/>
 	<key>http://builder/my-server/|Git Website</key>
-	<false/>
+	<true/>
 	<key>http://apple.com/builder/|Mail</key>
 	<true/>
 	<key>http://apple.com/builder/|Address Book</key>
@@ -15,9 +15,9 @@
 	<key>http://apple.com/builder/|Safari</key>
 	<false/>
 	<key>http://microsoft.com/TeamSystem/default.aspx|Windows 7</key>
-	<true/>
+	<false/>
 	<key>http://microsoft.com/TeamSystem/default.aspx|Visual Studio Team System 2007</key>
-	<true/>
+	<false/>
 	<key>http://microsoft.com/TeamSystem/default.aspx|Microsoft Office System 2009</key>
 	<false/>
 	<key>http://openoffice.org/builds/|OpenOffice</key>

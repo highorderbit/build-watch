@@ -10,6 +10,10 @@
 
 - (NSString *) displayNameForServerGroupName:(NSString *)serverGroupName;
 
+- (NSString *) webAddressForServerGroupName:(NSString *)serverGroupName;
+
+- (int) numBrokenForServerGroupName:(NSString *)serverGroupName;
+
 - (BOOL) canServerGroupBeDeleted:(NSString *)serverGroupName;
 
 - (void) deleteServerGroupWithName:(NSString *)serverGroupName;

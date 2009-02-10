@@ -77,9 +77,9 @@
     
     if (cell == nil)
         cell =
-        [[[UITableViewCell alloc]
-          initWithFrame:CGRectZero reuseIdentifier:CellIdentifier]
-         autorelease];
+            [[[UITableViewCell alloc]
+              initWithFrame:CGRectZero reuseIdentifier:CellIdentifier]
+             autorelease];
     
     cell.text =
         [delegate
