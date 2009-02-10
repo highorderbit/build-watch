@@ -24,6 +24,7 @@ enum ActionCells
 
 @interface ProjectReportViewController (Private)
 - (NSString *) buttonTextForCellAtIndex:(NSInteger)row;
+- (void) emailReport;
 - (void) visitWebsite;
 @end
 
@@ -114,8 +115,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
             [alertView show];
             break;
         case kEmailReportCell:
-            alertView.message = @"TODO: send email";
-            [alertView show];
+               [self emailReport];
             break;
         case kVisitWebsiteCell:
                [self visitWebsite];
@@ -140,6 +140,15 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
     NSAssert1(0, @"Invalid row provided: %d.", row);
     return nil;  // return something to keep the compiler happy
+}
+
+- (void) emailReport
+{
+    NSURL * url =
+        [[NSURL alloc]
+         initWithString:@"mailto:?subject=subject&body=body"];
+    [[UIApplication sharedApplication] openURL:url];
+    [url release];
 }
 
 - (void) visitWebsite
