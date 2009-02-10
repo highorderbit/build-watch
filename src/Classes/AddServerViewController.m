@@ -4,6 +4,7 @@
 
 #import "AddServerViewController.h"
 
+static NSString * CellIdentifier = @"Cell";
 static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
 
 @interface AddServerViewController (Private)
@@ -16,12 +17,14 @@ static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
 @implementation AddServerViewController
 
 @synthesize tableView;
+@synthesize editServerUrlCell;
 @synthesize delegate;
 @synthesize serverUrl;
 
 - (void)dealloc
 {
     [tableView release];
+    [editServerUrlCell release];
     [delegate release];
     [serverUrl release];
     [super dealloc];
@@ -52,13 +55,16 @@ static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
 {
     [super viewWillAppear:animated];
 
-    self.serverUrl = @"";
-
     self.navigationItem.title = NSLocalizedString(@"addserver.view.title", @"");
     self.navigationItem.prompt =
         NSLocalizedString(@"addserver.view.prompt", @"");
 
     self.navigationItem.rightBarButtonItem.enabled = serverUrl.length > 0;
+
+    UITextField * textField = (UITextField *)
+        [self.editServerUrlCell viewWithTag:SERVER_URL_TEXT_FIELD_TAG];
+    textField.text = serverUrl;
+    [textField becomeFirstResponder];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -66,6 +72,10 @@ static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
     [super viewWillDisappear:animated];
 
     self.navigationItem.prompt = nil;
+
+    UITextField * textField = (UITextField *)
+        [self.editServerUrlCell viewWithTag:SERVER_URL_TEXT_FIELD_TAG];
+    [textField resignFirstResponder];
 }
 
 #pragma mark UITableView functions
@@ -84,26 +94,15 @@ static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
 - (UITableViewCell *) tableView:(UITableView *)tv
           cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * CellIdentifier = @"Cell";
-
     UITableViewCell * cell =
         [tv dequeueReusableCellWithIdentifier:CellIdentifier];
 
-    if (cell == nil) {
-        cell =
-            [[[UITableViewCell alloc]
-              initWithFrame:CGRectZero reuseIdentifier:CellIdentifier]
-             autorelease];
+    if (cell == nil)
+        cell = self.editServerUrlCell;
 
-        CGRect textFieldFrame = CGRectMake(10, 10, 285, 22);
-        UITextField * textField =
-            [self editServerUrlTextFieldWithFrame:textFieldFrame
-                                              tag:SERVER_URL_TEXT_FIELD_TAG];
-
-        [cell.contentView addSubview:textField];
-
-        [textField becomeFirstResponder];
-    }
+    UITextField * textField =
+        (UITextField *) [cell viewWithTag:SERVER_URL_TEXT_FIELD_TAG];
+    textField.text = serverUrl;
 
     return cell;
 }
@@ -131,7 +130,9 @@ static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField
 {
+    self.serverUrl = @"";
     self.navigationItem.rightBarButtonItem.enabled = NO;
+
     return YES;
 }
 
@@ -142,26 +143,49 @@ static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
     [self userDidSave];
-    return YES;
+    return NO;
 }
 
 #pragma mark Navigation item button actions
 
 - (void) userDidSave
 {
-    // TODO: text field should resign first responder
-
     self.navigationItem.rightBarButtonItem.enabled = NO;
     self.navigationItem.prompt =
         NSLocalizedString(@"addserver.connecting.prompt", @"");
-    [delegate addServerWithUrl:serverUrl];
+
+    UITextField * textField = (UITextField *)
+        [self.editServerUrlCell viewWithTag:SERVER_URL_TEXT_FIELD_TAG];
+    [textField resignFirstResponder];
+
+    [delegate addServerWithUrl:self.serverUrl];
 }
 
 - (void) userDidCancel
 {
     [delegate userDidCancel];
+}
+
+#pragma mark Accessor methods
+
+- (UITableViewCell *)editServerUrlCell
+{
+    if (editServerUrlCell == nil) {
+        editServerUrlCell =
+            [[[UITableViewCell alloc]
+              initWithFrame:CGRectZero reuseIdentifier:CellIdentifier]
+             autorelease];
+
+        CGRect textFieldFrame = CGRectMake(10, 10, 285, 22);
+        UITextField * textField =
+            [self editServerUrlTextFieldWithFrame:textFieldFrame
+                                              tag:SERVER_URL_TEXT_FIELD_TAG];
+
+        [editServerUrlCell.contentView addSubview:textField];
+    }
+
+    return editServerUrlCell;
 }
 
 #pragma mark Helper functions
@@ -192,6 +216,5 @@ static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
 
     return textField;
 }
-
 
 @end

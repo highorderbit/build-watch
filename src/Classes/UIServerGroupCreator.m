@@ -31,6 +31,8 @@
 
 - (void) createServerGroup
 {
+    self.addServerViewController.serverUrl = @"";
+
     [self.addServerNavigationController popToRootViewControllerAnimated:NO];
     [self.rootNavigationController
         presentModalViewController:self.addServerNavigationController

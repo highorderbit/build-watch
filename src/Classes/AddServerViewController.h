@@ -11,12 +11,15 @@
                                        UITextFieldDelegate >
 {
     UITableView * tableView;
+    UITableViewCell * editServerUrlCell;
+
     NSObject<AddServerViewControllerDelegate> * delegate;
 
     NSString * serverUrl;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView * tableView;
+@property (nonatomic, readonly) UITableViewCell * editServerUrlCell;
 @property (nonatomic, retain) NSObject<AddServerViewControllerDelegate> *
     delegate;
 @property (nonatomic, retain) NSString * serverUrl;
