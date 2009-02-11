@@ -3,6 +3,7 @@
 //
 
 #import "ProjectReportViewController.h"
+#import "BuildDetailsViewController.h"
 #import "NameValueTableViewCell.h"
 #import "NSDate+BuildServiceAdditions.h"
 
@@ -41,6 +42,7 @@ enum ActionRows
 - (void) configureBuildDetailTableViewCell:(NameValueTableViewCell *)cell
                                forRowIndex:(NSInteger)row;
 - (NSString *) buttonTextForCellAtIndex:(NSInteger)row;
+- (void) showBuildChangeset;
 - (void) forceBuild;
 - (void) emailReport;
 - (void) visitWebsite;
@@ -165,22 +167,29 @@ enum ActionRows
 - (NSIndexPath *) tableView:(UITableView *)tv
    willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.section == kBuildActionSection ? indexPath : nil;
+    return indexPath.section == kBuildDetailsSection ? nil : indexPath;
 }
 
 - (void)      tableView:(UITableView *)tv
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.row) {
-        case kForceBuildRow:
-            [self forceBuild];
+    switch (indexPath.section) {
+        case kBuildChangesetSection:
+            [self showBuildChangeset];
             break;
-        case kEmailReportRow:
-            [self emailReport];
-            break;
-        case kVisitWebsiteRow:
-            [self visitWebsite];
-            break;
+
+        case kBuildActionSection:
+            switch (indexPath.row) {
+                case kForceBuildRow:
+                    [self forceBuild];
+                    break;
+                case kEmailReportRow:
+                    [self emailReport];
+                    break;
+                case kVisitWebsiteRow:
+                    [self visitWebsite];
+                    break;
+            }
     }
 }
 
@@ -220,6 +229,17 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
     NSAssert1(0, @"Invalid row provided: %d.", row);
     return nil;  // return something to keep the compiler happy
+}
+
+- (void) showBuildChangeset
+{
+    BuildDetailsViewController * controller =
+        [[BuildDetailsViewController alloc] initWithNibName:@"BuildDetailsView"
+                                                     bundle:nil];
+    controller.delegate = self.delegate;
+    controller.projectId = self.projectId;
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 - (void) forceBuild

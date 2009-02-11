@@ -78,6 +78,19 @@ static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
     [textField resignFirstResponder];
 }
 
+// TODO: REMOVE ME BEFORE DEPLOYING
+- (BOOL)shouldAutorotateToInterfaceOrientation:
+(UIInterfaceOrientation)interfaceOrientation
+{
+    self.serverUrl = @"http://megatron.local:3333/projects.rss";
+    UITextField * textField = (UITextField *)
+        [self.editServerUrlCell viewWithTag:SERVER_URL_TEXT_FIELD_TAG];
+    textField.text = serverUrl;
+    self.navigationItem.rightBarButtonItem.enabled = YES;
+
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
 #pragma mark UITableView functions
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tv
