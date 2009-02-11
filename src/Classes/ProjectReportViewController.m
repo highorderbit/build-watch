@@ -4,8 +4,9 @@
 
 #import "ProjectReportViewController.h"
 #import "NameValueTableViewCell.h"
+#import "NSDate+BuildServiceAdditions.h"
 
-static NSString * ActionSectionCellIdentifier = @"ActionSectionCell";
+static NSString * StandardSectionCellIdentifier = @"StandardSectionCell";
 
 static const NSInteger NUM_SECTIONS = 3;
 enum Sections
@@ -38,7 +39,7 @@ enum ActionRows
 
 @interface ProjectReportViewController (Private)
 - (void) configureBuildDetailTableViewCell:(NameValueTableViewCell *)cell
-                                  forIndex:(NSInteger)index;
+                               forRowIndex:(NSInteger)row;
 - (NSString *) buttonTextForCellAtIndex:(NSInteger)row;
 - (void) forceBuild;
 - (void) emailReport;
@@ -46,8 +47,6 @@ enum ActionRows
 - (NSString *) reuseIdentifierForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (UITableViewCell *) cellInstanceForRowAtIndexPath:(NSIndexPath *)indexPath
                                     reuseIdentifier:(NSString *)identifier;
-- (void) configureBuildDetailTableViewCell:(NameValueTableViewCell *)cell
-                                    forRow:(NSInteger)row;
 @end
 
 @implementation ProjectReportViewController
@@ -82,6 +81,10 @@ enum ActionRows
     self.navigationItem.title =
         NSLocalizedString(@"projectdetails.view.title", @"");
 
+    headerImage.image =
+        [delegate buildSucceededStateForProject:projectId] ?
+            [UIImage imageNamed:@"build-succeeded.png"] :
+            [UIImage imageNamed:@"build-broken.png"];
     headerLabel.text = [delegate displayNameForProject:projectId];
 
     NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
@@ -132,7 +135,7 @@ enum ActionRows
         case kBuildDetailsSection: {
             NameValueTableViewCell * nvcell = (NameValueTableViewCell *) cell;
             [self configureBuildDetailTableViewCell:nvcell
-                                             forRow:indexPath.row];
+                                        forRowIndex:indexPath.row];
             break;
         }
 
@@ -184,13 +187,14 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 #pragma mark Helper methods
 
 - (void) configureBuildDetailTableViewCell:(NameValueTableViewCell *)cell
-                                  forIndex:(NSInteger)index
+                               forRowIndex:(NSInteger)index
 {
     switch (index) {
         case kBuildDateRow:
             cell.name =
                 NSLocalizedString(@"projectdetails.builddate.label", @"");
-            cell.value = [delegate pubDateForProject:projectId];
+            cell.value =
+                [[delegate pubDateForProject:projectId] localizedString];
             break;
 
         case kBuildLabelRow:
@@ -280,11 +284,11 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
     switch (indexPath.section) {
         case kBuildDetailsSection:
-        case kBuildChangesetSection:
-            reuseIdentifier = ActionSectionCellIdentifier;
-            break;
-        case kBuildActionSection:
             reuseIdentifier = [NameValueTableViewCell reuseIdentifier];
+            break;
+        case kBuildChangesetSection:
+        case kBuildActionSection:
+            reuseIdentifier = StandardSectionCellIdentifier;
             break;
     }
 
@@ -310,24 +314,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     }
 
     return cell;
-}
-
-- (void) configureBuildDetailTableViewCell:(NameValueTableViewCell *)cell
-                                    forRow:(NSInteger)row
-{
-    switch (row) {
-        case kBuildDateRow:
-            cell.name =
-                NSLocalizedString(@"projectdetails.builddate.label", @"");
-            cell.value = [[NSDate date] description];
-            break;
-
-        case kBuildLabelRow:
-            cell.name =
-                NSLocalizedString(@"projectdetails.buildlabel.label", @"");
-            cell.value = @"7.2";
-            break;
-    }
 }
 
 #pragma mark Accessors

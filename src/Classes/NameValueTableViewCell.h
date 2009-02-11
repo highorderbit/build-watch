@@ -13,6 +13,11 @@
 @property (nonatomic, retain) IBOutlet UILabel * nameLabel;
 @property (nonatomic, retain) IBOutlet UILabel * valueLabel;
 
+#pragma mark Helper functions for creating instances
+
++ (NameValueTableViewCell *) createInstance;
++ (NSString *) reuseIdentifier;
+
 #pragma mark Get and set the values of the name and value
 
 - (void) setName:(NSString *)name;

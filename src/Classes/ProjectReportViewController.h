@@ -9,11 +9,16 @@
                                          < UITableViewDelegate >
 {
     UITableView * tableView;
+    UIImageView * headerImage;
+    UILabel * headerLabel;
+
     NSString * projectId;
     NSObject<ProjectReporterDelegate> * delegate;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView * tableView;
+@property (nonatomic, retain) IBOutlet UIImageView * headerImage;
+@property (nonatomic, retain) IBOutlet UILabel * headerLabel;
 @property (nonatomic, retain) NSString * projectId;
 @property (nonatomic, retain) NSObject<ProjectReporterDelegate> * delegate;
 

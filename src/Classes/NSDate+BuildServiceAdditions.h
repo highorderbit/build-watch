@@ -1,11 +1,13 @@
 //
-//  Copyright 2009 High Order Bit, Inc.. All rights reserved.
+//  Copyright High Order Bit, Inc. 2009. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 @interface NSDate (BuildServiceAdditions)
 
-+ (NSDate *)dateFromCruiseControlRbString:(NSString *)dateAsString;
++ (NSDate *) dateFromCruiseControlRbString:(NSString *)dateAsString;
+
+- (NSString *) localizedString;
 
 @end
