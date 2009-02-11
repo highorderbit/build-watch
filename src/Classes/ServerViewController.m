@@ -45,6 +45,9 @@
 
     self.navigationItem.leftBarButtonItem.enabled =
         visibleServerGroupNames.count > 0;
+    
+    // this resets the last selected cell text to black from white
+    [tableView reloadData];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -88,11 +91,13 @@
         [delegate
          displayNameForServerGroupName:
          [visibleServerGroupNames objectAtIndex:indexPath.row]];
+    cell.nameLabel.textColor = [UIColor blackColor];
     
     cell.webAddressLabel.text =
         [delegate
          webAddressForServerGroupName:
          [visibleServerGroupNames objectAtIndex:indexPath.row]];
+    cell.webAddressLabel.textColor = [UIColor grayColor];
     
     int numBroken =
         [delegate
@@ -117,6 +122,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)      tableView:(UITableView *)tv
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ServerTableViewCell * cell =
+        (ServerTableViewCell *) [tableView cellForRowAtIndexPath:indexPath];
+    cell.nameLabel.textColor = [UIColor whiteColor];
+    cell.webAddressLabel.textColor = [UIColor whiteColor];
+    cell.brokenBuildsLabel.textColor = [UIColor whiteColor];
+    
     [delegate
      userDidSelectServerGroupName:
         [visibleServerGroupNames objectAtIndex:indexPath.row]];
