@@ -242,7 +242,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     NSString * buildStatus =
         [delegate buildSucceededStateForProject:projectId] ?
         @"succeeded" : @"failed";
+    
+    NSDateFormatter * dateFormatter =
+        [[[NSDateFormatter alloc] init]  autorelease];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     NSDate * pubDate = [delegate pubDateForProject:projectId];
+    NSString * pubDateString = [dateFormatter stringFromDate:pubDate];
     NSString * webAddress = [delegate linkForProject:projectId];
     NSString * details = [delegate descriptionForProject:projectId];
     
@@ -257,16 +263,15 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
          "Build:  %@\n\n"
          "Web page:  %@\n\n"
          "Details:\n\n%@",
-         displayName, buildStatus, pubDate, buildLabel, webAddress, details];
+         displayName, buildStatus, pubDateString, buildLabel, webAddress,
+         details];
     NSString * urlString =
-        [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
-         subject, body];
+        [[NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
+         subject, body]
+         stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSURL * url = [[NSURL alloc] initWithString:urlString];
-    //[[UIApplication sharedApplication] openURL:url];
-    NSLog(@"Subject: %@", subject);
-    NSLog(@"Body: %@", body);
-    NSLog(@"URL: %@", urlString);
+    [[UIApplication sharedApplication] openURL:url];
     [url release];
 }
 
