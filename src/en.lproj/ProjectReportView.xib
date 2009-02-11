@@ -53,7 +53,7 @@
 						<float key="IBUISectionHeaderHeight">1.000000e+01</float>
 						<float key="IBUISectionFooterHeight">1.000000e+01</float>
 					</object>
-					<object class="IBUILabel" id="128043749">
+					<object class="IBUILabel" id="416335257">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{69, 14}, {231, 32}}</string>
@@ -76,7 +76,7 @@
 						<float key="IBUIMinimumFontSize">1.200000e+01</float>
 						<int key="IBUILineBreakMode">5</int>
 					</object>
-					<object class="IBUIImageView" id="401998018">
+					<object class="IBUIImageView" id="995037153">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 9}, {41, 43}}</string>
@@ -140,7 +140,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">headerLabel</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="128043749"/>
+						<reference key="destination" ref="416335257"/>
 					</object>
 					<int key="connectionID">15</int>
 				</object>
@@ -148,7 +148,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">headerImage</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="401998018"/>
+						<reference key="destination" ref="995037153"/>
 					</object>
 					<int key="connectionID">16</int>
 				</object>
@@ -169,9 +169,9 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="416335257"/>
+							<reference ref="995037153"/>
 							<reference ref="845675252"/>
-							<reference ref="128043749"/>
-							<reference ref="401998018"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -187,18 +187,18 @@
 						<reference key="parent" ref="360949347"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">3</int>
-						<reference key="object" ref="845675252"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">13</int>
-						<reference key="object" ref="128043749"/>
+						<reference key="object" ref="416335257"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">14</int>
-						<reference key="object" ref="401998018"/>
+						<reference key="object" ref="995037153"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">3</int>
+						<reference key="object" ref="845675252"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
@@ -246,7 +246,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">16</int>
+			<int key="maxID">17</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
