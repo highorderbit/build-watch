@@ -296,7 +296,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     return [projectDescriptions objectForKey:project];
 }
 
-- (NSString *) pubDateForProject:(NSString *)project
+- (NSDate *) pubDateForProject:(NSString *)project
 {
     return [projectPubDates objectForKey:project];
 }
@@ -306,9 +306,9 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     return [projectLinks objectForKey:project];
 }
 
-- (NSString *) buildSucceededStateForProject:(NSString *)project
+- (BOOL) buildSucceededStateForProject:(NSString *)project
 {
-    return [projectBuildSucceededStates objectForKey:project];
+    return [[projectBuildSucceededStates objectForKey:project] boolValue];
 }
 
 - (NSString *) displayNameForCurrentProjectGroup
