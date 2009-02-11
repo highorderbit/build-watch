@@ -154,9 +154,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     NSString * displayName = [delegate displayNameForProject:projectId];
     NSString * buildLabel = [delegate labelForProject:projectId];
     NSString * buildStatus =
-        [[delegate buildSucceededStateForProject:projectId] boolValue] ?
+        [delegate buildSucceededStateForProject:projectId] ?
         @"succeeded" : @"failed";
-    NSString * pubDate = [delegate pubDateForProject:projectId];
+    NSDate * pubDate = [delegate pubDateForProject:projectId];
     NSString * webAddress = [delegate linkForProject:projectId];
     NSString * details = [delegate descriptionForProject:projectId];
     
