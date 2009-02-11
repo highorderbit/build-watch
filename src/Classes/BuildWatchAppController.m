@@ -216,6 +216,10 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
 - (void) deleteServerGroupWithName:(NSString *)serverGroupName
 {
+    NSAssert1([self canServerGroupBeDeleted:serverGroupName],
+        @"Deleting server group with name '%@', but that server group can not "
+        "be deleted.", serverGroupName);
+
     NSArray * projectIds = [self projectIdsForServer:serverGroupName];
     for (NSString * projectId in projectIds)
         [projectDisplayNames removeObjectForKey:projectId];
