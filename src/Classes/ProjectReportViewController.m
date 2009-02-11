@@ -3,44 +3,75 @@
 //
 
 #import "ProjectReportViewController.h"
+#import "NameValueTableViewCell.h"
+#import "NSDate+BuildServiceAdditions.h"
 
-static const NSInteger NUM_SECTIONS = 2;
+static NSString * StandardSectionCellIdentifier = @"StandardSectionCell";
 
+static const NSInteger NUM_SECTIONS = 3;
 enum Sections
 {
-    kProjectDetailSection,
-    kProjectActionSection
+    kBuildDetailsSection,
+    kBuildChangesetSection,
+    kBuildActionSection
 };
 
-static const NSInteger NUM_PROPERTY_CELLS = 1;
-static const NSInteger NUM_ACTION_CELLS = 3;
-
-enum ActionCells
+static const NSInteger NUM_BUILD_DETAIL_ROWS = 2;
+enum BuildDetailRows
 {
-    kForceBuildCell,
-    kEmailReportCell,
-    kVisitWebsiteCell
+    kBuildDateRow,
+    kBuildLabelRow
+};
+
+static const NSInteger NUM_BUILD_CHANGESET_ROWS = 1;
+enum BuildChangesetRows
+{
+    kBuildChangesetDetails
+};
+
+static const NSInteger NUM_BUILD_ACTION_ROWS = 3;
+enum ActionRows
+{
+    kForceBuildRow,
+    kEmailReportRow,
+    kVisitWebsiteRow
 };
 
 @interface ProjectReportViewController (Private)
+- (void) configureBuildDetailTableViewCell:(NameValueTableViewCell *)cell
+                               forRowIndex:(NSInteger)row;
 - (NSString *) buttonTextForCellAtIndex:(NSInteger)row;
 - (void) forceBuild;
 - (void) emailReport;
 - (void) visitWebsite;
+- (NSString *) reuseIdentifierForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewCell *) cellInstanceForRowAtIndexPath:(NSIndexPath *)indexPath
+                                    reuseIdentifier:(NSString *)identifier;
 @end
 
 @implementation ProjectReportViewController
 
 @synthesize tableView;
+@synthesize headerImage;
+@synthesize headerLabel;
 @synthesize projectId;
 @synthesize delegate;
 
 - (void) dealloc
 {
     [tableView release];
+    [headerImage release];
+    [headerLabel release];
     [projectId release];
     [delegate release];
     [super dealloc];
+}
+
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+
+    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -49,6 +80,12 @@ enum ActionCells
 
     self.navigationItem.title =
         NSLocalizedString(@"projectdetails.view.title", @"");
+
+    headerImage.image =
+        [delegate buildSucceededStateForProject:projectId] ?
+            [UIImage imageNamed:@"build-succeeded.png"] :
+            [UIImage imageNamed:@"build-broken.png"];
+    headerLabel.text = [delegate displayNameForProject:projectId];
 
     NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selectedRow animated:NO];
@@ -64,30 +101,52 @@ enum ActionCells
 - (NSInteger) tableView:(UITableView *)tv
   numberOfRowsInSection:(NSInteger)section
 {
-    return section == kProjectDetailSection ?
-        NUM_PROPERTY_CELLS : NUM_ACTION_CELLS;
+    NSInteger nrows = 0;
+
+    switch (section) {
+        case kBuildDetailsSection:
+            nrows = NUM_BUILD_DETAIL_ROWS;
+            break;
+        case kBuildChangesetSection:
+            nrows = NUM_BUILD_CHANGESET_ROWS;
+            break;
+        case kBuildActionSection:
+            nrows = NUM_BUILD_ACTION_ROWS;
+            break;
+    }
+
+    return nrows;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tv
           cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * CellIdentifier = @"Cell";
+    NSString * reuseIdentifier =
+        [self reuseIdentifierForRowAtIndexPath:indexPath];
 
     UITableViewCell * cell =
-        [tv dequeueReusableCellWithIdentifier:CellIdentifier];
+        [tv dequeueReusableCellWithIdentifier:reuseIdentifier];
 
     if (cell == nil)
-        cell =
-        [[[UITableViewCell alloc]
-          initWithFrame:CGRectZero reuseIdentifier:CellIdentifier]
-         autorelease];
+        cell = [self cellInstanceForRowAtIndexPath:indexPath
+                                   reuseIdentifier:reuseIdentifier];
 
     switch (indexPath.section) {
-        case kProjectDetailSection:
-            cell.text = [delegate displayNameForProject:projectId];
+        case kBuildDetailsSection: {
+            NameValueTableViewCell * nvcell = (NameValueTableViewCell *) cell;
+            [self configureBuildDetailTableViewCell:nvcell
+                                        forRowIndex:indexPath.row];
+            break;
+        }
+
+        case kBuildChangesetSection:
+            cell.textAlignment = UITextAlignmentLeft;
+            cell.text =
+                NSLocalizedString(@"projectdetails.builddetails.label", @"");
             break;
 
-        case kProjectActionSection:
+        case kBuildActionSection:
+            cell.textAlignment = UITextAlignmentCenter;
             cell.text = [self buttonTextForCellAtIndex:indexPath.row];
             break;
     }
@@ -95,23 +154,31 @@ enum ActionCells
     return cell;
 }
 
+- (UITableViewCellAccessoryType)tableView:(UITableView *)tv
+         accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    return indexPath.section == kBuildChangesetSection ?
+        UITableViewCellAccessoryDisclosureIndicator :
+        UITableViewCellAccessoryNone;
+}
+
 - (NSIndexPath *) tableView:(UITableView *)tv
    willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return indexPath.section == kProjectActionSection ? indexPath : nil;
+    return indexPath.section == kBuildActionSection ? indexPath : nil;
 }
 
 - (void)      tableView:(UITableView *)tv
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.row) {
-        case kForceBuildCell:
+        case kForceBuildRow:
             [self forceBuild];
             break;
-        case kEmailReportCell:
+        case kEmailReportRow:
             [self emailReport];
             break;
-        case kVisitWebsiteCell:
+        case kVisitWebsiteRow:
             [self visitWebsite];
             break;
     }
@@ -119,16 +186,35 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 #pragma mark Helper methods
 
+- (void) configureBuildDetailTableViewCell:(NameValueTableViewCell *)cell
+                               forRowIndex:(NSInteger)index
+{
+    switch (index) {
+        case kBuildDateRow:
+            cell.name =
+                NSLocalizedString(@"projectdetails.builddate.label", @"");
+            cell.value =
+                [[delegate pubDateForProject:projectId] localizedString];
+            break;
+
+        case kBuildLabelRow:
+            cell.name =
+                NSLocalizedString(@"projectdetails.buildlabel.label", @"");
+            cell.value = [delegate labelForProject:projectId];
+            break;
+    }
+}
+
 - (NSString *) buttonTextForCellAtIndex:(NSInteger)row
 {
     switch (row) {
-        case kForceBuildCell:
+        case kForceBuildRow:
             return NSLocalizedString(@"projectdetails.forcebuild.label", @"");
 
-        case kEmailReportCell:
+        case kEmailReportRow:
             return NSLocalizedString(@"projectdetails.emailreport.label", @"");
 
-        case kVisitWebsiteCell:
+        case kVisitWebsiteRow:
             return NSLocalizedString(@"projectdetails.visitwebsite.label", @"");
     }
 
@@ -195,6 +281,44 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     NSURL * url = [[NSURL alloc] initWithString:webAddress];
     [[UIApplication sharedApplication] openURL:url];
     [url release];
+}
+
+- (NSString *) reuseIdentifierForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString * reuseIdentifier = @"";
+
+    switch (indexPath.section) {
+        case kBuildDetailsSection:
+            reuseIdentifier = [NameValueTableViewCell reuseIdentifier];
+            break;
+        case kBuildChangesetSection:
+        case kBuildActionSection:
+            reuseIdentifier = StandardSectionCellIdentifier;
+            break;
+    }
+
+    return reuseIdentifier;
+}
+
+- (UITableViewCell *) cellInstanceForRowAtIndexPath:(NSIndexPath *)indexPath
+                                    reuseIdentifier:(NSString *)identifier
+{
+    UITableViewCell * cell = nil;
+
+    switch (indexPath.section) {
+        case kBuildDetailsSection:
+            cell = [NameValueTableViewCell createInstance];
+            break;
+        case kBuildChangesetSection:
+        case kBuildActionSection:
+            cell =
+                [[[UITableViewCell alloc]
+                  initWithFrame:CGRectZero reuseIdentifier:identifier]
+                 autorelease];
+            break;
+    }
+
+    return cell;
 }
 
 #pragma mark Accessors

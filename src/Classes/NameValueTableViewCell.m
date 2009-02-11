@@ -45,6 +45,25 @@
     valueLabel.textColor = valueColor;
 }
 
+#pragma mark Helper functions for creating instances
+
++ (NameValueTableViewCell *) createInstance
+{
+    NSArray * nib =
+        [[NSBundle mainBundle]
+          loadNibNamed:@"NameValueTableViewCell" 
+                 owner:self
+               options:nil];
+
+    return [nib objectAtIndex:1];
+}
+
++ (NSString *) reuseIdentifier
+{
+    // must match what is set in the nib file
+    return @"NameValueTableViewCell";
+}
+
 #pragma mark Get and set the values of the name and value
 
 - (void) setName:(NSString *)name

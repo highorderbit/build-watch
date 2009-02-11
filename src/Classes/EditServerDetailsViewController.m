@@ -7,7 +7,6 @@
 #import "ServerReport.h"
 
 static NSString * SettingsSectionCellIdentifier = @"SettingsSectionCell";
-static NSString * DetailsSectionCellIdentifier = @"DetailsSectionCell";
 
 static const NSInteger NUMBER_OF_SECTIONS = 2;
 enum Sections
@@ -112,8 +111,10 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
 - (UITableViewCell *) tableView:(UITableView *)tv
           cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * cellIdentifier = indexPath.section == kSettingsSection ?
-        SettingsSectionCellIdentifier : DetailsSectionCellIdentifier;
+    NSString * cellIdentifier =
+        indexPath.section == kSettingsSection ?
+            SettingsSectionCellIdentifier :
+            [NameValueTableViewCell reuseIdentifier];
 
     UITableViewCell * cell =
         [tv dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -121,14 +122,8 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
     if (cell == nil)
         if (indexPath.section == kSettingsSection)
             cell = self.editServerNameCell;
-        else {
-            NSArray * nib =
-                [[NSBundle mainBundle]
-                  loadNibNamed:@"NameValueTableViewCell" 
-                         owner:self
-                       options:nil];
-            cell = [nib objectAtIndex:1];
-        }
+        else
+            cell = [NameValueTableViewCell createInstance];
 
     if (indexPath.section == kSettingsSection) {
         UITextField * textField =
