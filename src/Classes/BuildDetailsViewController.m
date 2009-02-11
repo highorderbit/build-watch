@@ -40,11 +40,14 @@
          NSLocalizedString(@"builddetails.title.formatstring", @""),
          displayName, label];
 
+    NSString * bodyCss = @"font-family: 'Lucida Grande';"
+                          "font-size: 3em;"
+                          "margin: 30px";
     NSString * html = [NSString stringWithFormat:
         @"<html><head><title>%@</title></head>"
-        "<body style=\"font-family: 'Lucida Grande'; font-size: 3em; margin: 30px;\">%@</body>"
+        "<body style=\"%@\">%@</body>"
          "</body></html>",
-        displayName, description];
+        displayName, bodyCss, description];
 
     [webView loadHTMLString:html baseURL:[NSURL URLWithString:@"/"]];
 }
