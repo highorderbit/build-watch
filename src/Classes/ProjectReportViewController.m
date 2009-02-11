@@ -233,10 +233,36 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void) emailReport
 {
-    NSURL * url =
-        [[NSURL alloc]
-         initWithString:@"mailto:?subject=subject&body=body"];
-    [[UIApplication sharedApplication] openURL:url];
+    NSString * displayName = [delegate displayNameForProject:projectId];
+    NSString * buildLabel = [delegate labelForProject:projectId];
+    NSString * buildStatus =
+        [delegate buildSucceededStateForProject:projectId] ?
+        @"succeeded" : @"failed";
+    NSDate * pubDate = [delegate pubDateForProject:projectId];
+    NSString * webAddress = [delegate linkForProject:projectId];
+    NSString * details = [delegate descriptionForProject:projectId];
+    
+    NSString * subject =
+        [NSString stringWithFormat:@"%@ build %@ %@",
+         displayName, buildLabel, buildStatus];
+    NSString * body =
+        [NSString stringWithFormat:
+         @"-- %@ build report --\n\n"
+         "Status:  %@\n"
+         "Date:  %@\n"
+         "Build:  %@\n\n"
+         "Web page:  %@\n\n"
+         "Details:\n\n%@",
+         displayName, buildStatus, pubDate, buildLabel, webAddress, details];
+    NSString * urlString =
+        [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
+         subject, body];
+    
+    NSURL * url = [[NSURL alloc] initWithString:urlString];
+    //[[UIApplication sharedApplication] openURL:url];
+    NSLog(@"Subject: %@", subject);
+    NSLog(@"Body: %@", body);
+    NSLog(@"URL: %@", urlString);
     [url release];
 }
 

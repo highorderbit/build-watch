@@ -13,10 +13,10 @@
 
 - (NSString *) descriptionForProject:(NSString *)project;
 
-- (NSString *) pubDateForProject:(NSString *)project;
+- (NSDate *) pubDateForProject:(NSString *)project;
 
 - (NSString *) linkForProject:(NSString *)project;
 
-- (NSString *) buildSucceededStateForProject:(NSString *)project;
+- (BOOL) buildSucceededStateForProject:(NSString *)project;
 
 @end
