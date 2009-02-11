@@ -7,19 +7,21 @@
 @implementation ProjectReport
 
 @synthesize name;
+@synthesize label;
 @synthesize description;
 @synthesize pubDate;
 @synthesize link;
 @synthesize buildSucceeded;
 
-+ (id)report
++ (id) report
 {
     return [[[[self class] alloc] init] autorelease];
 }
 
-- (void)dealloc
+- (void) dealloc
 {
     [name release];
+    [label release];
     [description release];
     [pubDate release];
     [link release];

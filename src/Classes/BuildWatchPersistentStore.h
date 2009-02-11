@@ -4,7 +4,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @protocol BuildWatchPersistentStore
 
 /**
@@ -28,6 +27,10 @@
 - (void) saveProjectDisplayNames:(NSDictionary *)projectDisplayNames;
 
 - (NSDictionary *) getProjectDisplayNames;
+
+- (void) saveProjectLabels:(NSDictionary *)projectLabels;
+
+- (NSDictionary *) getProjectLabels;
 
 - (void) saveProjectDescriptions:(NSDictionary *)projectDescriptions;
 

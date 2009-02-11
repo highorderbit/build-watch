@@ -6,6 +6,7 @@
 
 @interface ProjectReport : NSObject {
     NSString * name;
+    NSString * label;
     NSString * description;
     NSDate * pubDate;
     NSString * link;
@@ -13,6 +14,7 @@
 }
 
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * label;
 @property (nonatomic, retain) NSString * description;
 @property (nonatomic, retain) NSDate * pubDate;
 @property (nonatomic, retain) NSString * link;

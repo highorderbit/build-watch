@@ -17,6 +17,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 - (void) setServerGroupPatterns:(NSDictionary *)newServerGroupPatterns;
 - (void) setServerNames:(NSDictionary *)newServerNames;
 - (void) setProjectDisplayNames:(NSDictionary *)newProjectDisplayNames;
+- (void) setProjectLabels:(NSDictionary *)newProjectLabels;
 - (void) setProjectDescriptions:(NSDictionary *)newProjectDescriptions;
 - (void) setProjectPubDates:(NSDictionary *)newProjectPubDates;
 - (void) setProjectLinks:(NSDictionary *)newProjectLinks;
@@ -53,6 +54,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [projectSelector release];
     [projectReporter release];
     [projectDisplayNames release];
+    [projectLabels release];
     [projectDescriptions release];
     [projectPubDates release];
     [projectLinks release];
@@ -76,6 +78,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [self setServerNames:allServerNames];
 
     [self setProjectDisplayNames:[persistentStore getProjectDisplayNames]];
+    [self setProjectLabels:[persistentStore getProjectLabels]];
     [self setProjectDescriptions:[persistentStore getProjectDescriptions]];
     [self setProjectPubDates:[persistentStore getProjectPubDates]];
     [self setProjectLinks:[persistentStore getProjectLinks]];
@@ -96,6 +99,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [persistentStore saveServerGroupPatterns:serverGroupPatterns];
     [persistentStore saveServerNames:serverNames];
     [persistentStore saveProjectDisplayNames:projectDisplayNames];
+    [persistentStore saveProjectLabels:projectLabels];
     [persistentStore saveProjectDescriptions:projectDescriptions];
     [persistentStore saveProjectPubDates:projectPubDates];
     [persistentStore saveProjectLinks:projectLinks];
@@ -286,6 +290,31 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     return displayName;
 }
 
+- (NSString *) labelForProject:(NSString *)project
+{
+    return [projectLabels objectForKey:project];
+}
+
+- (NSString *) descriptionForProject:(NSString *)project
+{
+    return [projectDescriptions objectForKey:project];
+}
+
+- (NSString *) pubDateForProject:(NSString *)project
+{
+    return [projectPubDates objectForKey:project];
+}
+
+- (NSString *) linkForProject:(NSString *)project
+{
+    return [projectLinks objectForKey:project];
+}
+
+- (NSString *) buildSucceededStateForProject:(NSString *)project
+{
+    return [projectBuildSucceededStates objectForKey:project];
+}
+
 - (NSString *) displayNameForCurrentProjectGroup
 {
     return [serverNames objectForKey:activeServerGroupName];
@@ -300,11 +329,6 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 {
     [projectTrackedStates setObject:[NSNumber numberWithBool:state]
                              forKey:project];
-}
-
-- (NSString *) linkForProject:(NSString *)project
-{
-    return [projectLinks objectForKey:project];
 }
 
 #pragma mark ServerDataRefresher implementation
@@ -358,6 +382,15 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
         [newProjectDisplayNames mutableCopy];
     [projectDisplayNames release];
     projectDisplayNames = tempProjectDisplayNames;
+}
+
+- (void) setProjectLabels:(NSDictionary *)newProjectLabels
+{
+    NSMutableDictionary * tempProjectLabels =
+        [newProjectLabels mutableCopy];
+    [projectLabels release];
+    projectLabels = tempProjectLabels;
+    
 }
 
 - (void) setProjectDescriptions:(NSDictionary *)newProjectDescriptions
@@ -433,6 +466,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
         [[self class] keyForProject:projReport.name andServer:server];
         
         [projectDisplayNames setObject:projReport.name forKey:projectKey];
+        [projectLabels setObject:projReport.label forKey:projectKey];
         [projectDescriptions setObject:projReport.description
                                 forKey:projectKey];
         [projectPubDates setObject:projReport.pubDate forKey:projectKey];
@@ -458,6 +492,11 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
              addObject:[[self class]keyForProject:project andServer:server]];
     
     [projectDisplayNames removeObjectsForKeys:missingProjectIds];
+    [projectLabels removeObjectsForKeys:missingProjectIds];
+    [projectDescriptions removeObjectsForKeys:missingProjectIds];
+    [projectPubDates removeObjectsForKeys:missingProjectIds];
+    [projectLinks removeObjectsForKeys:missingProjectIds];
+    [projectBuildSucceededStates removeObjectsForKeys:missingProjectIds];
     [projectTrackedStates removeObjectsForKeys:missingProjectIds];
     
     [missingProjectIds release];

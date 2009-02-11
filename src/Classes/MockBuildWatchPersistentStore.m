@@ -85,6 +85,14 @@
     return projectDisplayNames;
 }
 
+- (void) saveProjectLabels:(NSDictionary *)projectLabels
+{}
+
+- (NSDictionary *) getProjectLabels
+{
+    return nil;
+}
+
 - (void) saveProjectDescriptions:(NSDictionary *)projectDescriptions
 {}
 

@@ -50,6 +50,16 @@
     return [PListUtils readDictionaryFromPList:@"ProjectDisplayNames"];
 }
 
+- (void) saveProjectLabels:(NSDictionary *)projectLabels
+{
+    [PListUtils writeDictionary:projectLabels toPList:@"ProjectLabels"];
+}
+
+- (NSDictionary *) getProjectLabels
+{
+    return [PListUtils readDictionaryFromPList:@"ProjectLabels"];
+}
+
 - (void) saveProjectDescriptions:(NSDictionary *)projectDescriptions
 {
     [PListUtils writeDictionary:projectDescriptions

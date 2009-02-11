@@ -39,6 +39,7 @@
     // Various project properties, mapped as follows:
     //     (NSString *) project id -> property value
     NSMutableDictionary * projectDisplayNames;
+    NSMutableDictionary * projectLabels;
     NSMutableDictionary * projectDescriptions;
     NSMutableDictionary * projectPubDates;
     NSMutableDictionary * projectLinks;
