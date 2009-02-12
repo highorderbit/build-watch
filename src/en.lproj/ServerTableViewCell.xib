@@ -83,9 +83,9 @@
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="IBUIText">2 broken</string>
+								<string key="IBUIText">25 broken</string>
 								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica</string>
+									<string key="NSName">Helvetica-Bold</string>
 									<double key="NSSize">1.600000e+01</double>
 									<int key="NSfFlags">16</int>
 								</object>
@@ -230,7 +230,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UIResponder</string>
 					<string>ServerTableViewCell</string>
-					<string>{{92, 601}, {320, 64}}</string>
+					<string>{{340, 875}, {320, 64}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
