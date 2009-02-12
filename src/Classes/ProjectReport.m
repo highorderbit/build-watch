@@ -11,6 +11,7 @@
 @synthesize description;
 @synthesize pubDate;
 @synthesize link;
+@synthesize forceBuildLink;
 @synthesize buildSucceeded;
 
 + (id) report
@@ -25,6 +26,7 @@
     [description release];
     [pubDate release];
     [link release];
+    [forceBuildLink release];
     [super dealloc];
 }
 

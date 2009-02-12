@@ -10,6 +10,7 @@
     NSString * description;
     NSDate * pubDate;
     NSString * link;
+    NSString * forceBuildLink;
     BOOL buildSucceeded;
 }
 
@@ -18,6 +19,7 @@
 @property (nonatomic, retain) NSString * description;
 @property (nonatomic, retain) NSDate * pubDate;
 @property (nonatomic, retain) NSString * link;
+@property (nonatomic, retain) NSString * forceBuildLink;
 @property (nonatomic, assign) BOOL buildSucceeded;
 
 + (id)report;
