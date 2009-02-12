@@ -10,6 +10,11 @@
 @synthesize webAddressLabel;
 @synthesize brokenBuildsLabel;
 
+- (void) awakeFromNib
+{
+    self.contentView.clipsToBounds = YES;
+}
+
 - (void) dealloc
 {
     [nameLabel release];
@@ -21,6 +26,11 @@
 
 - (void) setSelected:(BOOL)selected animated:(BOOL)animated
 {
+    if(self.contentView == webAddressLabel.superview)
+        NSLog(@"Name label IS in the content view");
+    else
+        NSLog(@"Name label IS NOT in the content view");
+    
     [super setSelected:selected animated:animated];
     
     if(selected) {

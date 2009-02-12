@@ -147,7 +147,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>ProjectsViewController</string>
 					<string>UIResponder</string>
-					<string>{{792, 460}, {320, 480}}</string>
+					<string>{{777, 519}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
@@ -172,7 +172,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">7</int>
+			<int key="maxID">8</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
