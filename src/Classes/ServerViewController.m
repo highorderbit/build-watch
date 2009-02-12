@@ -45,9 +45,6 @@
 
     self.navigationItem.leftBarButtonItem.enabled =
         visibleServerGroupNames.count > 0;
-    
-    // this resets the last selected cell text to black from white
-    [tableView reloadData];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -91,13 +88,11 @@
         [delegate
          displayNameForServerGroupName:
          [visibleServerGroupNames objectAtIndex:indexPath.row]];
-    cell.nameLabel.textColor = [UIColor blackColor];
     
     cell.webAddressLabel.text =
         [delegate
          webAddressForServerGroupName:
          [visibleServerGroupNames objectAtIndex:indexPath.row]];
-    cell.webAddressLabel.textColor = [UIColor grayColor];
     
     int numBroken =
         [delegate
@@ -106,14 +101,15 @@
     cell.brokenBuildsLabel.text =
         [NSString stringWithFormat:@"%@ broken",
          [NSNumber numberWithInt:numBroken]];
-    cell.brokenBuildsLabel.textColor =
+    [cell setBrokenBuildTextColor:
         numBroken == 0 ?
-        [UIColor colorWithRed:0 green:0.4 blue:0 alpha:1] : [UIColor redColor];
+        [UIColor colorWithRed:0 green:0.4 blue:0 alpha:1] :
+        [UIColor redColor]];
     
     return cell;
 }
 
-- (CGFloat)   tableView:(UITableView *)tableView
+- (CGFloat)   tableView:(UITableView *)tv
 heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 64;
@@ -122,12 +118,6 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)      tableView:(UITableView *)tv
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ServerTableViewCell * cell =
-        (ServerTableViewCell *) [tableView cellForRowAtIndexPath:indexPath];
-    cell.nameLabel.textColor = [UIColor whiteColor];
-    cell.webAddressLabel.textColor = [UIColor whiteColor];
-    cell.brokenBuildsLabel.textColor = [UIColor whiteColor];
-    
     [delegate
      userDidSelectServerGroupName:
         [visibleServerGroupNames objectAtIndex:indexPath.row]];
@@ -194,9 +184,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         else
             [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
     }
-
-    [tableView beginUpdates];
+    
     [tableView setEditing:editing animated:animated];
+    
+    [tableView beginUpdates];
 
     if (editing) {
         self.visibleServerGroupNames = visible;

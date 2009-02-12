@@ -158,9 +158,27 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     
     [self updateVisibleProjects];
     
-    [tableView beginUpdates];
+    NSMutableArray * indexPathsOfHidden = [NSMutableArray array];
+    for (NSInteger i = 0; i < projects.count; ++i) {
+        NSString * project = [projects objectAtIndex:i];
+        if (![delegate trackedStateForProject:project])
+            [indexPathsOfHidden addObject:
+             [NSIndexPath indexPathForRow:i inSection:0]];
+    }
+    
     [tableView setEditing:editing animated:animated];
+    
+    [tableView beginUpdates];
+    
+    if (editing)
+        [tableView insertRowsAtIndexPaths:indexPathsOfHidden
+                         withRowAnimation:UITableViewRowAnimationTop];
+    else
+        [tableView deleteRowsAtIndexPaths:indexPathsOfHidden
+                         withRowAnimation:UITableViewRowAnimationTop];        
+    
     [tableView endUpdates];
+    
     [tableView reloadData];
 }
 

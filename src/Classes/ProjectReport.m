@@ -30,4 +30,19 @@
     [super dealloc];
 }
 
+- (id) copyWithZone:(NSZone *)zone
+{
+    ProjectReport * report = [[[self class] allocWithZone:zone] init];
+
+    report.name = self.name;
+    report.label = self.label;
+    report.description = self.description;
+    report.pubDate = self.pubDate;
+    report.link = self.link;
+    report.forceBuildLink = self.forceBuildLink;
+    report.buildSucceeded = self.buildSucceeded;
+
+    return report;
+}
+
 @end

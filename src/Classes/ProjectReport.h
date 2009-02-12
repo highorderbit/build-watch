@@ -14,12 +14,12 @@
     BOOL buildSucceeded;
 }
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * label;
-@property (nonatomic, retain) NSString * description;
-@property (nonatomic, retain) NSDate * pubDate;
-@property (nonatomic, retain) NSString * link;
-@property (nonatomic, retain) NSString * forceBuildLink;
+@property (nonatomic, copy) NSString * name;
+@property (nonatomic, copy) NSString * label;
+@property (nonatomic, copy) NSString * description;
+@property (nonatomic, copy) NSDate * pubDate;
+@property (nonatomic, copy) NSString * link;
+@property (nonatomic, copy) NSString * forceBuildLink;
 @property (nonatomic, assign) BOOL buildSucceeded;
 
 + (id)report;

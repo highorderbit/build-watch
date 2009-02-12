@@ -14,7 +14,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet UITableView * tableView;
-@property (nonatomic, retain) NSArray * projects;
+@property (nonatomic, copy) NSArray * projects;
 @property (nonatomic, retain) NSObject<ProjectSelectorDelegate> * delegate;
 
 @end

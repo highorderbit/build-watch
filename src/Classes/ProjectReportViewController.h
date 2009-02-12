@@ -29,7 +29,7 @@
 @property (nonatomic, retain) IBOutlet UIImageView * headerImage;
 @property (nonatomic, retain) IBOutlet UILabel * headerLabel;
 @property (nonatomic, retain) ForceBuildTableViewCell * forceBuildTableViewCell;
-@property (nonatomic, retain) NSString * projectId;
+@property (nonatomic, copy) NSString * projectId;
 @property (nonatomic, retain) NSObject<ProjectReporterDelegate> * delegate;
 @property (nonatomic, retain) IBOutlet NSObject<BuildForcer> * buildForcer;
 

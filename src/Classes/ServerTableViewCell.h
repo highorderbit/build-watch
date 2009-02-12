@@ -8,10 +8,13 @@
     UILabel * nameLabel;
     UILabel * webAddressLabel;
     UILabel * brokenBuildsLabel;
+    UIColor * brokenBuildTextColor;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel * nameLabel;
 @property (nonatomic, retain) IBOutlet UILabel * webAddressLabel;
 @property (nonatomic, retain) IBOutlet UILabel * brokenBuildsLabel;
+
+- (void) setBrokenBuildTextColor:(UIColor *)color;
 
 @end

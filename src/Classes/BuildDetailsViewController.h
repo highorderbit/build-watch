@@ -19,6 +19,6 @@
 @property (nonatomic, retain) IBOutlet UIImageView * headerImage;
 @property (nonatomic, retain) IBOutlet UIWebView * webView;
 @property (nonatomic, retain) NSObject<ProjectReporterDelegate> * delegate;
-@property (nonatomic, retain) NSString * projectId;
+@property (nonatomic, copy) NSString * projectId;
 
 @end
