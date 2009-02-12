@@ -43,6 +43,7 @@
     NSMutableDictionary * projectDescriptions;
     NSMutableDictionary * projectPubDates;
     NSMutableDictionary * projectLinks;
+    NSMutableDictionary * projectForceBuildLinks;
     NSMutableDictionary * projectBuildSucceededStates;
     
     // Project tracked states, set by user, mapped as follows:

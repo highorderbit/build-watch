@@ -1,20 +1,22 @@
 //
-//  Copyright 2009 High Order Bit, Inc.. All rights reserved.
+//  Copyright High Order Bit, Inc. 2009. All rights reserved.
 //
 
 #import "UIProjectReporter.h"
+//#import "CcrbBuildForcer.h"
 #import "ProjectReportViewController.h"
-
 
 @implementation UIProjectReporter
 
 @synthesize delegate;
+//@synthesize buildForcer;
 @synthesize navigationController;
 @synthesize projectReportViewController;
 
 - (void) dealloc
 {
     [delegate release];
+    //[buildForcer release];
     [navigationController release];
     [projectReportViewController release];
     [super dealloc];
@@ -31,14 +33,26 @@
 
 #pragma mark Accessors
 
-- (ProjectReportViewController *)projectReportViewController
+- (ProjectReportViewController *) projectReportViewController
 {
     if (projectReportViewController == nil) {
         projectReportViewController = [[ProjectReportViewController alloc]
             initWithNibName:@"ProjectReportView" bundle:nil];
         projectReportViewController.delegate = delegate;
+        //projectReportViewController.buildForcer = self.buildForcer;
+        //self.buildForcer.delegate = projectReportViewController;
     }
     return projectReportViewController;
 }
+
+/*
+- (CcrbBuildForcer *) buildForcer
+{
+    if (buildForcer == nil)
+        buildForcer = [[CcrbBuildForcer alloc] init];
+
+    return buildForcer;
+}
+*/
 
 @end

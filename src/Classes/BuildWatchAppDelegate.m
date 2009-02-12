@@ -28,7 +28,6 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    NSLog(@"%@: Awaking from nib.", self);
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application

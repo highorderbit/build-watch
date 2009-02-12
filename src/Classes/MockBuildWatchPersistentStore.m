@@ -117,6 +117,14 @@
     return nil;
 }
 
+- (void) saveProjectForceBuildLinks:(NSDictionary *)projectForceBuildLinks
+{}
+
+- (NSDictionary *) getProjectForceBuildLinks
+{
+    return nil;
+}
+
 - (void) saveProjectBuildSucceededStates:
     (NSDictionary *)projectBuildSucceededStates
 {}

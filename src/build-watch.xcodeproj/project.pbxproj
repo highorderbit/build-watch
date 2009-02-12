@@ -13,6 +13,8 @@
 		0524CE5E0F3CBC6600C020FE /* EditServerDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0524CE5C0F3CBC6600C020FE /* EditServerDetailsView.xib */; };
 		053A95120F3B998B0092763D /* UIProjectReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 053A95110F3B998B0092763D /* UIProjectReporter.m */; };
 		053A95150F3B9BF60092763D /* ProjectReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 053A95140F3B9BF60092763D /* ProjectReportViewController.m */; };
+		05473A6B0F44AD4C003F5444 /* ProjectForceBuildLinks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05473A6A0F44AD4C003F5444 /* ProjectForceBuildLinks.plist */; };
+		05473C470F44E45E003F5444 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 05473C460F44E45E003F5444 /* checkmark.png */; };
 		057CDAFD0F42799D00B63112 /* BuildDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 057CDAFC0F42799D00B63112 /* BuildDetailsViewController.m */; };
 		059CBD480F3BA40900010F3F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 059CBD460F3BA40900010F3F /* Localizable.strings */; };
 		059CBDC20F3BAE7400010F3F /* ProjectReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059CBDC00F3BAE7400010F3F /* ProjectReportView.xib */; };
@@ -23,6 +25,9 @@
 		05A1FDA20F42237E00E2C085 /* NameValueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A1FDA10F42237E00E2C085 /* NameValueTableViewCell.m */; };
 		05A1FF900F425F3E00E2C085 /* build-succeeded.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A1FF8E0F425F3E00E2C085 /* build-succeeded.png */; };
 		05A1FF930F425F7A00E2C085 /* build-broken.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A1FF920F425F7A00E2C085 /* build-broken.png */; };
+		05D8AF990F43B3DA00F07532 /* ForceBuildTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05D8AF970F43B3DA00F07532 /* ForceBuildTableViewCell.xib */; };
+		05D8AF9E0F43B57100F07532 /* ForceBuildTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D8AF9D0F43B57100F07532 /* ForceBuildTableViewCell.m */; };
+		05D8AFE20F43CC3D00F07532 /* CcrbBuildForcer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D8AFE10F43CC3D00F07532 /* CcrbBuildForcer.m */; };
 		05E911050F3A056F00E646F6 /* BuildWatchAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E911040F3A056F00E646F6 /* BuildWatchAppController.m */; };
 		05E911100F3A11F700E646F6 /* MockBuildWatchPersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E9110F0F3A11F700E646F6 /* MockBuildWatchPersistentStore.m */; };
 		05E911E70F3A453300E646F6 /* UIServerSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E911E60F3A453300E646F6 /* UIServerSelector.m */; };
@@ -88,6 +93,8 @@
 		053A95110F3B998B0092763D /* UIProjectReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIProjectReporter.m; sourceTree = "<group>"; };
 		053A95130F3B9BF60092763D /* ProjectReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectReportViewController.h; sourceTree = "<group>"; };
 		053A95140F3B9BF60092763D /* ProjectReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectReportViewController.m; sourceTree = "<group>"; };
+		05473A6A0F44AD4C003F5444 /* ProjectForceBuildLinks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectForceBuildLinks.plist; sourceTree = "<group>"; };
+		05473C460F44E45E003F5444 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 		057CDAFB0F42799D00B63112 /* BuildDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildDetailsViewController.h; sourceTree = "<group>"; };
 		057CDAFC0F42799D00B63112 /* BuildDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildDetailsViewController.m; sourceTree = "<group>"; };
 		059CBD470F3BA40900010F3F /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -103,6 +110,13 @@
 		05A1FDA10F42237E00E2C085 /* NameValueTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameValueTableViewCell.m; sourceTree = "<group>"; };
 		05A1FF8E0F425F3E00E2C085 /* build-succeeded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "build-succeeded.png"; sourceTree = "<group>"; };
 		05A1FF920F425F7A00E2C085 /* build-broken.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "build-broken.png"; sourceTree = "<group>"; };
+		05D8AF980F43B3DA00F07532 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ForceBuildTableViewCell.xib; sourceTree = "<group>"; };
+		05D8AF9C0F43B57100F07532 /* ForceBuildTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForceBuildTableViewCell.h; sourceTree = "<group>"; };
+		05D8AF9D0F43B57100F07532 /* ForceBuildTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForceBuildTableViewCell.m; sourceTree = "<group>"; };
+		05D8AFBE0F43BB7800F07532 /* BuildForcer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildForcer.h; sourceTree = "<group>"; };
+		05D8AFC10F43BB7F00F07532 /* BuildForcerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildForcerDelegate.h; sourceTree = "<group>"; };
+		05D8AFE00F43CC3D00F07532 /* CcrbBuildForcer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CcrbBuildForcer.h; sourceTree = "<group>"; };
+		05D8AFE10F43CC3D00F07532 /* CcrbBuildForcer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CcrbBuildForcer.m; sourceTree = "<group>"; };
 		05E911030F3A056F00E646F6 /* BuildWatchAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildWatchAppController.h; sourceTree = "<group>"; };
 		05E911040F3A056F00E646F6 /* BuildWatchAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildWatchAppController.m; sourceTree = "<group>"; };
 		05E911070F3A111500E646F6 /* BuildWatchPersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildWatchPersistentStore.h; sourceTree = "<group>"; };
@@ -335,6 +349,12 @@
 				05A1FDA10F42237E00E2C085 /* NameValueTableViewCell.m */,
 				057CDAFB0F42799D00B63112 /* BuildDetailsViewController.h */,
 				057CDAFC0F42799D00B63112 /* BuildDetailsViewController.m */,
+				05D8AF9C0F43B57100F07532 /* ForceBuildTableViewCell.h */,
+				05D8AF9D0F43B57100F07532 /* ForceBuildTableViewCell.m */,
+				05D8AFBE0F43BB7800F07532 /* BuildForcer.h */,
+				05D8AFC10F43BB7F00F07532 /* BuildForcerDelegate.h */,
+				05D8AFE00F43CC3D00F07532 /* CcrbBuildForcer.h */,
+				05D8AFE10F43CC3D00F07532 /* CcrbBuildForcer.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -371,6 +391,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				05473C460F44E45E003F5444 /* checkmark.png */,
 				05A1FF920F425F7A00E2C085 /* build-broken.png */,
 				05A1FF8E0F425F3E00E2C085 /* build-succeeded.png */,
 				91844BA70F42459D00082108 /* ProjectLabels.plist */,
@@ -393,9 +414,11 @@
 				91D9ABDB0F3E03B50035454C /* ProjectTrackedStates.plist */,
 				91D9ADDA0F3E3B050035454C /* AboutView.xib */,
 				91E151B10F409FC2006D6A59 /* ProjectLinks.plist */,
+				05473A6A0F44AD4C003F5444 /* ProjectForceBuildLinks.plist */,
 				91ABDE260F4120A1003232A0 /* ServerTableViewCell.xib */,
 				05A1FD9C0F42225200E2C085 /* NameValueTableViewCell.xib */,
 				05A1001C0F42681B00E2C085 /* BuildDetailsView.xib */,
+				05D8AF970F43B3DA00F07532 /* ForceBuildTableViewCell.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -483,6 +506,9 @@
 				05A1FF900F425F3E00E2C085 /* build-succeeded.png in Resources */,
 				05A1FF930F425F7A00E2C085 /* build-broken.png in Resources */,
 				05A1001E0F42681B00E2C085 /* BuildDetailsView.xib in Resources */,
+				05D8AF990F43B3DA00F07532 /* ForceBuildTableViewCell.xib in Resources */,
+				05473A6B0F44AD4C003F5444 /* ProjectForceBuildLinks.plist in Resources */,
+				05473C470F44E45E003F5444 /* checkmark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +557,8 @@
 				918449EA0F4206F800082108 /* ServerTableViewCell.m in Sources */,
 				05A1FDA20F42237E00E2C085 /* NameValueTableViewCell.m in Sources */,
 				057CDAFD0F42799D00B63112 /* BuildDetailsViewController.m in Sources */,
+				05D8AF9E0F43B57100F07532 /* ForceBuildTableViewCell.m in Sources */,
+				05D8AFE20F43CC3D00F07532 /* CcrbBuildForcer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,6 +611,14 @@
 				05A1FD9D0F42225200E2C085 /* en */,
 			);
 			name = NameValueTableViewCell.xib;
+			sourceTree = "<group>";
+		};
+		05D8AF970F43B3DA00F07532 /* ForceBuildTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05D8AF980F43B3DA00F07532 /* en */,
+			);
+			name = ForceBuildTableViewCell.xib;
 			sourceTree = "<group>";
 		};
 		9149DF6D0F39053200A0E32C /* MainWindow.xib */ = {
