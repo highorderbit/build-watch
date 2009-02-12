@@ -16,14 +16,14 @@
 @synthesize nameLabel;
 @synthesize valueLabel;
 
-- (void)dealloc
+- (void) dealloc
 {
     [nameLabel release];
     [valueLabel release];
     [super dealloc];
 }
 
-- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier
+- (id) initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         // Initialization code
@@ -31,9 +31,8 @@
     return self;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+- (void) setSelected:(BOOL)selected animated:(BOOL)animated
 {
-
     [super setSelected:selected animated:animated];
 
     UIColor * nameColor = selected ?
