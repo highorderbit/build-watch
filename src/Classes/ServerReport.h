@@ -11,10 +11,10 @@
     NSArray * projectReports;
 }
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * link;
-@property (nonatomic, retain) NSString * dashboardLink;
-@property (nonatomic, retain) NSArray * projectReports;
+@property (nonatomic, copy) NSString * name;
+@property (nonatomic, copy) NSString * link;
+@property (nonatomic, copy) NSString * dashboardLink;
+@property (nonatomic, copy) NSArray * projectReports;
 
 + (id)report;
 + (id)reportWithName:(NSString *)aName

@@ -22,6 +22,6 @@
 @property (nonatomic, readonly) UITableViewCell * editServerUrlCell;
 @property (nonatomic, retain) NSObject<AddServerViewControllerDelegate> *
     delegate;
-@property (nonatomic, retain) NSString * serverUrl;
+@property (nonatomic, copy) NSString * serverUrl;
 
 @end

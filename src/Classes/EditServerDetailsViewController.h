@@ -25,7 +25,7 @@
 @property (nonatomic, readonly) UITableViewCell * editServerNameCell;
 @property (nonatomic, retain)
     NSObject<EditServerDetailsViewControllerDelegate> * delegate;
-@property (nonatomic, retain) ServerReport * serverReport;
-@property (nonatomic, retain) NSString * serverName;
+@property (nonatomic, copy) ServerReport * serverReport;
+@property (nonatomic, copy) NSString * serverName;
 
 @end
