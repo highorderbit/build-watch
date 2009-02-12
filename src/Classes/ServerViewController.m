@@ -45,9 +45,6 @@
 
     self.navigationItem.leftBarButtonItem.enabled =
         visibleServerGroupNames.count > 0;
-    
-    // this resets the last selected cell text to black from white
-    [tableView reloadData];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -187,9 +184,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         else
             [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
     }
-
-    [tableView beginUpdates];
+    
     [tableView setEditing:editing animated:animated];
+    
+    [tableView beginUpdates];
 
     if (editing) {
         self.visibleServerGroupNames = visible;
