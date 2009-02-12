@@ -466,7 +466,11 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
         [[self class] keyForProject:projReport.name andServer:server];
         
         [projectDisplayNames setObject:projReport.name forKey:projectKey];
-        [projectLabels setObject:projReport.label forKey:projectKey];
+        // TODO: Fix this
+        if (projReport.label == nil)
+            [projectLabels setObject:@"" forKey:projectKey];
+        else
+            [projectLabels setObject:projReport.label forKey:projectKey];
         [projectDescriptions setObject:projReport.description
                                 forKey:projectKey];
         [projectPubDates setObject:projReport.pubDate forKey:projectKey];

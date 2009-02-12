@@ -13,10 +13,12 @@
 		0524CE5E0F3CBC6600C020FE /* EditServerDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0524CE5C0F3CBC6600C020FE /* EditServerDetailsView.xib */; };
 		053A95120F3B998B0092763D /* UIProjectReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 053A95110F3B998B0092763D /* UIProjectReporter.m */; };
 		053A95150F3B9BF60092763D /* ProjectReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 053A95140F3B9BF60092763D /* ProjectReportViewController.m */; };
+		057CDAFD0F42799D00B63112 /* BuildDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 057CDAFC0F42799D00B63112 /* BuildDetailsViewController.m */; };
 		059CBD480F3BA40900010F3F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 059CBD460F3BA40900010F3F /* Localizable.strings */; };
 		059CBDC20F3BAE7400010F3F /* ProjectReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 059CBDC00F3BAE7400010F3F /* ProjectReportView.xib */; };
 		059CBE090F3BC7C800010F3F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 059CBE080F3BC7C800010F3F /* Icon.png */; };
 		059CBF2E0F3C821900010F3F /* UIServerGroupCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = 059CBF2D0F3C821900010F3F /* UIServerGroupCreator.m */; };
+		05A1001E0F42681B00E2C085 /* BuildDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05A1001C0F42681B00E2C085 /* BuildDetailsView.xib */; };
 		05A1FD9E0F42225200E2C085 /* NameValueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05A1FD9C0F42225200E2C085 /* NameValueTableViewCell.xib */; };
 		05A1FDA20F42237E00E2C085 /* NameValueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A1FDA10F42237E00E2C085 /* NameValueTableViewCell.m */; };
 		05A1FF900F425F3E00E2C085 /* build-succeeded.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A1FF8E0F425F3E00E2C085 /* build-succeeded.png */; };
@@ -86,6 +88,8 @@
 		053A95110F3B998B0092763D /* UIProjectReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIProjectReporter.m; sourceTree = "<group>"; };
 		053A95130F3B9BF60092763D /* ProjectReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectReportViewController.h; sourceTree = "<group>"; };
 		053A95140F3B9BF60092763D /* ProjectReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectReportViewController.m; sourceTree = "<group>"; };
+		057CDAFB0F42799D00B63112 /* BuildDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildDetailsViewController.h; sourceTree = "<group>"; };
+		057CDAFC0F42799D00B63112 /* BuildDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildDetailsViewController.m; sourceTree = "<group>"; };
 		059CBD470F3BA40900010F3F /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		059CBDC10F3BAE7400010F3F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ProjectReportView.xib; sourceTree = "<group>"; };
 		059CBE080F3BC7C800010F3F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -93,6 +97,7 @@
 		059CBF250F3C7E6D00010F3F /* ServerGroupCreatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerGroupCreatorDelegate.h; sourceTree = "<group>"; };
 		059CBF2C0F3C821900010F3F /* UIServerGroupCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIServerGroupCreator.h; sourceTree = "<group>"; };
 		059CBF2D0F3C821900010F3F /* UIServerGroupCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIServerGroupCreator.m; sourceTree = "<group>"; };
+		05A1001D0F42681B00E2C085 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BuildDetailsView.xib; sourceTree = "<group>"; };
 		05A1FD9D0F42225200E2C085 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NameValueTableViewCell.xib; sourceTree = "<group>"; };
 		05A1FDA00F42237E00E2C085 /* NameValueTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NameValueTableViewCell.h; sourceTree = "<group>"; };
 		05A1FDA10F42237E00E2C085 /* NameValueTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameValueTableViewCell.m; sourceTree = "<group>"; };
@@ -259,11 +264,11 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				05FE3CC70F3DFB5600EE7FB9 /* Vendor Libraries */,
 				918449E80F4206F800082108 /* ServerTableViewCell.h */,
 				918449E90F4206F800082108 /* ServerTableViewCell.m */,
 				91B4AFB30F3FBFF000AAB35B /* PListUtils.h */,
 				91B4AFB40F3FBFF000AAB35B /* PListUtils.m */,
-				05FE3CC70F3DFB5600EE7FB9 /* Vendor Libraries */,
 				91F09AA60F3A657B0034528C /* ServerReport.h */,
 				91F09AA70F3A657B0034528C /* ServerReport.m */,
 				05E9121A0F3A4E6800E646F6 /* ProjectSelector.h */,
@@ -328,6 +333,8 @@
 				91D9ADE10F3E47720035454C /* AboutDisplayer.m */,
 				05A1FDA00F42237E00E2C085 /* NameValueTableViewCell.h */,
 				05A1FDA10F42237E00E2C085 /* NameValueTableViewCell.m */,
+				057CDAFB0F42799D00B63112 /* BuildDetailsViewController.h */,
+				057CDAFC0F42799D00B63112 /* BuildDetailsViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -388,6 +395,7 @@
 				91E151B10F409FC2006D6A59 /* ProjectLinks.plist */,
 				91ABDE260F4120A1003232A0 /* ServerTableViewCell.xib */,
 				05A1FD9C0F42225200E2C085 /* NameValueTableViewCell.xib */,
+				05A1001C0F42681B00E2C085 /* BuildDetailsView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -474,6 +482,7 @@
 				91844BA80F42459D00082108 /* ProjectLabels.plist in Resources */,
 				05A1FF900F425F3E00E2C085 /* build-succeeded.png in Resources */,
 				05A1FF930F425F7A00E2C085 /* build-broken.png in Resources */,
+				05A1001E0F42681B00E2C085 /* BuildDetailsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +530,7 @@
 				91B4AFB50F3FBFF000AAB35B /* PListUtils.m in Sources */,
 				918449EA0F4206F800082108 /* ServerTableViewCell.m in Sources */,
 				05A1FDA20F42237E00E2C085 /* NameValueTableViewCell.m in Sources */,
+				057CDAFD0F42799D00B63112 /* BuildDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,6 +567,14 @@
 				059CBDC10F3BAE7400010F3F /* en */,
 			);
 			name = ProjectReportView.xib;
+			sourceTree = "<group>";
+		};
+		05A1001C0F42681B00E2C085 /* BuildDetailsView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				05A1001D0F42681B00E2C085 /* en */,
+			);
+			name = BuildDetailsView.xib;
 			sourceTree = "<group>";
 		};
 		05A1FD9C0F42225200E2C085 /* NameValueTableViewCell.xib */ = {
