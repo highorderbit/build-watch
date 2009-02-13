@@ -47,6 +47,7 @@
         visibleServerGroupNames.count > 0;
 
     [delegate userDidDeselectServerGroupName];
+    [tableView reloadData];
 }
 
 - (void) viewWillDisappear:(BOOL)animated

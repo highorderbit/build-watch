@@ -220,7 +220,8 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     
     NSArray * projectIds = [self projectIdsForServerGroupName:serverGroupName];
     for (NSString * projectId in projectIds)
-        if (![[projectBuildSucceededStates objectForKey:projectId] boolValue])
+        if (![[projectBuildSucceededStates objectForKey:projectId] boolValue] &&
+            [[projectTrackedStates objectForKey:projectId] boolValue])
             numBrokenBuilds++;
     
     return numBrokenBuilds;
