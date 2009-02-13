@@ -185,10 +185,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     [tableView beginUpdates];
     
     if (editing) {
+        self.navigationItem.hidesBackButton = YES;
         [tableView insertRowsAtIndexPaths:indexPathsOfHidden
                          withRowAnimation:UITableViewRowAnimationTop];
     }
     else {
+        self.navigationItem.hidesBackButton = NO;
         [tableView deleteRowsAtIndexPaths:indexPathsOfHidden
                          withRowAnimation:UITableViewRowAnimationTop];
     }
