@@ -96,6 +96,9 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
     [serverGroupNameSelector
      selectServerGroupNamesFrom:[self serverGroupNames]];
+
+    if (servers.count == 0)
+        [serverGroupCreator createServerGroup];
 }
 
 - (void) persistState
