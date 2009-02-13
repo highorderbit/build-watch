@@ -7,8 +7,12 @@
 @interface PListUtils : NSObject {
 }
 
-+ (NSDictionary *) readDictionaryFromPList:(NSString *)pList;
++ (NSDictionary *) readDictionaryFromPlist:(NSString *)path;
 
-+ (void) writeDictionary:(NSDictionary *)dictionary toPList:(NSString *)pList;
++ (void) writeDictionary:(NSDictionary *)dictionary toPlist:(NSString *)path;
+
++ (NSString *) fullDocumentPathForPlist:(NSString *)plist;
+
++ (NSString *) fullBundlePathForPlist:(NSString *)plist;
 
 @end

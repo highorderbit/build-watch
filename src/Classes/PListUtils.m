@@ -6,48 +6,55 @@
 
 @implementation PListUtils
 
-+ (NSDictionary *) readDictionaryFromPList:(NSString *)pList
++ (NSDictionary *) readDictionaryFromPlist:(NSString *)path
 {
     NSString * errorDesc = nil;
     NSPropertyListFormat format;
-    NSString * plistPath =
-    [[NSBundle mainBundle] pathForResource:pList ofType:@"plist"];
-    NSData * plistXML =
-    [[NSFileManager defaultManager] contentsAtPath:plistPath];
+    NSData * plistXml = [[NSFileManager defaultManager] contentsAtPath:path];
     
-    NSDictionary * temp = 
-    (NSDictionary *)[
-                     NSPropertyListSerialization
-                     propertyListFromData:plistXML
-                     mutabilityOption:NSPropertyListMutableContainersAndLeaves
-                     format:&format
-                     errorDescription:&errorDesc];
+    NSDictionary * temp =
+        (NSDictionary *)
+        [NSPropertyListSerialization
+        propertyListFromData:plistXml
+        mutabilityOption:NSPropertyListMutableContainersAndLeaves
+        format:&format
+        errorDescription:&errorDesc];
     
-    if (!temp) {
+    if (!temp)
         NSLog(errorDesc);
-        [errorDesc release];
-    }
     
     return temp;
 }
 
-+ (void) writeDictionary:(NSDictionary *)dictionary toPList:(NSString *)pList
++ (void) writeDictionary:(NSDictionary *)dictionary toPlist:(NSString *)path
 {
-    NSString *errorDesc;
-    NSString *bundlePath =
-    [[NSBundle mainBundle] pathForResource:pList ofType:@"plist"];
-    NSData *plistData =
-    [NSPropertyListSerialization
-     dataFromPropertyList:dictionary
-     format:NSPropertyListXMLFormat_v1_0
-     errorDescription:&errorDesc];
+    NSString * errorDesc;
+    NSData * plistData =
+        [NSPropertyListSerialization
+        dataFromPropertyList:dictionary
+        format:NSPropertyListXMLFormat_v1_0
+        errorDescription:&errorDesc];
     
     if (plistData)
-        [plistData writeToFile:bundlePath atomically:YES];
-    else {
+        [plistData writeToFile:path atomically:YES];
+    else
         NSLog(errorDesc);
-        [errorDesc release];
-    }
+}
+
++ (NSString *) fullDocumentPathForPlist:(NSString *)plist
+{
+    NSString * file = [plist stringByAppendingString:@".plist"];
+    NSArray * paths =
+        NSSearchPathForDirectoriesInDomains(
+        NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * documentsDirectory = [paths objectAtIndex:0];
+    
+    return [documentsDirectory stringByAppendingPathComponent:file];
+}
+
++ (NSString *) fullBundlePathForPlist:(NSString *)plist
+{    
+    return [[NSBundle mainBundle] pathForResource:plist ofType:@"plist"];
 }
 
 @end

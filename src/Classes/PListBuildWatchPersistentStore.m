@@ -4,125 +4,159 @@
 
 #import "PListBuildWatchPersistentStore.h"
 
+@interface PListBuildWatchPersistentStore (Private)
+
++ (NSDictionary *) getDictionaryFromPlist:(NSString *)plist;
+
++ (void) saveDictionary:dictionary toPlist:(NSString *)plist;
+
+@end
+
 @implementation PListBuildWatchPersistentStore
 
 #pragma mark BuildWatchPersistentStore protocal implementation
 
 - (void) saveServers:(NSDictionary *)servers
 {
-    [PListUtils writeDictionary:servers toPList:@"Servers"];
+    [[self class] saveDictionary:servers toPlist:@"Servers"];
 }
 
 - (NSDictionary *) getServers
 {
-    return [PListUtils readDictionaryFromPList:@"Servers"];
+    return [[self class] getDictionaryFromPlist:@"Servers"];
 }
 
 - (void) saveServerGroupPatterns:(NSDictionary *)serverGroupPatterns
 {
-    [PListUtils writeDictionary:serverGroupPatterns
-                          toPList:@"ServerGroupPatterns"];
+    [[self class] saveDictionary:serverGroupPatterns
+                         toPlist:@"ServerGroupPatterns"];
 }
 
 - (NSDictionary *) getServerGroupPatterns
 {
-    return [PListUtils readDictionaryFromPList:@"ServerGroupPatterns"];
+    return [[self class] getDictionaryFromPlist:@"ServerGroupPatterns"];
 }
 
 - (void) saveServerNames:(NSDictionary *)serverNames
 {
-    [PListUtils writeDictionary:serverNames toPList:@"ServerNames"];
+    [[self class] saveDictionary:serverNames toPlist:@"ServerNames"];
 }
 
 - (NSDictionary *) getServerNames
 {
-    return [PListUtils readDictionaryFromPList:@"ServerNames"];
+    return [[self class] getDictionaryFromPlist:@"ServerNames"];
 }
 
 - (void) saveProjectDisplayNames:(NSDictionary *)projectDisplayNames
 {
-    [PListUtils writeDictionary:projectDisplayNames
-                          toPList:@"ProjectDisplayNames"];
+    [[self class] saveDictionary:projectDisplayNames
+                         toPlist:@"ProjectDisplayNames"];
 }
 
 - (NSDictionary *) getProjectDisplayNames
 {
-    return [PListUtils readDictionaryFromPList:@"ProjectDisplayNames"];
+    return [[self class] getDictionaryFromPlist:@"ProjectDisplayNames"];
 }
 
 - (void) saveProjectLabels:(NSDictionary *)projectLabels
 {
-    [PListUtils writeDictionary:projectLabels toPList:@"ProjectLabels"];
+    [[self class] saveDictionary:projectLabels toPlist:@"ProjectLabels"];
 }
 
 - (NSDictionary *) getProjectLabels
 {
-    return [PListUtils readDictionaryFromPList:@"ProjectLabels"];
+    return [[self class] getDictionaryFromPlist:@"ProjectLabels"];
 }
 
 - (void) saveProjectDescriptions:(NSDictionary *)projectDescriptions
 {
-    [PListUtils writeDictionary:projectDescriptions
-                        toPList:@"ProjectDescriptions"];
+    [[self class] saveDictionary:projectDescriptions
+                         toPlist:@"ProjectDescriptions"];
 }
 
 - (NSDictionary *) getProjectDescriptions
 {
-    return [PListUtils readDictionaryFromPList:@"ProjectDescriptions"];
+    return [[self class] getDictionaryFromPlist:@"ProjectDescriptions"];
 }
 
 - (void) saveProjectPubDates:(NSDictionary *)projectPubDates
 {
-    [PListUtils writeDictionary:projectPubDates toPList:@"ProjectPubDates"];
+    [[self class] saveDictionary:projectPubDates toPlist:@"ProjectPubDates"];
 }
 
 - (NSDictionary *) getProjectPubDates
 {
-    return [PListUtils readDictionaryFromPList:@"ProjectPubDates"];
+    return [[self class] getDictionaryFromPlist:@"ProjectPubDates"];
 }
 
 - (void) saveProjectLinks:(NSDictionary *)projectLinks
 {
-    [PListUtils writeDictionary:projectLinks toPList:@"ProjectLinks"];
+    [[self class] saveDictionary:projectLinks toPlist:@"ProjectLinks"];
 }
 
 - (NSDictionary *) getProjectLinks
 {
-    return [PListUtils readDictionaryFromPList:@"ProjectLinks"];
+    return [[self class] getDictionaryFromPlist:@"ProjectLinks"];
 }
 
 - (void) saveProjectForceBuildLinks:(NSDictionary *)projectForceBuildLinks
 {
-    [PListUtils writeDictionary:projectForceBuildLinks
-                        toPList:@"ProjectForceBuildLinks"];
+    [[self class] saveDictionary:projectForceBuildLinks
+                         toPlist:@"ProjectForceBuildLinks"];
 }
 
 - (NSDictionary *) getProjectForceBuildLinks
 {
-    return [PListUtils readDictionaryFromPList:@"ProjectForceBuildLinks"];
+    return [[self class] getDictionaryFromPlist:@"ProjectForceBuildLinks"];
 }
 
 - (void) saveProjectBuildSucceededStates:
     (NSDictionary *)projectBuildSucceededStates
 {
-    [PListUtils writeDictionary:projectBuildSucceededStates
-                        toPList:@"ProjectBuildSucceededStates"];
+    [[self class] saveDictionary:projectBuildSucceededStates
+                         toPlist:@"ProjectBuildSucceededStates"];
 }
 
 - (NSDictionary *) getProjectBuildSucceededStates
 {
-    return [PListUtils readDictionaryFromPList:@"ProjectBuildSucceededStates"];
+    return [[self class] getDictionaryFromPlist:@"ProjectBuildSucceededStates"];
 }
 
 - (void) saveProjectTrackedStates:(NSDictionary *)projectTrackedStates
 {
-    [PListUtils writeDictionary:projectTrackedStates
-                          toPList:@"ProjectTrackedStates"];
+    [[self class] saveDictionary:projectTrackedStates
+                         toPlist:@"ProjectTrackedStates"];
 }
 
 - (NSDictionary *) getProjectTrackedStates
 {
-    return [PListUtils readDictionaryFromPList:@"ProjectTrackedStates"];
+    return [[self class] getDictionaryFromPlist:@"ProjectTrackedStates"];
+}
+
++ (NSDictionary *) getDictionaryFromPlist:(NSString *)plist
+{
+    NSString * fullPath = [PListUtils fullDocumentPathForPlist:plist];
+    
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    BOOL fileExists = [fileManager fileExistsAtPath:fullPath];
+    if (!fileExists) {
+        NSError * error = nil;
+        NSString * bundlePath = [PListUtils fullBundlePathForPlist:plist];
+        BOOL fileCopied =
+            [fileManager copyItemAtPath:bundlePath
+                                 toPath:fullPath
+                                  error:&error];
+        if (!fileCopied)
+            NSLog([error description]);
+    }
+    
+    return [PListUtils readDictionaryFromPlist:fullPath];
+}
+
++ (void) saveDictionary:dictionary toPlist:(NSString *)plist
+{
+    NSString * fullPath = [PListUtils fullDocumentPathForPlist:plist];
+    [PListUtils writeDictionary:dictionary toPlist:fullPath];
 }
 
 @end
