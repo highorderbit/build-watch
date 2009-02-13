@@ -95,8 +95,7 @@
     
     UIColor * buildStatusTextColor =
         buildSucceeded ?
-        [UIColor colorWithRed:0 green:0.4 blue:0 alpha:1] :
-        [UIColor redColor];
+        [UIColor buildWatchGreenColor] : [UIColor buildWatchRedColor];
     
     [cell setBuildStatusTextColor:buildStatusTextColor];
     

@@ -51,6 +51,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28C286E10D94DF7D0034E888 /* ServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* ServerViewController.m */; };
+		9114658D0F460949002A4BAB /* UIColor+BuildWatchColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 9114658C0F460949002A4BAB /* UIColor+BuildWatchColors.m */; };
 		911EDBD20F3CA58A00E17BC0 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 911EDBD10F3CA58A00E17BC0 /* RegexKitLite.m */; };
 		911EDDFE0F3D0DC300E17BC0 /* UIServerDataRefresher.m in Sources */ = {isa = PBXBuildFile; fileRef = 911EDDFD0F3D0DC300E17BC0 /* UIServerDataRefresher.m */; };
 		911EDE2F0F3D1B0D00E17BC0 /* UIServerDataRefresherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 911EDE2E0F3D1B0D00E17BC0 /* UIServerDataRefresherDelegate.m */; };
@@ -174,6 +175,8 @@
 		28C286E00D94DF7D0034E888 /* ServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9114658B0F460949002A4BAB /* UIColor+BuildWatchColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BuildWatchColors.h"; sourceTree = "<group>"; };
+		9114658C0F460949002A4BAB /* UIColor+BuildWatchColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BuildWatchColors.m"; sourceTree = "<group>"; };
 		911EDBD00F3CA58A00E17BC0 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		911EDBD10F3CA58A00E17BC0 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		911EDDE40F3D0C4800E17BC0 /* ServerDataRefresher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerDataRefresher.h; sourceTree = "<group>"; };
@@ -393,6 +396,8 @@
 				05A1FDA10F42237E00E2C085 /* NameValueTableViewCell.m */,
 				05FE3CFC0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.h */,
 				05FE3CFD0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.m */,
+				9114658B0F460949002A4BAB /* UIColor+BuildWatchColors.h */,
+				9114658C0F460949002A4BAB /* UIColor+BuildWatchColors.m */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -686,6 +691,7 @@
 				05D8AF9E0F43B57100F07532 /* ForceBuildTableViewCell.m in Sources */,
 				05D8AFE20F43CC3D00F07532 /* CcrbBuildForcer.m in Sources */,
 				917151D70F450FF800270997 /* ProjectTableViewCell.m in Sources */,
+				9114658D0F460949002A4BAB /* UIColor+BuildWatchColors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

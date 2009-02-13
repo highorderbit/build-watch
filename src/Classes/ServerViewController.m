@@ -6,6 +6,7 @@
 #import "BuildWatchAppDelegate.h"
 #import "ProjectsViewController.h"
 #import "ServerTableViewCell.h"
+#import "UIColor+BuildWatchColors.h"
 
 @implementation ServerViewController
 
@@ -103,8 +104,7 @@
          [NSNumber numberWithInt:numBroken]];
     [cell setBrokenBuildTextColor:
         numBroken == 0 ?
-        [UIColor colorWithRed:0 green:0.4 blue:0 alpha:1] :
-        [UIColor redColor]];
+        [UIColor buildWatchGreenColor] : [UIColor buildWatchRedColor]];
     
     return cell;
 }

@@ -7,6 +7,7 @@
 #import "NameValueTableViewCell.h"
 #import "ForceBuildTableViewCell.h"
 #import "NSDate+BuildServiceAdditions.h"
+#import "UIColor+BuildWatchColors.h"
 
 static NSString * StandardSectionCellIdentifier = @"StandardSectionCell";
 
@@ -417,7 +418,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                         green:0.157
                          blue:0.224
                         alpha:1.0] :
-        [UIColor redColor];
+        [UIColor buildWatchRedColor];
 }
 
 #pragma mark Accessors
