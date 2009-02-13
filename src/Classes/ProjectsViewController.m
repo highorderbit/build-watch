@@ -73,7 +73,7 @@
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell =
-    [tv dequeueReusableCellWithIdentifier:CellIdentifier];
+        [tv dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil)
         cell =
@@ -84,51 +84,40 @@
     cell.text =
         [delegate
          displayNameForProject:[visibleProjects objectAtIndex:indexPath.row]];
-    
+        
     return cell;
 }
 
 - (void)      tableView:(UITableView *)tv
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [delegate
-     userDidSelectProject:[visibleProjects objectAtIndex:indexPath.row]];
+    NSString * project = [visibleProjects objectAtIndex:indexPath.row];
+    if (!self.editing)
+        [delegate userDidSelectProject:project];
+    else {
+        BOOL currentTrackedState = [delegate trackedStateForProject:project];
+        [delegate setTrackedState:!currentTrackedState onProject:project];
+        
+        UITableViewCell * cell = [tv cellForRowAtIndexPath:indexPath];
+        cell.accessoryType =
+            [self tableView:tv accessoryTypeForRowWithIndexPath:indexPath];
+
+        [tv deselectRowAtIndexPath:indexPath animated:YES];
+    }
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView *)tv
           accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    return UITableViewCellAccessoryDisclosureIndicator;
-}
-
-- (UITableViewCellEditingStyle) tableView:(UITableView *)tv
-            editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString * project = [visibleProjects objectAtIndex:indexPath.row];
-    UITableViewCellEditingStyle cellStyle;
+    UITableViewCellAccessoryType editAccessoryType =
+        [visibleProjects count] > 0 && [delegate trackedStateForProject:
+        [visibleProjects objectAtIndex:indexPath.row]] ?
+        UITableViewCellAccessoryCheckmark :
+        UITableViewCellAccessoryNone;
     
-    if (self.editing)
-        cellStyle = [delegate trackedStateForProject:project] ?
-            UITableViewCellEditingStyleDelete :
-            UITableViewCellEditingStyleInsert;
-    else
-        cellStyle = UITableViewCellEditingStyleNone;
-
-    return cellStyle;
-}
-
-- (void)     tableView:(UITableView *)tv
-    commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-     forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle != UITableViewCellEditingStyleNone) {
-        NSString * project = [visibleProjects objectAtIndex:indexPath.row];
-        BOOL showProject = editingStyle != UITableViewCellEditingStyleDelete;
-
-        [delegate setTrackedState:showProject onProject:project];
-    
-        [tableView reloadData];
-    }
+    return self.editing ?
+        editAccessoryType :
+        UITableViewCellAccessoryDisclosureIndicator;
 }
 
 #pragma mark Accessors
@@ -166,8 +155,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
              [NSIndexPath indexPathForRow:i inSection:0]];
     }
     
-    [tableView setEditing:editing animated:animated];
-    
     [tableView beginUpdates];
     
     if (editing)
@@ -175,7 +162,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                          withRowAnimation:UITableViewRowAnimationTop];
     else
         [tableView deleteRowsAtIndexPaths:indexPathsOfHidden
-                         withRowAnimation:UITableViewRowAnimationTop];        
+                         withRowAnimation:UITableViewRowAnimationTop];
     
     [tableView endUpdates];
     
