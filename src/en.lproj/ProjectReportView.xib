@@ -8,8 +8,8 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1"/>
 			<integer value="27"/>
+			<integer value="1"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -65,7 +65,6 @@
 					</object>
 				</object>
 			</object>
-			<object class="IBUICustomObject" id="925596155"/>
 			<object class="IBUIView" id="619917343">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
@@ -74,12 +73,12 @@
 					<object class="IBUILabel" id="416335257">
 						<reference key="NSNextResponder" ref="619917343"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{69, 19}, {231, 32}}</string>
+						<string key="NSFrame">{{69, 7}, {231, 33}}</string>
 						<reference key="NSSuperview" ref="619917343"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">Label</string>
+						<string key="IBUIText">Windows 7</string>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">2.400000e+01</double>
@@ -93,6 +92,23 @@
 						<int key="IBUIBaselineAdjustment">1</int>
 						<float key="IBUIMinimumFontSize">1.200000e+01</float>
 						<int key="IBUILineBreakMode">5</int>
+					</object>
+					<object class="IBUILabel" id="419231632">
+						<reference key="NSNextResponder" ref="619917343"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{69, 36}, {231, 21}}</string>
+						<reference key="NSSuperview" ref="619917343"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="IBUIText">Failed</string>
+						<object class="NSColor" key="IBUITextColor">
+							<int key="NSColorSpace">2</int>
+							<bytes key="NSRGB">MC4xMTc2NDcwNyAwLjE1Njg2Mjc1IDAuMjIzNTI5NDMAA</bytes>
+						</object>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">1</int>
+						<float key="IBUIMinimumFontSize">1.000000e+01</float>
 					</object>
 					<object class="IBUIImageView" id="995037153">
 						<reference key="NSNextResponder" ref="619917343"/>
@@ -117,6 +133,7 @@
 				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 			</object>
+			<object class="IBUICustomObject" id="925596155"/>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -171,14 +188,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">headerLabel</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="416335257"/>
-					</object>
-					<int key="connectionID">30</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">headerImage</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="995037153"/>
@@ -192,6 +201,22 @@
 						<reference key="destination" ref="619917343"/>
 					</object>
 					<int key="connectionID">32</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">headerStatusLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="419231632"/>
+					</object>
+					<int key="connectionID">34</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">headerProjectLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="416335257"/>
+					</object>
+					<int key="connectionID">35</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -242,6 +267,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="995037153"/>
 							<reference ref="416335257"/>
+							<reference ref="419231632"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -253,6 +279,11 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">13</int>
 						<reference key="object" ref="416335257"/>
+						<reference key="parent" ref="619917343"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">33</int>
+						<reference key="object" ref="419231632"/>
 						<reference key="parent" ref="619917343"/>
 					</object>
 				</object>
@@ -272,6 +303,7 @@
 					<string>27.IBEditorWindowLastContentRect</string>
 					<string>27.IBPluginDependency</string>
 					<string>3.IBPluginDependency</string>
+					<string>33.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -284,6 +316,7 @@
 					<string>CcrbBuildForcer</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>{{320, 1024}, {320, 60}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
@@ -308,7 +341,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">32</int>
+			<int key="maxID">35</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -334,7 +367,8 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>buildForcer</string>
 							<string>headerImage</string>
-							<string>headerLabel</string>
+							<string>headerProjectLabel</string>
+							<string>headerStatusLabel</string>
 							<string>headerView</string>
 							<string>tableView</string>
 						</object>
@@ -342,6 +376,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSObject</string>
 							<string>UIImageView</string>
+							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UIView</string>
 							<string>UITableView</string>
