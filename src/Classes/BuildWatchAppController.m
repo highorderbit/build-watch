@@ -187,6 +187,11 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
      selectProjectFrom:[self projectIdsForServerGroupName:serverGroupName]]; 
 }
 
+- (void) userDidDeselectServerGroupName
+{
+    [self setActiveServerGroupName:nil]; 
+}
+
 - (NSString *) displayNameForServerGroupName:(NSString *)serverGroupName
 {
     return [serverNames objectForKey:serverGroupName];
@@ -280,11 +285,6 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 {
     NSLog(@"User selected project: %@.", project);
     [projectReporter reportDetailsForProject:project];
-}
-
-- (void) userDidDeselectServerGroupName
-{
-    [self setActiveServerGroupName:nil]; 
 }
 
 - (NSString *) displayNameForProject:(NSString *)project

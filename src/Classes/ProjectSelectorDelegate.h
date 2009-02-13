@@ -16,8 +16,6 @@
 
 - (NSString *) linkForProject:(NSString *)project;
 
-- (void) userDidDeselectServerGroupName;
-
 - (NSString *) displayNameForCurrentProjectGroup;
 
 @end

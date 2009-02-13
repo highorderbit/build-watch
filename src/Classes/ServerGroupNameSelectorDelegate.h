@@ -8,6 +8,8 @@
 
 - (void) userDidSelectServerGroupName:(NSString *)serverGroupName;
 
+- (void) userDidDeselectServerGroupName;
+
 - (NSString *) displayNameForServerGroupName:(NSString *)serverGroupName;
 
 - (NSString *) webAddressForServerGroupName:(NSString *)serverGroupName;

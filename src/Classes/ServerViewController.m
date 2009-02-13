@@ -45,6 +45,8 @@
 
     self.navigationItem.leftBarButtonItem.enabled =
         visibleServerGroupNames.count > 0;
+
+    [delegate userDidDeselectServerGroupName];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
