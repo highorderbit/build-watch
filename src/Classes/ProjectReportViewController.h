@@ -14,9 +14,11 @@
                                            UITableViewDataSource,
                                            BuildForcerDelegate >
 {
-    UITableView * tableView;
+    UIView * headerView;
     UIImageView * headerImage;
-    UILabel * headerLabel;
+    UILabel * headerProjectLabel;
+    UILabel * headerStatusLabel;
+    UITableView * tableView;
     ForceBuildTableViewCell * forceBuildTableViewCell;
 
     NSString * projectId;
@@ -25,9 +27,11 @@
     NSObject<BuildForcer> * buildForcer;
 }
 
-@property (nonatomic, retain) IBOutlet UITableView * tableView;
+@property (nonatomic, retain) IBOutlet UIView * headerView;
 @property (nonatomic, retain) IBOutlet UIImageView * headerImage;
-@property (nonatomic, retain) IBOutlet UILabel * headerLabel;
+@property (nonatomic, retain) IBOutlet UILabel * headerProjectLabel;
+@property (nonatomic, retain) IBOutlet UILabel * headerStatusLabel;
+@property (nonatomic, retain) IBOutlet UITableView * tableView;
 @property (nonatomic, retain) ForceBuildTableViewCell * forceBuildTableViewCell;
 @property (nonatomic, copy) NSString * projectId;
 @property (nonatomic, retain) NSObject<ProjectReporterDelegate> * delegate;

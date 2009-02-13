@@ -50,13 +50,16 @@ enum ActionRows
 - (NSString *) reuseIdentifierForRowAtIndexPath:(NSIndexPath *)indexPath;
 - (UITableViewCell *) cellInstanceForRowAtIndexPath:(NSIndexPath *)indexPath
                                     reuseIdentifier:(NSString *)identifier;
++ (UIColor *) textColorForBuildStatus:(BOOL)buildSucceeded;
 @end
 
 @implementation ProjectReportViewController
 
-@synthesize tableView;
+@synthesize headerView;
 @synthesize headerImage;
-@synthesize headerLabel;
+@synthesize headerProjectLabel;
+@synthesize headerStatusLabel;
+@synthesize tableView;
 @synthesize forceBuildTableViewCell;
 @synthesize projectId;
 @synthesize delegate;
@@ -64,9 +67,11 @@ enum ActionRows
 
 - (void) dealloc
 {
-    [tableView release];
+    [headerView release];
     [headerImage release];
-    [headerLabel release];
+    [headerProjectLabel release];
+    [headerStatusLabel release];
+    [tableView release];
     [forceBuildTableViewCell release];
     [projectId release];
     [delegate release];
@@ -78,7 +83,8 @@ enum ActionRows
 {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.headerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.tableView.tableHeaderView = headerView;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -92,7 +98,14 @@ enum ActionRows
         [delegate buildSucceededStateForProject:projectId] ?
             [UIImage imageNamed:@"build-succeeded.png"] :
             [UIImage imageNamed:@"build-broken.png"];
-    headerLabel.text = [delegate displayNameForProject:projectId];
+    headerProjectLabel.text = [delegate displayNameForProject:projectId];
+
+    BOOL succeeded = [delegate buildSucceededStateForProject:projectId];
+    headerStatusLabel.text = succeeded ?
+         NSLocalizedString(@"projectdetails.buildstatus.succeeded.label", @"") :
+         NSLocalizedString(@"projectdetails.buildstatus.failed.label", @"");
+    headerStatusLabel.textColor =
+        [[self class] textColorForBuildStatus:succeeded];
 
     [self.forceBuildTableViewCell resetDisplay:NO];
 
@@ -395,6 +408,16 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     }
 
     return cell;
+}
+
++ (UIColor *) textColorForBuildStatus:(BOOL)buildSucceeded
+{
+    return buildSucceeded ?
+        [UIColor colorWithRed:0.118
+                        green:0.157
+                         blue:0.224
+                        alpha:1.0] :
+        [UIColor redColor];
 }
 
 #pragma mark Accessors

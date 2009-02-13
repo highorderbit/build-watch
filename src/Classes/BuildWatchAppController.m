@@ -96,6 +96,9 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
     [serverGroupNameSelector
      selectServerGroupNamesFrom:[self serverGroupNames]];
+
+    if (servers.count == 0)
+        [serverGroupCreator createServerGroup];
 }
 
 - (void) persistState
@@ -182,6 +185,11 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [self setActiveServerGroupName:serverGroupName];
     [projectSelector
      selectProjectFrom:[self projectIdsForServerGroupName:serverGroupName]]; 
+}
+
+- (void) userDidDeselectServerGroupName
+{
+    [self setActiveServerGroupName:nil]; 
 }
 
 - (NSString *) displayNameForServerGroupName:(NSString *)serverGroupName
@@ -277,11 +285,6 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 {
     NSLog(@"User selected project: %@.", project);
     [projectReporter reportDetailsForProject:project];
-}
-
-- (void) userDidDeselectServerGroupName
-{
-    [self setActiveServerGroupName:nil]; 
 }
 
 - (NSString *) displayNameForProject:(NSString *)project
