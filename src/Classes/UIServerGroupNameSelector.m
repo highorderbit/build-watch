@@ -2,10 +2,10 @@
 //  Copyright 2009 High Order Bit, Inc.. All rights reserved.
 //
 
-#import "UIServerSelector.h"
+#import "UIServerGroupNameSelector.h"
 #import "ServerViewController.h"
 
-@implementation UIServerSelector
+@implementation UIServerGroupNameSelector
 
 @synthesize delegate;
 @synthesize navigationController;

@@ -30,7 +30,7 @@
 		05D8AFE20F43CC3D00F07532 /* CcrbBuildForcer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D8AFE10F43CC3D00F07532 /* CcrbBuildForcer.m */; };
 		05E911050F3A056F00E646F6 /* BuildWatchAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E911040F3A056F00E646F6 /* BuildWatchAppController.m */; };
 		05E911100F3A11F700E646F6 /* MockBuildWatchPersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E9110F0F3A11F700E646F6 /* MockBuildWatchPersistentStore.m */; };
-		05E911E70F3A453300E646F6 /* UIServerSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E911E60F3A453300E646F6 /* UIServerSelector.m */; };
+		05E911E70F3A453300E646F6 /* UIServerGroupNameSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E911E60F3A453300E646F6 /* UIServerGroupNameSelector.m */; };
 		05E9121F0F3A4E7100E646F6 /* UIProjectSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E9121E0F3A4E7100E646F6 /* UIProjectSelector.m */; };
 		05F1867C0F3D1B4300024A3C /* NetworkBuildService.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F1867B0F3D1B4300024A3C /* NetworkBuildService.m */; };
 		05F186990F3D223D00024A3C /* NetworkBuildStatusUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F186980F3D223D00024A3C /* NetworkBuildStatusUpdater.m */; };
@@ -125,8 +125,8 @@
 		05E911070F3A111500E646F6 /* BuildWatchPersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildWatchPersistentStore.h; sourceTree = "<group>"; };
 		05E9110E0F3A11F700E646F6 /* MockBuildWatchPersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockBuildWatchPersistentStore.h; sourceTree = "<group>"; };
 		05E9110F0F3A11F700E646F6 /* MockBuildWatchPersistentStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockBuildWatchPersistentStore.m; sourceTree = "<group>"; };
-		05E911E50F3A453300E646F6 /* UIServerSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIServerSelector.h; sourceTree = "<group>"; };
-		05E911E60F3A453300E646F6 /* UIServerSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIServerSelector.m; sourceTree = "<group>"; };
+		05E911E50F3A453300E646F6 /* UIServerGroupNameSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIServerGroupNameSelector.h; sourceTree = "<group>"; };
+		05E911E60F3A453300E646F6 /* UIServerGroupNameSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIServerGroupNameSelector.m; sourceTree = "<group>"; };
 		05E9121A0F3A4E6800E646F6 /* ProjectSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectSelector.h; sourceTree = "<group>"; };
 		05E9121B0F3A4E6800E646F6 /* ProjectSelectorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectSelectorDelegate.h; sourceTree = "<group>"; };
 		05E9121C0F3A4E6800E646F6 /* ServerGroupNameSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerGroupNameSelector.h; sourceTree = "<group>"; };
@@ -307,8 +307,8 @@
 			isa = PBXGroup;
 			children = (
 				05E9121C0F3A4E6800E646F6 /* ServerGroupNameSelector.h */,
-				05E911E50F3A453300E646F6 /* UIServerSelector.h */,
-				05E911E60F3A453300E646F6 /* UIServerSelector.m */,
+				05E911E50F3A453300E646F6 /* UIServerGroupNameSelector.h */,
+				05E911E60F3A453300E646F6 /* UIServerGroupNameSelector.m */,
 				91DC9DB20F3BB3CD003F87CF /* ServerGroupNameSelectorDelegate.h */,
 				28C286DF0D94DF7D0034E888 /* ServerViewController.h */,
 				28C286E00D94DF7D0034E888 /* ServerViewController.m */,
@@ -651,7 +651,7 @@
 				9149E0010F39142400A0E32C /* ProjectsViewController.m in Sources */,
 				05E911050F3A056F00E646F6 /* BuildWatchAppController.m in Sources */,
 				05E911100F3A11F700E646F6 /* MockBuildWatchPersistentStore.m in Sources */,
-				05E911E70F3A453300E646F6 /* UIServerSelector.m in Sources */,
+				05E911E70F3A453300E646F6 /* UIServerGroupNameSelector.m in Sources */,
 				05E9121F0F3A4E7100E646F6 /* UIProjectSelector.m in Sources */,
 				91F09AA50F3A63370034528C /* ProjectReport.m in Sources */,
 				91F09AA80F3A657B0034528C /* ServerReport.m in Sources */,
