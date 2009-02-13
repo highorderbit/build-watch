@@ -8,8 +8,8 @@
 
 @class ServerViewController;
 
-@interface UIServerSelector : NSObject
-                              < ServerGroupNameSelector >
+@interface UIServerGroupNameSelector : NSObject
+                                       < ServerGroupNameSelector >
 {
     NSObject<ServerGroupNameSelectorDelegate> * delegate;
     UINavigationController * navigationController;
