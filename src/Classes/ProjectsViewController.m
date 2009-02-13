@@ -72,20 +72,43 @@
 {
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell =
+    ProjectTableViewCell * cell =
+        (ProjectTableViewCell *)
         [tv dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (cell == nil)
-        cell =
-            [[[UITableViewCell alloc]
-              initWithFrame:CGRectZero reuseIdentifier:CellIdentifier]
-             autorelease];
+    if (cell == nil) {
+        NSArray * nib =
+        [[NSBundle mainBundle] loadNibNamed:@"ProjectTableViewCell"
+                                      owner:self
+                                    options:nil];
+        cell = (ProjectTableViewCell *) [nib objectAtIndex:0];
+    }
     
-    cell.text =
-        [delegate
-         displayNameForProject:[visibleProjects objectAtIndex:indexPath.row]];
-        
+    NSString * project = [visibleProjects objectAtIndex:indexPath.row];
+    
+    cell.nameLabel.text = [delegate displayNameForProject:project];
+    
+    BOOL buildSucceeded = [delegate buildSucceededStateForProject:project];
+    NSString * statusDesc = buildSucceeded ? @"succeeded" : @"failed";
+    NSString * buildLabel = [delegate labelForProject:project];
+    
+    cell.buildStatusLabel.text =
+        [NSString stringWithFormat:@"Build %@ %@", buildLabel, statusDesc];
+    
+    UIColor * buildStatusTextColor =
+        buildSucceeded ?
+        [UIColor colorWithRed:0 green:0.4 blue:0 alpha:1] :
+        [UIColor redColor];
+    
+    [cell setBuildStatusTextColor:buildStatusTextColor];
+    
     return cell;
+}
+
+- (CGFloat)   tableView:(UITableView *)tv
+heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 66;
 }
 
 - (void)      tableView:(UITableView *)tv
@@ -108,10 +131,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (UITableViewCellAccessoryType) tableView:(UITableView *)tv
           accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
-{
+{    
     UITableViewCellAccessoryType editAccessoryType =
-        [visibleProjects count] > 0 && [delegate trackedStateForProject:
-        [visibleProjects objectAtIndex:indexPath.row]] ?
+        [delegate trackedStateForProject:
+        [projects objectAtIndex:indexPath.row]] ?
         UITableViewCellAccessoryCheckmark :
         UITableViewCellAccessoryNone;
     
@@ -150,23 +173,28 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     NSMutableArray * indexPathsOfHidden = [NSMutableArray array];
     for (NSInteger i = 0; i < projects.count; ++i) {
         NSString * project = [projects objectAtIndex:i];
+        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         if (![delegate trackedStateForProject:project])
-            [indexPathsOfHidden addObject:
-             [NSIndexPath indexPathForRow:i inSection:0]];
+            [indexPathsOfHidden addObject:indexPath];
+        else {
+            UITableViewCell * cell =
+                [tableView cellForRowAtIndexPath:indexPath];
+            cell.accessoryType = [self tableView:tableView
+                accessoryTypeForRowWithIndexPath:indexPath];
+        }
     }
-    
+
     [tableView beginUpdates];
     
-    if (editing)
+    if (editing) {
         [tableView insertRowsAtIndexPaths:indexPathsOfHidden
                          withRowAnimation:UITableViewRowAnimationTop];
-    else
+    }
+    else {
         [tableView deleteRowsAtIndexPaths:indexPathsOfHidden
                          withRowAnimation:UITableViewRowAnimationTop];
-    
+    }
     [tableView endUpdates];
-    
-    [tableView reloadData];
 }
 
 #pragma mark Private helper functions

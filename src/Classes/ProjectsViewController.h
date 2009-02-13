@@ -4,6 +4,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ProjectSelectorDelegate.h"
+#import "ProjectTableViewCell.h"
 
 @interface ProjectsViewController : UIViewController <UITableViewDelegate>
 {

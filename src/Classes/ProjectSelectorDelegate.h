@@ -10,6 +10,16 @@
 
 - (NSString *) displayNameForProject:(NSString *)project;
 
+- (NSString *) labelForProject:(NSString *)project;
+
+- (NSString *) descriptionForProject:(NSString *)project;
+
+- (NSDate *) pubDateForProject:(NSString *)project;
+
+- (NSString *) forceBuildLinkForProject:(NSString *)project;
+
+- (BOOL) buildSucceededStateForProject:(NSString *)project;
+
 - (BOOL) trackedStateForProject:(NSString *)project;
 
 - (void) setTrackedState:(BOOL)state onProject:(NSString *)project;

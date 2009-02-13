@@ -79,25 +79,22 @@
     if (cell == nil) {
         NSArray * nib =
             [[NSBundle mainBundle] loadNibNamed:@"ServerTableViewCell"
-                                          owner:nil
+                                          owner:self
                                         options:nil];
         cell = (ServerTableViewCell *) [nib objectAtIndex:0];
     }
     
+    NSString * serverGroupName =
+        [visibleServerGroupNames objectAtIndex:indexPath.row];
+    
     cell.nameLabel.text =
-        [delegate
-         displayNameForServerGroupName:
-         [visibleServerGroupNames objectAtIndex:indexPath.row]];
+        [delegate displayNameForServerGroupName:serverGroupName];
     
     cell.webAddressLabel.text =
-        [delegate
-         webAddressForServerGroupName:
-         [visibleServerGroupNames objectAtIndex:indexPath.row]];
+        [delegate webAddressForServerGroupName:serverGroupName];
     
     int numBroken =
-        [delegate
-         numBrokenForServerGroupName:
-         [visibleServerGroupNames objectAtIndex:indexPath.row]];
+        [delegate numBrokenForServerGroupName:serverGroupName];
     cell.brokenBuildsLabel.text =
         [NSString stringWithFormat:@"%@ broken",
          [NSNumber numberWithInt:numBroken]];

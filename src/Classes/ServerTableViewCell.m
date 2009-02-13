@@ -10,11 +10,6 @@
 @synthesize webAddressLabel;
 @synthesize brokenBuildsLabel;
 
-- (void) awakeFromNib
-{
-    self.contentView.clipsToBounds = YES;
-}
-
 - (void) dealloc
 {
     [nameLabel release];
@@ -22,6 +17,11 @@
     [brokenBuildsLabel release];
     [brokenBuildTextColor release];
     [super dealloc];
+}
+
+- (void) awakeFromNib
+{
+    self.contentView.clipsToBounds = YES;
 }
 
 - (void) setSelected:(BOOL)selected animated:(BOOL)animated
@@ -32,8 +32,7 @@
         nameLabel.textColor = [UIColor whiteColor];
         webAddressLabel.textColor = [UIColor whiteColor];
         brokenBuildsLabel.textColor = [UIColor whiteColor];
-    }
-    else {
+    } else {
         nameLabel.textColor = [UIColor blackColor];
         webAddressLabel.textColor = [UIColor grayColor];
         brokenBuildsLabel.textColor = brokenBuildTextColor;
@@ -45,7 +44,7 @@
     [color retain];
     [brokenBuildTextColor release];
     brokenBuildTextColor = color;
-    if(!self.selected)
+    if (!self.selected)
         brokenBuildsLabel.textColor = brokenBuildTextColor;
 }
 

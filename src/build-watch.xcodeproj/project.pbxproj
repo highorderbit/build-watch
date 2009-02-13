@@ -58,6 +58,8 @@
 		9149DF720F39053200A0E32C /* ServerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149DF6F0F39053200A0E32C /* ServerView.xib */; };
 		9149E0010F39142400A0E32C /* ProjectsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9149E0000F39142400A0E32C /* ProjectsViewController.m */; };
 		9149E0040F39167600A0E32C /* ProjectsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149E0020F39167600A0E32C /* ProjectsView.xib */; };
+		917151D20F450F9100270997 /* ProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917151D00F450F9100270997 /* ProjectTableViewCell.xib */; };
+		917151D70F450FF800270997 /* ProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 917151D60F450FF800270997 /* ProjectTableViewCell.m */; };
 		918449EA0F4206F800082108 /* ServerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 918449E90F4206F800082108 /* ServerTableViewCell.m */; };
 		91844BA80F42459D00082108 /* ProjectLabels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91844BA70F42459D00082108 /* ProjectLabels.plist */; };
 		91ABDE280F4120A1003232A0 /* ServerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91ABDE260F4120A1003232A0 /* ServerTableViewCell.xib */; };
@@ -185,6 +187,9 @@
 		9149DFFF0F39142400A0E32C /* ProjectsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectsViewController.h; sourceTree = "<group>"; };
 		9149E0000F39142400A0E32C /* ProjectsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectsViewController.m; sourceTree = "<group>"; };
 		9149E0030F39167600A0E32C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ProjectsView.xib; sourceTree = "<group>"; };
+		917151D10F450F9100270997 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ProjectTableViewCell.xib; sourceTree = "<group>"; };
+		917151D50F450FF800270997 /* ProjectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTableViewCell.h; sourceTree = "<group>"; };
+		917151D60F450FF800270997 /* ProjectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTableViewCell.m; sourceTree = "<group>"; };
 		918449E80F4206F800082108 /* ServerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerTableViewCell.h; sourceTree = "<group>"; };
 		918449E90F4206F800082108 /* ServerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerTableViewCell.m; sourceTree = "<group>"; };
 		91844BA70F42459D00082108 /* ProjectLabels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectLabels.plist; sourceTree = "<group>"; };
@@ -357,6 +362,8 @@
 				05D8AFC10F43BB7F00F07532 /* BuildForcerDelegate.h */,
 				05D8AFE00F43CC3D00F07532 /* CcrbBuildForcer.h */,
 				05D8AFE10F43CC3D00F07532 /* CcrbBuildForcer.m */,
+				917151D50F450FF800270997 /* ProjectTableViewCell.h */,
+				917151D60F450FF800270997 /* ProjectTableViewCell.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -422,6 +429,7 @@
 				05A1FD9C0F42225200E2C085 /* NameValueTableViewCell.xib */,
 				05A1001C0F42681B00E2C085 /* BuildDetailsView.xib */,
 				05D8AF970F43B3DA00F07532 /* ForceBuildTableViewCell.xib */,
+				917151D00F450F9100270997 /* ProjectTableViewCell.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -513,6 +521,7 @@
 				05473A6B0F44AD4C003F5444 /* ProjectForceBuildLinks.plist in Resources */,
 				05473C470F44E45E003F5444 /* checkmark.png in Resources */,
 				91F817570F43C7CE0078D366 /* IconWithoutShine.png in Resources */,
+				917151D20F450F9100270997 /* ProjectTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,6 +572,7 @@
 				057CDAFD0F42799D00B63112 /* BuildDetailsViewController.m in Sources */,
 				05D8AF9E0F43B57100F07532 /* ForceBuildTableViewCell.m in Sources */,
 				05D8AFE20F43CC3D00F07532 /* CcrbBuildForcer.m in Sources */,
+				917151D70F450FF800270997 /* ProjectTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,6 +657,14 @@
 				9149E0030F39167600A0E32C /* en */,
 			);
 			name = ProjectsView.xib;
+			sourceTree = "<group>";
+		};
+		917151D00F450F9100270997 /* ProjectTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				917151D10F450F9100270997 /* en */,
+			);
+			name = ProjectTableViewCell.xib;
 			sourceTree = "<group>";
 		};
 		91ABDE260F4120A1003232A0 /* ServerTableViewCell.xib */ = {
