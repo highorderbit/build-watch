@@ -32,7 +32,8 @@
 {
     [navController pushViewController:self animated:YES];
     [aboutButton setEnabled:NO];
-    NSDictionary * infoPList = [PListUtils readDictionaryFromPList:@"Info"];
+    NSString * fullPath = [PlistUtils fullBundlePathForPlist:@"Info"];
+    NSDictionary * infoPList = [PlistUtils readDictionaryFromPlist:fullPath];
     NSString * versionText = [infoPList objectForKey:@"CFBundleVersion"];
     NSString * versionLabelText =
         [NSString stringWithFormat:@"Version %@", versionText];

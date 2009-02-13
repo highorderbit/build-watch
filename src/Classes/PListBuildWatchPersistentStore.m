@@ -4,7 +4,7 @@
 
 #import "PListBuildWatchPersistentStore.h"
 
-@interface PListBuildWatchPersistentStore (Private)
+@interface PlistBuildWatchPersistentStore (Private)
 
 + (NSDictionary *) getDictionaryFromPlist:(NSString *)plist;
 
@@ -12,7 +12,7 @@
 
 @end
 
-@implementation PListBuildWatchPersistentStore
+@implementation PlistBuildWatchPersistentStore
 
 #pragma mark BuildWatchPersistentStore protocal implementation
 
@@ -135,13 +135,13 @@
 
 + (NSDictionary *) getDictionaryFromPlist:(NSString *)plist
 {
-    NSString * fullPath = [PListUtils fullDocumentPathForPlist:plist];
+    NSString * fullPath = [PlistUtils fullDocumentPathForPlist:plist];
     
     NSFileManager * fileManager = [NSFileManager defaultManager];
     BOOL fileExists = [fileManager fileExistsAtPath:fullPath];
     if (!fileExists) {
         NSError * error = nil;
-        NSString * bundlePath = [PListUtils fullBundlePathForPlist:plist];
+        NSString * bundlePath = [PlistUtils fullBundlePathForPlist:plist];
         BOOL fileCopied =
             [fileManager copyItemAtPath:bundlePath
                                  toPath:fullPath
@@ -150,13 +150,13 @@
             NSLog([error description]);
     }
     
-    return [PListUtils readDictionaryFromPlist:fullPath];
+    return [PlistUtils readDictionaryFromPlist:fullPath];
 }
 
 + (void) saveDictionary:dictionary toPlist:(NSString *)plist
 {
-    NSString * fullPath = [PListUtils fullDocumentPathForPlist:plist];
-    [PListUtils writeDictionary:dictionary toPlist:fullPath];
+    NSString * fullPath = [PlistUtils fullDocumentPathForPlist:plist];
+    [PlistUtils writeDictionary:dictionary toPlist:fullPath];
 }
 
 @end

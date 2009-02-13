@@ -4,9 +4,9 @@
 
 #import <UIKit/UIKit.h>
 #import "BuildWatchPersistentStore.h"
-#import "PListUtils.h"
+#import "PlistUtils.h"
 
-@interface PListBuildWatchPersistentStore : NSObject
+@interface PlistBuildWatchPersistentStore : NSObject
                                           < BuildWatchPersistentStore >
 {}
 

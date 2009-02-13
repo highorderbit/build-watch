@@ -2,9 +2,9 @@
 //  Copyright High Order Bit, Inc. 2009. All rights reserved.
 //
 
-#import "PListUtils.h"
+#import "PlistUtils.h"
 
-@implementation PListUtils
+@implementation PlistUtils
 
 + (NSDictionary *) readDictionaryFromPlist:(NSString *)path
 {

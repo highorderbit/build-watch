@@ -4,7 +4,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PListUtils : NSObject {
+@interface PlistUtils : NSObject {
 }
 
 + (NSDictionary *) readDictionaryFromPlist:(NSString *)path;
