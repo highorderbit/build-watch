@@ -64,6 +64,7 @@ static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
     UITextField * textField = (UITextField *)
         [self.editServerUrlCell viewWithTag:SERVER_URL_TEXT_FIELD_TAG];
     textField.text = serverUrl;
+    textField.enabled = YES;
     [textField becomeFirstResponder];
 }
 
@@ -171,6 +172,7 @@ static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
     UITextField * textField = (UITextField *)
         [self.editServerUrlCell viewWithTag:SERVER_URL_TEXT_FIELD_TAG];
     [textField resignFirstResponder];
+    textField.enabled = NO;
 
     [delegate addServerWithUrl:[[self.serverUrl copy] autorelease]];
 }

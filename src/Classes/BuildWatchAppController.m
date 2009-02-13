@@ -21,6 +21,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 - (void) setProjectDescriptions:(NSDictionary *)newProjectDescriptions;
 - (void) setProjectPubDates:(NSDictionary *)newProjectPubDates;
 - (void) setProjectLinks:(NSDictionary *)newProjectLinks;
+- (void) setProjectForceBuildLinks:(NSDictionary *)newProjectForceBuildLinks;
 - (void) setProjectBuildSucceededStates:
     (NSDictionary *)newProjectBuildSucceededStates;
 - (void) setProjectTrackedStates:(NSDictionary *)newProjectTrackedStates;
@@ -58,6 +59,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [projectDescriptions release];
     [projectPubDates release];
     [projectLinks release];
+    [projectForceBuildLinks release];
     [projectBuildSucceededStates release];
     [projectTrackedStates release];
     [persistentStore release];
@@ -82,6 +84,9 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [self setProjectDescriptions:[persistentStore getProjectDescriptions]];
     [self setProjectPubDates:[persistentStore getProjectPubDates]];
     [self setProjectLinks:[persistentStore getProjectLinks]];
+    [self setProjectForceBuildLinks:
+     [persistentStore getProjectForceBuildLinks]];
+
     [self setProjectBuildSucceededStates:
      [persistentStore getProjectBuildSucceededStates]];
     
@@ -103,6 +108,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [persistentStore saveProjectDescriptions:projectDescriptions];
     [persistentStore saveProjectPubDates:projectPubDates];
     [persistentStore saveProjectLinks:projectLinks];
+    [persistentStore saveProjectForceBuildLinks:projectForceBuildLinks];
     [persistentStore saveProjectBuildSucceededStates:
      projectBuildSucceededStates];
     [persistentStore saveProjectTrackedStates:projectTrackedStates];
@@ -310,6 +316,11 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     return [projectLinks objectForKey:project];
 }
 
+- (NSString *) forceBuildLinkForProject:(NSString *)project
+{
+    return [projectForceBuildLinks objectForKey:project];
+}
+
 - (BOOL) buildSucceededStateForProject:(NSString *)project
 {
     return [[projectBuildSucceededStates objectForKey:project] boolValue];
@@ -416,6 +427,14 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     projectLinks = tempProjectLinks;
 }
 
+- (void) setProjectForceBuildLinks:(NSDictionary *)newProjectForceBuildLinks
+{
+    NSMutableDictionary * tempProjectForceBuildLinks =
+        [newProjectForceBuildLinks mutableCopy];
+    [projectForceBuildLinks release];
+    projectForceBuildLinks = tempProjectForceBuildLinks;
+}
+
 - (void) setProjectBuildSucceededStates:
     (NSDictionary *)newProjectBuildSucceededStates
 {
@@ -466,15 +485,13 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
         [[self class] keyForProject:projReport.name andServer:server];
         
         [projectDisplayNames setObject:projReport.name forKey:projectKey];
-        // TODO: Fix this
-        if (projReport.label == nil)
-            [projectLabels setObject:@"" forKey:projectKey];
-        else
-            [projectLabels setObject:projReport.label forKey:projectKey];
+        [projectLabels setObject:projReport.label forKey:projectKey];
         [projectDescriptions setObject:projReport.description
                                 forKey:projectKey];
         [projectPubDates setObject:projReport.pubDate forKey:projectKey];
         [projectLinks setObject:projReport.link forKey:projectKey];
+        [projectForceBuildLinks setObject:projReport.forceBuildLink
+                                   forKey:projectKey];
         [projectBuildSucceededStates setObject:
          [NSNumber numberWithBool:projReport.buildSucceeded]
                                         forKey:projectKey];
@@ -500,6 +517,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [projectDescriptions removeObjectsForKeys:missingProjectIds];
     [projectPubDates removeObjectsForKeys:missingProjectIds];
     [projectLinks removeObjectsForKeys:missingProjectIds];
+    [projectForceBuildLinks removeObjectsForKeys:missingProjectIds];
     [projectBuildSucceededStates removeObjectsForKeys:missingProjectIds];
     [projectTrackedStates removeObjectsForKeys:missingProjectIds];
     

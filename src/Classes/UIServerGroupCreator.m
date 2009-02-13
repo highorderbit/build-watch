@@ -79,7 +79,6 @@
 - (void) attemptToGetReportFromServer:(NSString *)serverUrl
                      didFailWithError:(NSError *)error
 {
-    // TODO: add error handling code
     NSLog(@"Failed to get report from server: '%@', error: '%@'.", serverUrl,
         error);
 

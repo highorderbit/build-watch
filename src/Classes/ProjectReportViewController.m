@@ -5,6 +5,7 @@
 #import "ProjectReportViewController.h"
 #import "BuildDetailsViewController.h"
 #import "NameValueTableViewCell.h"
+#import "ForceBuildTableViewCell.h"
 #import "NSDate+BuildServiceAdditions.h"
 
 static NSString * StandardSectionCellIdentifier = @"StandardSectionCell";
@@ -56,16 +57,20 @@ enum ActionRows
 @synthesize tableView;
 @synthesize headerImage;
 @synthesize headerLabel;
+@synthesize forceBuildTableViewCell;
 @synthesize projectId;
 @synthesize delegate;
+@synthesize buildForcer;
 
 - (void) dealloc
 {
     [tableView release];
     [headerImage release];
     [headerLabel release];
+    [forceBuildTableViewCell release];
     [projectId release];
     [delegate release];
+    [buildForcer release];
     [super dealloc];
 }
 
@@ -89,8 +94,15 @@ enum ActionRows
             [UIImage imageNamed:@"build-broken.png"];
     headerLabel.text = [delegate displayNameForProject:projectId];
 
+    [self.forceBuildTableViewCell resetDisplay:NO];
+
     NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selectedRow animated:NO];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [self.forceBuildTableViewCell resetDisplay:NO];
 }
 
 #pragma mark UITableViewDelegate
@@ -142,14 +154,13 @@ enum ActionRows
         }
 
         case kBuildChangesetSection:
-            cell.textAlignment = UITextAlignmentLeft;
             cell.text =
                 NSLocalizedString(@"projectdetails.builddetails.label", @"");
             break;
 
         case kBuildActionSection:
-            cell.textAlignment = UITextAlignmentCenter;
-            cell.text = [self buttonTextForCellAtIndex:indexPath.row];
+            if (indexPath.row != kForceBuildRow)
+                cell.text = [self buttonTextForCellAtIndex:indexPath.row];
             break;
     }
 
@@ -190,6 +201,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                     [self visitWebsite];
                     break;
             }
+            [tv deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
 
@@ -244,15 +256,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void) forceBuild
 {
-    UIAlertView * alertView =
-        [[UIAlertView alloc] initWithTitle:@"Handle button click"
-                                   message:nil
-                                  delegate:nil
-                         cancelButtonTitle:@"Cancel"
-                         otherButtonTitles:nil];
-    
-    alertView.message = @"TODO: force build";
-    [alertView show];
+    [buildForcer
+     forceBuildForProject:projectId
+        withForceBuildUrl:[delegate forceBuildLinkForProject:projectId]];
+
+    [self.forceBuildTableViewCell showActivity:
+        NSLocalizedString(@"projectdetails.forcebuild.started.label", @"")];
 }
 
 - (void) emailReport
@@ -303,6 +312,40 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     [url release];
 }
 
+#pragma mark BuildForcerDelegate protocol implememtation
+
+- (void) buildForcedForProject:(NSString *)projectUrl
+             withForceBuildUrl:(NSString *)projectForceBuildUrl
+{
+    [self.forceBuildTableViewCell showActivityCompletedSuccessfully:
+        NSLocalizedString(@"projectdetails.forcebuild.finished.label", @"")];
+}
+
+- (void) forceBuildForProject:(NSString *)projectUrl
+            withForceBuildUrl:(NSString *)projectForceBuildUrl
+             didFailWithError:(NSError *)error
+{
+    [self.forceBuildTableViewCell resetDisplay:NO];
+
+    UIAlertView * alertView =
+        [[[UIAlertView alloc]
+          initWithTitle:NSLocalizedString(@"forcebuild.failed.title", @"")
+                message:
+                    [NSString stringWithFormat:
+                     NSLocalizedString(
+                         @"forcebuild.failed.message.formatstring", @""),
+                     [delegate displayNameForProject:projectUrl],
+                     error.localizedDescription]
+               delegate:nil
+      cancelButtonTitle:NSLocalizedString(@"forcebuild.failed.ok", @"")
+      otherButtonTitles:nil]
+         autorelease];
+
+    [alertView show];
+}
+
+#pragma mark Table view helper functions
+
 - (NSString *) reuseIdentifierForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString * reuseIdentifier = @"";
@@ -312,8 +355,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
             reuseIdentifier = [NameValueTableViewCell reuseIdentifier];
             break;
         case kBuildChangesetSection:
-        case kBuildActionSection:
             reuseIdentifier = StandardSectionCellIdentifier;
+            break;
+        case kBuildActionSection:
+            reuseIdentifier =
+                indexPath.row == kForceBuildRow ?
+                    [self.forceBuildTableViewCell reuseIdentifier] :
+                    StandardSectionCellIdentifier;
             break;
     }
 
@@ -330,11 +378,19 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
             cell = [NameValueTableViewCell createInstance];
             break;
         case kBuildChangesetSection:
-        case kBuildActionSection:
             cell =
                 [[[UITableViewCell alloc]
                   initWithFrame:CGRectZero reuseIdentifier:identifier]
                  autorelease];
+            break;
+        case kBuildActionSection:
+            if (indexPath.row == kForceBuildRow)
+                cell = self.forceBuildTableViewCell;
+            else
+                cell =
+                    [[[UITableViewCell alloc]
+                      initWithFrame:CGRectZero reuseIdentifier:identifier]
+                     autorelease];
             break;
     }
 
@@ -342,6 +398,15 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 }
 
 #pragma mark Accessors
+
+- (ForceBuildTableViewCell *) forceBuildTableViewCell
+{
+    if (forceBuildTableViewCell == nil)
+        forceBuildTableViewCell =
+            [[ForceBuildTableViewCell createInstance] retain];
+
+    return forceBuildTableViewCell;
+}
 
 - (void) setProjectId:(NSString *)newProjectId
 {

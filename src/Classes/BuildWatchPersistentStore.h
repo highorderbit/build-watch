@@ -44,6 +44,10 @@
 
 - (NSDictionary *) getProjectLinks;
 
+- (void) saveProjectForceBuildLinks:(NSDictionary *)projectForceBuildLinks;
+
+- (NSDictionary *) getProjectForceBuildLinks;
+
 - (void) saveProjectBuildSucceededStates:
     (NSDictionary *)projectBuildSucceededStates;
 

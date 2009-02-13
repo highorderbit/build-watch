@@ -13,6 +13,8 @@
 + (NSString *) projectNameFromProjectTitle:(NSString *)projectTitle;
 + (BOOL) buildSucceededFromProjectTitle:(NSString *)projectTitle;
 + (NSString *) buildLabelFromProjectTitle:(NSString *)projectTitle;
++ (NSString *) forceBuildUrlForProject:(NSString *)projectName
+                               withUrl:(NSString *)projectUrl;
 + (NSError *)xmlParseError:(NSString *)localizedDescription
              withRootCause:(NSError *)rootCause;
 @end
@@ -86,6 +88,10 @@
         projectReport.buildSucceeded =
             [[self class] buildSucceededFromProjectTitle:title];
 
+        projectReport.forceBuildLink =
+            [[self class] forceBuildUrlForProject:projectReport.name
+                                          withUrl:projectReport.link];
+
         [projectReports addObject:projectReport];
     }
 
@@ -133,6 +139,26 @@
         return nil;
     else
         return [projectTitle substringWithRange:matchedRange];
+}
+
++ (NSString *) forceBuildUrlForProject:(NSString *)projectName
+                               withUrl:(NSString *)projectUrl
+{
+    NSString * forceBuildUrl = nil;
+    NSURL * url = [NSURL URLWithString:projectUrl];
+
+    if (url) {
+        // If this proves to not be deterministic, switch to a regex where
+        // the returned string is projectUrl with the results of
+        // [url paramterString] removed.
+
+        forceBuildUrl =
+            [NSString stringWithFormat:@"%@://%@:%@/projects/build/%@",
+             [url scheme], [url host], [url port], projectName];
+    }
+
+    NSLog(@"%@: build url: '%@'.", projectName, forceBuildUrl);
+    return forceBuildUrl;
 }
 
 #pragma mark Helper functions

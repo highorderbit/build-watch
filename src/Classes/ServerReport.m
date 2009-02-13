@@ -69,4 +69,19 @@
     return self;
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    NSArray * reports = [projectReports copyWithZone:zone];
+
+    ServerReport * report =
+        [[[self class] allocWithZone:zone] initWithName:self.name
+                                                   link:self.link
+                                          dashboardLink:self.dashboardLink
+                                                reports:reports];
+
+    [reports release];
+
+    return report;
+}
+
 @end

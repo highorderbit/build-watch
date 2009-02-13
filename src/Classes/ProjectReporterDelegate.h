@@ -17,6 +17,8 @@
 
 - (NSString *) linkForProject:(NSString *)project;
 
+- (NSString *) forceBuildLinkForProject:(NSString *)project;
+
 - (BOOL) buildSucceededStateForProject:(NSString *)project;
 
 @end

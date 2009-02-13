@@ -91,6 +91,17 @@
     return [PListUtils readDictionaryFromPList:@"ProjectLinks"];
 }
 
+- (void) saveProjectForceBuildLinks:(NSDictionary *)projectForceBuildLinks
+{
+    [PListUtils writeDictionary:projectForceBuildLinks
+                        toPList:@"ProjectForceBuildLinks"];
+}
+
+- (NSDictionary *) getProjectForceBuildLinks
+{
+    return [PListUtils readDictionaryFromPList:@"ProjectForceBuildLinks"];
+}
+
 - (void) saveProjectBuildSucceededStates:
     (NSDictionary *)projectBuildSucceededStates
 {
