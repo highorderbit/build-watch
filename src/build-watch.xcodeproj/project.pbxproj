@@ -236,6 +236,211 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		050888A00F45E0900010569B /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				059CBE080F3BC7C800010F3F /* Icon.png */,
+				91F817560F43C7CE0078D366 /* IconWithoutShine.png */,
+				05473C460F44E45E003F5444 /* checkmark.png */,
+				05A1FF920F425F7A00E2C085 /* build-broken.png */,
+				05A1FF8E0F425F3E00E2C085 /* build-succeeded.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		050888A10F45E0C30010569B /* NIBs */ = {
+			isa = PBXGroup;
+			children = (
+				9149DF6D0F39053200A0E32C /* MainWindow.xib */,
+				9149DF6F0F39053200A0E32C /* ServerView.xib */,
+				9149E0020F39167600A0E32C /* ProjectsView.xib */,
+				059CBDC00F3BAE7400010F3F /* ProjectReportView.xib */,
+				05A1001C0F42681B00E2C085 /* BuildDetailsView.xib */,
+				0524CCB90F3C86DB00C020FE /* AddServerView.xib */,
+				91D9ADDA0F3E3B050035454C /* AboutView.xib */,
+				0524CE5C0F3CBC6600C020FE /* EditServerDetailsView.xib */,
+				91ABDE260F4120A1003232A0 /* ServerTableViewCell.xib */,
+				05A1FD9C0F42225200E2C085 /* NameValueTableViewCell.xib */,
+				05D8AF970F43B3DA00F07532 /* ForceBuildTableViewCell.xib */,
+				917151D00F450F9100270997 /* ProjectTableViewCell.xib */,
+			);
+			name = NIBs;
+			sourceTree = "<group>";
+		};
+		050888A20F45E11D0010569B /* PLists */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107310486CEB800E47090 /* Info.plist */,
+				91D9ABD30F3DFE350035454C /* Servers.plist */,
+				91D9ABD70F3E01DE0035454C /* ServerGroupPatterns.plist */,
+				91D9ABD90F3E02BE0035454C /* ProjectDisplayNames.plist */,
+				91D9ABDB0F3E03B50035454C /* ProjectTrackedStates.plist */,
+				91E151B10F409FC2006D6A59 /* ProjectLinks.plist */,
+				05473A6A0F44AD4C003F5444 /* ProjectForceBuildLinks.plist */,
+				91844BA70F42459D00082108 /* ProjectLabels.plist */,
+				91E1523B0F40B792006D6A59 /* ProjectBuildSucceededStates.plist */,
+				91E1523C0F40B792006D6A59 /* ProjectDescriptions.plist */,
+				91E1523D0F40B792006D6A59 /* ProjectPubDates.plist */,
+				91D9AC560F3E12A60035454C /* ServerNames.plist */,
+			);
+			name = PLists;
+			sourceTree = "<group>";
+		};
+		050888A30F45E3A20010569B /* Add Server */ = {
+			isa = PBXGroup;
+			children = (
+				059CBF210F3C7BB100010F3F /* ServerGroupCreator.h */,
+				059CBF250F3C7E6D00010F3F /* ServerGroupCreatorDelegate.h */,
+				059CBF2C0F3C821900010F3F /* UIServerGroupCreator.h */,
+				059CBF2D0F3C821900010F3F /* UIServerGroupCreator.m */,
+				0524CCDD0F3C8A0900C020FE /* AddServerViewController.h */,
+				0524CCDE0F3C8A0900C020FE /* AddServerViewController.m */,
+				0524CD850F3C9DC000C020FE /* AddServerViewControllerDelegate.h */,
+				0524CE380F3CBA5F00C020FE /* EditServerDetailsViewController.h */,
+				0524CE390F3CBA5F00C020FE /* EditServerDetailsViewController.m */,
+				0524CEFC0F3CE52E00C020FE /* EditServerDetailsViewControllerDelegate.h */,
+			);
+			name = "Add Server";
+			sourceTree = "<group>";
+		};
+		050888A40F45E3B30010569B /* Server Selection */ = {
+			isa = PBXGroup;
+			children = (
+				05E9121C0F3A4E6800E646F6 /* ServerGroupNameSelector.h */,
+				05E911E50F3A453300E646F6 /* UIServerSelector.h */,
+				05E911E60F3A453300E646F6 /* UIServerSelector.m */,
+				91DC9DB20F3BB3CD003F87CF /* ServerGroupNameSelectorDelegate.h */,
+				28C286DF0D94DF7D0034E888 /* ServerViewController.h */,
+				28C286E00D94DF7D0034E888 /* ServerViewController.m */,
+				918449E80F4206F800082108 /* ServerTableViewCell.h */,
+				918449E90F4206F800082108 /* ServerTableViewCell.m */,
+			);
+			name = "Server Selection";
+			sourceTree = "<group>";
+		};
+		050888A50F45E3BB0010569B /* Project Selection */ = {
+			isa = PBXGroup;
+			children = (
+				05E9121A0F3A4E6800E646F6 /* ProjectSelector.h */,
+				05E9121B0F3A4E6800E646F6 /* ProjectSelectorDelegate.h */,
+				05E9121D0F3A4E7100E646F6 /* UIProjectSelector.h */,
+				05E9121E0F3A4E7100E646F6 /* UIProjectSelector.m */,
+				9149DFFF0F39142400A0E32C /* ProjectsViewController.h */,
+				9149E0000F39142400A0E32C /* ProjectsViewController.m */,
+				917151D50F450FF800270997 /* ProjectTableViewCell.h */,
+				917151D60F450FF800270997 /* ProjectTableViewCell.m */,
+			);
+			name = "Project Selection";
+			sourceTree = "<group>";
+		};
+		050888A60F45E3C10010569B /* Build Details */ = {
+			isa = PBXGroup;
+			children = (
+				053A950D0F3B99230092763D /* ProjectReporter.h */,
+				05F186C20F3D228500024A3C /* ProjectReporterDelegate.h */,
+				053A95100F3B998B0092763D /* UIProjectReporter.h */,
+				053A95110F3B998B0092763D /* UIProjectReporter.m */,
+				053A95130F3B9BF60092763D /* ProjectReportViewController.h */,
+				053A95140F3B9BF60092763D /* ProjectReportViewController.m */,
+				057CDAFB0F42799D00B63112 /* BuildDetailsViewController.h */,
+				057CDAFC0F42799D00B63112 /* BuildDetailsViewController.m */,
+			);
+			name = "Build Details";
+			sourceTree = "<group>";
+		};
+		050888A70F45E3CC0010569B /* Build Service */ = {
+			isa = PBXGroup;
+			children = (
+				91F09AA60F3A657B0034528C /* ServerReport.h */,
+				91F09AA70F3A657B0034528C /* ServerReport.m */,
+				91F09AA30F3A63370034528C /* ProjectReport.h */,
+				91F09AA40F3A63370034528C /* ProjectReport.m */,
+				91F09AAA0F3A66970034528C /* BuildService.h */,
+				91F09AAD0F3A67090034528C /* BuildServiceDelegate.h */,
+				05F1867A0F3D1B4300024A3C /* NetworkBuildService.h */,
+				05F1867B0F3D1B4300024A3C /* NetworkBuildService.m */,
+				91F09AD60F3A69A50034528C /* MockBuildService.h */,
+				91F09AD70F3A69A50034528C /* MockBuildService.m */,
+				05F1868B0F3D21AC00024A3C /* BuildStatusUpdater.h */,
+				05F186900F3D21BE00024A3C /* BuildStatusUpdaterDelegate.h */,
+				05F186930F3D21C700024A3C /* NetworkBuildStatusUpdater.h */,
+				05F186980F3D223D00024A3C /* NetworkBuildStatusUpdater.m */,
+				05FE3CA00F3DF9E000EE7FB9 /* ServerReportBuilder.h */,
+				05FE3CA50F3DFAD600EE7FB9 /* CcrbServerReportBuilder.h */,
+				05FE3CA60F3DFAD600EE7FB9 /* CcrbServerReportBuilder.m */,
+			);
+			name = "Build Service";
+			sourceTree = "<group>";
+		};
+		050888A80F45E41B0010569B /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				05E911070F3A111500E646F6 /* BuildWatchPersistentStore.h */,
+				91D9ABC70F3DFC270035454C /* PListBuildWatchPersistentStore.h */,
+				91D9ABC80F3DFC270035454C /* PListBuildWatchPersistentStore.m */,
+				91B4AFB30F3FBFF000AAB35B /* PListUtils.h */,
+				91B4AFB40F3FBFF000AAB35B /* PListUtils.m */,
+				05E9110E0F3A11F700E646F6 /* MockBuildWatchPersistentStore.h */,
+				05E9110F0F3A11F700E646F6 /* MockBuildWatchPersistentStore.m */,
+			);
+			name = Persistence;
+			sourceTree = "<group>";
+		};
+		050889050F45E5AC0010569B /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				05A1FDA00F42237E00E2C085 /* NameValueTableViewCell.h */,
+				05A1FDA10F42237E00E2C085 /* NameValueTableViewCell.m */,
+				05FE3CFC0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.h */,
+				05FE3CFD0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.m */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		050889240F45E6170010569B /* About */ = {
+			isa = PBXGroup;
+			children = (
+				91D9ADE00F3E47720035454C /* AboutDisplayer.h */,
+				91D9ADE10F3E47720035454C /* AboutDisplayer.m */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
+		050889250F45E6320010569B /* Force Build */ = {
+			isa = PBXGroup;
+			children = (
+				05D8AFBE0F43BB7800F07532 /* BuildForcer.h */,
+				05D8AFC10F43BB7F00F07532 /* BuildForcerDelegate.h */,
+				05D8AFE00F43CC3D00F07532 /* CcrbBuildForcer.h */,
+				05D8AFE10F43CC3D00F07532 /* CcrbBuildForcer.m */,
+				05D8AF9C0F43B57100F07532 /* ForceBuildTableViewCell.h */,
+				05D8AF9D0F43B57100F07532 /* ForceBuildTableViewCell.m */,
+			);
+			name = "Force Build";
+			sourceTree = "<group>";
+		};
+		050889400F45E6FC0010569B /* Server Data Refreshing */ = {
+			isa = PBXGroup;
+			children = (
+				911EDDE40F3D0C4800E17BC0 /* ServerDataRefresher.h */,
+				911EDE250F3D120700E17BC0 /* ServerDataRefresherDelegate.h */,
+				911EDDFC0F3D0DC300E17BC0 /* UIServerDataRefresher.h */,
+				911EDDFD0F3D0DC300E17BC0 /* UIServerDataRefresher.m */,
+			);
+			name = "Server Data Refreshing";
+			sourceTree = "<group>";
+		};
+		050889410F45E7D30010569B /* App Controller */ = {
+			isa = PBXGroup;
+			children = (
+				05E911030F3A056F00E646F6 /* BuildWatchAppController.h */,
+				05E911040F3A056F00E646F6 /* BuildWatchAppController.m */,
+				1D3623240D0F684500981E51 /* BuildWatchAppDelegate.h */,
+				1D3623250D0F684500981E51 /* BuildWatchAppDelegate.m */,
+			);
+			name = "App Controller";
+			sourceTree = "<group>";
+		};
 		05FE3CC40F3DFB4C00EE7FB9 /* TouchXML */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +474,7 @@
 				05FE3CC40F3DFB4C00EE7FB9 /* TouchXML */,
 			);
 			name = "Vendor Libraries";
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		05FE3D560F3E0F8300EE7FB9 /* RegexKitLite */ = {
@@ -285,85 +491,17 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				05FE3CC70F3DFB5600EE7FB9 /* Vendor Libraries */,
-				918449E80F4206F800082108 /* ServerTableViewCell.h */,
-				918449E90F4206F800082108 /* ServerTableViewCell.m */,
-				91B4AFB30F3FBFF000AAB35B /* PListUtils.h */,
-				91B4AFB40F3FBFF000AAB35B /* PListUtils.m */,
-				91F09AA60F3A657B0034528C /* ServerReport.h */,
-				91F09AA70F3A657B0034528C /* ServerReport.m */,
-				05E9121A0F3A4E6800E646F6 /* ProjectSelector.h */,
-				05E9121B0F3A4E6800E646F6 /* ProjectSelectorDelegate.h */,
-				05E9121C0F3A4E6800E646F6 /* ServerGroupNameSelector.h */,
-				28C286DF0D94DF7D0034E888 /* ServerViewController.h */,
-				28C286E00D94DF7D0034E888 /* ServerViewController.m */,
-				1D3623240D0F684500981E51 /* BuildWatchAppDelegate.h */,
-				1D3623250D0F684500981E51 /* BuildWatchAppDelegate.m */,
-				9149DFFF0F39142400A0E32C /* ProjectsViewController.h */,
-				9149E0000F39142400A0E32C /* ProjectsViewController.m */,
-				05E911030F3A056F00E646F6 /* BuildWatchAppController.h */,
-				05F186C20F3D228500024A3C /* ProjectReporterDelegate.h */,
-				05E911040F3A056F00E646F6 /* BuildWatchAppController.m */,
-				05E911070F3A111500E646F6 /* BuildWatchPersistentStore.h */,
-				05E9110E0F3A11F700E646F6 /* MockBuildWatchPersistentStore.h */,
-				05E9110F0F3A11F700E646F6 /* MockBuildWatchPersistentStore.m */,
-				05E911E50F3A453300E646F6 /* UIServerSelector.h */,
-				05E911E60F3A453300E646F6 /* UIServerSelector.m */,
-				05E9121D0F3A4E7100E646F6 /* UIProjectSelector.h */,
-				05E9121E0F3A4E7100E646F6 /* UIProjectSelector.m */,
-				91F09AA30F3A63370034528C /* ProjectReport.h */,
-				91F09AA40F3A63370034528C /* ProjectReport.m */,
-				91F09AAA0F3A66970034528C /* BuildService.h */,
-				91F09AAD0F3A67090034528C /* BuildServiceDelegate.h */,
-				91F09AD60F3A69A50034528C /* MockBuildService.h */,
-				91F09AD70F3A69A50034528C /* MockBuildService.m */,
-				91DC9DB20F3BB3CD003F87CF /* ServerGroupNameSelectorDelegate.h */,
-				053A950D0F3B99230092763D /* ProjectReporter.h */,
-				053A95100F3B998B0092763D /* UIProjectReporter.h */,
-				053A95110F3B998B0092763D /* UIProjectReporter.m */,
-				053A95130F3B9BF60092763D /* ProjectReportViewController.h */,
-				053A95140F3B9BF60092763D /* ProjectReportViewController.m */,
-				911EDDE40F3D0C4800E17BC0 /* ServerDataRefresher.h */,
-				911EDDFC0F3D0DC300E17BC0 /* UIServerDataRefresher.h */,
-				911EDDFD0F3D0DC300E17BC0 /* UIServerDataRefresher.m */,
-				911EDE250F3D120700E17BC0 /* ServerDataRefresherDelegate.h */,
-				059CBF210F3C7BB100010F3F /* ServerGroupCreator.h */,
-				059CBF250F3C7E6D00010F3F /* ServerGroupCreatorDelegate.h */,
-				059CBF2C0F3C821900010F3F /* UIServerGroupCreator.h */,
-				059CBF2D0F3C821900010F3F /* UIServerGroupCreator.m */,
-				0524CCDD0F3C8A0900C020FE /* AddServerViewController.h */,
-				0524CCDE0F3C8A0900C020FE /* AddServerViewController.m */,
-				0524CD850F3C9DC000C020FE /* AddServerViewControllerDelegate.h */,
-				0524CE380F3CBA5F00C020FE /* EditServerDetailsViewController.h */,
-				0524CE390F3CBA5F00C020FE /* EditServerDetailsViewController.m */,
-				0524CEFC0F3CE52E00C020FE /* EditServerDetailsViewControllerDelegate.h */,
-				05F1867A0F3D1B4300024A3C /* NetworkBuildService.h */,
-				05F1867B0F3D1B4300024A3C /* NetworkBuildService.m */,
-				05FE3CA50F3DFAD600EE7FB9 /* CcrbServerReportBuilder.h */,
-				05FE3CA60F3DFAD600EE7FB9 /* CcrbServerReportBuilder.m */,
-				05F1868B0F3D21AC00024A3C /* BuildStatusUpdater.h */,
-				05F186900F3D21BE00024A3C /* BuildStatusUpdaterDelegate.h */,
-				05F186930F3D21C700024A3C /* NetworkBuildStatusUpdater.h */,
-				05F186980F3D223D00024A3C /* NetworkBuildStatusUpdater.m */,
-				05FE3CA00F3DF9E000EE7FB9 /* ServerReportBuilder.h */,
-				05FE3CFC0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.h */,
-				05FE3CFD0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.m */,
-				91D9ABC70F3DFC270035454C /* PListBuildWatchPersistentStore.h */,
-				91D9ABC80F3DFC270035454C /* PListBuildWatchPersistentStore.m */,
-				91D9ADE00F3E47720035454C /* AboutDisplayer.h */,
-				91D9ADE10F3E47720035454C /* AboutDisplayer.m */,
-				05A1FDA00F42237E00E2C085 /* NameValueTableViewCell.h */,
-				05A1FDA10F42237E00E2C085 /* NameValueTableViewCell.m */,
-				057CDAFB0F42799D00B63112 /* BuildDetailsViewController.h */,
-				057CDAFC0F42799D00B63112 /* BuildDetailsViewController.m */,
-				05D8AF9C0F43B57100F07532 /* ForceBuildTableViewCell.h */,
-				05D8AF9D0F43B57100F07532 /* ForceBuildTableViewCell.m */,
-				05D8AFBE0F43BB7800F07532 /* BuildForcer.h */,
-				05D8AFC10F43BB7F00F07532 /* BuildForcerDelegate.h */,
-				05D8AFE00F43CC3D00F07532 /* CcrbBuildForcer.h */,
-				05D8AFE10F43CC3D00F07532 /* CcrbBuildForcer.m */,
-				917151D50F450FF800270997 /* ProjectTableViewCell.h */,
-				917151D60F450FF800270997 /* ProjectTableViewCell.m */,
+				050889410F45E7D30010569B /* App Controller */,
+				050888A80F45E41B0010569B /* Persistence */,
+				050888A70F45E3CC0010569B /* Build Service */,
+				050889400F45E6FC0010569B /* Server Data Refreshing */,
+				050889250F45E6320010569B /* Force Build */,
+				050888A40F45E3B30010569B /* Server Selection */,
+				050888A50F45E3BB0010569B /* Project Selection */,
+				050888A60F45E3C10010569B /* Build Details */,
+				050888A30F45E3A20010569B /* Add Server */,
+				050889240F45E6170010569B /* About */,
+				050889050F45E5AC0010569B /* Shared */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -379,6 +517,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				05FE3CC70F3DFB5600EE7FB9 /* Vendor Libraries */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -400,36 +539,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				05473C460F44E45E003F5444 /* checkmark.png */,
-				91F817560F43C7CE0078D366 /* IconWithoutShine.png */,
-				05A1FF920F425F7A00E2C085 /* build-broken.png */,
-				05A1FF8E0F425F3E00E2C085 /* build-succeeded.png */,
-				91844BA70F42459D00082108 /* ProjectLabels.plist */,
-				91E1523B0F40B792006D6A59 /* ProjectBuildSucceededStates.plist */,
-				91E1523C0F40B792006D6A59 /* ProjectDescriptions.plist */,
-				91E1523D0F40B792006D6A59 /* ProjectPubDates.plist */,
-				91D9AC560F3E12A60035454C /* ServerNames.plist */,
-				059CBE080F3BC7C800010F3F /* Icon.png */,
-				9149DF6D0F39053200A0E32C /* MainWindow.xib */,
-				9149DF6F0F39053200A0E32C /* ServerView.xib */,
-				8D1107310486CEB800E47090 /* Info.plist */,
-				9149E0020F39167600A0E32C /* ProjectsView.xib */,
-				059CBDC00F3BAE7400010F3F /* ProjectReportView.xib */,
-				0524CCB90F3C86DB00C020FE /* AddServerView.xib */,
+				050888A10F45E0C30010569B /* NIBs */,
+				050888A20F45E11D0010569B /* PLists */,
+				050888A00F45E0900010569B /* Images */,
 				059CBD460F3BA40900010F3F /* Localizable.strings */,
-				0524CE5C0F3CBC6600C020FE /* EditServerDetailsView.xib */,
-				91D9ABD30F3DFE350035454C /* Servers.plist */,
-				91D9ABD70F3E01DE0035454C /* ServerGroupPatterns.plist */,
-				91D9ABD90F3E02BE0035454C /* ProjectDisplayNames.plist */,
-				91D9ABDB0F3E03B50035454C /* ProjectTrackedStates.plist */,
-				91D9ADDA0F3E3B050035454C /* AboutView.xib */,
-				91E151B10F409FC2006D6A59 /* ProjectLinks.plist */,
-				05473A6A0F44AD4C003F5444 /* ProjectForceBuildLinks.plist */,
-				91ABDE260F4120A1003232A0 /* ServerTableViewCell.xib */,
-				05A1FD9C0F42225200E2C085 /* NameValueTableViewCell.xib */,
-				05A1001C0F42681B00E2C085 /* BuildDetailsView.xib */,
-				05D8AF970F43B3DA00F07532 /* ForceBuildTableViewCell.xib */,
-				917151D00F450F9100270997 /* ProjectTableViewCell.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
