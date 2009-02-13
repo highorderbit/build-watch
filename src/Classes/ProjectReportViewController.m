@@ -54,9 +54,10 @@ enum ActionRows
 
 @implementation ProjectReportViewController
 
-@synthesize tableView;
+@synthesize headerView;
 @synthesize headerImage;
 @synthesize headerLabel;
+@synthesize tableView;
 @synthesize forceBuildTableViewCell;
 @synthesize projectId;
 @synthesize delegate;
@@ -64,9 +65,10 @@ enum ActionRows
 
 - (void) dealloc
 {
-    [tableView release];
+    [headerView release];
     [headerImage release];
     [headerLabel release];
+    [tableView release];
     [forceBuildTableViewCell release];
     [projectId release];
     [delegate release];
@@ -78,7 +80,8 @@ enum ActionRows
 {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.headerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.tableView.tableHeaderView = headerView;
 }
 
 - (void)viewWillAppear:(BOOL)animated
