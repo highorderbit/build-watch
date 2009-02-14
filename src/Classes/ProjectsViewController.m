@@ -5,8 +5,14 @@
 #import "ProjectsViewController.h"
 
 @interface ProjectsViewController (Private)
+
 - (void) setVisibleProjects:(NSArray *)someVisibleProjects;
+
 - (void) updateVisibleProjects;
+
+- (void) updateCell:(ProjectTableViewCell *)cell
+        withProject:(NSString *)project;
+
 @end
 
 @implementation ProjectsViewController
@@ -33,7 +39,6 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    
     [self.navigationItem setRightBarButtonItem:self.editButtonItem animated:NO];
 }
 
@@ -84,22 +89,26 @@
     
     NSString * project = [visibleProjects objectAtIndex:indexPath.row];
     
-    cell.nameLabel.text = [delegate displayNameForProject:project];
+    [self updateCell:cell withProject:project];
+    
+    return cell;
+}
+
+- (void) updateCell:(ProjectTableViewCell *)cell withProject:(NSString *)project
+{
+    [cell setName:[delegate displayNameForProject:project]];
     
     BOOL buildSucceeded = [delegate buildSucceededStateForProject:project];
     NSString * statusDesc = buildSucceeded ? @"succeeded" : @"failed";
     NSString * buildLabel = [delegate labelForProject:project];
     
-    cell.buildStatusLabel.text =
-        [NSString stringWithFormat:@"Build %@ %@", buildLabel, statusDesc];
+    [cell setBuildStatusText:
+     [NSString stringWithFormat:@"Build %@ %@", buildLabel, statusDesc]];
     
-    UIColor * buildStatusTextColor =
-        buildSucceeded ?
-        [UIColor buildWatchGreenColor] : [UIColor buildWatchRedColor];
+    [cell setBuildSucceeded:buildSucceeded];
     
-    [cell setBuildStatusTextColor:buildStatusTextColor];
-    
-    return cell;
+    BOOL tracked = [delegate trackedStateForProject:project];
+    [cell setTracked:tracked];
 }
 
 - (CGFloat)   tableView:(UITableView *)tv
@@ -112,16 +121,20 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString * project = [visibleProjects objectAtIndex:indexPath.row];
+    ProjectTableViewCell * cell =
+        (ProjectTableViewCell *)[tv cellForRowAtIndexPath:indexPath];
     if (!self.editing)
         [delegate userDidSelectProject:project];
     else {
-        BOOL currentTrackedState = [delegate trackedStateForProject:project];
-        [delegate setTrackedState:!currentTrackedState onProject:project];
+        BOOL formerTrackedState = [delegate trackedStateForProject:project];
+        BOOL newTrackedState = !formerTrackedState;
+        [delegate setTrackedState:newTrackedState onProject:project];
         
-        UITableViewCell * cell = [tv cellForRowAtIndexPath:indexPath];
+        [cell setTracked:newTrackedState];
+        
         cell.accessoryType =
             [self tableView:tv accessoryTypeForRowWithIndexPath:indexPath];
-
+        
         [tv deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
