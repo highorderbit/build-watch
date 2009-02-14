@@ -134,7 +134,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         
         cell.accessoryType =
             [self tableView:tv accessoryTypeForRowWithIndexPath:indexPath];
-        
+                
         [tv deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
@@ -179,6 +179,14 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     [super setEditing:editing animated:animated];
     
     [self updateVisibleProjects];
+
+    if (animated) {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:.5];
+        [UIView setAnimationTransition:UIViewAnimationTransitionNone
+                               forView:self.view
+                                 cache:YES];
+    }
     
     NSMutableArray * indexPathsOfHidden = [NSMutableArray array];
     for (NSInteger i = 0; i < projects.count; ++i) {
@@ -193,7 +201,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
                 accessoryTypeForRowWithIndexPath:indexPath];
         }
     }
-
+    
     [tableView beginUpdates];
     
     if (editing) {
@@ -206,7 +214,11 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         [tableView deleteRowsAtIndexPaths:indexPathsOfHidden
                          withRowAnimation:UITableViewRowAnimationTop];
     }
+    
     [tableView endUpdates];
+    
+    if (animated)
+        [UIView commitAnimations];
 }
 
 #pragma mark Private helper functions
