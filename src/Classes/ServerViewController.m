@@ -40,6 +40,8 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    NSLog(@"%@: Displaying.", self);
+    
     [super viewWillAppear:animated];
     NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selectedRow animated:NO];
@@ -53,6 +55,8 @@
 
 - (void) viewWillDisappear:(BOOL)animated
 {
+    NSLog(@"%@: Hiding.", self);
+    
     [super viewWillDisappear:animated];
 
     [tableView setEditing:NO animated:NO];
@@ -172,6 +176,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
+    NSLog(@"Setting editing state to %@ on %@.",
+        [NSNumber numberWithBool:editing], self);
+    
     [super setEditing:editing animated:animated];
 
     NSMutableArray * indexPaths = [NSMutableArray array];

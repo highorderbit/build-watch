@@ -44,6 +44,8 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    NSLog(@"%@: Displaying.", self);
+    
     [super viewWillAppear:animated];
 
     self.navigationItem.title = [delegate displayNameForCurrentProjectGroup];
@@ -54,6 +56,8 @@
 
 - (void) viewWillDisappear:(BOOL)animated
 {
+    NSLog(@"%@: Hiding.", self);
+    
     [super viewWillDisappear:animated];
 }
 
@@ -99,13 +103,13 @@
     [cell setName:[delegate displayNameForProject:project]];
     
     BOOL buildSucceeded = [delegate buildSucceededStateForProject:project];
-    NSString * statusDesc = buildSucceeded ? @"succeeded" : @"failed";
-    NSString * buildLabel = [delegate labelForProject:project];
-    
-    [cell setBuildStatusText:
-     [NSString stringWithFormat:@"Build %@ %@", buildLabel, statusDesc]];
-    
     [cell setBuildSucceeded:buildSucceeded];
+    
+    NSString * buildLabel = [delegate labelForProject:project];
+    [cell setBuildLabel:buildLabel];
+    
+    NSDate * pubDate = [delegate pubDateForProject:project];
+    [cell setPubDate:pubDate];
     
     BOOL tracked = [delegate trackedStateForProject:project];
     [cell setTracked:tracked];
@@ -175,14 +179,17 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 #pragma mark Project manipulation
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
-{    
+{
+    NSLog(@"Setting editing state to %@ on %@.",
+          [NSNumber numberWithBool:editing], self);
+    
     [super setEditing:editing animated:animated];
     
     [self updateVisibleProjects];
 
     if (animated) {
         [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:.5];
+        [UIView setAnimationDuration:.3];
         [UIView setAnimationTransition:UIViewAnimationTransitionNone
                                forView:self.view
                                  cache:YES];
@@ -208,8 +215,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         self.navigationItem.hidesBackButton = YES;
         [tableView insertRowsAtIndexPaths:indexPathsOfHidden
                          withRowAnimation:UITableViewRowAnimationTop];
-    }
-    else {
+    } else {
         self.navigationItem.hidesBackButton = NO;
         [tableView deleteRowsAtIndexPaths:indexPathsOfHidden
                          withRowAnimation:UITableViewRowAnimationTop];
@@ -231,8 +237,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
             if ([delegate trackedStateForProject:project])
                 [tempVisibleProjects addObject:project];
         [self setVisibleProjects:tempVisibleProjects];
-    }
-    else
+    } else
         [self setVisibleProjects:projects];
 }
 

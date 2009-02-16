@@ -4,18 +4,22 @@
 
 #import "ProjectTableViewCell.h"
 #import "UIColor+BuildWatchColors.h"
+#import "NSDate+IsToday.h"
+#import "NSDate+StringHelpers.h"
 
 @interface ProjectTableViewCell (Private)
 
 - (void) updateUnselectedStyle;
+
+- (UIColor *) currentBuildSucceededColor;
+
+- (void) updateBuildStatusLabelText;
 
 + (UIColor *) untrackedColor;
 
 + (UIColor *) buildSucceededColor;
 
 + (UIColor *) buildFailedColor;
-
-- (UIColor *) currentBuildSucceededColor;
 
 @end
 
@@ -25,6 +29,9 @@
 {
     [nameLabel release];
     [buildStatusLabel release];
+    [pubDateLabel release];
+    [buildLabel release];
+    [pubDate release];
     [super dealloc];
 }
 
@@ -38,8 +45,9 @@
     [super setSelected:selected animated:animated];
         
     if (selected) {
-        nameLabel.textColor = [UIColor whiteColor];
-        buildStatusLabel.textColor = [UIColor whiteColor];
+        nameLabel.textColor = self.selectedTextColor;
+        buildStatusLabel.textColor = self.selectedTextColor;
+        pubDateLabel.textColor = self.selectedTextColor;
     } else
         [self updateUnselectedStyle];
 }
@@ -57,13 +65,44 @@
 - (void) setBuildSucceeded:(BOOL)newBuildSucceeded
 {
     buildSucceeded = newBuildSucceeded;
+    
+    [self updateBuildStatusLabelText];
+    
     if (!self.selected)
         [self updateUnselectedStyle];
+}
+
+- (void) setBuildLabel:(NSString *)newBuildLabel
+{
+    NSString * tempBuildLabel = [[newBuildLabel copy] retain];
+    [buildLabel release];
+    buildLabel = tempBuildLabel;
+    
+    [self updateBuildStatusLabelText];
 }
 
 - (void) setTracked:(BOOL)newTracked
 {
     tracked = newTracked;
+    if (!self.selected)
+        [self updateUnselectedStyle];
+}
+
+- (void) updateBuildStatusLabelText
+{
+    NSString * statusDesc = buildSucceeded ? @"succeeded" : @"failed";
+    buildStatusLabel.text =
+        [NSString stringWithFormat:@"Build %@ %@", buildLabel, statusDesc];
+}
+
+- (void) setPubDate:(NSDate *)newPubDate
+{
+    NSDate * tempPubDate = [[newPubDate copy] retain];
+    [pubDate release];
+    pubDate = tempPubDate;
+    
+    pubDateLabel.text = [pubDate shortDescription];
+    
     if (!self.selected)
         [self updateUnselectedStyle];
 }
@@ -77,6 +116,8 @@
     buildStatusLabel.textColor =
         tracked ? [self currentBuildSucceededColor] :
         [[self class] untrackedColor];
+    pubDateLabel.textColor =
+        tracked ? [UIColor buildWatchBlueColor] : [[self class] untrackedColor];
 }
 
 - (UIColor *) currentBuildSucceededColor

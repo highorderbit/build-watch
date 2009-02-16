@@ -10,4 +10,6 @@
 
 + (UIColor *) buildWatchRedColor;
 
++ (UIColor *) buildWatchBlueColor;
+
 @end

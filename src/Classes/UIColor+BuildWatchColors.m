@@ -8,12 +8,17 @@
 
 + (UIColor *) buildWatchGreenColor
 {
-    return [UIColor colorWithRed:.2 green:.4 blue:.2 alpha:1];
+    return [UIColor colorWithRed:.15 green:.5 blue:.15 alpha:1];
 }
 
 + (UIColor *) buildWatchRedColor
 {
-    return [UIColor colorWithRed:.7 green:.2 blue:.2 alpha:1];
+    return [UIColor colorWithRed:.75 green:.1 blue:.1 alpha:1];
+}
+
++ (UIColor *) buildWatchBlueColor
+{
+    return [UIColor colorWithRed:0 green:.3 blue:.7 alpha:1];
 }
 
 @end
