@@ -61,6 +61,8 @@
 		9149E0040F39167600A0E32C /* ProjectsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9149E0020F39167600A0E32C /* ProjectsView.xib */; };
 		917151D20F450F9100270997 /* ProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917151D00F450F9100270997 /* ProjectTableViewCell.xib */; };
 		917151D70F450FF800270997 /* ProjectTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 917151D60F450FF800270997 /* ProjectTableViewCell.m */; };
+		918179D20F49D629009C7617 /* NSDate+IsToday.m in Sources */ = {isa = PBXBuildFile; fileRef = 918179D10F49D629009C7617 /* NSDate+IsToday.m */; };
+		918179DE0F49DC64009C7617 /* NSDate+StringHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 918179DD0F49DC64009C7617 /* NSDate+StringHelpers.m */; };
 		918449EA0F4206F800082108 /* ServerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 918449E90F4206F800082108 /* ServerTableViewCell.m */; };
 		91844BA80F42459D00082108 /* ProjectLabels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91844BA70F42459D00082108 /* ProjectLabels.plist */; };
 		91ABDE280F4120A1003232A0 /* ServerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91ABDE260F4120A1003232A0 /* ServerTableViewCell.xib */; };
@@ -193,6 +195,10 @@
 		917151D10F450F9100270997 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ProjectTableViewCell.xib; sourceTree = "<group>"; };
 		917151D50F450FF800270997 /* ProjectTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTableViewCell.h; sourceTree = "<group>"; };
 		917151D60F450FF800270997 /* ProjectTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectTableViewCell.m; sourceTree = "<group>"; };
+		918179D00F49D629009C7617 /* NSDate+IsToday.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+IsToday.h"; sourceTree = "<group>"; };
+		918179D10F49D629009C7617 /* NSDate+IsToday.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+IsToday.m"; sourceTree = "<group>"; };
+		918179DC0F49DC64009C7617 /* NSDate+StringHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+StringHelpers.h"; sourceTree = "<group>"; };
+		918179DD0F49DC64009C7617 /* NSDate+StringHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+StringHelpers.m"; sourceTree = "<group>"; };
 		918449E80F4206F800082108 /* ServerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerTableViewCell.h; sourceTree = "<group>"; };
 		918449E90F4206F800082108 /* ServerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerTableViewCell.m; sourceTree = "<group>"; };
 		91844BA70F42459D00082108 /* ProjectLabels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectLabels.plist; sourceTree = "<group>"; };
@@ -398,6 +404,10 @@
 				05FE3CFD0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.m */,
 				9114658B0F460949002A4BAB /* UIColor+BuildWatchColors.h */,
 				9114658C0F460949002A4BAB /* UIColor+BuildWatchColors.m */,
+				918179D00F49D629009C7617 /* NSDate+IsToday.h */,
+				918179D10F49D629009C7617 /* NSDate+IsToday.m */,
+				918179DC0F49DC64009C7617 /* NSDate+StringHelpers.h */,
+				918179DD0F49DC64009C7617 /* NSDate+StringHelpers.m */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -692,6 +702,8 @@
 				05D8AFE20F43CC3D00F07532 /* CcrbBuildForcer.m in Sources */,
 				917151D70F450FF800270997 /* ProjectTableViewCell.m in Sources */,
 				9114658D0F460949002A4BAB /* UIColor+BuildWatchColors.m in Sources */,
+				918179D20F49D629009C7617 /* NSDate+IsToday.m in Sources */,
+				918179DE0F49DC64009C7617 /* NSDate+StringHelpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

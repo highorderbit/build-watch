@@ -99,13 +99,13 @@
     [cell setName:[delegate displayNameForProject:project]];
     
     BOOL buildSucceeded = [delegate buildSucceededStateForProject:project];
-    NSString * statusDesc = buildSucceeded ? @"succeeded" : @"failed";
-    NSString * buildLabel = [delegate labelForProject:project];
-    
-    [cell setBuildStatusText:
-     [NSString stringWithFormat:@"Build %@ %@", buildLabel, statusDesc]];
-    
     [cell setBuildSucceeded:buildSucceeded];
+    
+    NSString * buildLabel = [delegate labelForProject:project];
+    [cell setBuildLabel:buildLabel];
+    
+    NSDate * pubDate = [delegate pubDateForProject:project];
+    [cell setPubDate:pubDate];
     
     BOOL tracked = [delegate trackedStateForProject:project];
     [cell setTracked:tracked];

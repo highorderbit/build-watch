@@ -5,19 +5,24 @@
 #import <UIKit/UIKit.h>
 
 @interface ProjectTableViewCell : UITableViewCell {
-    UILabel * IBOutlet nameLabel;
-    UILabel * IBOutlet buildStatusLabel;
+    IBOutlet UILabel * nameLabel;
+    IBOutlet UILabel * buildStatusLabel;
+    IBOutlet UILabel * pubDateLabel;
 
     BOOL buildSucceeded;
+    NSString * buildLabel;
     BOOL tracked;
+    NSDate * pubDate;
 }
 
 - (void) setName:(NSString *)name;
 
-- (void) setBuildStatusText:(NSString *)text;
-
 - (void) setBuildSucceeded:(BOOL)buildSucceeded;
 
+- (void) setBuildLabel:(NSString *)buildLabel;
+
 - (void) setTracked:(BOOL)tracked;
+
+- (void) setPubDate:(NSDate *)pubDate;
 
 @end

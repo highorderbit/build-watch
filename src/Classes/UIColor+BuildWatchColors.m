@@ -16,4 +16,9 @@
     return [UIColor colorWithRed:.75 green:.1 blue:.1 alpha:1];
 }
 
++ (UIColor *) buildWatchBlueColor
+{
+    return [UIColor colorWithRed:0 green:.3 blue:.7 alpha:1];
+}
+
 @end
