@@ -5,8 +5,8 @@
 #import <Foundation/Foundation.h>
 #import "ServerReportBuilder.h"
 
-@interface CcrbServerReportBuilder : NSObject
-                                     < ServerReportBuilder >
+@interface CcnetServerReportBuilder : NSObject
+                                      < ServerReportBuilder >
 {
 }
 

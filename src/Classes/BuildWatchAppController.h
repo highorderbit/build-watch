@@ -50,6 +50,9 @@
     //     (NSString *) project id -> (NSNumber *) tracked
     NSMutableDictionary * projectTrackedStates;
 
+    // Objects to parse reports received from various build servers
+    NSMutableDictionary * serverReportBuilders;
+
     NSObject<BuildWatchPersistentStore> * persistentStore;
 
     NSObject<ServerGroupNameSelector> * serverGroupNameSelector;

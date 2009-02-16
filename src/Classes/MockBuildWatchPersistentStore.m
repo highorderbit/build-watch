@@ -145,6 +145,11 @@
     return projectTrackedStates;
 }
 
+- (NSDictionary *) getServerReportBuilders
+{
+    return nil;
+}
+
 #pragma mark Private methods
 
 + (NSDictionary *) mockServerList

@@ -1,11 +1,13 @@
 //
-//  Copyright 2009 High Order Bit, Inc.. All rights reserved.
+//  Copyright High Order Bit, Inc. 2009. All rights reserved.
 //
 
 #import "CcrbServerReportBuilder.h"
 #import "ServerReport.h"
 #import "ProjectReport.h"
+#import "NSString+BuildWatchAdditions.h"
 #import "NSDate+BuildServiceAdditions.h"
+#import "NSError+BuildWatchAdditions.h"
 #import "TouchXML.h"
 #import "RegexKitLite.h"
 
@@ -15,14 +17,18 @@
 + (NSString *) buildLabelFromProjectTitle:(NSString *)projectTitle;
 + (NSString *) forceBuildUrlForProject:(NSString *)projectName
                                withUrl:(NSString *)projectUrl;
++ (CXMLDocument *) xmlDocumentWithString:(NSString *)xmlString
+                                   error:(NSError **)error;
 + (NSError *)xmlParseError:(NSString *)localizedDescription
              withRootCause:(NSError *)rootCause;
 @end
 
 @implementation CcrbServerReportBuilder
 
-- (ServerReport *) serverReportFromData:(NSData *)data
-                                  error:(NSError **)error
+- (ServerReport *) serverReportFromUrl:(NSString *)url
+                                  data:(NSData *)data
+                                 error:(NSError **)error
+
 {
     NSString * xmlString =
         [[[NSString alloc]
@@ -31,14 +37,13 @@
 
     ServerReport * report = [ServerReport report];
 
-    CXMLDocument * xmlDoc =
-        [[CXMLDocument alloc]
-         initWithXMLString:xmlString options:0 error:error];
+    CXMLDocument * xmlDoc = [[[CXMLDocument alloc]
+         initWithXMLString:xmlString options:0 error:error] autorelease];
 
     if (*error) {
-        *error = [[self class]
-            xmlParseError:NSLocalizedString(@"xml.parse.failed", @"")
-            withRootCause:*error];
+        *error = [NSError errorWithLocalizedDescription:
+            NSLocalizedString(@"xml.parse.failed", @"")
+            rootCause:*error];
         NSLog(@"Failed to parse XML: '%@', returning error: '%@'.", xmlString,
             *error);
 
@@ -47,19 +52,20 @@
 
     NSArray * channels = [[xmlDoc rootElement] elementsForName:@"channel"];
     if (channels.count != 1) {
-        *error = [[self class]
-            xmlParseError:NSLocalizedString(@"xml.parse.failed", @"")
-            withRootCause:*error];
+        *error = [NSError errorWithLocalizedDescription:
+            NSLocalizedString(@"xml.parse.failed", @"")
+            rootCause:*error];
         NSLog(@"Failed to parse XML: '%@', returning error: '%@'.", xmlString,
             *error);
 
         return nil;
     }
-        
+
     CXMLElement * channel = [channels objectAtIndex:0];
 
     report.name =
         [[[channel elementsForName:@"title"] objectAtIndex:0] stringValue];
+    report.link = url;
     report.dashboardLink =
         [[[channel elementsForName:@"link"] objectAtIndex:0] stringValue];
 
@@ -163,16 +169,23 @@
 
 #pragma mark Helper functions
 
-+ (NSError *) xmlParseError:(NSString *)localizedDescription
-              withRootCause:(NSError *)rootCause
++ (CXMLDocument *) xmlDocumentWithString:(NSString *)xmlString
+                                   error:(NSError **)error
 {
-    NSDictionary * userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-        localizedDescription, NSLocalizedDescriptionKey,
-        rootCause.localizedDescription, NSLocalizedFailureReasonErrorKey,
-        nil];
+    CXMLDocument * xmlDoc = [[[CXMLDocument alloc]
+         initWithXMLString:xmlString options:0 error:error] autorelease];
 
-    return [NSError
-        errorWithDomain:@"BuildWatchErrorDomain" code:1 userInfo:userInfo];
+    if (*error) {
+        *error = [NSError errorWithLocalizedDescription:
+            NSLocalizedString(@"xml.parse.failed", @"")
+            rootCause:*error];
+        NSLog(@"Failed to parse XML: '%@', returning error: '%@'.", xmlString,
+            *error);
+
+        return nil;
+    }
+
+    return xmlDoc;
 }
 
 @end

@@ -3,6 +3,7 @@
 //
 
 #import "BuildWatchAppController.h"
+#import "ServerReportBuilder.h"
 #import "ServerReport.h"
 #import "ProjectReport.h"
 #import "RegexKitLite.h"
@@ -25,6 +26,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 - (void) setProjectBuildSucceededStates:
     (NSDictionary *)newProjectBuildSucceededStates;
 - (void) setProjectTrackedStates:(NSDictionary *)newProjectTrackedStates;
+- (void) setServerReportBuilders:(NSDictionary *)newServerReportBuilders;
 - (void) updatePropertiesForProjectReports:(NSArray *)projectReports
                                 withServer:(NSString *)server;
 - (void) removeMissingProjectPropertiesWithProjects:(NSArray *)newProjects
@@ -62,6 +64,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [projectForceBuildLinks release];
     [projectBuildSucceededStates release];
     [projectTrackedStates release];
+    [serverReportBuilders release];
     [persistentStore release];
     [serverGroupCreator release];
     [buildService release];
@@ -91,6 +94,8 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
      [persistentStore getProjectBuildSucceededStates]];
     
     [self setProjectTrackedStates:[persistentStore getProjectTrackedStates]];
+
+    [self setServerReportBuilders:[persistentStore getServerReportBuilders]];
     
     [self refreshAllServerData];
 
@@ -175,6 +180,29 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
      failedToRefreshDataForServer:serverUrl
                       displayName:[serverNames objectForKey:serverUrl]
                             error:error];
+}
+
+- (NSObject<ServerReportBuilder> *) builderForServer:(NSString *)serverUrl
+{
+    NSEnumerator * iter = [serverReportBuilders keyEnumerator];
+
+    for (NSString * mapping = [iter nextObject];
+         mapping;
+         mapping = [iter nextObject])
+    {
+        if ([serverUrl isMatchedByRegex:mapping]) {
+            NSString * className =
+                [serverReportBuilders objectForKey:mapping];
+
+            NSLog(@"Data from '%@' will be handled by a '%@'.",
+                serverUrl, className);
+            Class class = NSClassFromString(className);
+
+            return [[[class alloc] init] autorelease];
+        }
+    }
+
+    return nil;
 }
 
 #pragma mark ServerSelectorDelegate protocol implementation
@@ -454,6 +482,14 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
         [newProjectTrackedStates mutableCopy];
     [projectTrackedStates release];
     projectTrackedStates = tempProjectTrackedStates;
+}
+
+- (void) setServerReportBuilders:(NSDictionary *)newServerReportBuilders
+{
+    NSMutableDictionary * tempServerReportBuilders =
+        [newServerReportBuilders mutableCopy];
+    [serverReportBuilders release];
+    serverReportBuilders = tempServerReportBuilders;
 }
 
 #pragma mark Private helper functions

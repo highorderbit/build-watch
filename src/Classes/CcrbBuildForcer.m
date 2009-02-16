@@ -3,6 +3,7 @@
 //
 
 #import "CcrbBuildForcer.h"
+#import "NSError+BuildWatchAdditions.h"
 
 @interface CcrbBuildForcer (Private)
 - (NSURLConnection *) connectionForProject:(NSString *)project
@@ -40,6 +41,8 @@
 - (void) forceBuildForProject:(NSString *)project
             withForceBuildUrl:(NSString *)projectForceBuildUrl
 {
+    NSLog(@"'%@': forcing project: '%@'.", project, projectForceBuildUrl);
+
     NSURLRequest * req = [NSURLRequest requestWithURL:
         [NSURL URLWithString:projectForceBuildUrl]];
 
@@ -58,6 +61,18 @@
 - (void) connection:(NSURLConnection *)conn didReceiveData:(NSData *)moreData
 {
     // we're just throwing the data away
+}
+
+- (void)                   connection:(NSURLConnection *)conn
+    didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    NSLog(@"'%@': Challenged for authentication from: '%@': '%@'.",
+        [self projectForConnection:conn], conn,
+        [self forceBuildUrlForConnection:conn]);
+
+    [[challenge sender] cancelAuthenticationChallenge:challenge];
+
+    [self destroyConnection:conn];
 }
 
 - (void) connectionDidFinishLoading:(NSURLConnection *)conn

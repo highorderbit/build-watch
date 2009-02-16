@@ -83,7 +83,12 @@ static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
 - (BOOL)shouldAutorotateToInterfaceOrientation:
 (UIInterfaceOrientation)interfaceOrientation
 {
-    self.serverUrl = @"http://megatron.local:3333/projects.rss";
+    if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft)
+        //self.serverUrl = @"http://megatron.local:3333/projects.rss";
+        self.serverUrl = @"http://megatron.local:3333/projects.rss";
+    else if (interfaceOrientation == UIInterfaceOrientationLandscapeRight)
+        self.serverUrl = @"http://megatron.local:8080/dashboard/cctray.xml";
+
     UITextField * textField = (UITextField *)
         [self.editServerUrlCell viewWithTag:SERVER_URL_TEXT_FIELD_TAG];
     textField.text = serverUrl;

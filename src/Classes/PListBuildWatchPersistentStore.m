@@ -133,6 +133,11 @@
     return [[self class] getDictionaryFromPlist:@"ProjectTrackedStates"];
 }
 
+- (NSDictionary *) getServerReportBuilders
+{
+    return [[self class] getDictionaryFromPlist:@"ServerReportBuilders"];
+}
+
 + (NSDictionary *) getDictionaryFromPlist:(NSString *)plist
 {
     NSString * fullPath = [PlistUtils fullDocumentPathForPlist:plist];

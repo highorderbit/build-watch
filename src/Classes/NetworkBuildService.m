@@ -5,8 +5,9 @@
 #import "NetworkBuildService.h"
 #import "BuildStatusUpdater.h"
 #import "NetworkBuildStatusUpdater.h"
-#import "CcrbServerReportBuilder.h"
+#import "GenericServerReportBuilder.h"
 #import "ServerReport.h"
+#import "NSError+BuildWatchAdditions.h"
 
 @interface NetworkBuildService (Private)
 - (NSObject<BuildStatusUpdater> *) createUpdaterForServerUrl:
@@ -46,6 +47,8 @@
 
 - (void) refreshDataForServer:(NSString *)serverUrl
 {
+    NSLog(@"Starting request to refresh data for server: '%@'.", serverUrl);
+
     NSObject<BuildStatusUpdater> * updater =
         [self createUpdaterForServerUrl:serverUrl];
     [updater startUpdate];
@@ -56,16 +59,24 @@
 - (void) updater:(NSObject<BuildStatusUpdater> *)updater
   didReceiveData:(NSData *)data
 {
-    NSObject<ServerReportBuilder> * builder =
-        [[CcrbServerReportBuilder alloc] init];
-
     NSString * serverUrl = [self serverUrlForUpdater:updater];
 
-    NSError * error = nil;
-    ServerReport * report = [builder serverReportFromData:data error:&error];
-    report.link = [self serverUrlForUpdater:updater];
+    NSAssert(delegate, @"Delegate is nil.");
+    NSObject<ServerReportBuilder> * builder =
+        [delegate builderForServer:serverUrl];
 
-    if (error)
+    ServerReport * report = nil;
+    NSError * error = nil;
+
+    if (!builder)
+        error = [NSError errorWithLocalizedDescription:
+             NSLocalizedString(@"ccserver.unsupported.message", @"")];
+    else
+        report = [builder serverReportFromUrl:serverUrl
+                                         data:data
+                                        error:&error];
+
+    if (!builder || error)
         [delegate
             attemptToGetReportFromServer:serverUrl didFailWithError:error];
     else
