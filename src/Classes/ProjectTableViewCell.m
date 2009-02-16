@@ -37,6 +37,7 @@
 
 - (void) awakeFromNib
 {
+    [super awakeFromNib];
     self.contentView.clipsToBounds = YES;
 }
 
@@ -88,13 +89,6 @@
         [self updateUnselectedStyle];
 }
 
-- (void) updateBuildStatusLabelText
-{
-    NSString * statusDesc = buildSucceeded ? @"succeeded" : @"failed";
-    buildStatusLabel.text =
-        [NSString stringWithFormat:@"Build %@ %@", buildLabel, statusDesc];
-}
-
 - (void) setPubDate:(NSDate *)newPubDate
 {
     NSDate * tempPubDate = [[newPubDate copy] retain];
@@ -124,6 +118,13 @@
 {
     return buildSucceeded ?
         [[self class] buildSucceededColor] : [[self class] buildFailedColor];
+}
+
+- (void) updateBuildStatusLabelText
+{
+    NSString * statusDesc = buildSucceeded ? @"succeeded" : @"failed";
+    buildStatusLabel.text =
+    [NSString stringWithFormat:@"Build %@ %@", buildLabel, statusDesc];
 }
 
 #pragma mark Private static helper functions
