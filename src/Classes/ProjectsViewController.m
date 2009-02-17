@@ -20,6 +20,7 @@
 @synthesize tableView;
 @synthesize projects;
 @synthesize delegate;
+@synthesize propertyProvider;
 
 - (void) dealloc
 {
@@ -100,18 +101,19 @@
 
 - (void) updateCell:(ProjectTableViewCell *)cell withProject:(NSString *)project
 {
-    [cell setName:[delegate displayNameForProject:project]];
+    [cell setName:[propertyProvider displayNameForProject:project]];
     
-    BOOL buildSucceeded = [delegate buildSucceededStateForProject:project];
+    BOOL buildSucceeded =
+        [propertyProvider buildSucceededStateForProject:project];
     [cell setBuildSucceeded:buildSucceeded];
     
-    NSString * buildLabel = [delegate labelForProject:project];
+    NSString * buildLabel = [propertyProvider labelForProject:project];
     [cell setBuildLabel:buildLabel];
     
-    NSDate * pubDate = [delegate pubDateForProject:project];
+    NSDate * pubDate = [propertyProvider pubDateForProject:project];
     [cell setPubDate:pubDate];
     
-    BOOL tracked = [delegate trackedStateForProject:project];
+    BOOL tracked = [propertyProvider trackedStateForProject:project];
     [cell setTracked:tracked];
 }
 
@@ -130,7 +132,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     if (!self.editing)
         [delegate userDidSelectProject:project];
     else {
-        BOOL formerTrackedState = [delegate trackedStateForProject:project];
+        BOOL formerTrackedState =
+            [propertyProvider trackedStateForProject:project];
         BOOL newTrackedState = !formerTrackedState;
         [delegate setTrackedState:newTrackedState onProject:project];
         
@@ -147,7 +150,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
           accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
 {    
     UITableViewCellAccessoryType editAccessoryType =
-        [delegate trackedStateForProject:
+        [propertyProvider trackedStateForProject:
         [projects objectAtIndex:indexPath.row]] ?
         UITableViewCellAccessoryCheckmark :
         UITableViewCellAccessoryNone;
@@ -191,7 +194,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     for (NSInteger i = 0; i < projects.count; ++i) {
         NSString * project = [projects objectAtIndex:i];
         NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-        if (![delegate trackedStateForProject:project])
+        if (![propertyProvider trackedStateForProject:project])
             [indexPathsOfHidden addObject:indexPath];
         else {
             UITableViewCell * cell =
@@ -223,7 +226,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     if (!self.editing) {
         NSMutableArray * tempVisibleProjects = [[NSMutableArray alloc] init];
         for (NSString * project in projects)
-            if ([delegate trackedStateForProject:project])
+            if ([propertyProvider trackedStateForProject:project])
                 [tempVisibleProjects addObject:project];
         [self setVisibleProjects:tempVisibleProjects];
     } else

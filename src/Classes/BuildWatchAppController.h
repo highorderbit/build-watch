@@ -10,17 +10,16 @@
 #import "ProjectSelector.h"
 #import "ProjectSelectorDelegate.h"
 #import "ProjectReporter.h"
-#import "ProjectReporterDelegate.h"
 #import "BuildService.h"
 #import "BuildServiceDelegate.h"
 #import "ServerDataRefresher.h"
 #import "ServerDataRefresherDelegate.h"
 #import "ServerGroupCreator.h"
+#import "ProjectPropertyProvider.h"
 
 @interface BuildWatchAppController : NSObject
                                      < ServerGroupNameSelectorDelegate,
-                                       ProjectSelectorDelegate,
-                                       ProjectReporterDelegate,
+                                       ProjectPropertyProvider,
                                        BuildServiceDelegate,
                                        ServerDataRefresher >
 {

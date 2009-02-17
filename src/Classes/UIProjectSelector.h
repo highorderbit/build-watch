@@ -5,6 +5,7 @@
 #import <Foundation/Foundation.h>
 #import "ProjectSelector.h"
 #import "ProjectSelectorDelegate.h"
+#import "ProjectPropertyProvider.h"
 
 @class ProjectsViewController;
 
@@ -12,12 +13,15 @@
                                < ProjectSelector >
 {
     NSObject<ProjectSelectorDelegate> * delegate;
+    NSObject<ProjectPropertyProvider> * propertyProvider;
     UINavigationController * navigationController;
     ProjectsViewController * projectsViewController;
 }
 
 @property (nonatomic, retain) IBOutlet NSObject<ProjectSelectorDelegate> *
     delegate;
+@property (nonatomic, retain) IBOutlet NSObject<ProjectPropertyProvider> *
+    propertyProvider;
 @property (nonatomic, retain) IBOutlet UINavigationController *
     navigationController;
 @property (nonatomic, retain, readonly) ProjectsViewController *

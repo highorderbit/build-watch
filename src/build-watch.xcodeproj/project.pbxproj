@@ -184,7 +184,6 @@
 		05F186900F3D21BE00024A3C /* BuildStatusUpdaterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildStatusUpdaterDelegate.h; sourceTree = "<group>"; };
 		05F186930F3D21C700024A3C /* NetworkBuildStatusUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkBuildStatusUpdater.h; sourceTree = "<group>"; };
 		05F186980F3D223D00024A3C /* NetworkBuildStatusUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkBuildStatusUpdater.m; sourceTree = "<group>"; };
-		05F186C20F3D228500024A3C /* ProjectReporterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectReporterDelegate.h; sourceTree = "<group>"; };
 		05FE3CA00F3DF9E000EE7FB9 /* ServerReportBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerReportBuilder.h; sourceTree = "<group>"; };
 		05FE3CA50F3DFAD600EE7FB9 /* GenericServerReportBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericServerReportBuilder.h; sourceTree = "<group>"; };
 		05FE3CA60F3DFAD600EE7FB9 /* GenericServerReportBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericServerReportBuilder.m; sourceTree = "<group>"; };
@@ -242,6 +241,7 @@
 		918179D10F49D629009C7617 /* NSDate+IsToday.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+IsToday.m"; sourceTree = "<group>"; };
 		918179DC0F49DC64009C7617 /* NSDate+StringHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+StringHelpers.h"; sourceTree = "<group>"; };
 		918179DD0F49DC64009C7617 /* NSDate+StringHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+StringHelpers.m"; sourceTree = "<group>"; };
+		91817B800F4A3A48009C7617 /* ProjectPropertyProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectPropertyProvider.h; sourceTree = "<group>"; };
 		918449E80F4206F800082108 /* ServerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerTableViewCell.h; sourceTree = "<group>"; };
 		918449E90F4206F800082108 /* ServerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerTableViewCell.m; sourceTree = "<group>"; };
 		91844BA70F42459D00082108 /* ProjectLabels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectLabels.plist; sourceTree = "<group>"; };
@@ -386,7 +386,6 @@
 			isa = PBXGroup;
 			children = (
 				053A950D0F3B99230092763D /* ProjectReporter.h */,
-				05F186C20F3D228500024A3C /* ProjectReporterDelegate.h */,
 				053A95100F3B998B0092763D /* UIProjectReporter.h */,
 				053A95110F3B998B0092763D /* UIProjectReporter.m */,
 				053A95130F3B9BF60092763D /* ProjectReportViewController.h */,
@@ -457,6 +456,7 @@
 				918179D10F49D629009C7617 /* NSDate+IsToday.m */,
 				918179DC0F49DC64009C7617 /* NSDate+StringHelpers.h */,
 				918179DD0F49DC64009C7617 /* NSDate+StringHelpers.m */,
+				91817B800F4A3A48009C7617 /* ProjectPropertyProvider.h */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
