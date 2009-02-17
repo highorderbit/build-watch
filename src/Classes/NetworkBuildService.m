@@ -15,6 +15,7 @@
 - (void) destroyUpdater:(NSObject<BuildStatusUpdater> *)updater;
 - (NSString *) serverUrlForUpdater:(NSObject<BuildStatusUpdater> *)updater;
 + (id)keyForUpdater:(NSObject<BuildStatusUpdater> *)updater;
++ (NSObject<BuildStatusUpdater> *) updaterFromKey:(NSValue *)key;
 @end
 
 @implementation NetworkBuildService
@@ -51,7 +52,21 @@
 
     NSObject<BuildStatusUpdater> * updater =
         [self createUpdaterForServerUrl:serverUrl];
+
     [updater startUpdate];
+}
+
+- (void) cancelRefreshForServer:(NSString *)serverUrl
+{
+    NSLog(@"Canceling server refresh for: '%@'.", serverUrl);
+
+    for (NSValue * key in updaters) {
+        NSString * updaterUrl = [updaters objectForKey:key];
+        if ([serverUrl isEqualToString:updaterUrl]) {
+            [[[self class] updaterFromKey:key] cancelUpdate];
+            break;
+        }
+    }
 }
 
 #pragma mark BuildStatusUpdater protocol implementation
@@ -117,9 +132,14 @@
     return [updaters objectForKey:[[self class] keyForUpdater:updater]];
 }
 
-+ (id)keyForUpdater:(NSObject<BuildStatusUpdater> *)updater
++ (id) keyForUpdater:(NSObject<BuildStatusUpdater> *)updater
 {
     return [NSValue valueWithNonretainedObject:updater];
+}
+
++ (NSObject<BuildStatusUpdater> *) updaterFromKey:(NSValue *)key
+{
+    return [key nonretainedObjectValue];
 }
 
 @end

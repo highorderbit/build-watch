@@ -49,6 +49,7 @@
 
 - (void) cancelUpdate
 {
+    NSLog(@"%@: canceling operation on connection: '%@'.", self, connection);
     [connection cancel];
 }
 

@@ -16,6 +16,7 @@
 @synthesize delegate;
 @synthesize buildService;
 @synthesize buildServiceDelegate;
+@synthesize serverUrl;
 
 - (void) dealloc
 {
@@ -26,6 +27,7 @@
     [delegate release];
     [buildService release];
     [buildServiceDelegate release];
+    [serverUrl release];
     [super dealloc];
 }
 
@@ -45,12 +47,17 @@
 
 - (void) addServerWithUrl:(NSString *)url
 {
+    self.serverUrl = url;
     [self.buildService refreshDataForServer:url];
 }
 
 - (void) userDidCancel
 {
-    [rootNavigationController dismissModalViewControllerAnimated:YES];
+    NSLog(@"Attempting to cancel connection to: '%@'.", serverUrl);
+
+    [buildService cancelRefreshForServer:self.serverUrl];
+
+    [self.rootNavigationController dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark EditServerDetailsViewControllerDelegate protocol implementation
@@ -66,22 +73,25 @@
 
 #pragma mark BuildServiceDelegate protocol implementation
 
-- (void) report:(ServerReport *)report receivedFrom:(NSString *)serverUrl
+- (void) report:(ServerReport *)report receivedFrom:(NSString *)theServerUrl
 {
-    NSLog(@"Received build report: '%@' from server: '%@'.", report, serverUrl);
+    NSLog(@"Received build report: '%@' from server: '%@'.",
+        report, theServerUrl);
 
     EditServerDetailsViewController * controller =
         self.editServerDetailsViewController;
     controller.serverReport = report;
 
+    self.serverUrl = nil;
+
     [self.addServerNavigationController
         pushViewController:controller animated:YES];
 }
 
-- (void) attemptToGetReportFromServer:(NSString *)serverUrl
+- (void) attemptToGetReportFromServer:(NSString *)theServerUrl
                      didFailWithError:(NSError *)error
 {
-    NSLog(@"Failed to get report from server: '%@', error: '%@'.", serverUrl,
+    NSLog(@"Failed to get report from server: '%@', error: '%@'.", theServerUrl,
         error);
 
     UIAlertView * alertView =
@@ -95,8 +105,12 @@
 
     [alertView show];
 
+    self.serverUrl = nil;
+
     [addServerViewController viewWillAppear:NO];
 }
+
+#pragma mark Helper functions
 
 - (NSObject<ServerReportBuilder> *) builderForServer:(NSString *)server
 {
