@@ -10,6 +10,8 @@
     UINavigationController * navController;
     UIBarButtonItem * aboutButton;
     UILabel * versionLabel;
+    
+    BOOL displayed;
 }
 
 @property (nonatomic, retain) IBOutlet UINavigationController * navController;
@@ -18,5 +20,6 @@
 
 - (IBAction) displayAboutView:(id)sender;
 - (IBAction) displayWebsite:(id)sender;
+- (IBAction) sendFeedback:(id)sender;
 
 @end
