@@ -75,7 +75,7 @@
 
 - (void) setBuildLabel:(NSString *)newBuildLabel
 {
-    NSString * tempBuildLabel = [[newBuildLabel copy] retain];
+    NSString * tempBuildLabel = [newBuildLabel copy];
     [buildLabel release];
     buildLabel = tempBuildLabel;
     
@@ -91,7 +91,7 @@
 
 - (void) setPubDate:(NSDate *)newPubDate
 {
-    NSDate * tempPubDate = [[newPubDate copy] retain];
+    NSDate * tempPubDate = [newPubDate copy];
     [pubDate release];
     pubDate = tempPubDate;
     
