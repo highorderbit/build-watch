@@ -2,10 +2,10 @@
 //  Copyright High Order Bit, Inc. 2009. All rights reserved.
 //
 
-#import "CcrbBuildForcer.h"
+#import "GenericBuildForcer.h"
 #import "NSError+BuildWatchAdditions.h"
 
-@interface CcrbBuildForcer (Private)
+@interface GenericBuildForcer (Private)
 - (NSURLConnection *) connectionForProject:(NSString *)project
                          withForceBuildUrl:(NSString *)projectForceBuildUrl;
 - (void) saveConnection:(NSURLConnection *)connection
@@ -17,7 +17,7 @@
 + (NSObject *) keyForConnection:(NSURLConnection *)connection;
 @end
 
-@implementation CcrbBuildForcer
+@implementation GenericBuildForcer
 
 @synthesize delegate;
 
