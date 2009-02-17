@@ -149,6 +149,8 @@
     [view addSubview:updateLabel];
 
     [dateFormatter release];
+
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 - (void) showRefreshInProgressView
@@ -162,6 +164,8 @@
 
     [failedServerRequests removeAllObjects];
     [serverDisplayNames removeAllObjects];
+
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 - (void) showFailedUpdatesIfNecessary
