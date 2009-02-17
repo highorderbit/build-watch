@@ -83,6 +83,10 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
         [self.editServerNameCell viewWithTag:SERVER_NAME_TEXT_FIELD_TAG];
     textField.text = self.serverName;
     [textField becomeFirstResponder];
+
+    // view is cached once it's created and the table view is not repopulated
+    // unless done so manually
+    [tableView reloadData];
 }
 
 - (void) viewWillDisappear:(BOOL)animated

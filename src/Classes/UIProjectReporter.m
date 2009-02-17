@@ -3,7 +3,6 @@
 //
 
 #import "UIProjectReporter.h"
-//#import "CcrbBuildForcer.h"
 #import "ProjectReportViewController.h"
 
 @implementation UIProjectReporter
@@ -16,7 +15,6 @@
 - (void) dealloc
 {
     [delegate release];
-    //[buildForcer release];
     [navigationController release];
     [projectReportViewController release];
     [super dealloc];
@@ -39,20 +37,8 @@
         projectReportViewController = [[ProjectReportViewController alloc]
             initWithNibName:@"ProjectReportView" bundle:nil];
         projectReportViewController.delegate = delegate;
-        //projectReportViewController.buildForcer = self.buildForcer;
-        //self.buildForcer.delegate = projectReportViewController;
     }
     return projectReportViewController;
 }
-
-/*
-- (CcrbBuildForcer *) buildForcer
-{
-    if (buildForcer == nil)
-        buildForcer = [[CcrbBuildForcer alloc] init];
-
-    return buildForcer;
-}
-*/
 
 @end

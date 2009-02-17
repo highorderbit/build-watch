@@ -8,6 +8,8 @@
 
 + (NSDate *) dateFromCruiseControlRbString:(NSString *)dateAsString;
 
++ (NSDate *) dateWithString:(NSString *)string format:(NSString *)formatString;
+
 - (NSString *) localizedString;
 
 @end

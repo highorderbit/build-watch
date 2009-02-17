@@ -26,6 +26,7 @@
 
     NSObject<ServerGroupCreatorDelegate> * delegate;
     NSObject<BuildService> * buildService;
+    NSObject<BuildServiceDelegate> * buildServiceDelegate;
 }
 
 @property (nonatomic, retain) IBOutlet UINavigationController *
@@ -36,16 +37,10 @@
     addServerViewController;
 @property (nonatomic, retain) EditServerDetailsViewController *
     editServerDetailsViewController;
-
 @property (nonatomic, retain) IBOutlet NSObject<ServerGroupCreatorDelegate> *
     delegate;
-
-/**
- * TODO: Consider pointing to a shared build service instance. Doing so
- * would require a change to the BuildService protocol to support sending
- * requests back to different initiators (currently they're only sent to
- * the single delegate).
- */
 @property (nonatomic, retain) NSObject<BuildService> * buildService;
+@property (nonatomic, retain) IBOutlet NSObject<BuildServiceDelegate> *
+    buildServiceDelegate;
 
 @end

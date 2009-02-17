@@ -7,6 +7,7 @@
 @interface UIServerDataRefresherDelegate (Private)
 - (void) showRefreshInProgressView;
 - (void) showRefreshCompletedView;
+- (void) showFailedUpdatesIfNecessary;
 + (NSString *) titleForFailedRequestsAlert:(NSDictionary *)requests
                               displayNames:(NSDictionary *)displayNames;
 + (NSString *) messageForFailedRequestsAlert:(NSDictionary *)requests
@@ -73,8 +74,10 @@
 - (void) didRefreshDataForServer:(NSString *)serverUrl
                      displayName:(NSString *)displayName
 {
-    if (numOutstandingRequests == 1)
+    if (numOutstandingRequests == 1) {
         [self showRefreshCompletedView];
+        [self showFailedUpdatesIfNecessary];
+    }
 
     numOutstandingRequests--;
 }
@@ -88,28 +91,7 @@
 
     if (numOutstandingRequests == 1) {
         [self showRefreshCompletedView];
-
-        NSString * title =
-            [[self class] titleForFailedRequestsAlert:failedServerRequests
-                                         displayNames:serverDisplayNames];
-        NSString * message =
-            [[self class] messageForFailedRequestsAlert:failedServerRequests
-                                           displayNames:serverDisplayNames];
-        NSString * viewDetailsButtonTitle =
-            NSLocalizedString(@"server.refresh.failed.details", @"");
-        NSString * okButtonTitle =
-            NSLocalizedString(@"server.refresh.failed.ok", @"");
-
-        UIAlertView * alertView =
-            [[[UIAlertView alloc]
-              initWithTitle:title
-                    message:message
-                   delegate:self
-          cancelButtonTitle:viewDetailsButtonTitle
-          otherButtonTitles:okButtonTitle, nil]
-             autorelease];
-
-        [alertView show];
+        [self showFailedUpdatesIfNecessary];
     }
 
     numOutstandingRequests--;
@@ -180,6 +162,34 @@
 
     [failedServerRequests removeAllObjects];
     [serverDisplayNames removeAllObjects];
+}
+
+- (void) showFailedUpdatesIfNecessary
+{
+    if (failedServerRequests.count == 0)
+        return;
+
+    NSString * title =
+        [[self class] titleForFailedRequestsAlert:failedServerRequests
+                                     displayNames:serverDisplayNames];
+    NSString * message =
+        [[self class] messageForFailedRequestsAlert:failedServerRequests
+                                       displayNames:serverDisplayNames];
+    NSString * viewDetailsButtonTitle =
+        NSLocalizedString(@"server.refresh.failed.details", @"");
+    NSString * okButtonTitle =
+        NSLocalizedString(@"server.refresh.failed.ok", @"");
+    
+    UIAlertView * alertView =
+        [[[UIAlertView alloc]
+          initWithTitle:title
+                message:message
+               delegate:self
+      cancelButtonTitle:viewDetailsButtonTitle
+      otherButtonTitles:okButtonTitle, nil]
+         autorelease];
+
+    [alertView show];
 }
 
 #pragma mark Message formatting helper methods

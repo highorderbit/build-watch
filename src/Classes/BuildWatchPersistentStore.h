@@ -57,4 +57,6 @@
 
 - (NSDictionary *) getProjectTrackedStates;
 
+- (NSDictionary *) getServerReportBuilders;
+
 @end

@@ -8,6 +8,7 @@
 
 @protocol ServerReportBuilder
 
-- (ServerReport *)serverReportFromData:(NSData *)data error:(NSError **)error;
-
+- (ServerReport *) serverReportFromUrl:(NSString *)url
+                                  data:(NSData *)data
+                                 error:(NSError **)error;
 @end

@@ -10,14 +10,15 @@
 {
     static NSString * DATE_FORMAT = @"EEE, dd MMM yyyy HH:mm:ss 'Z'";
 
-    //
-    // Consider reusing the DateFormatter instance.
-    //
+    return [[self class] dateWithString:dateAsString format:DATE_FORMAT];
+}
 
-    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = DATE_FORMAT;
-    NSDate * date = [dateFormatter dateFromString:dateAsString];
-    [dateFormatter release];
++ (NSDate *) dateWithString:(NSString *)string format:(NSString *)formatString
+{
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = formatString;
+    NSDate * date = [formatter dateFromString:string];
+    [formatter release];
 
     return date;
 }

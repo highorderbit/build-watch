@@ -48,7 +48,8 @@
         NSSearchPathForDirectoriesInDomains(
         NSDocumentDirectory, NSUserDomainMask, YES);
     NSString * documentsDirectory = [paths objectAtIndex:0];
-    
+
+    NSLog(@"Full path to PList files: '%@'.", documentsDirectory);
     return [documentsDirectory stringByAppendingPathComponent:file];
 }
 

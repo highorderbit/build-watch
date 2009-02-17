@@ -15,6 +15,7 @@
 @synthesize editServerDetailsViewController;
 @synthesize delegate;
 @synthesize buildService;
+@synthesize buildServiceDelegate;
 
 - (void) dealloc
 {
@@ -24,6 +25,7 @@
     [editServerDetailsViewController release];
     [delegate release];
     [buildService release];
+    [buildServiceDelegate release];
     [super dealloc];
 }
 
@@ -94,6 +96,11 @@
     [alertView show];
 
     [addServerViewController viewWillAppear:NO];
+}
+
+- (NSObject<ServerReportBuilder> *) builderForServer:(NSString *)server
+{
+    return [buildServiceDelegate builderForServer:server];
 }
 
 #pragma mark Accessors

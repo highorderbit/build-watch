@@ -13,6 +13,15 @@
 		0524CE5E0F3CBC6600C020FE /* EditServerDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0524CE5C0F3CBC6600C020FE /* EditServerDetailsView.xib */; };
 		053A95120F3B998B0092763D /* UIProjectReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 053A95110F3B998B0092763D /* UIProjectReporter.m */; };
 		053A95150F3B9BF60092763D /* ProjectReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 053A95140F3B9BF60092763D /* ProjectReportViewController.m */; };
+		054462920F4932A20070ABBB /* NSString+BuildWatchAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 054462910F4932A20070ABBB /* NSString+BuildWatchAdditions.m */; };
+		0544629E0F4932F60070ABBB /* XmlBoolObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 054462940F4932F60070ABBB /* XmlBoolObjectBuilder.m */; };
+		0544629F0F4932F60070ABBB /* XmlCompositeObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 054462960F4932F60070ABBB /* XmlCompositeObjectBuilder.m */; };
+		054462A00F4932F60070ABBB /* XmlDateObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 054462980F4932F60070ABBB /* XmlDateObjectBuilder.m */; };
+		054462A10F4932F60070ABBB /* XmlRegexObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0544629B0F4932F60070ABBB /* XmlRegexObjectBuilder.m */; };
+		054462A20F4932F60070ABBB /* XmlSimpleObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0544629D0F4932F60070ABBB /* XmlSimpleObjectBuilder.m */; };
+		054462AD0F49335A0070ABBB /* PListBuildWatchPersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 054462AA0F49335A0070ABBB /* PListBuildWatchPersistentStore.m */; };
+		054462AE0F49335A0070ABBB /* PListUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 054462AC0F49335A0070ABBB /* PListUtils.m */; };
+		054462B40F4933C10070ABBB /* NSError+BuildWatchAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 054462B30F4933C10070ABBB /* NSError+BuildWatchAdditions.m */; };
 		05473A6B0F44AD4C003F5444 /* ProjectForceBuildLinks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05473A6A0F44AD4C003F5444 /* ProjectForceBuildLinks.plist */; };
 		05473C470F44E45E003F5444 /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 05473C460F44E45E003F5444 /* checkmark.png */; };
 		057CDAFD0F42799D00B63112 /* BuildDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 057CDAFC0F42799D00B63112 /* BuildDetailsViewController.m */; };
@@ -25,16 +34,22 @@
 		05A1FDA20F42237E00E2C085 /* NameValueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A1FDA10F42237E00E2C085 /* NameValueTableViewCell.m */; };
 		05A1FF900F425F3E00E2C085 /* build-succeeded.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A1FF8E0F425F3E00E2C085 /* build-succeeded.png */; };
 		05A1FF930F425F7A00E2C085 /* build-broken.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A1FF920F425F7A00E2C085 /* build-broken.png */; };
+		05C8834E0F49B82E00E486EA /* ServerReportBuilderFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C8834D0F49B82E00E486EA /* ServerReportBuilderFactory.m */; };
+		05C883580F49BCD000E486EA /* CcrbServerReportBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C883570F49BCD000E486EA /* CcrbServerReportBuilder.m */; };
+		05C883A50F49C88800E486EA /* CcjavaServerReportBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C883A40F49C88800E486EA /* CcjavaServerReportBuilder.m */; };
+		05C883A80F49C89000E486EA /* CcnetServerReportBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C883A70F49C89000E486EA /* CcnetServerReportBuilder.m */; };
+		05C884210F49E72000E486EA /* ServerReportBuilders.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05C884200F49E72000E486EA /* ServerReportBuilders.plist */; };
 		05D8AF990F43B3DA00F07532 /* ForceBuildTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05D8AF970F43B3DA00F07532 /* ForceBuildTableViewCell.xib */; };
 		05D8AF9E0F43B57100F07532 /* ForceBuildTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D8AF9D0F43B57100F07532 /* ForceBuildTableViewCell.m */; };
 		05D8AFE20F43CC3D00F07532 /* CcrbBuildForcer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D8AFE10F43CC3D00F07532 /* CcrbBuildForcer.m */; };
+		05DB30060F48CBD3005E1682 /* XmlConstantValueObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DB30050F48CBD3005E1682 /* XmlConstantValueObjectBuilder.m */; };
 		05E911050F3A056F00E646F6 /* BuildWatchAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E911040F3A056F00E646F6 /* BuildWatchAppController.m */; };
 		05E911100F3A11F700E646F6 /* MockBuildWatchPersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E9110F0F3A11F700E646F6 /* MockBuildWatchPersistentStore.m */; };
 		05E911E70F3A453300E646F6 /* UIServerGroupNameSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E911E60F3A453300E646F6 /* UIServerGroupNameSelector.m */; };
 		05E9121F0F3A4E7100E646F6 /* UIProjectSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E9121E0F3A4E7100E646F6 /* UIProjectSelector.m */; };
 		05F1867C0F3D1B4300024A3C /* NetworkBuildService.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F1867B0F3D1B4300024A3C /* NetworkBuildService.m */; };
 		05F186990F3D223D00024A3C /* NetworkBuildStatusUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F186980F3D223D00024A3C /* NetworkBuildStatusUpdater.m */; };
-		05FE3CA70F3DFAD600EE7FB9 /* CcrbServerReportBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FE3CA60F3DFAD600EE7FB9 /* CcrbServerReportBuilder.m */; };
+		05FE3CA70F3DFAD600EE7FB9 /* GenericServerReportBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FE3CA60F3DFAD600EE7FB9 /* GenericServerReportBuilder.m */; };
 		05FE3CFE0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FE3CFD0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.m */; };
 		05FE3EB10F3E1BE500EE7FB9 /* CXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FE3E9F0F3E1BE500EE7FB9 /* CXMLDocument.m */; };
 		05FE3EB20F3E1BE500EE7FB9 /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FE3EA10F3E1BE500EE7FB9 /* CXMLDocument_CreationExtensions.m */; };
@@ -66,8 +81,6 @@
 		918449EA0F4206F800082108 /* ServerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 918449E90F4206F800082108 /* ServerTableViewCell.m */; };
 		91844BA80F42459D00082108 /* ProjectLabels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91844BA70F42459D00082108 /* ProjectLabels.plist */; };
 		91ABDE280F4120A1003232A0 /* ServerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91ABDE260F4120A1003232A0 /* ServerTableViewCell.xib */; };
-		91B4AFB50F3FBFF000AAB35B /* PlistUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B4AFB40F3FBFF000AAB35B /* PlistUtils.m */; };
-		91D9ABC90F3DFC270035454C /* PlistBuildWatchPersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D9ABC80F3DFC270035454C /* PlistBuildWatchPersistentStore.m */; };
 		91D9ABD40F3DFE350035454C /* Servers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABD30F3DFE350035454C /* Servers.plist */; };
 		91D9ABD80F3E01DE0035454C /* ServerGroupPatterns.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABD70F3E01DE0035454C /* ServerGroupPatterns.plist */; };
 		91D9ABDA0F3E02BE0035454C /* ProjectDisplayNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABD90F3E02BE0035454C /* ProjectDisplayNames.plist */; };
@@ -99,6 +112,25 @@
 		053A95110F3B998B0092763D /* UIProjectReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIProjectReporter.m; sourceTree = "<group>"; };
 		053A95130F3B9BF60092763D /* ProjectReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectReportViewController.h; sourceTree = "<group>"; };
 		053A95140F3B9BF60092763D /* ProjectReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectReportViewController.m; sourceTree = "<group>"; };
+		054462900F4932A20070ABBB /* NSString+BuildWatchAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BuildWatchAdditions.h"; sourceTree = "<group>"; };
+		054462910F4932A20070ABBB /* NSString+BuildWatchAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BuildWatchAdditions.m"; sourceTree = "<group>"; };
+		054462930F4932F60070ABBB /* XmlBoolObjectBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlBoolObjectBuilder.h; sourceTree = "<group>"; };
+		054462940F4932F60070ABBB /* XmlBoolObjectBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlBoolObjectBuilder.m; sourceTree = "<group>"; };
+		054462950F4932F60070ABBB /* XmlCompositeObjectBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlCompositeObjectBuilder.h; sourceTree = "<group>"; };
+		054462960F4932F60070ABBB /* XmlCompositeObjectBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlCompositeObjectBuilder.m; sourceTree = "<group>"; };
+		054462970F4932F60070ABBB /* XmlDateObjectBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlDateObjectBuilder.h; sourceTree = "<group>"; };
+		054462980F4932F60070ABBB /* XmlDateObjectBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlDateObjectBuilder.m; sourceTree = "<group>"; };
+		054462990F4932F60070ABBB /* XmlObjectBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlObjectBuilder.h; sourceTree = "<group>"; };
+		0544629A0F4932F60070ABBB /* XmlRegexObjectBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlRegexObjectBuilder.h; sourceTree = "<group>"; };
+		0544629B0F4932F60070ABBB /* XmlRegexObjectBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlRegexObjectBuilder.m; sourceTree = "<group>"; };
+		0544629C0F4932F60070ABBB /* XmlSimpleObjectBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlSimpleObjectBuilder.h; sourceTree = "<group>"; };
+		0544629D0F4932F60070ABBB /* XmlSimpleObjectBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlSimpleObjectBuilder.m; sourceTree = "<group>"; };
+		054462A90F49335A0070ABBB /* PListBuildWatchPersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PListBuildWatchPersistentStore.h; sourceTree = "<group>"; };
+		054462AA0F49335A0070ABBB /* PListBuildWatchPersistentStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PListBuildWatchPersistentStore.m; sourceTree = "<group>"; };
+		054462AB0F49335A0070ABBB /* PListUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PListUtils.h; sourceTree = "<group>"; };
+		054462AC0F49335A0070ABBB /* PListUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PListUtils.m; sourceTree = "<group>"; };
+		054462B20F4933C10070ABBB /* NSError+BuildWatchAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+BuildWatchAdditions.h"; sourceTree = "<group>"; };
+		054462B30F4933C10070ABBB /* NSError+BuildWatchAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+BuildWatchAdditions.m"; sourceTree = "<group>"; };
 		05473A6A0F44AD4C003F5444 /* ProjectForceBuildLinks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectForceBuildLinks.plist; sourceTree = "<group>"; };
 		05473C460F44E45E003F5444 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
 		057CDAFB0F42799D00B63112 /* BuildDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildDetailsViewController.h; sourceTree = "<group>"; };
@@ -116,6 +148,15 @@
 		05A1FDA10F42237E00E2C085 /* NameValueTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameValueTableViewCell.m; sourceTree = "<group>"; };
 		05A1FF8E0F425F3E00E2C085 /* build-succeeded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "build-succeeded.png"; sourceTree = "<group>"; };
 		05A1FF920F425F7A00E2C085 /* build-broken.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "build-broken.png"; sourceTree = "<group>"; };
+		05C8834C0F49B82E00E486EA /* ServerReportBuilderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerReportBuilderFactory.h; sourceTree = "<group>"; };
+		05C8834D0F49B82E00E486EA /* ServerReportBuilderFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerReportBuilderFactory.m; sourceTree = "<group>"; };
+		05C883560F49BCD000E486EA /* CcrbServerReportBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CcrbServerReportBuilder.h; sourceTree = "<group>"; };
+		05C883570F49BCD000E486EA /* CcrbServerReportBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CcrbServerReportBuilder.m; sourceTree = "<group>"; };
+		05C883A30F49C88800E486EA /* CcjavaServerReportBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CcjavaServerReportBuilder.h; sourceTree = "<group>"; };
+		05C883A40F49C88800E486EA /* CcjavaServerReportBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CcjavaServerReportBuilder.m; sourceTree = "<group>"; };
+		05C883A60F49C89000E486EA /* CcnetServerReportBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CcnetServerReportBuilder.h; sourceTree = "<group>"; };
+		05C883A70F49C89000E486EA /* CcnetServerReportBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CcnetServerReportBuilder.m; sourceTree = "<group>"; };
+		05C884200F49E72000E486EA /* ServerReportBuilders.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServerReportBuilders.plist; sourceTree = "<group>"; };
 		05D8AF980F43B3DA00F07532 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ForceBuildTableViewCell.xib; sourceTree = "<group>"; };
 		05D8AF9C0F43B57100F07532 /* ForceBuildTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForceBuildTableViewCell.h; sourceTree = "<group>"; };
 		05D8AF9D0F43B57100F07532 /* ForceBuildTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForceBuildTableViewCell.m; sourceTree = "<group>"; };
@@ -123,6 +164,8 @@
 		05D8AFC10F43BB7F00F07532 /* BuildForcerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildForcerDelegate.h; sourceTree = "<group>"; };
 		05D8AFE00F43CC3D00F07532 /* CcrbBuildForcer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CcrbBuildForcer.h; sourceTree = "<group>"; };
 		05D8AFE10F43CC3D00F07532 /* CcrbBuildForcer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CcrbBuildForcer.m; sourceTree = "<group>"; };
+		05DB30040F48CBD3005E1682 /* XmlConstantValueObjectBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlConstantValueObjectBuilder.h; sourceTree = "<group>"; };
+		05DB30050F48CBD3005E1682 /* XmlConstantValueObjectBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlConstantValueObjectBuilder.m; sourceTree = "<group>"; };
 		05E911030F3A056F00E646F6 /* BuildWatchAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildWatchAppController.h; sourceTree = "<group>"; };
 		05E911040F3A056F00E646F6 /* BuildWatchAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildWatchAppController.m; sourceTree = "<group>"; };
 		05E911070F3A111500E646F6 /* BuildWatchPersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildWatchPersistentStore.h; sourceTree = "<group>"; };
@@ -143,8 +186,8 @@
 		05F186980F3D223D00024A3C /* NetworkBuildStatusUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkBuildStatusUpdater.m; sourceTree = "<group>"; };
 		05F186C20F3D228500024A3C /* ProjectReporterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectReporterDelegate.h; sourceTree = "<group>"; };
 		05FE3CA00F3DF9E000EE7FB9 /* ServerReportBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerReportBuilder.h; sourceTree = "<group>"; };
-		05FE3CA50F3DFAD600EE7FB9 /* CcrbServerReportBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CcrbServerReportBuilder.h; sourceTree = "<group>"; };
-		05FE3CA60F3DFAD600EE7FB9 /* CcrbServerReportBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CcrbServerReportBuilder.m; sourceTree = "<group>"; };
+		05FE3CA50F3DFAD600EE7FB9 /* GenericServerReportBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericServerReportBuilder.h; sourceTree = "<group>"; };
+		05FE3CA60F3DFAD600EE7FB9 /* GenericServerReportBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericServerReportBuilder.m; sourceTree = "<group>"; };
 		05FE3CFC0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+BuildServiceAdditions.h"; sourceTree = "<group>"; };
 		05FE3CFD0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+BuildServiceAdditions.m"; sourceTree = "<group>"; };
 		05FE3E9E0F3E1BE500EE7FB9 /* CXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument.h; sourceTree = "<group>"; };
@@ -203,10 +246,6 @@
 		918449E90F4206F800082108 /* ServerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerTableViewCell.m; sourceTree = "<group>"; };
 		91844BA70F42459D00082108 /* ProjectLabels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectLabels.plist; sourceTree = "<group>"; };
 		91ABDE270F4120A1003232A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ServerTableViewCell.xib; sourceTree = "<group>"; };
-		91B4AFB30F3FBFF000AAB35B /* PlistUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlistUtils.h; sourceTree = "<group>"; };
-		91B4AFB40F3FBFF000AAB35B /* PlistUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlistUtils.m; sourceTree = "<group>"; };
-		91D9ABC70F3DFC270035454C /* PlistBuildWatchPersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlistBuildWatchPersistentStore.h; sourceTree = "<group>"; };
-		91D9ABC80F3DFC270035454C /* PlistBuildWatchPersistentStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlistBuildWatchPersistentStore.m; sourceTree = "<group>"; };
 		91D9ABD30F3DFE350035454C /* Servers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Servers.plist; sourceTree = "<group>"; };
 		91D9ABD70F3E01DE0035454C /* ServerGroupPatterns.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServerGroupPatterns.plist; sourceTree = "<group>"; };
 		91D9ABD90F3E02BE0035454C /* ProjectDisplayNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectDisplayNames.plist; sourceTree = "<group>"; };
@@ -291,6 +330,7 @@
 				91E1523C0F40B792006D6A59 /* ProjectDescriptions.plist */,
 				91E1523D0F40B792006D6A59 /* ProjectPubDates.plist */,
 				91D9AC560F3E12A60035454C /* ServerNames.plist */,
+				05C884200F49E72000E486EA /* ServerReportBuilders.plist */,
 			);
 			name = PLists;
 			sourceTree = "<group>";
@@ -360,14 +400,15 @@
 		050888A70F45E3CC0010569B /* Build Service */ = {
 			isa = PBXGroup;
 			children = (
+				05C886850F4A213D00E486EA /* XML Object Construction */,
 				91F09AA60F3A657B0034528C /* ServerReport.h */,
 				91F09AA70F3A657B0034528C /* ServerReport.m */,
 				91F09AA30F3A63370034528C /* ProjectReport.h */,
 				91F09AA40F3A63370034528C /* ProjectReport.m */,
 				91F09AAA0F3A66970034528C /* BuildService.h */,
 				91F09AAD0F3A67090034528C /* BuildServiceDelegate.h */,
-				05F1867A0F3D1B4300024A3C /* NetworkBuildService.h */,
 				05F1867B0F3D1B4300024A3C /* NetworkBuildService.m */,
+				05F1867A0F3D1B4300024A3C /* NetworkBuildService.h */,
 				91F09AD60F3A69A50034528C /* MockBuildService.h */,
 				91F09AD70F3A69A50034528C /* MockBuildService.m */,
 				05F1868B0F3D21AC00024A3C /* BuildStatusUpdater.h */,
@@ -375,8 +416,12 @@
 				05F186930F3D21C700024A3C /* NetworkBuildStatusUpdater.h */,
 				05F186980F3D223D00024A3C /* NetworkBuildStatusUpdater.m */,
 				05FE3CA00F3DF9E000EE7FB9 /* ServerReportBuilder.h */,
-				05FE3CA50F3DFAD600EE7FB9 /* CcrbServerReportBuilder.h */,
-				05FE3CA60F3DFAD600EE7FB9 /* CcrbServerReportBuilder.m */,
+				05C883560F49BCD000E486EA /* CcrbServerReportBuilder.h */,
+				05C883570F49BCD000E486EA /* CcrbServerReportBuilder.m */,
+				05C883A30F49C88800E486EA /* CcjavaServerReportBuilder.h */,
+				05C883A40F49C88800E486EA /* CcjavaServerReportBuilder.m */,
+				05C883A60F49C89000E486EA /* CcnetServerReportBuilder.h */,
+				05C883A70F49C89000E486EA /* CcnetServerReportBuilder.m */,
 			);
 			name = "Build Service";
 			sourceTree = "<group>";
@@ -385,10 +430,10 @@
 			isa = PBXGroup;
 			children = (
 				05E911070F3A111500E646F6 /* BuildWatchPersistentStore.h */,
-				91D9ABC70F3DFC270035454C /* PlistBuildWatchPersistentStore.h */,
-				91D9ABC80F3DFC270035454C /* PlistBuildWatchPersistentStore.m */,
-				91B4AFB30F3FBFF000AAB35B /* PlistUtils.h */,
-				91B4AFB40F3FBFF000AAB35B /* PlistUtils.m */,
+				054462A90F49335A0070ABBB /* PListBuildWatchPersistentStore.h */,
+				054462AA0F49335A0070ABBB /* PListBuildWatchPersistentStore.m */,
+				054462AB0F49335A0070ABBB /* PListUtils.h */,
+				054462AC0F49335A0070ABBB /* PListUtils.m */,
 				05E9110E0F3A11F700E646F6 /* MockBuildWatchPersistentStore.h */,
 				05E9110F0F3A11F700E646F6 /* MockBuildWatchPersistentStore.m */,
 			);
@@ -398,12 +443,16 @@
 		050889050F45E5AC0010569B /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				05A1FDA00F42237E00E2C085 /* NameValueTableViewCell.h */,
-				05A1FDA10F42237E00E2C085 /* NameValueTableViewCell.m */,
+				054462B20F4933C10070ABBB /* NSError+BuildWatchAdditions.h */,
+				054462B30F4933C10070ABBB /* NSError+BuildWatchAdditions.m */,
+				054462900F4932A20070ABBB /* NSString+BuildWatchAdditions.h */,
+				054462910F4932A20070ABBB /* NSString+BuildWatchAdditions.m */,
 				05FE3CFC0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.h */,
 				05FE3CFD0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.m */,
 				9114658B0F460949002A4BAB /* UIColor+BuildWatchColors.h */,
 				9114658C0F460949002A4BAB /* UIColor+BuildWatchColors.m */,
+				05A1FDA00F42237E00E2C085 /* NameValueTableViewCell.h */,
+				05A1FDA10F42237E00E2C085 /* NameValueTableViewCell.m */,
 				918179D00F49D629009C7617 /* NSDate+IsToday.h */,
 				918179D10F49D629009C7617 /* NSDate+IsToday.m */,
 				918179DC0F49DC64009C7617 /* NSDate+StringHelpers.h */,
@@ -454,6 +503,30 @@
 				1D3623250D0F684500981E51 /* BuildWatchAppDelegate.m */,
 			);
 			name = "App Controller";
+			sourceTree = "<group>";
+		};
+		05C886850F4A213D00E486EA /* XML Object Construction */ = {
+			isa = PBXGroup;
+			children = (
+				05FE3CA50F3DFAD600EE7FB9 /* GenericServerReportBuilder.h */,
+				05FE3CA60F3DFAD600EE7FB9 /* GenericServerReportBuilder.m */,
+				05C8834C0F49B82E00E486EA /* ServerReportBuilderFactory.h */,
+				05C8834D0F49B82E00E486EA /* ServerReportBuilderFactory.m */,
+				054462990F4932F60070ABBB /* XmlObjectBuilder.h */,
+				054462930F4932F60070ABBB /* XmlBoolObjectBuilder.h */,
+				054462940F4932F60070ABBB /* XmlBoolObjectBuilder.m */,
+				054462950F4932F60070ABBB /* XmlCompositeObjectBuilder.h */,
+				054462960F4932F60070ABBB /* XmlCompositeObjectBuilder.m */,
+				054462970F4932F60070ABBB /* XmlDateObjectBuilder.h */,
+				054462980F4932F60070ABBB /* XmlDateObjectBuilder.m */,
+				0544629A0F4932F60070ABBB /* XmlRegexObjectBuilder.h */,
+				0544629B0F4932F60070ABBB /* XmlRegexObjectBuilder.m */,
+				0544629C0F4932F60070ABBB /* XmlSimpleObjectBuilder.h */,
+				0544629D0F4932F60070ABBB /* XmlSimpleObjectBuilder.m */,
+				05DB30040F48CBD3005E1682 /* XmlConstantValueObjectBuilder.h */,
+				05DB30050F48CBD3005E1682 /* XmlConstantValueObjectBuilder.m */,
+			);
+			name = "XML Object Construction";
 			sourceTree = "<group>";
 		};
 		05FE3CC40F3DFB4C00EE7FB9 /* TouchXML */ = {
@@ -650,6 +723,7 @@
 				05473C470F44E45E003F5444 /* checkmark.png in Resources */,
 				91F817570F43C7CE0078D366 /* IconWithoutShine.png in Resources */,
 				917151D20F450F9100270997 /* ProjectTableViewCell.xib in Resources */,
+				05C884210F49E72000E486EA /* ServerReportBuilders.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,7 +753,7 @@
 				911EDBD20F3CA58A00E17BC0 /* RegexKitLite.m in Sources */,
 				05F1867C0F3D1B4300024A3C /* NetworkBuildService.m in Sources */,
 				05F186990F3D223D00024A3C /* NetworkBuildStatusUpdater.m in Sources */,
-				05FE3CA70F3DFAD600EE7FB9 /* CcrbServerReportBuilder.m in Sources */,
+				05FE3CA70F3DFAD600EE7FB9 /* GenericServerReportBuilder.m in Sources */,
 				05FE3CFE0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.m in Sources */,
 				05FE3EB10F3E1BE500EE7FB9 /* CXMLDocument.m in Sources */,
 				05FE3EB20F3E1BE500EE7FB9 /* CXMLDocument_CreationExtensions.m in Sources */,
@@ -692,9 +766,7 @@
 				05FE3EB90F3E1BE500EE7FB9 /* CXMLNode_XPathExtensions.m in Sources */,
 				911EDDFE0F3D0DC300E17BC0 /* UIServerDataRefresher.m in Sources */,
 				911EDE2F0F3D1B0D00E17BC0 /* UIServerDataRefresherDelegate.m in Sources */,
-				91D9ABC90F3DFC270035454C /* PlistBuildWatchPersistentStore.m in Sources */,
 				91D9ADE20F3E47720035454C /* AboutDisplayer.m in Sources */,
-				91B4AFB50F3FBFF000AAB35B /* PlistUtils.m in Sources */,
 				918449EA0F4206F800082108 /* ServerTableViewCell.m in Sources */,
 				05A1FDA20F42237E00E2C085 /* NameValueTableViewCell.m in Sources */,
 				057CDAFD0F42799D00B63112 /* BuildDetailsViewController.m in Sources */,
@@ -702,6 +774,20 @@
 				05D8AFE20F43CC3D00F07532 /* CcrbBuildForcer.m in Sources */,
 				917151D70F450FF800270997 /* ProjectTableViewCell.m in Sources */,
 				9114658D0F460949002A4BAB /* UIColor+BuildWatchColors.m in Sources */,
+				05DB30060F48CBD3005E1682 /* XmlConstantValueObjectBuilder.m in Sources */,
+				054462920F4932A20070ABBB /* NSString+BuildWatchAdditions.m in Sources */,
+				0544629E0F4932F60070ABBB /* XmlBoolObjectBuilder.m in Sources */,
+				0544629F0F4932F60070ABBB /* XmlCompositeObjectBuilder.m in Sources */,
+				054462A00F4932F60070ABBB /* XmlDateObjectBuilder.m in Sources */,
+				054462A10F4932F60070ABBB /* XmlRegexObjectBuilder.m in Sources */,
+				054462A20F4932F60070ABBB /* XmlSimpleObjectBuilder.m in Sources */,
+				054462AD0F49335A0070ABBB /* PListBuildWatchPersistentStore.m in Sources */,
+				054462AE0F49335A0070ABBB /* PListUtils.m in Sources */,
+				054462B40F4933C10070ABBB /* NSError+BuildWatchAdditions.m in Sources */,
+				05C8834E0F49B82E00E486EA /* ServerReportBuilderFactory.m in Sources */,
+				05C883580F49BCD000E486EA /* CcrbServerReportBuilder.m in Sources */,
+				05C883A50F49C88800E486EA /* CcjavaServerReportBuilder.m in Sources */,
+				05C883A80F49C89000E486EA /* CcnetServerReportBuilder.m in Sources */,
 				918179D20F49D629009C7617 /* NSDate+IsToday.m in Sources */,
 				918179DE0F49DC64009C7617 /* NSDate+StringHelpers.m in Sources */,
 			);
