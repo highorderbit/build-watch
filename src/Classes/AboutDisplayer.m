@@ -4,6 +4,13 @@
 
 #import "AboutDisplayer.h"
 
+@interface AboutDisplayer (Private)
+
+- (void) initVersionLabel;
+- (void) hideAboutView;
+
+@end
+
 @implementation AboutDisplayer
 
 @synthesize navController;
@@ -20,24 +27,22 @@
 
 - (void) awakeFromNib
 {
+    [super awakeFromNib];
+    
+    displayed = NO;
     self.navigationItem.title = @"About";
-}
-
-- (void) viewWillDisappear:(BOOL)animated
-{
-    [aboutButton setEnabled:YES];
 }
 
 - (IBAction) displayAboutView:(id)sender
 {
-    [navController pushViewController:self animated:YES];
-    [aboutButton setEnabled:NO];
-    NSString * fullPath = [PlistUtils fullBundlePathForPlist:@"Info"];
-    NSDictionary * infoPList = [PlistUtils readDictionaryFromPlist:fullPath];
-    NSString * versionText = [infoPList objectForKey:@"CFBundleVersion"];
-    NSString * versionLabelText =
-        [NSString stringWithFormat:@"Version %@", versionText];
-    [versionLabel setText:versionLabelText];
+    if (!displayed) {
+        displayed = YES;
+        [navController presentModalViewController:self animated:YES];
+        [self initVersionLabel];
+        aboutButton.style = UIBarButtonItemStyleDone;
+        aboutButton.title = @"Done";
+    } else
+        [self hideAboutView];
 }
 
 - (IBAction) displayWebsite:(id)sender
@@ -46,6 +51,30 @@
     NSURL * url = [[NSURL alloc] initWithString:webAddress];
     [[UIApplication sharedApplication] openURL:url];
     [url release];
+}
+
+- (IBAction) sendFeedback:(id)sender
+{}
+
+#pragma mark Private helper functions
+
+- (void) hideAboutView
+{
+    displayed = NO;
+    [navController dismissModalViewControllerAnimated:YES];
+    aboutButton.style = UIBarButtonItemStyleBordered;
+    aboutButton.title = @"About";
+}
+
+- (void) initVersionLabel
+{
+    NSString * fullPath = [PlistUtils fullBundlePathForPlist:@"Info"];
+    NSDictionary * infoPList = [PlistUtils readDictionaryFromPlist:fullPath];
+    NSString * versionText = [infoPList objectForKey:@"CFBundleVersion"];
+    NSString * versionLabelText =
+        [NSString stringWithFormat:@"Version %@", versionText];
+    
+    [versionLabel setText:versionLabelText];
 }
 
 @end
