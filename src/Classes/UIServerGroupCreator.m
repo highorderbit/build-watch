@@ -48,6 +48,9 @@
 - (void) addServerWithUrl:(NSString *)url
 {
     self.serverUrl = url;
+
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+
     [self.buildService refreshDataForServer:url];
 }
 
@@ -57,7 +60,13 @@
 
     [buildService cancelRefreshForServer:self.serverUrl];
 
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [self.rootNavigationController dismissModalViewControllerAnimated:YES];
+}
+
+- (BOOL) isServerGroupNameValid:(NSString *)server
+{
+    return [delegate isServerGroupNameValid:server];
 }
 
 #pragma mark EditServerDetailsViewControllerDelegate protocol implementation
@@ -78,6 +87,8 @@
     NSLog(@"Received build report: '%@' from server: '%@'.",
         report, theServerUrl);
 
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
     EditServerDetailsViewController * controller =
         self.editServerDetailsViewController;
     controller.serverReport = report;
@@ -93,6 +104,8 @@
 {
     NSLog(@"Failed to get report from server: '%@', error: '%@'.", theServerUrl,
         error);
+
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
     UIAlertView * alertView =
         [[[UIAlertView alloc]

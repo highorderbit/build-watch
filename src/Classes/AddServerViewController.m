@@ -141,8 +141,10 @@ static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
     self.serverUrl =
         [field.text stringByReplacingCharactersInRange:range withString:string];
 
-    self.navigationItem.rightBarButtonItem.enabled =
-        !(range.location == 0 && range.length == 1);
+    BOOL enabled =
+        !(range.location == 0 && range.length == 1) &&
+        [delegate isServerGroupNameValid:self.serverUrl];
+    self.navigationItem.rightBarButtonItem.enabled = enabled;
 
     return YES;
 }

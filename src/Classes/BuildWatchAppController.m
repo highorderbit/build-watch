@@ -322,6 +322,11 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
      selectServerGroupNamesFrom:[self serverGroupNames]];
 }
 
+- (BOOL) isServerGroupNameValid:(NSString *)name
+{
+    return [servers objectForKey:name] == nil;
+}
+
 #pragma mark Authentication accessors
 
 - (void) setUsername:(NSString *)username forServer:(NSString *)server

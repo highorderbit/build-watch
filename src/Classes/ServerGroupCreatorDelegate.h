@@ -11,4 +11,6 @@
 - (void) serverGroupCreatedWithName:(NSString *)server
               andInitialBuildReport:(ServerReport *)report;
 
+- (BOOL) isServerGroupNameValid:(NSString *)server;
+
 @end
