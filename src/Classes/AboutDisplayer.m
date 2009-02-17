@@ -54,7 +54,15 @@
 }
 
 - (IBAction) sendFeedback:(id)sender
-{}
+{
+    NSString * feedbackAddress = @"buildwatchfeedback@highorderbit.com";
+    NSString * urlString =
+        [NSString stringWithFormat:@"mailto:%@", feedbackAddress];
+    
+    NSURL * url = [[NSURL alloc] initWithString:urlString];
+    [[UIApplication sharedApplication] openURL:url];
+    [url release];
+}
 
 #pragma mark Private helper functions
 
