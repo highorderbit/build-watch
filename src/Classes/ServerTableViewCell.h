@@ -4,7 +4,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ServerTableViewCell : UITableViewCell {
+@interface ServerTableViewCell : UITableViewCell
+{
     UILabel * nameLabel;
     UILabel * webAddressLabel;
     UILabel * brokenBuildsLabel;

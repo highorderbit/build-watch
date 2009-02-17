@@ -90,8 +90,9 @@
                                           owner:self
                                         options:nil];
         cell = (ServerTableViewCell *) [nib objectAtIndex:0];
+        cell.hidesAccessoryWhenEditing = NO;
     }
-    
+
     NSString * serverGroupName =
         [visibleServerGroupNames objectAtIndex:indexPath.row];
     
@@ -165,6 +166,26 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
             [NSArray arrayWithObject:indexPath]
                     withRowAnimation:UITableViewRowAnimationFade];
     }
+}
+
+- (BOOL)        tableView:(UITableView *)tv
+    canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (NSIndexPath *)                  tableView:(UITableView *)tv
+    targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath 
+                         toProposedIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    // Allow the proposed destination.
+    return destinationIndexPath;
+}
+
+- (void)     tableView:(UITableView *)tv
+    moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
+           toIndexPath:(NSIndexPath *)toIndexPath
+{
 }
 
 #pragma mark Server manipulation buttons
