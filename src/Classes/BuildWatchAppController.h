@@ -35,6 +35,9 @@
     //     (NSString *) server url -> (NSString *) server name
     NSMutableDictionary * serverNames;
     
+    NSMutableDictionary * serverUsernames;
+    NSMutableDictionary * serverPasswords;
+    
     // Various project properties, mapped as follows:
     //     (NSString *) project id -> property value
     NSMutableDictionary * projectDisplayNames;

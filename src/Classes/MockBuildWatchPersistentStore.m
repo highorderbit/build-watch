@@ -74,6 +74,14 @@
     return serverNames;
 }
 
+- (void) saveServerUsernames:(NSDictionary *)serverUsernames
+{}
+
+- (NSDictionary *) getServerUsernames
+{
+    return nil;
+}
+
 - (void) saveProjectDisplayNames:(NSDictionary *)newProjDisplayNames
 {
     [projectDisplayNames release];

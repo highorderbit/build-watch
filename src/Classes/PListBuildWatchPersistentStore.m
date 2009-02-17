@@ -47,6 +47,16 @@
     return [[self class] getDictionaryFromPlist:@"ServerNames"];
 }
 
+- (void) saveServerUsernames:(NSDictionary *)serverNames
+{
+    [[self class] saveDictionary:serverNames toPlist:@"ServerUsernames"];
+}
+
+- (NSDictionary *) getServerUsernames
+{
+    return [[self class] getDictionaryFromPlist:@"ServerUsernames"];
+}
+
 - (void) saveProjectDisplayNames:(NSDictionary *)projectDisplayNames
 {
     [[self class] saveDictionary:projectDisplayNames
