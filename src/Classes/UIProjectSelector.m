@@ -8,12 +8,14 @@
 @implementation UIProjectSelector
 
 @synthesize delegate;
+@synthesize propertyProvider;
 @synthesize navigationController;
 @synthesize projectsViewController;
 
 - (void)dealloc
 {
     [delegate release];
+    [propertyProvider release];
     [navigationController release];
     [projectsViewController release];
     [super dealloc];
@@ -40,6 +42,7 @@
         projectsViewController = [[ProjectsViewController alloc]
             initWithNibName:@"ProjectsView" bundle:nil];
         projectsViewController.delegate = delegate;
+        projectsViewController.propertyProvider = propertyProvider;
     }
     return projectsViewController;
 }

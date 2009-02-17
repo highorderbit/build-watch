@@ -3,7 +3,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ProjectReporterDelegate.h"
+#import "ProjectPropertyProvider.h"
 #import "BuildForcer.h"
 #import "BuildForcerDelegate.h"
 
@@ -22,7 +22,7 @@
     ForceBuildTableViewCell * forceBuildTableViewCell;
 
     NSString * projectId;
-    NSObject<ProjectReporterDelegate> * delegate;
+    NSObject<ProjectPropertyProvider> * delegate;
 
     NSObject<BuildForcer> * buildForcer;
 }
@@ -34,7 +34,7 @@
 @property (nonatomic, retain) IBOutlet UITableView * tableView;
 @property (nonatomic, retain) ForceBuildTableViewCell * forceBuildTableViewCell;
 @property (nonatomic, copy) NSString * projectId;
-@property (nonatomic, retain) NSObject<ProjectReporterDelegate> * delegate;
+@property (nonatomic, retain) NSObject<ProjectPropertyProvider> * delegate;
 @property (nonatomic, retain) IBOutlet NSObject<BuildForcer> * buildForcer;
 
 @end

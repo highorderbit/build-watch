@@ -4,20 +4,20 @@
 
 #import <Foundation/Foundation.h>
 #import "ProjectReporter.h"
-#import "ProjectReporterDelegate.h"
+#import "ProjectPropertyProvider.h"
 
 @class ProjectReportViewController;
 
 @interface UIProjectReporter : NSObject
                                < ProjectReporter >
 {
-    NSObject<ProjectReporterDelegate> * delegate;
+    NSObject<ProjectPropertyProvider> * delegate;
 
     UINavigationController * navigationController;
     ProjectReportViewController * projectReportViewController;
 }
 
-@property (nonatomic, retain) IBOutlet NSObject<ProjectReporterDelegate> *
+@property (nonatomic, retain) IBOutlet NSObject<ProjectPropertyProvider> *
     delegate;
 @property (nonatomic, retain) IBOutlet UINavigationController *
     navigationController;
