@@ -198,13 +198,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
     if (editing) {
         self.visibleServerGroupNames = visible;
-        [self.navigationItem setLeftBarButtonItem:nil animated:YES];
+        [self.navigationItem setLeftBarButtonItem:nil animated:NO];
         [tableView deleteRowsAtIndexPaths:indexPaths
                          withRowAnimation:UITableViewRowAnimationTop];
     } else {
         self.visibleServerGroupNames = serverGroupNames;
         [self.navigationItem
-            setLeftBarButtonItem:addBarButtonItem animated:YES];
+            setLeftBarButtonItem:addBarButtonItem animated:NO];
         [tableView insertRowsAtIndexPaths:indexPaths
                          withRowAnimation:UITableViewRowAnimationTop];
     }

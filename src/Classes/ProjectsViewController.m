@@ -186,14 +186,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     [super setEditing:editing animated:animated];
     
     [self updateVisibleProjects];
-
-    if (animated) {
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:.3];
-        [UIView setAnimationTransition:UIViewAnimationTransitionNone
-                               forView:self.view
-                                 cache:YES];
-    }
     
     NSMutableArray * indexPathsOfHidden = [NSMutableArray array];
     for (NSInteger i = 0; i < projects.count; ++i) {
@@ -222,9 +214,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     }
     
     [tableView endUpdates];
-    
-    if (animated)
-        [UIView commitAnimations];
 }
 
 #pragma mark Private helper functions
