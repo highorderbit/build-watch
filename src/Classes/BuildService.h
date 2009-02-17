@@ -6,4 +6,5 @@
 
 @protocol BuildService
 - (void) refreshDataForServer:(NSString *)serverUrl;
+- (void) cancelRefreshForServer:(NSString *)serverUrl;
 @end

@@ -13,19 +13,34 @@
 @implementation MockBuildService
 
 @synthesize delegate;
+@synthesize timer;
+
+- (void) dealloc
+{
+    [delegate release];
+    [timer release];
+    [super dealloc];
+}
 
 - (void) refreshDataForServer:(NSString *)server
 {
-    [NSTimer
-     scheduledTimerWithTimeInterval:10.0
-                             target:self
-                           selector:@selector(refreshDataForServerOnTimer:)
-                           userInfo:[server copy] repeats:NO];
+    self.timer =
+        [NSTimer
+         scheduledTimerWithTimeInterval:10.0
+                                 target:self
+                               selector:@selector(refreshDataForServerOnTimer:)
+                               userInfo:[server copy] repeats:NO];
 }
 
-- (void) refreshDataForServerOnTimer:(NSTimer *) timer
+- (void) cancelRefreshForServer:(NSString *)serverUrl
 {
-    NSString * server = (NSString *)timer.userInfo;
+    [self.timer invalidate];
+    self.timer = nil;
+}
+
+- (void) refreshDataForServerOnTimer:(NSTimer *) theTimer
+{
+    NSString * server = (NSString *)theTimer.userInfo;
     
     ServerReport * report = [[ServerReport alloc] init];
     report.name = @"CruiseControl RSS feed";
@@ -67,6 +82,8 @@
     [report release];
     
     [server release];
+
+    self.timer = nil;
 }
 
 + (BOOL)buildSucceededFromProjectName:(NSString *)projectName

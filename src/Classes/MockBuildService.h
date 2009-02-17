@@ -8,9 +8,12 @@
 
 @interface MockBuildService : NSObject <BuildService> {
     NSObject<BuildServiceDelegate> * delegate;
+
+    NSTimer * timer;
 }
 
 @property (nonatomic, retain) IBOutlet NSObject<BuildServiceDelegate> *
     delegate;
+@property (nonatomic, retain) NSTimer * timer;
 
 @end

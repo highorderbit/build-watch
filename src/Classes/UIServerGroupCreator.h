@@ -14,10 +14,10 @@
 @class EditServerDetailsViewController;
 
 @interface UIServerGroupCreator : NSObject
-                                   < ServerGroupCreator,
-                                     AddServerViewControllerDelegate,
-                                     EditServerDetailsViewControllerDelegate,
-                                     BuildServiceDelegate >
+                                  < ServerGroupCreator,
+                                    AddServerViewControllerDelegate,
+                                    EditServerDetailsViewControllerDelegate,
+                                    BuildServiceDelegate >
 {
     UINavigationController * rootNavigationController;
     UINavigationController * addServerNavigationController;
@@ -27,6 +27,8 @@
     NSObject<ServerGroupCreatorDelegate> * delegate;
     NSObject<BuildService> * buildService;
     NSObject<BuildServiceDelegate> * buildServiceDelegate;
+
+    NSString * serverUrl;
 }
 
 @property (nonatomic, retain) IBOutlet UINavigationController *
@@ -42,5 +44,6 @@
 @property (nonatomic, retain) NSObject<BuildService> * buildService;
 @property (nonatomic, retain) IBOutlet NSObject<BuildServiceDelegate> *
     buildServiceDelegate;
+@property (nonatomic, copy) NSString * serverUrl;
 
 @end
