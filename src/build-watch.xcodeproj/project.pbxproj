@@ -41,7 +41,7 @@
 		05C884210F49E72000E486EA /* ServerReportBuilders.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05C884200F49E72000E486EA /* ServerReportBuilders.plist */; };
 		05D8AF990F43B3DA00F07532 /* ForceBuildTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05D8AF970F43B3DA00F07532 /* ForceBuildTableViewCell.xib */; };
 		05D8AF9E0F43B57100F07532 /* ForceBuildTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D8AF9D0F43B57100F07532 /* ForceBuildTableViewCell.m */; };
-		05D8AFE20F43CC3D00F07532 /* CcrbBuildForcer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D8AFE10F43CC3D00F07532 /* CcrbBuildForcer.m */; };
+		05D8AFE20F43CC3D00F07532 /* GenericBuildForcer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D8AFE10F43CC3D00F07532 /* GenericBuildForcer.m */; };
 		05DB30060F48CBD3005E1682 /* XmlConstantValueObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DB30050F48CBD3005E1682 /* XmlConstantValueObjectBuilder.m */; };
 		05E911050F3A056F00E646F6 /* BuildWatchAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E911040F3A056F00E646F6 /* BuildWatchAppController.m */; };
 		05E911100F3A11F700E646F6 /* MockBuildWatchPersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E9110F0F3A11F700E646F6 /* MockBuildWatchPersistentStore.m */; };
@@ -162,8 +162,8 @@
 		05D8AF9D0F43B57100F07532 /* ForceBuildTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForceBuildTableViewCell.m; sourceTree = "<group>"; };
 		05D8AFBE0F43BB7800F07532 /* BuildForcer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildForcer.h; sourceTree = "<group>"; };
 		05D8AFC10F43BB7F00F07532 /* BuildForcerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildForcerDelegate.h; sourceTree = "<group>"; };
-		05D8AFE00F43CC3D00F07532 /* CcrbBuildForcer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CcrbBuildForcer.h; sourceTree = "<group>"; };
-		05D8AFE10F43CC3D00F07532 /* CcrbBuildForcer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CcrbBuildForcer.m; sourceTree = "<group>"; };
+		05D8AFE00F43CC3D00F07532 /* GenericBuildForcer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericBuildForcer.h; sourceTree = "<group>"; };
+		05D8AFE10F43CC3D00F07532 /* GenericBuildForcer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericBuildForcer.m; sourceTree = "<group>"; };
 		05DB30040F48CBD3005E1682 /* XmlConstantValueObjectBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlConstantValueObjectBuilder.h; sourceTree = "<group>"; };
 		05DB30050F48CBD3005E1682 /* XmlConstantValueObjectBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlConstantValueObjectBuilder.m; sourceTree = "<group>"; };
 		05E911030F3A056F00E646F6 /* BuildWatchAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildWatchAppController.h; sourceTree = "<group>"; };
@@ -475,8 +475,8 @@
 			children = (
 				05D8AFBE0F43BB7800F07532 /* BuildForcer.h */,
 				05D8AFC10F43BB7F00F07532 /* BuildForcerDelegate.h */,
-				05D8AFE00F43CC3D00F07532 /* CcrbBuildForcer.h */,
-				05D8AFE10F43CC3D00F07532 /* CcrbBuildForcer.m */,
+				05D8AFE00F43CC3D00F07532 /* GenericBuildForcer.h */,
+				05D8AFE10F43CC3D00F07532 /* GenericBuildForcer.m */,
 				05D8AF9C0F43B57100F07532 /* ForceBuildTableViewCell.h */,
 				05D8AF9D0F43B57100F07532 /* ForceBuildTableViewCell.m */,
 			);
@@ -771,7 +771,7 @@
 				05A1FDA20F42237E00E2C085 /* NameValueTableViewCell.m in Sources */,
 				057CDAFD0F42799D00B63112 /* BuildDetailsViewController.m in Sources */,
 				05D8AF9E0F43B57100F07532 /* ForceBuildTableViewCell.m in Sources */,
-				05D8AFE20F43CC3D00F07532 /* CcrbBuildForcer.m in Sources */,
+				05D8AFE20F43CC3D00F07532 /* GenericBuildForcer.m in Sources */,
 				917151D70F450FF800270997 /* ProjectTableViewCell.m in Sources */,
 				9114658D0F460949002A4BAB /* UIColor+BuildWatchColors.m in Sources */,
 				05DB30060F48CBD3005E1682 /* XmlConstantValueObjectBuilder.m in Sources */,

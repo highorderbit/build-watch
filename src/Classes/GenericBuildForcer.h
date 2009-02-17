@@ -6,8 +6,8 @@
 #import "BuildForcer.h"
 #import "BuildForcerDelegate.h"
 
-@interface CcrbBuildForcer : NSObject
-                             < BuildForcer >
+@interface GenericBuildForcer : NSObject
+                                < BuildForcer >
 {
     NSObject<BuildForcerDelegate> * delegate;
 
