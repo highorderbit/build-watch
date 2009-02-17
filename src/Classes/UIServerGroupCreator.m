@@ -60,6 +60,11 @@
     [self.rootNavigationController dismissModalViewControllerAnimated:YES];
 }
 
+- (BOOL) isServerGroupNameValid:(NSString *)server
+{
+    return [delegate isServerGroupNameValid:server];
+}
+
 #pragma mark EditServerDetailsViewControllerDelegate protocol implementation
 
 - (void) userDidAddServerNamed:(NSString *)serverName

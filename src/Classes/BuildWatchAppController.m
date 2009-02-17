@@ -308,6 +308,11 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
      selectServerGroupNamesFrom:[self serverGroupNames]];
 }
 
+- (BOOL) isServerGroupNameValid:(NSString *)name
+{
+    return [servers objectForKey:name] == nil;
+}
+
 #pragma mark ProjectSelectorDelegate protocol implementation
 
 - (void) userDidSelectProject:(NSString *)project

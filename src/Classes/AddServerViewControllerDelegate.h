@@ -10,4 +10,6 @@
 
 - (void) userDidCancel;
 
+- (BOOL) isServerGroupNameValid:(NSString *)server;
+
 @end
