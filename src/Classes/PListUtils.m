@@ -4,76 +4,73 @@
 
 #import "PlistUtils.h"
 
+@interface PlistUtils (Private)
++ (id) readObjectFromPlist:(NSString *)path;
++ (void) writeObject:(id)obj toPlist:(NSString *)path;
+@end
+
 @implementation PlistUtils
 
 + (NSDictionary *) readDictionaryFromPlist:(NSString *)path
 {
-    NSString * errorDesc = nil;
-    NSPropertyListFormat format;
-    NSData * plistXml = [[NSFileManager defaultManager] contentsAtPath:path];
-    
-    NSDictionary * temp =
-        (NSDictionary *)
-        [NSPropertyListSerialization
-        propertyListFromData:plistXml
-        mutabilityOption:NSPropertyListMutableContainersAndLeaves
-        format:&format
-        errorDescription:&errorDesc];
-    
-    if (!temp)
-        NSLog(errorDesc);
-    
-    return temp;
+    return (NSDictionary *) [self readObjectFromPlist:path];
 }
 
 + (void) writeDictionary:(NSDictionary *)dictionary toPlist:(NSString *)path
 {
-    NSString * errorDesc;
-    NSData * plistData =
-        [NSPropertyListSerialization
-        dataFromPropertyList:dictionary
-        format:NSPropertyListXMLFormat_v1_0
-        errorDescription:&errorDesc];
-    
-    if (plistData)
-        [plistData writeToFile:path atomically:YES];
-    else
-        NSLog(errorDesc);
+    [self writeObject:dictionary toPlist:path];
 }
 
 + (NSArray *) readArrayFromPlist:(NSString *)path
+{
+    return (NSArray *) [self readObjectFromPlist:path];
+}
+
++ (void) writeArray:(NSArray *)array toPlist:(NSString *)path
+{
+    [self writeObject:array toPlist:path];
+}
+
++ (id) readObjectFromPlist:(NSString *)path
 {
     NSString * errorDesc = nil;
     NSPropertyListFormat format;
     NSData * plistXml = [[NSFileManager defaultManager] contentsAtPath:path];
 
-    NSArray * temp =
-        (NSArray *)
+    id temp =
         [NSPropertyListSerialization
         propertyListFromData:plistXml
         mutabilityOption:NSPropertyListMutableContainersAndLeaves
         format:&format
         errorDescription:&errorDesc];
 
-    if (!temp)
+    if (!temp) {
         NSLog(errorDesc);
+
+        // must be released by caller per Apple documentation
+        [errorDesc release];  
+    }
 
     return temp;
 }
 
-+ (void) writeArray:(NSArray *)array toPlist:(NSString *)path
++ (void) writeObject:(id)obj toPlist:(NSString *)path
 {
     NSString * errorDesc;
     NSData * plistData =
         [NSPropertyListSerialization
-        dataFromPropertyList:array
+        dataFromPropertyList:obj
         format:NSPropertyListXMLFormat_v1_0
         errorDescription:&errorDesc];
 
     if (plistData)
         [plistData writeToFile:path atomically:YES];
-    else
+    else {
         NSLog(errorDesc);
+
+        // must be released by caller per Apple documentation
+        [errorDesc release];  
+    }
 }
 
 + (NSString *) fullDocumentPathForPlist:(NSString *)plist
