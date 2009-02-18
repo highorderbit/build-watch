@@ -47,7 +47,7 @@
     NSPropertyListFormat format;
     NSData * plistXml = [[NSFileManager defaultManager] contentsAtPath:path];
 
-    NSDictionary * temp =
+    NSArray * temp =
         (NSArray *)
         [NSPropertyListSerialization
         propertyListFromData:plistXml
