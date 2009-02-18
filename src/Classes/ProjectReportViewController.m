@@ -8,6 +8,7 @@
 #import "ForceBuildTableViewCell.h"
 #import "NSDate+BuildServiceAdditions.h"
 #import "UIColor+BuildWatchColors.h"
+#import "NSDate+StringHelpers.h"
 
 static NSString * StandardSectionCellIdentifier = @"StandardSectionCell";
 
@@ -286,12 +287,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         [delegate buildSucceededStateForProject:projectId] ?
         @"succeeded" : @"failed";
     
-    NSDateFormatter * dateFormatter =
-        [[[NSDateFormatter alloc] init]  autorelease];
-    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
-    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     NSDate * pubDate = [delegate pubDateForProject:projectId];
-    NSString * pubDateString = [dateFormatter stringFromDate:pubDate];
+    NSString * pubDateString = [pubDate buildWatchDescription];
     NSString * webAddress = [delegate linkForProject:projectId];
     NSString * details = [delegate descriptionForProject:projectId];
     
