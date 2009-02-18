@@ -10,15 +10,10 @@
 @interface ProjectTableViewCell (Private)
 
 - (void) updateUnselectedStyle;
-
 - (UIColor *) currentBuildSucceededColor;
-
 - (void) updateBuildStatusLabelText;
-
 + (UIColor *) untrackedColor;
-
 + (UIColor *) buildSucceededColor;
-
 + (UIColor *) buildFailedColor;
 
 @end
@@ -53,6 +48,17 @@
         [self updateUnselectedStyle];
 }
 
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+    
+    pubDateLabel.hidden = editing;
+    
+    CGRect nameLabelFrame = nameLabel.frame;
+    nameLabelFrame.size.width = editing ? 245 : 267;
+    nameLabel.frame = nameLabelFrame;
+}
+
 - (void) setName:(NSString *)name
 {
     nameLabel.text = name;
@@ -85,6 +91,9 @@
 - (void) setTracked:(BOOL)newTracked
 {
     tracked = newTracked;
+    
+    self.hidesAccessoryWhenEditing = !tracked;
+    
     if (!self.selected)
         [self updateUnselectedStyle];
 }
