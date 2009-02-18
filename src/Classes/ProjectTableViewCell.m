@@ -51,9 +51,17 @@
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
-    
-    pubDateLabel.hidden = editing;
-    
+
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.2];
+    [UIView setAnimationTransition:UIViewAnimationTransitionNone
+                           forView:self
+                             cache:YES];
+
+    [pubDateLabel setAlpha:self.editing ? 0.0 : 1.0];
+
+    [UIView commitAnimations];
+
     CGRect nameLabelFrame = nameLabel.frame;
     nameLabelFrame.size.width = editing ? 245 : 267;
     nameLabel.frame = nameLabelFrame;
