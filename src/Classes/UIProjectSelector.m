@@ -25,7 +25,7 @@
 
 - (void) selectProjectFrom:(NSArray *)projects
 {
-    self.projectsViewController.projects = projects;
+    [self.projectsViewController setProjects:projects];
     UIViewController * topController =
         [self.navigationController topViewController] ;
     if (topController != self.projectsViewController)

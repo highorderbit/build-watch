@@ -11,14 +11,15 @@
 @interface ProjectsViewController : UIViewController <UITableViewDelegate>
 {
     UITableView * tableView;
-    NSArray * projects;
-    NSArray * visibleProjects;
+    NSMutableArray * projects;
+    NSMutableArray * visibleProjects;
     NSObject<ProjectSelectorDelegate> * delegate;
     NSObject<ProjectPropertyProvider> * propertyProvider;
 }
 
+- (void) setProjects:(NSArray *)projects;
+
 @property (nonatomic, retain) IBOutlet UITableView * tableView;
-@property (nonatomic, copy) NSArray * projects;
 @property (nonatomic, retain)
     NSObject<ProjectSelectorDelegate> * delegate;
 @property (nonatomic, retain)
