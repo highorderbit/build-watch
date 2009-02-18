@@ -247,13 +247,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         self.visibleServerGroupNames = visible;
         [self.navigationItem setLeftBarButtonItem:nil animated:NO];
         [tableView deleteRowsAtIndexPaths:indexPaths
-                         withRowAnimation:UITableViewRowAnimationTop];
+                         withRowAnimation:UITableViewRowAnimationBottom];
     } else {
         self.visibleServerGroupNames = serverGroupNames;
         [self.navigationItem
             setLeftBarButtonItem:addBarButtonItem animated:NO];
         [tableView insertRowsAtIndexPaths:indexPaths
-                         withRowAnimation:UITableViewRowAnimationTop];
+                         withRowAnimation:UITableViewRowAnimationBottom];
     }
 
     [tableView endUpdates];

@@ -677,7 +677,9 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 {
     NSMutableArray * serverGroupNames =
         [[serverGroupSortOrder mutableCopy] autorelease];
-    [serverGroupNames addObject:NSLocalizedString(SERVER_GROUP_NAME_ALL, @"")];
+    [serverGroupNames
+        insertObject:NSLocalizedString(SERVER_GROUP_NAME_ALL, @"")
+             atIndex:0];
 
     return serverGroupNames;
 }

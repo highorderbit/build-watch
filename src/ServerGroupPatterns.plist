@@ -10,7 +10,7 @@
 	<string>^http://microsoft.com/TeamSystem/default.aspx$</string>
 	<key>http://openoffice.org/builds/</key>
 	<string>^http://openoffice.org/builds/$</string>
-	<key>All</key>
+	<key>All Servers</key>
 	<string>.*</string>
 </dict>
 </plist>
