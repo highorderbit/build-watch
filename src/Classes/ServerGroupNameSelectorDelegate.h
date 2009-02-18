@@ -22,4 +22,6 @@
 
 - (void) createServerGroup;
 
+- (void) editServerGroupName:(NSString *)serverGroupName;
+
 @end

@@ -25,37 +25,6 @@
     self.contentView.clipsToBounds = YES;
 }
 
-- (void) layoutSubviews
-{
-    [super layoutSubviews];
-
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.2];
-    [UIView setAnimationTransition:UIViewAnimationTransitionNone
-                           forView:self
-                             cache:YES];
-
-    CGRect contentRect = self.contentView.bounds;
-
-    CGRect webAddressLabelFrame = self.webAddressLabel.frame;
-    webAddressLabelFrame.size.width = contentRect.size.width - 25.0;
-    self.webAddressLabel.frame = webAddressLabelFrame;
-
-    CGRect nameLabelFrame = self.nameLabel.frame;
-    if (self.editing)
-        nameLabelFrame.size.width = contentRect.size.width - 25.0;
-    else
-        // 113.0 provides the correct size as chosen in interface builder.
-        // If this becomes a pain to maintain, cache the original rect in
-        // 'awakeFromNib' and restore it here.
-        nameLabelFrame.size.width = contentRect.size.width - 113.0;
-    self.nameLabel.frame = nameLabelFrame;
-
-    [self.brokenBuildsLabel setAlpha:self.editing ? 0.0 : 1.0];
-
-    [UIView commitAnimations];
-}
-
 - (void) setSelected:(BOOL)selected animated:(BOOL)animated
 {    
     [super setSelected:selected animated:animated];
@@ -69,6 +38,21 @@
         webAddressLabel.textColor = [UIColor grayColor];
         brokenBuildsLabel.textColor = brokenBuildTextColor;
     }
+}
+
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.2];
+    [UIView setAnimationTransition:UIViewAnimationTransitionNone
+                           forView:self
+                             cache:YES];
+
+    [self.brokenBuildsLabel setAlpha:self.editing ? 0.0 : 1.0];
+
+    [UIView commitAnimations];
 }
 
 - (void) setBrokenBuildTextColor:(UIColor *)color

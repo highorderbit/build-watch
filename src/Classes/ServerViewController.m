@@ -40,8 +40,6 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    NSLog(@"%@: Displaying.", self);
-    
     [super viewWillAppear:animated];
     NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selectedRow animated:NO];
@@ -50,6 +48,14 @@
         visibleServerGroupNames.count > 0;
 
     [delegate userDidDeselectServerGroupName];
+
+    // A bit of a hack to make this decision based on a nil left bar button
+    // item, but we want to make sure the table view remains in editing
+    // mode if it was navigated to because someone finished editing.
+    if (self.navigationItem.leftBarButtonItem == nil)
+        tableView.editing = YES;
+
+    // ensure we are displaying the freshest data
     [tableView reloadData];
 }
 
@@ -123,9 +129,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)      tableView:(UITableView *)tv
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [delegate
-     userDidSelectServerGroupName:
-        [visibleServerGroupNames objectAtIndex:indexPath.row]];
+    NSString * server = [visibleServerGroupNames objectAtIndex:indexPath.row];
+
+    if (tv.editing)
+        [delegate editServerGroupName:server];
+    else
+        [delegate userDidSelectServerGroupName:server];
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView *)tv

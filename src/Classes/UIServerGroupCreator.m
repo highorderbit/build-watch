@@ -6,6 +6,13 @@
 #import "AddServerViewController.h"
 #import "EditServerDetailsViewController.h"
 #import "NetworkBuildService.h"
+#import "ServerReport.h"
+
+@interface UIServerGroupCreator (Private)
+- (BOOL) isCreatingNewServer;
+- (void) endEditingSession;
+@end
+
 
 @implementation UIServerGroupCreator
 
@@ -13,10 +20,16 @@
 @synthesize addServerNavigationController;
 @synthesize addServerViewController;
 @synthesize editServerDetailsViewController;
-@synthesize delegate;
+
+@synthesize serverGroupCreatorDelegate;
+@synthesize serverGroupEditorDelegate;
+
+@synthesize serverGroupPropertyProvider;
+
 @synthesize buildService;
 @synthesize buildServiceDelegate;
-@synthesize serverUrl;
+
+@synthesize serverReport;
 
 - (void) dealloc
 {
@@ -24,10 +37,12 @@
     [addServerNavigationController release];
     [addServerViewController release];
     [editServerDetailsViewController release];
-    [delegate release];
+    [serverGroupCreatorDelegate release];
+    [serverGroupEditorDelegate release];
+    [serverGroupPropertyProvider release];
     [buildService release];
     [buildServiceDelegate release];
-    [serverUrl release];
+    [serverReport release];
     [super dealloc];
 }
 
@@ -43,41 +58,77 @@
                           animated:YES];
 }
 
+#pragma mark ServerGroupEditor protocol implementation
+
+- (void) editServerGroup:(NSString *)serverGroupName
+{
+    EditServerDetailsViewController * controller =
+        self.editServerDetailsViewController;
+
+    controller.serverGroupName = serverGroupName;
+    controller.serverGroupPropertyProvider = self.serverGroupPropertyProvider;
+
+    [self.rootNavigationController
+        pushViewController:controller animated:YES];
+}
+
 #pragma mark AddServerViewControllerDelegate protocol implementation
 
 - (void) addServerWithUrl:(NSString *)url
 {
-    self.serverUrl = url;
-
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
     [self.buildService refreshDataForServer:url];
 }
 
-- (void) userDidCancel
+- (void) userDidCancelAddingServerWithUrl:(NSString *)url
 {
-    NSLog(@"Attempting to cancel connection to: '%@'.", serverUrl);
+    NSLog(@"Attempting to cancel connection to: '%@'.", url);
 
-    [buildService cancelRefreshForServer:self.serverUrl];
+    [buildService cancelRefreshForServer:url];
 
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [self.rootNavigationController dismissModalViewControllerAnimated:YES];
+
+    [self endEditingSession];
 }
 
-- (BOOL) isServerGroupNameValid:(NSString *)server
+- (BOOL) isServerGroupUrlValid:(NSString *)url
 {
-    return [delegate isServerGroupNameValid:server];
+    return [serverGroupCreatorDelegate isServerGroupUrlValid:url];
 }
 
 #pragma mark EditServerDetailsViewControllerDelegate protocol implementation
 
-- (void) userDidAddServerNamed:(NSString *)serverName
-        withInitialBuildReport:(ServerReport *)serverReport
+- (void) userDidEditServerGroupName:(NSString *)serverGroupName
+             serverGroupDisplayName:(NSString *)serverGroupDisplayName;
 {
-    [delegate serverGroupCreatedWithName:serverName
-                   andInitialBuildReport:serverReport];
+    if ([self isCreatingNewServer]) {
+        serverReport.name = serverGroupDisplayName;
+        [serverGroupCreatorDelegate
+         serverGroupCreatedWithDisplayName:serverGroupDisplayName
+                     andInitialBuildReport:serverReport];
 
-    [rootNavigationController dismissModalViewControllerAnimated:YES];
+        [rootNavigationController dismissModalViewControllerAnimated:YES];
+    } else {
+        [serverGroupEditorDelegate
+            changeDisplayName:serverGroupDisplayName
+           forServerGroupName:serverGroupName];
+
+        [rootNavigationController popToRootViewControllerAnimated:YES];
+    }
+
+    [self endEditingSession];
+}
+
+- (void) userDidCancelEditingServerGroupName:(NSString *)serverGroupName
+{
+    if ([self isCreatingNewServer])
+        [rootNavigationController dismissModalViewControllerAnimated:YES];
+    else
+        [rootNavigationController popViewControllerAnimated:YES];
+
+    [self endEditingSession];
 }
 
 #pragma mark BuildServiceDelegate protocol implementation
@@ -91,9 +142,9 @@
 
     EditServerDetailsViewController * controller =
         self.editServerDetailsViewController;
-    controller.serverReport = report;
+    controller.serverGroupPropertyProvider = self;
 
-    self.serverUrl = nil;
+    self.serverReport = report;
 
     [self.addServerNavigationController
         pushViewController:controller animated:YES];
@@ -118,9 +169,36 @@
 
     [alertView show];
 
-    self.serverUrl = nil;
-
     [addServerViewController viewWillAppear:NO];
+}
+
+#pragma mark ServerGroupPropertyProvider protocol implemetation
+
+- (NSString *) displayNameForServerGroupName:(NSString *)serverGroupName
+{
+    return serverReport ? serverReport.name :
+        [serverGroupPropertyProvider
+         displayNameForServerGroupName:serverGroupName];
+}
+
+- (NSString *) linkForServerGroupName:(NSString *)serverGroupName
+{
+    return serverReport ? serverReport.link :
+        [serverGroupPropertyProvider linkForServerGroupName:serverGroupName];
+}
+
+- (NSString *) dashboardLinkForServerGroupName:(NSString *)serverGroupName;
+{
+    return serverReport ? serverReport.dashboardLink :
+        [serverGroupPropertyProvider
+         dashboardLinkForServerGroupName:serverGroupName];
+}
+
+- (NSUInteger) numberOfProjectsForServerGroupName:(NSString *)serverGroupName;
+{
+    return serverReport ? serverReport.projectReports.count :
+        [serverGroupPropertyProvider
+         numberOfProjectsForServerGroupName:serverGroupName];
 }
 
 #pragma mark Helper functions
@@ -128,6 +206,16 @@
 - (NSObject<ServerReportBuilder> *) builderForServer:(NSString *)server
 {
     return [buildServiceDelegate builderForServer:server];
+}
+
+- (BOOL) isCreatingNewServer
+{
+    return serverReport != nil;
+}
+
+- (void) endEditingSession
+{
+    self.serverReport = nil;
 }
 
 #pragma mark Accessors

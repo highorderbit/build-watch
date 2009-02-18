@@ -143,7 +143,7 @@ static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
 
     BOOL enabled =
         !(range.location == 0 && range.length == 1) &&
-        [delegate isServerGroupNameValid:self.serverUrl];
+        [delegate isServerGroupUrlValid:self.serverUrl];
     self.navigationItem.rightBarButtonItem.enabled = enabled;
 
     return YES;
@@ -186,7 +186,8 @@ static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
 
 - (void) userDidCancel
 {
-    [delegate userDidCancel];
+    [delegate userDidCancelAddingServerWithUrl:
+        [[self.serverUrl copy] autorelease]];
 }
 
 #pragma mark Accessor methods

@@ -8,9 +8,9 @@
 
 @protocol ServerGroupCreatorDelegate
 
-- (void) serverGroupCreatedWithName:(NSString *)server
-              andInitialBuildReport:(ServerReport *)report;
+- (void) serverGroupCreatedWithDisplayName:(NSString *)serverDisplayName
+                     andInitialBuildReport:(ServerReport *)report;
 
-- (BOOL) isServerGroupNameValid:(NSString *)server;
+- (BOOL) isServerGroupUrlValid:(NSString *)url;
 
 @end

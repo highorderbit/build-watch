@@ -8,9 +8,9 @@
 
 @protocol EditServerDetailsViewControllerDelegate
 
-- (void) userDidAddServerNamed:(NSString *)serverName
-        withInitialBuildReport:(ServerReport *)report;
+- (void) userDidEditServerGroupName:(NSString *)serverGroupName
+             serverGroupDisplayName:(NSString *)serverGroupDisplayName;
 
-- (void) userDidCancel;
+- (void) userDidCancelEditingServerGroupName:(NSString *)serverGroupName;
 
 @end

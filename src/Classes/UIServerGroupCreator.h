@@ -5,16 +5,22 @@
 #import <Foundation/Foundation.h>
 #import "ServerGroupCreator.h"
 #import "ServerGroupCreatorDelegate.h"
+#import "ServerGroupEditor.h"
+#import "ServerGroupEditorDelegate.h"
+#import "ServerGroupPropertyProvider.h"
 #import "AddServerViewControllerDelegate.h"
 #import "EditServerDetailsViewControllerDelegate.h"
 #import "BuildServiceDelegate.h"
 #import "BuildService.h"
 
+@class ServerReport;
 @class AddServerViewController;
 @class EditServerDetailsViewController;
 
 @interface UIServerGroupCreator : NSObject
                                   < ServerGroupCreator,
+                                    ServerGroupEditor,
+                                    ServerGroupPropertyProvider,
                                     AddServerViewControllerDelegate,
                                     EditServerDetailsViewControllerDelegate,
                                     BuildServiceDelegate >
@@ -24,11 +30,15 @@
     AddServerViewController * addServerViewController;
     EditServerDetailsViewController * editServerDetailsViewController;
 
-    NSObject<ServerGroupCreatorDelegate> * delegate;
+    NSObject<ServerGroupCreatorDelegate> * serverGroupCreatorDelegate;
+    NSObject<ServerGroupEditorDelegate> * serverGroupEditorDelegate;
+
+    NSObject<ServerGroupPropertyProvider> * serverGroupPropertyProvider;
+
     NSObject<BuildService> * buildService;
     NSObject<BuildServiceDelegate> * buildServiceDelegate;
 
-    NSString * serverUrl;
+    ServerReport * serverReport;
 }
 
 @property (nonatomic, retain) IBOutlet UINavigationController *
@@ -39,11 +49,19 @@
     addServerViewController;
 @property (nonatomic, retain) EditServerDetailsViewController *
     editServerDetailsViewController;
+
 @property (nonatomic, retain) IBOutlet NSObject<ServerGroupCreatorDelegate> *
-    delegate;
+    serverGroupCreatorDelegate;
+@property (nonatomic, retain) IBOutlet NSObject<ServerGroupEditorDelegate> *
+    serverGroupEditorDelegate;
+
+@property (nonatomic, retain) IBOutlet NSObject<ServerGroupPropertyProvider> *
+    serverGroupPropertyProvider;
+
 @property (nonatomic, retain) NSObject<BuildService> * buildService;
 @property (nonatomic, retain) IBOutlet NSObject<BuildServiceDelegate> *
     buildServiceDelegate;
-@property (nonatomic, copy) NSString * serverUrl;
+
+@property (nonatomic, copy) ServerReport * serverReport;
 
 @end

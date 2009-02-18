@@ -45,6 +45,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 @synthesize projectSelector;
 @synthesize projectReporter;
 @synthesize serverGroupCreator;
+@synthesize serverGroupEditor;
 @synthesize buildService;
 @synthesize serverDataRefresherDelegate;
 
@@ -67,6 +68,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [serverReportBuilders release];
     [persistentStore release];
     [serverGroupCreator release];
+    [serverGroupEditor release];
     [buildService release];
     [super dealloc];
 }
@@ -220,11 +222,6 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [self setActiveServerGroupName:nil]; 
 }
 
-- (NSString *) displayNameForServerGroupName:(NSString *)serverGroupName
-{
-    return [serverNames objectForKey:serverGroupName];
-}
-
 // Get the url for single-server server groups
 - (NSString *) webAddressForServerGroupName:(NSString *)serverGroupName
 {
@@ -280,13 +277,19 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [serverGroupCreator createServerGroup];
 }
 
+- (void) editServerGroupName:(NSString *)serverGroupName
+{
+    NSLog(@"User wants to edit server group: '%@'.", serverGroupName);
+    [serverGroupEditor editServerGroup:serverGroupName];
+}
+
 #pragma mark ServerGroupCreatorDelegate protocol implementation
 
-- (void) serverGroupCreatedWithName:(NSString *)serverName
-              andInitialBuildReport:(ServerReport *)report
+- (void) serverGroupCreatedWithDisplayName:(NSString *)serverDisplayName
+                     andInitialBuildReport:(ServerReport *)report
 {
     NSLog(@"Server group created: '%@', initial report: '%@'.",
-          serverName, report);
+          serverDisplayName, report);
 
     /*
      * Consider refactoring into a dedicated 'add server group' function.
@@ -300,7 +303,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [serverGroupPatterns
         setObject:[NSString stringWithFormat:@"^%@$", report.link]
            forKey:report.link];
-    [serverNames setObject:serverName forKey:report.link];
+    [serverNames setObject:serverDisplayName forKey:report.link];
 
     [self report:report receivedFrom:report.link];
 
@@ -308,9 +311,17 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
      selectServerGroupNamesFrom:[self serverGroupNames]];
 }
 
-- (BOOL) isServerGroupNameValid:(NSString *)name
+- (BOOL) isServerGroupUrlValid:(NSString *)url
 {
-    return [servers objectForKey:name] == nil;
+    return [servers objectForKey:url] == nil;
+}
+
+#pragma mark ServerGroupEditorDelegate protocol implementation
+
+- (void) changeDisplayName:(NSString *)serverGroupDisplayName
+        forServerGroupName:(NSString *)serverGroupName
+{
+    [serverNames setObject:serverGroupDisplayName forKey:serverGroupName];
 }
 
 #pragma mark ProjectSelectorDelegate protocol implementation
@@ -320,6 +331,30 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     NSLog(@"User selected project: %@.", project);
     [projectReporter reportDetailsForProject:project];
 }
+
+#pragma mark ServerGroupPropertyProvider protocol implementation
+
+- (NSString *) displayNameForServerGroupName:(NSString *)serverGroupName
+{
+    return [serverNames objectForKey:serverGroupName];
+}
+
+- (NSString *) linkForServerGroupName:(NSString *)serverGroupName
+{
+    return serverGroupName;
+}
+
+- (NSString *) dashboardLinkForServerGroupName:(NSString *)serverGroupName
+{
+    return @"TODO";
+}
+
+- (NSUInteger) numberOfProjectsForServerGroupName:(NSString *)serverGroupName
+{
+    return [[servers objectForKey:serverGroupName] count];
+}
+
+#pragma mark ProjectPropertyProvider protocol implementation
 
 - (NSString *) displayNameForProject:(NSString *)project
 {

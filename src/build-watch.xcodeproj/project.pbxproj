@@ -133,6 +133,8 @@
 		054462B30F4933C10070ABBB /* NSError+BuildWatchAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+BuildWatchAdditions.m"; sourceTree = "<group>"; };
 		05473A6A0F44AD4C003F5444 /* ProjectForceBuildLinks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectForceBuildLinks.plist; sourceTree = "<group>"; };
 		05473C460F44E45E003F5444 /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
+		05622F7A0F4B6B7C009BF44B /* ServerGroupPropertyProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerGroupPropertyProvider.h; sourceTree = "<group>"; };
+		05622F850F4B6DEC009BF44B /* ServerGroupEditorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerGroupEditorDelegate.h; sourceTree = "<group>"; };
 		057CDAFB0F42799D00B63112 /* BuildDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildDetailsViewController.h; sourceTree = "<group>"; };
 		057CDAFC0F42799D00B63112 /* BuildDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildDetailsViewController.m; sourceTree = "<group>"; };
 		059CBD470F3BA40900010F3F /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 		05C883A60F49C89000E486EA /* CcnetServerReportBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CcnetServerReportBuilder.h; sourceTree = "<group>"; };
 		05C883A70F49C89000E486EA /* CcnetServerReportBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CcnetServerReportBuilder.m; sourceTree = "<group>"; };
 		05C884200F49E72000E486EA /* ServerReportBuilders.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServerReportBuilders.plist; sourceTree = "<group>"; };
+		05C889420F4B5B8900E486EA /* ServerGroupEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerGroupEditor.h; sourceTree = "<group>"; };
 		05D8AF980F43B3DA00F07532 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ForceBuildTableViewCell.xib; sourceTree = "<group>"; };
 		05D8AF9C0F43B57100F07532 /* ForceBuildTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForceBuildTableViewCell.h; sourceTree = "<group>"; };
 		05D8AF9D0F43B57100F07532 /* ForceBuildTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForceBuildTableViewCell.m; sourceTree = "<group>"; };
@@ -335,11 +338,13 @@
 			name = PLists;
 			sourceTree = "<group>";
 		};
-		050888A30F45E3A20010569B /* Add Server */ = {
+		050888A30F45E3A20010569B /* Managing Servers */ = {
 			isa = PBXGroup;
 			children = (
 				059CBF210F3C7BB100010F3F /* ServerGroupCreator.h */,
 				059CBF250F3C7E6D00010F3F /* ServerGroupCreatorDelegate.h */,
+				05C889420F4B5B8900E486EA /* ServerGroupEditor.h */,
+				05622F850F4B6DEC009BF44B /* ServerGroupEditorDelegate.h */,
 				059CBF2C0F3C821900010F3F /* UIServerGroupCreator.h */,
 				059CBF2D0F3C821900010F3F /* UIServerGroupCreator.m */,
 				0524CCDD0F3C8A0900C020FE /* AddServerViewController.h */,
@@ -349,7 +354,7 @@
 				0524CE390F3CBA5F00C020FE /* EditServerDetailsViewController.m */,
 				0524CEFC0F3CE52E00C020FE /* EditServerDetailsViewControllerDelegate.h */,
 			);
-			name = "Add Server";
+			name = "Managing Servers";
 			sourceTree = "<group>";
 		};
 		050888A40F45E3B30010569B /* Server Selection */ = {
@@ -456,6 +461,7 @@
 				918179D10F49D629009C7617 /* NSDate+IsToday.m */,
 				918179DC0F49DC64009C7617 /* NSDate+StringHelpers.h */,
 				918179DD0F49DC64009C7617 /* NSDate+StringHelpers.m */,
+				05622F7A0F4B6B7C009BF44B /* ServerGroupPropertyProvider.h */,
 				91817B800F4A3A48009C7617 /* ProjectPropertyProvider.h */,
 			);
 			name = Shared;
@@ -587,7 +593,7 @@
 				050888A40F45E3B30010569B /* Server Selection */,
 				050888A50F45E3BB0010569B /* Project Selection */,
 				050888A60F45E3C10010569B /* Build Details */,
-				050888A30F45E3A20010569B /* Add Server */,
+				050888A30F45E3A20010569B /* Managing Servers */,
 				050889240F45E6170010569B /* About */,
 				050889050F45E5AC0010569B /* Shared */,
 			);

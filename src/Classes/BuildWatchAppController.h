@@ -15,13 +15,18 @@
 #import "ServerDataRefresher.h"
 #import "ServerDataRefresherDelegate.h"
 #import "ServerGroupCreator.h"
+#import "ServerGroupEditor.h"
+#import "ServerGroupEditorDelegate.h"
 #import "ProjectPropertyProvider.h"
+#import "ServerGroupPropertyProvider.h"
 
 @interface BuildWatchAppController : NSObject
                                      < ServerGroupNameSelectorDelegate,
+                                       ServerGroupPropertyProvider,
                                        ProjectPropertyProvider,
                                        BuildServiceDelegate,
-                                       ServerDataRefresher >
+                                       ServerDataRefresher,
+                                       ServerGroupEditorDelegate >
 {
     // Servers are a list of URL strings.
     //     (NSString *) server url -> (NSArray *) project names (NSString *)
@@ -59,6 +64,7 @@
     NSObject<ProjectReporter> * projectReporter;
 
     NSObject<ServerGroupCreator> * serverGroupCreator;
+    NSObject<ServerGroupEditor> * serverGroupEditor;
 
     NSObject<BuildService> * buildService;
     
@@ -79,6 +85,8 @@
 
 @property (nonatomic, retain) IBOutlet NSObject<ServerGroupCreator> *
     serverGroupCreator;
+@property (nonatomic, retain) IBOutlet NSObject<ServerGroupEditor> *
+    serverGroupEditor;
 
 @property (nonatomic, retain) IBOutlet NSObject<BuildService> * buildService;
 

@@ -6,7 +6,7 @@
 
 @protocol ProjectPropertyProvider
 
-- (NSString *) displayNameForProject:(NSString *)projectId;
+- (NSString *) displayNameForProject:(NSString *)project;
 
 - (BOOL) trackedStateForProject:(NSString *)project;
 

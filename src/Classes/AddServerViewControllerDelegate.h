@@ -8,8 +8,8 @@
 
 - (void) addServerWithUrl:(NSString *)url;
 
-- (void) userDidCancel;
+- (void) userDidCancelAddingServerWithUrl:(NSString *)url;
 
-- (BOOL) isServerGroupNameValid:(NSString *)server;
+- (BOOL) isServerGroupUrlValid:(NSString *)serverUrl;
 
 @end
