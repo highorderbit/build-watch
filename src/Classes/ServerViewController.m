@@ -41,6 +41,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
     NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selectedRow animated:NO];
 
@@ -49,23 +50,13 @@
 
     [delegate userDidDeselectServerGroupName];
 
-    // A bit of a hack to make this decision based on a nil left bar button
-    // item, but we want to make sure the table view remains in editing
-    // mode if it was navigated to because someone finished editing.
-    if (self.navigationItem.leftBarButtonItem == nil)
-        tableView.editing = YES;
-
     // ensure we are displaying the freshest data
     [tableView reloadData];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
-    NSLog(@"%@: Hiding.", self);
-    
     [super viewWillDisappear:animated];
-
-    [tableView setEditing:NO animated:NO];
 }
 
 #pragma mark UITableViewDelegate
@@ -168,7 +159,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
         [serverGroupNames removeObject:serverGroupName];
         [delegate deleteServerGroupWithName:serverGroupName];
-        // remove locally last to avoid deallocating prematurely
+        // remove locally last to avoid premature deallocation
         [visibleServerGroupNames removeObjectAtIndex:indexPath.row];
 
         [tableView deleteRowsAtIndexPaths:
@@ -195,6 +186,30 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
            toIndexPath:(NSIndexPath *)toIndexPath
 {
+    NSObject * objectToMove =
+        [[visibleServerGroupNames
+         objectAtIndex:fromIndexPath.row] retain];
+    NSObject * currentObject =
+        [[visibleServerGroupNames
+         objectAtIndex:toIndexPath.row] retain];
+
+    // put the object in the right place among visible objects
+    [visibleServerGroupNames removeObjectAtIndex:fromIndexPath.row];
+    [visibleServerGroupNames insertObject:objectToMove atIndex:toIndexPath.row];
+
+    // figure out where to put it within all objects
+    NSUInteger source = [serverGroupNames indexOfObject:objectToMove];
+    NSAssert1(source != NSNotFound,
+        @"Unable to find object to move: '%@'.", objectToMove);
+    NSUInteger dest = [serverGroupNames indexOfObject:currentObject];
+    NSAssert1(source != NSNotFound,
+        @"Unable to find current object: '%@'.", currentObject);
+
+    [serverGroupNames removeObjectAtIndex:source];
+    [serverGroupNames insertObject:objectToMove atIndex:dest];
+
+    [objectToMove release];
+    [currentObject release];
 }
 
 #pragma mark Server manipulation buttons
