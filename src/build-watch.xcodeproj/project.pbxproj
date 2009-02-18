@@ -92,6 +92,9 @@
 		91E1523E0F40B792006D6A59 /* ProjectBuildSucceededStates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91E1523B0F40B792006D6A59 /* ProjectBuildSucceededStates.plist */; };
 		91E1523F0F40B792006D6A59 /* ProjectDescriptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91E1523C0F40B792006D6A59 /* ProjectDescriptions.plist */; };
 		91E152400F40B792006D6A59 /* ProjectPubDates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91E1523D0F40B792006D6A59 /* ProjectPubDates.plist */; };
+		91E84B970F4B2A670010B2A6 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E84B960F4B2A670010B2A6 /* SFHFKeychainUtils.m */; };
+		91E84BA20F4B2C1B0010B2A6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E84BA10F4B2C1B0010B2A6 /* Security.framework */; };
+		91E84BA80F4B332F0010B2A6 /* ServerUsernames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91E84BA70F4B332F0010B2A6 /* ServerUsernames.plist */; };
 		91F09AA50F3A63370034528C /* ProjectReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AA40F3A63370034528C /* ProjectReport.m */; };
 		91F09AA80F3A657B0034528C /* ServerReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AA70F3A657B0034528C /* ServerReport.m */; };
 		91F09AD80F3A69A50034528C /* MockBuildService.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AD70F3A69A50034528C /* MockBuildService.m */; };
@@ -262,6 +265,10 @@
 		91E1523B0F40B792006D6A59 /* ProjectBuildSucceededStates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectBuildSucceededStates.plist; sourceTree = "<group>"; };
 		91E1523C0F40B792006D6A59 /* ProjectDescriptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectDescriptions.plist; sourceTree = "<group>"; };
 		91E1523D0F40B792006D6A59 /* ProjectPubDates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectPubDates.plist; sourceTree = "<group>"; };
+		91E84B950F4B2A670010B2A6 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
+		91E84B960F4B2A670010B2A6 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
+		91E84BA10F4B2C1B0010B2A6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
+		91E84BA70F4B332F0010B2A6 /* ServerUsernames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServerUsernames.plist; sourceTree = "<group>"; };
 		91F09AA30F3A63370034528C /* ProjectReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectReport.h; sourceTree = "<group>"; };
 		91F09AA40F3A63370034528C /* ProjectReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectReport.m; sourceTree = "<group>"; };
 		91F09AA60F3A657B0034528C /* ServerReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerReport.h; sourceTree = "<group>"; };
@@ -281,6 +288,7 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
+				91E84BA20F4B2C1B0010B2A6 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +342,7 @@
 				91E1523D0F40B792006D6A59 /* ProjectPubDates.plist */,
 				91D9AC560F3E12A60035454C /* ServerNames.plist */,
 				05C884200F49E72000E486EA /* ServerReportBuilders.plist */,
+				91E84BA70F4B332F0010B2A6 /* ServerUsernames.plist */,
 			);
 			name = PLists;
 			sourceTree = "<group>";
@@ -564,6 +573,7 @@
 		05FE3CC70F3DFB5600EE7FB9 /* Vendor Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				91E84B940F4B2A160010B2A6 /* SFHFKeychainUtils */,
 				05FE3D560F3E0F8300EE7FB9 /* RegexKitLite */,
 				05FE3CC40F3DFB4C00EE7FB9 /* TouchXML */,
 			);
@@ -644,11 +654,21 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				91E84BA10F4B2C1B0010B2A6 /* Security.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		91E84B940F4B2A160010B2A6 /* SFHFKeychainUtils */ = {
+			isa = PBXGroup;
+			children = (
+				91E84B950F4B2A670010B2A6 /* SFHFKeychainUtils.h */,
+				91E84B960F4B2A670010B2A6 /* SFHFKeychainUtils.m */,
+			);
+			name = SFHFKeychainUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -730,6 +750,7 @@
 				91F817570F43C7CE0078D366 /* IconWithoutShine.png in Resources */,
 				917151D20F450F9100270997 /* ProjectTableViewCell.xib in Resources */,
 				05C884210F49E72000E486EA /* ServerReportBuilders.plist in Resources */,
+				91E84BA80F4B332F0010B2A6 /* ServerUsernames.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -796,6 +817,7 @@
 				05C883A80F49C89000E486EA /* CcnetServerReportBuilder.m in Sources */,
 				918179D20F49D629009C7617 /* NSDate+IsToday.m in Sources */,
 				918179DE0F49DC64009C7617 /* NSDate+StringHelpers.m in Sources */,
+				91E84B970F4B2A670010B2A6 /* SFHFKeychainUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

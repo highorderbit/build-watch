@@ -41,6 +41,7 @@
 {
     [super viewDidLoad];
     [self.navigationItem setRightBarButtonItem:self.editButtonItem animated:NO];
+    tableView.allowsSelectionDuringEditing = YES;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -123,8 +124,8 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     return 66;
 }
 
-- (void)      tableView:(UITableView *)tv
-didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)          tableView:(UITableView *)tv
+    didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString * project = [visibleProjects objectAtIndex:indexPath.row];
     ProjectTableViewCell * cell =
@@ -132,16 +133,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     if (!self.editing)
         [delegate userDidSelectProject:project];
     else {
-        BOOL formerTrackedState =
-            [propertyProvider trackedStateForProject:project];
-        BOOL newTrackedState = !formerTrackedState;
+        BOOL newTrackedState =
+            ![propertyProvider trackedStateForProject:project];
         [delegate setTrackedState:newTrackedState onProject:project];
         
         [cell setTracked:newTrackedState];
         
-        cell.accessoryType =
-            [self tableView:tv accessoryTypeForRowWithIndexPath:indexPath];
-                
         [tv deselectRowAtIndexPath:indexPath animated:YES];
     }
 }
@@ -149,15 +146,35 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 - (UITableViewCellAccessoryType) tableView:(UITableView *)tv
           accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
 {    
-    UITableViewCellAccessoryType editAccessoryType =
-        [propertyProvider trackedStateForProject:
-        [projects objectAtIndex:indexPath.row]] ?
-        UITableViewCellAccessoryCheckmark :
-        UITableViewCellAccessoryNone;
-    
     return self.editing ?
-        editAccessoryType :
+        UITableViewCellAccessoryCheckmark :
         UITableViewCellAccessoryDisclosureIndicator;
+}
+
+- (BOOL)        tableView:(UITableView *)tv
+    canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (NSIndexPath *)                  tableView:(UITableView *)tv
+    targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath 
+                         toProposedIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    // Allow the proposed destination.
+    return destinationIndexPath;
+}
+
+- (void)     tableView:(UITableView *)tv
+    moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
+           toIndexPath:(NSIndexPath *)toIndexPath
+{
+}
+
+- (UITableViewCellEditingStyle) tableView:(UITableView *)tv
+            editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleNone;
 }
 
 #pragma mark Accessors
@@ -204,6 +221,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         }
     }
     
+    [tableView setEditing:editing animated:animated];
+    
     [tableView beginUpdates];
     
     if (editing) {
@@ -215,7 +234,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         [tableView deleteRowsAtIndexPaths:indexPathsOfHidden
                          withRowAnimation:UITableViewRowAnimationTop];
     }
-    
+        
     [tableView endUpdates];
 }
 

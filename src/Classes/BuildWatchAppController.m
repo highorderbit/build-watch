@@ -7,6 +7,7 @@
 #import "ServerReport.h"
 #import "ProjectReport.h"
 #import "RegexKitLite.h"
+#import "SFHFKeychainUtils.h"
 
 @class Server, Project;
 
@@ -17,6 +18,8 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 - (void) setServers:(NSDictionary *)newServers;
 - (void) setServerGroupPatterns:(NSDictionary *)newServerGroupPatterns;
 - (void) setServerNames:(NSDictionary *)newServerNames;
+- (void) setServerUsernames:(NSDictionary *)newServerUsernames;
+- (void) setServerPasswords:(NSDictionary *)newServerPasswords;
 - (void) setProjectDisplayNames:(NSDictionary *)newProjectDisplayNames;
 - (void) setProjectLabels:(NSDictionary *)newProjectLabels;
 - (void) setProjectDescriptions:(NSDictionary *)newProjectDescriptions;
@@ -35,6 +38,8 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 - (NSArray *) projectIdsForServer:(NSString *)server;
 - (NSArray *) projectIdsForServerGroupName:(NSString *)serverGroupName;
 - (NSArray *) serverGroupNames;
+- (void) loadPasswordsFromKeychain;
+- (void) savePasswordsToKeychain;
 + (NSString *) keyForProject:(NSString *)project andServer:(NSString *)server;
 @end
 
@@ -54,6 +59,8 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [servers release];
     [serverGroupPatterns release];
     [serverNames release];
+    [serverUsernames release];
+    [serverPasswords release];
     [serverGroupNameSelector release];
     [projectSelector release];
     [projectReporter release];
@@ -83,7 +90,10 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     NSString * allLocalizedName = NSLocalizedString(SERVER_GROUP_NAME_ALL, @"");
     [allServerNames setObject:allLocalizedName forKey:allLocalizedName];
     [self setServerNames:allServerNames];
-
+    
+    [self setServerUsernames:[persistentStore getServerUsernames]];
+    [self loadPasswordsFromKeychain];
+        
     [self setProjectDisplayNames:[persistentStore getProjectDisplayNames]];
     [self setProjectLabels:[persistentStore getProjectLabels]];
     [self setProjectDescriptions:[persistentStore getProjectDescriptions]];
@@ -113,6 +123,8 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [persistentStore saveServers:servers];
     [persistentStore saveServerGroupPatterns:serverGroupPatterns];
     [persistentStore saveServerNames:serverNames];
+    [persistentStore saveServerUsernames:serverUsernames];
+    [self savePasswordsToKeychain];
     [persistentStore saveProjectDisplayNames:projectDisplayNames];
     [persistentStore saveProjectLabels:projectLabels];
     [persistentStore saveProjectDescriptions:projectDescriptions];
@@ -270,6 +282,8 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
     [servers removeObjectForKey:serverGroupName];
     [serverNames removeObjectForKey:serverGroupName];
+    [serverUsernames removeObjectForKey:serverGroupName];
+    [serverPasswords removeObjectForKey:serverGroupName];
 }
 
 - (void) createServerGroup
@@ -322,6 +336,28 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
         forServerGroupName:(NSString *)serverGroupName
 {
     [serverNames setObject:serverGroupDisplayName forKey:serverGroupName];
+}
+
+#pragma mark Authentication accessors
+
+- (void) setUsername:(NSString *)username forServer:(NSString *)server
+{
+    [serverUsernames setObject:username forKey:server];
+}
+
+- (NSString *) usernameForServer:(NSString *)server
+{
+    return [serverUsernames objectForKey:server];
+}
+
+- (void) setPassword:(NSString *)password forServer:(NSString *)server
+{
+    [serverPasswords setObject:password forKey:server];
+}
+
+- (NSString *) passwordForServer:(NSString *)server
+{
+    return [serverPasswords objectForKey:server];
 }
 
 #pragma mark ProjectSelectorDelegate protocol implementation
@@ -457,6 +493,22 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     NSMutableDictionary * tempServerNames = [newServerNames mutableCopy];
     [serverNames release];
     serverNames = tempServerNames;
+}
+
+- (void) setServerUsernames:(NSDictionary *)newServerUsernames
+{
+    NSMutableDictionary * tempServerUsernames =
+        [newServerUsernames mutableCopy];
+    [serverUsernames release];
+    serverUsernames = tempServerUsernames;
+}
+
+- (void) setServerPasswords:(NSDictionary *)newServerPasswords
+{
+    NSMutableDictionary * tempServerPasswords =
+        [newServerPasswords mutableCopy];
+    [serverPasswords release];
+    serverPasswords = tempServerPasswords;
 }
 
 - (void) setProjectDisplayNames:(NSDictionary *)newProjectDisplayNames;
@@ -625,6 +677,42 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     }
     
     return matchingServers;
+}
+
+- (void) loadPasswordsFromKeychain
+{
+    [self setServerPasswords:[[NSMutableDictionary alloc] init]];
+    for (NSString * server in [serverUsernames allKeys]) {
+        NSString * username = [serverUsernames objectForKey:server];
+        NSError * error;
+        NSString * password =
+            [SFHFKeychainUtils getPasswordForUsername:username
+                                       andServiceName:server
+                                                error:&error];
+        
+        if (!error)
+            NSLog([error description]);
+        else
+            [serverPasswords setObject:password forKey:server];
+    }
+}
+
+- (void) savePasswordsToKeychain
+{
+    for (NSString * server in [serverUsernames allKeys]) {
+        NSString * username = [serverUsernames objectForKey:server];
+        NSString * password = [serverPasswords objectForKey:server];
+        
+        NSError * error;
+        [SFHFKeychainUtils storeUsername:username
+                             andPassword:password
+                          forServiceName:server
+                          updateExisting:YES
+                                   error:&error];
+        
+        if (!error)
+            NSLog([error description]);
+    }
 }
 
 #pragma mark static utility functions

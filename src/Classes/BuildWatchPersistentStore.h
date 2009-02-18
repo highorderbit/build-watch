@@ -24,6 +24,10 @@
 
 - (NSDictionary *) getServerNames;
 
+- (void) saveServerUsernames:(NSDictionary *)serverUsernames;
+
+- (NSDictionary *) getServerUsernames;
+
 - (void) saveProjectDisplayNames:(NSDictionary *)projectDisplayNames;
 
 - (NSDictionary *) getProjectDisplayNames;
