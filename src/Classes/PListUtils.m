@@ -41,6 +41,41 @@
         NSLog(errorDesc);
 }
 
++ (NSArray *) readArrayFromPlist:(NSString *)path
+{
+    NSString * errorDesc = nil;
+    NSPropertyListFormat format;
+    NSData * plistXml = [[NSFileManager defaultManager] contentsAtPath:path];
+
+    NSDictionary * temp =
+        (NSArray *)
+        [NSPropertyListSerialization
+        propertyListFromData:plistXml
+        mutabilityOption:NSPropertyListMutableContainersAndLeaves
+        format:&format
+        errorDescription:&errorDesc];
+
+    if (!temp)
+        NSLog(errorDesc);
+
+    return temp;
+}
+
++ (void) writeArray:(NSArray *)array toPlist:(NSString *)path
+{
+    NSString * errorDesc;
+    NSData * plistData =
+        [NSPropertyListSerialization
+        dataFromPropertyList:array
+        format:NSPropertyListXMLFormat_v1_0
+        errorDescription:&errorDesc];
+
+    if (plistData)
+        [plistData writeToFile:path atomically:YES];
+    else
+        NSLog(errorDesc);
+}
+
 + (NSString *) fullDocumentPathForPlist:(NSString *)plist
 {
     NSString * file = [plist stringByAppendingString:@".plist"];

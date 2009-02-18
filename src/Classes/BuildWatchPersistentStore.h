@@ -24,6 +24,10 @@
 
 - (NSDictionary *) getServerNames;
 
+- (void) saveServerGroupSortOrder:(NSArray *)serverGroupNames;
+
+- (NSArray *) getServerGroupSortOrder;
+
 - (void) saveServerUsernames:(NSDictionary *)serverUsernames;
 
 - (NSDictionary *) getServerUsernames;

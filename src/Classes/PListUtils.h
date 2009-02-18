@@ -11,6 +11,10 @@
 
 + (void) writeDictionary:(NSDictionary *)dictionary toPlist:(NSString *)path;
 
++ (NSArray *) readArrayFromPlist:(NSString *)path;
+
++ (void) writeArray:(NSArray *)array toPlist:(NSString *)path;
+
 + (NSString *) fullDocumentPathForPlist:(NSString *)plist;
 
 + (NSString *) fullBundlePathForPlist:(NSString *)plist;

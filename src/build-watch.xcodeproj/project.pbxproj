@@ -34,6 +34,7 @@
 		05A1FDA20F42237E00E2C085 /* NameValueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 05A1FDA10F42237E00E2C085 /* NameValueTableViewCell.m */; };
 		05A1FF900F425F3E00E2C085 /* build-succeeded.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A1FF8E0F425F3E00E2C085 /* build-succeeded.png */; };
 		05A1FF930F425F7A00E2C085 /* build-broken.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A1FF920F425F7A00E2C085 /* build-broken.png */; };
+		05AA0C750F4BA7DB00E46412 /* ServerGroupSortOrder.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05AA0C740F4BA7DB00E46412 /* ServerGroupSortOrder.plist */; };
 		05C8834E0F49B82E00E486EA /* ServerReportBuilderFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C8834D0F49B82E00E486EA /* ServerReportBuilderFactory.m */; };
 		05C883580F49BCD000E486EA /* CcrbServerReportBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C883570F49BCD000E486EA /* CcrbServerReportBuilder.m */; };
 		05C883A50F49C88800E486EA /* CcjavaServerReportBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C883A40F49C88800E486EA /* CcjavaServerReportBuilder.m */; };
@@ -153,6 +154,7 @@
 		05A1FDA10F42237E00E2C085 /* NameValueTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NameValueTableViewCell.m; sourceTree = "<group>"; };
 		05A1FF8E0F425F3E00E2C085 /* build-succeeded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "build-succeeded.png"; sourceTree = "<group>"; };
 		05A1FF920F425F7A00E2C085 /* build-broken.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "build-broken.png"; sourceTree = "<group>"; };
+		05AA0C740F4BA7DB00E46412 /* ServerGroupSortOrder.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServerGroupSortOrder.plist; sourceTree = "<group>"; };
 		05C8834C0F49B82E00E486EA /* ServerReportBuilderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerReportBuilderFactory.h; sourceTree = "<group>"; };
 		05C8834D0F49B82E00E486EA /* ServerReportBuilderFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerReportBuilderFactory.m; sourceTree = "<group>"; };
 		05C883560F49BCD000E486EA /* CcrbServerReportBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CcrbServerReportBuilder.h; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				91D9AC560F3E12A60035454C /* ServerNames.plist */,
 				05C884200F49E72000E486EA /* ServerReportBuilders.plist */,
 				91E84BA70F4B332F0010B2A6 /* ServerUsernames.plist */,
+				05AA0C740F4BA7DB00E46412 /* ServerGroupSortOrder.plist */,
 			);
 			name = PLists;
 			sourceTree = "<group>";
@@ -751,6 +754,7 @@
 				917151D20F450F9100270997 /* ProjectTableViewCell.xib in Resources */,
 				05C884210F49E72000E486EA /* ServerReportBuilders.plist in Resources */,
 				91E84BA80F4B332F0010B2A6 /* ServerUsernames.plist in Resources */,
+				05AA0C750F4BA7DB00E46412 /* ServerGroupSortOrder.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

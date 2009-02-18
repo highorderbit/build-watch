@@ -208,6 +208,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     [serverGroupNames removeObjectAtIndex:source];
     [serverGroupNames insertObject:objectToMove atIndex:dest];
 
+    [delegate userDidSetServerGroupSortOrder:visibleServerGroupNames];
+
     [objectToMove release];
     [currentObject release];
 }

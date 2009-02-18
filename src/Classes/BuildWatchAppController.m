@@ -18,6 +18,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 - (void) setServers:(NSDictionary *)newServers;
 - (void) setServerGroupPatterns:(NSDictionary *)newServerGroupPatterns;
 - (void) setServerNames:(NSDictionary *)newServerNames;
+- (void) setServerGroupSortOrder:(NSArray *)serverGroupNames;
 - (void) setServerUsernames:(NSDictionary *)newServerUsernames;
 - (void) setServerPasswords:(NSDictionary *)newServerPasswords;
 - (void) setProjectDisplayNames:(NSDictionary *)newProjectDisplayNames;
@@ -37,7 +38,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 - (NSArray *) serversMatchingGroupName:(NSString *)groupName;
 - (NSArray *) projectIdsForServer:(NSString *)server;
 - (NSArray *) projectIdsForServerGroupName:(NSString *)serverGroupName;
-- (NSArray *) serverGroupNames;
+- (NSArray *) sortedServerGroupNames;
 - (void) loadPasswordsFromKeychain;
 - (void) savePasswordsToKeychain;
 + (NSString *) keyForProject:(NSString *)project andServer:(NSString *)server;
@@ -90,6 +91,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     NSString * allLocalizedName = NSLocalizedString(SERVER_GROUP_NAME_ALL, @"");
     [allServerNames setObject:allLocalizedName forKey:allLocalizedName];
     [self setServerNames:allServerNames];
+    [self setServerGroupSortOrder:[persistentStore getServerGroupSortOrder]];
     
     [self setServerUsernames:[persistentStore getServerUsernames]];
     [self loadPasswordsFromKeychain];
@@ -112,7 +114,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [self refreshAllServerData];
 
     [serverGroupNameSelector
-     selectServerGroupNamesFrom:[self serverGroupNames]];
+     selectServerGroupNamesFrom:[self sortedServerGroupNames]];
 
     if (servers.count == 0)
         [serverGroupCreator createServerGroup];
@@ -123,6 +125,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [persistentStore saveServers:servers];
     [persistentStore saveServerGroupPatterns:serverGroupPatterns];
     [persistentStore saveServerNames:serverNames];
+    [persistentStore saveServerGroupSortOrder:serverGroupSortOrder];
     [persistentStore saveServerUsernames:serverUsernames];
     [self savePasswordsToKeychain];
     [persistentStore saveProjectDisplayNames:projectDisplayNames];
@@ -282,6 +285,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
     [servers removeObjectForKey:serverGroupName];
     [serverNames removeObjectForKey:serverGroupName];
+    [serverGroupSortOrder removeObject:serverGroupName];
     [serverUsernames removeObjectForKey:serverGroupName];
     [serverPasswords removeObjectForKey:serverGroupName];
 }
@@ -295,6 +299,11 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 {
     NSLog(@"User wants to edit server group: '%@'.", serverGroupName);
     [serverGroupEditor editServerGroup:serverGroupName];
+}
+
+- (void) userDidSetServerGroupSortOrder:(NSArray *)serverGroupNames
+{
+    [self setServerGroupSortOrder:serverGroupNames];
 }
 
 #pragma mark ServerGroupCreatorDelegate protocol implementation
@@ -318,11 +327,12 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
         setObject:[NSString stringWithFormat:@"^%@$", report.link]
            forKey:report.link];
     [serverNames setObject:serverDisplayName forKey:report.link];
+    [serverGroupSortOrder addObject:report.link];
 
     [self report:report receivedFrom:report.link];
 
     [serverGroupNameSelector 
-     selectServerGroupNamesFrom:[self serverGroupNames]];
+     selectServerGroupNamesFrom:[self sortedServerGroupNames]];
 }
 
 - (BOOL) isServerGroupUrlValid:(NSString *)url
@@ -495,6 +505,13 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     serverNames = tempServerNames;
 }
 
+- (void) setServerGroupSortOrder:(NSArray *)serverGroupNames
+{
+    NSMutableArray * temp = [serverGroupNames mutableCopy];
+    [serverGroupSortOrder release];
+    serverGroupSortOrder = temp;
+}
+
 - (void) setServerUsernames:(NSDictionary *)newServerUsernames
 {
     NSMutableDictionary * tempServerUsernames =
@@ -656,12 +673,12 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [missingProjectIds release];
 }
 
-- (NSArray *) serverGroupNames
+- (NSArray *) sortedServerGroupNames
 {
     NSMutableArray * serverGroupNames =
-        [[[servers allKeys] mutableCopy] autorelease];
+        [[serverGroupSortOrder mutableCopy] autorelease];
     [serverGroupNames addObject:NSLocalizedString(SERVER_GROUP_NAME_ALL, @"")];
-    
+
     return serverGroupNames;
 }
 

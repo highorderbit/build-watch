@@ -10,6 +10,10 @@
 
 + (void) saveDictionary:dictionary toPlist:(NSString *)plist;
 
++ (NSArray *) getArrayFromPlist:(NSString *)plist;
+
++ (void) saveArray:(NSArray *)array toPlist:(NSString *)plist;
+
 @end
 
 @implementation PlistBuildWatchPersistentStore
@@ -45,6 +49,16 @@
 - (NSDictionary *) getServerNames
 {
     return [[self class] getDictionaryFromPlist:@"ServerNames"];
+}
+
+- (void) saveServerGroupSortOrder:(NSArray *)serverGroupNames
+{
+    [[self class] saveArray:serverGroupNames toPlist:@"ServerGroupSortOrder"];
+}
+
+- (NSArray *) getServerGroupSortOrder
+{
+    return [[self class] getArrayFromPlist:@"ServerGroupSortOrder"];
 }
 
 - (void) saveServerUsernames:(NSDictionary *)serverNames
@@ -172,6 +186,32 @@
 {
     NSString * fullPath = [PlistUtils fullDocumentPathForPlist:plist];
     [PlistUtils writeDictionary:dictionary toPlist:fullPath];
+}
+
++ (NSArray *) getArrayFromPlist:(NSString *)plist
+{
+    NSString * fullPath = [PlistUtils fullDocumentPathForPlist:plist];
+
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    BOOL fileExists = [fileManager fileExistsAtPath:fullPath];
+    if (!fileExists) {
+        NSError * error = nil;
+        NSString * bundlePath = [PlistUtils fullBundlePathForPlist:plist];
+        BOOL fileCopied =
+            [fileManager copyItemAtPath:bundlePath
+                                 toPath:fullPath
+                                  error:&error];
+        if (!fileCopied)
+            NSLog([error description]);
+    }
+
+    return [PlistUtils readArrayFromPlist:fullPath];
+}
+
++ (void) saveArray:(NSArray *)array toPlist:(NSString *)plist
+{
+    NSString * fullPath = [PlistUtils fullDocumentPathForPlist:plist];
+    [PlistUtils writeArray:array toPlist:fullPath];
 }
 
 @end

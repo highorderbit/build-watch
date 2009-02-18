@@ -24,4 +24,6 @@
 
 - (void) editServerGroupName:(NSString *)serverGroupName;
 
+- (void) userDidSetServerGroupSortOrder:(NSArray *)serverGroupNames;
+
 @end

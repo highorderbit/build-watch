@@ -74,6 +74,14 @@
     return serverNames;
 }
 
+- (void) saveServerGroupSortOrder:(NSArray *)ServerGroupNames
+{}
+
+- (NSArray *) getServerGroupSortOrder
+{
+    return nil;
+}
+
 - (void) saveServerUsernames:(NSDictionary *)serverUsernames
 {}
 

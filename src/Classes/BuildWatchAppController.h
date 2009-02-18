@@ -39,6 +39,9 @@
     // Server names are mapped as follows:
     //     (NSString *) server url -> (NSString *) server name
     NSMutableDictionary * serverNames;
+
+    // List of server group names (URLs) in the order configured by the user.
+    NSMutableArray * serverGroupSortOrder;
     
     NSMutableDictionary * serverUsernames;
     NSMutableDictionary * serverPasswords;
