@@ -16,12 +16,14 @@
 @synthesize navController;
 @synthesize aboutButton;
 @synthesize versionLabel;
+@synthesize configReader;
 
 - (void) dealloc
 {
     [navController release];
     [aboutButton release];
     [versionLabel release];
+    [configReader release];
     [super dealloc];
 }
 
@@ -47,7 +49,8 @@
 
 - (IBAction) displayWebsite:(id)sender
 {
-    NSString * webAddress = @"http://www.sandbox.highorderbit.com/home";
+    NSString * webAddress =
+        (NSString *) [configReader valueForKey:@"Website"];
     NSURL * url = [[NSURL alloc] initWithString:webAddress];
     [[UIApplication sharedApplication] openURL:url];
     [url release];
@@ -55,7 +58,8 @@
 
 - (IBAction) sendFeedback:(id)sender
 {
-    NSString * feedbackAddress = @"buildwatchfeedback@highorderbit.com";
+    NSString * feedbackAddress =
+        (NSString *) [configReader valueForKey:@"FeedbackAddress"];
     NSString * urlString =
         [NSString stringWithFormat:@"mailto:%@", feedbackAddress];
     
@@ -76,9 +80,9 @@
 
 - (void) initVersionLabel
 {
-    NSString * fullPath = [PlistUtils fullBundlePathForPlist:@"Info"];
-    NSDictionary * infoPList = [PlistUtils readDictionaryFromPlist:fullPath];
-    NSString * versionText = [infoPList objectForKey:@"CFBundleVersion"];
+    NSString * versionText =
+        (NSString *) [configReader valueForKey:@"CFBundleVersion"];
+ 
     NSString * versionLabelText =
         [NSString stringWithFormat:@"Version %@", versionText];
     

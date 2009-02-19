@@ -82,6 +82,7 @@
 		918449EA0F4206F800082108 /* ServerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 918449E90F4206F800082108 /* ServerTableViewCell.m */; };
 		91844BA80F42459D00082108 /* ProjectLabels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91844BA70F42459D00082108 /* ProjectLabels.plist */; };
 		91ABDE280F4120A1003232A0 /* ServerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91ABDE260F4120A1003232A0 /* ServerTableViewCell.xib */; };
+		91C6EC400F4DD9B20028C75A /* InfoPlistConfigReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C6EC3F0F4DD9B20028C75A /* InfoPlistConfigReader.m */; };
 		91D9ABD40F3DFE350035454C /* Servers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABD30F3DFE350035454C /* Servers.plist */; };
 		91D9ABD80F3E01DE0035454C /* ServerGroupPatterns.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABD70F3E01DE0035454C /* ServerGroupPatterns.plist */; };
 		91D9ABDA0F3E02BE0035454C /* ProjectDisplayNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABD90F3E02BE0035454C /* ProjectDisplayNames.plist */; };
@@ -254,6 +255,9 @@
 		918449E90F4206F800082108 /* ServerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerTableViewCell.m; sourceTree = "<group>"; };
 		91844BA70F42459D00082108 /* ProjectLabels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectLabels.plist; sourceTree = "<group>"; };
 		91ABDE270F4120A1003232A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ServerTableViewCell.xib; sourceTree = "<group>"; };
+		91C6EC3A0F4DD9560028C75A /* ConfigReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigReader.h; sourceTree = "<group>"; };
+		91C6EC3E0F4DD9B20028C75A /* InfoPlistConfigReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPlistConfigReader.h; sourceTree = "<group>"; };
+		91C6EC3F0F4DD9B20028C75A /* InfoPlistConfigReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoPlistConfigReader.m; sourceTree = "<group>"; };
 		91D9ABD30F3DFE350035454C /* Servers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Servers.plist; sourceTree = "<group>"; };
 		91D9ABD70F3E01DE0035454C /* ServerGroupPatterns.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServerGroupPatterns.plist; sourceTree = "<group>"; };
 		91D9ABD90F3E02BE0035454C /* ProjectDisplayNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectDisplayNames.plist; sourceTree = "<group>"; };
@@ -585,6 +589,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				91C6EC390F4DD90D0028C75A /* Configuration Management */,
 				050889410F45E7D30010569B /* App Controller */,
 				050888A80F45E41B0010569B /* Persistence */,
 				050888A70F45E3CC0010569B /* Build Service */,
@@ -672,6 +677,16 @@
 				91D9ABD30F3DFE350035454C /* Servers.plist */,
 			);
 			name = State;
+			sourceTree = "<group>";
+		};
+		91C6EC390F4DD90D0028C75A /* Configuration Management */ = {
+			isa = PBXGroup;
+			children = (
+				91C6EC3A0F4DD9560028C75A /* ConfigReader.h */,
+				91C6EC3E0F4DD9B20028C75A /* InfoPlistConfigReader.h */,
+				91C6EC3F0F4DD9B20028C75A /* InfoPlistConfigReader.m */,
+			);
+			name = "Configuration Management";
 			sourceTree = "<group>";
 		};
 		91E84B940F4B2A160010B2A6 /* SFHFKeychainUtils */ = {
@@ -832,6 +847,7 @@
 				918179D20F49D629009C7617 /* NSDate+IsToday.m in Sources */,
 				918179DE0F49DC64009C7617 /* NSDate+StringHelpers.m in Sources */,
 				91E84B970F4B2A670010B2A6 /* SFHFKeychainUtils.m in Sources */,
+				91C6EC400F4DD9B20028C75A /* InfoPlistConfigReader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
