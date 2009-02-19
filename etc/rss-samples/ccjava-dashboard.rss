@@ -1,33 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<Projects>
+<Project name="connectfour" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="build.10" lastBuildTime="2009-02-17T17:51:18" webUrl="http://megatron.local:8080/dashboard/tab/build/detail/connectfour" />
+<Project name="test-project" activity="Sleeping" lastBuildStatus="Success" lastBuildLabel="build.7" lastBuildTime="2009-02-13T09:45:48" webUrl="http://megatron.local:8080/dashboard/tab/build/detail/test-project" />
 
-
-
-
-
-
-
-
-<rss version="2.0">
-<channel>
-
-<title>CruiseControl Results</title>
-<link>http://megatron.local:8080/cruisecontrol</link>
-<description>Summary of the project build results.</description>
-<language>en-us</language>
-
-<item>
-<title>connectfour passed Mon, 02 Feb 2009 21:20:58 -0700</title>
-<description>Build passed</description>
-<pubDate>Mon, 02 Feb 2009 21:20:58 -0700</pubDate>
-<link>http://megatron.local:8080/cruisecontrol/buildresults/connectfour</link>
-</item>
-
-<item>
-<title>test-project passed Fri, 13 Feb 2009 09:45:48 -0700</title>
-<description>Build passed</description>
-<pubDate>Fri, 13 Feb 2009 09:45:48 -0700</pubDate>
-<link>http://megatron.local:8080/cruisecontrol/buildresults/test-project</link>
-</item>
-
-</channel>
-</rss>
+</Projects>
