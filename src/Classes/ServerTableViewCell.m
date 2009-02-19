@@ -50,9 +50,23 @@
                            forView:self
                              cache:YES];
 
+    // hide the number of broken builds
     [self.brokenBuildsLabel setAlpha:self.editing ? 0.0 : 1.0];
 
     [UIView commitAnimations];
+
+    // reduce size of the URL so any trailing "..." is visible to the left
+    // of the accessory views
+    CGRect contentFrame = self.contentView.frame;
+    CGRect webAddressFrame = webAddressLabel.frame;
+    webAddressFrame.size.width = contentFrame.size.width - 25.0;
+    webAddressLabel.frame = webAddressFrame;
+
+    // stretch the size of the name during editing so it can make use of
+    // the real estate freed up by hiding the # of broken builds
+    CGRect nameFrame = nameLabel.frame;
+    nameFrame.size.width = editing ? webAddressFrame.size.width : 182.0;
+    nameLabel.frame = nameFrame;
 }
 
 - (void) setBrokenBuildTextColor:(UIColor *)color
