@@ -122,8 +122,13 @@
 
 + (NSDate *) dateFromCruiseControlRbString:(NSString *)dateAsString
 {
-    return [NSDate dateFromString:dateAsString
-                           format:@"EEE, dd MMM yyyy HH:mm:ss 'Z'"];
+    NSDate * utcDate = [NSDate dateFromString:dateAsString
+                                       format:@"EEE, dd MMM yyyy HH:mm:ss 'Z'"];
+
+    // CruiseControl.rb uses UTC timestamps, so make sure our NSDate, which
+    // has a time for the local time zone, is adjusted appropriately.
+    NSTimeZone * local = [NSTimeZone localTimeZone];
+    return [utcDate addTimeInterval:[local secondsFromGMT]];
 }
 
 + (BOOL) buildSucceededFromProjectTitle:(NSString *)projectTitle
