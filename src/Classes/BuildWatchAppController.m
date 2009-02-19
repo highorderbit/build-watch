@@ -190,11 +190,12 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
             [projectIds addObject:[[self class]
                     keyForProject:projReport.name
                         andServer:server]];
-
-        [projectIds release];
     
-        // Push updates to project selector
-        if(activeServerGroupName != nil) {
+        // Push updates to active view
+        if ([projectIds containsObject:activeProjectId])
+            [projectReporter reportDetailsForProject:activeProjectId
+                                            animated:NO];
+        else if (activeServerGroupName) {
             NSString * serverGroupPattern =
                 [serverGroupPatterns objectForKey:activeServerGroupName];
             BOOL serverMatchesActiveGroupNameRegEx =
@@ -204,8 +205,10 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     
             if (serverMatchesActiveGroupNameRegEx)
                 [projectSelector
-                 selectProjectFrom:projectIdsForActiveServerGroup animated:YES];
+                 selectProjectFrom:projectIdsForActiveServerGroup animated:NO];
         }
+        
+        [projectIds release];
     }
 }
 
