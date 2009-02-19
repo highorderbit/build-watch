@@ -25,8 +25,14 @@
 - (void) reportDetailsForProject:(NSString *)projectId animated:(BOOL)animated
 {
     self.projectReportViewController.projectId = projectId;
-    [self.navigationController
-        pushViewController:self.projectReportViewController animated:animated];
+    UIViewController * topController =
+        [self.navigationController topViewController];
+    if (topController != self.projectReportViewController)
+        [self.navigationController
+            pushViewController:self.projectReportViewController
+            animated:animated];
+    else
+        [self.projectReportViewController viewWillAppear:NO];
 }
 
 #pragma mark Accessors

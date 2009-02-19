@@ -27,7 +27,7 @@
 {
     [self.projectsViewController setProjects:projects];
     UIViewController * topController =
-        [self.navigationController topViewController] ;
+        [self.navigationController topViewController];
     if (topController != self.projectsViewController)
         [self.navigationController
          pushViewController:self.projectsViewController
