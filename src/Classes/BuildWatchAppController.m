@@ -206,7 +206,10 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
             if (serverMatchesActiveGroupNameRegEx)
                 [projectSelector
                  selectProjectFrom:projectIdsForActiveServerGroup animated:NO];
-        }
+        } else
+            [serverGroupNameSelector
+             selectServerGroupNamesFrom:[self sortedServerGroupNames]
+             animated:NO];
         
         [projectIds release];
     }
