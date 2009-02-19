@@ -129,10 +129,21 @@
 
 + (NSDate *) dateFromCruiseControlNetString:(NSString *)string
 {
-    //return [NSDate dateFromString:string format:@"yyyy-MM-dd'T'HH:mm:ss"];
-    NSDate * date = [NSDate dateFromString:string
-                                    format:@"yyyy-MM-dd'T'HH:mm:SS.SSSSZZZ"];
-    NSLog(@"My date is: '%@'", date);
+    static NSString * STRICT_FORMAT = @"yyyy-MM-dd'T'HH:mm:SS.SSSSZZZ";
+    static NSString * SAFE_FORMAT = @"yyyy-MM-dd'T'HH:mm:ss";
+
+    //
+    // Jump through an extra hoop here just to be safe. The strict format
+    // has been tested and works with the public cc.net server at:
+    //  http://ccnetlive.thoughtworks.com/ccnet/ViewFarmReport.aspx
+    // but I want to be defensive in case there are deviations out there.
+    // The safe format should always work. Returning nil will cause the
+    // application to crash.
+    //
+
+    NSDate * date = [NSDate dateFromString:string format:STRICT_FORMAT];
+    if (date == nil)
+        date = [NSDate dateFromString:string format:SAFE_FORMAT];
 
     return date;
 }
