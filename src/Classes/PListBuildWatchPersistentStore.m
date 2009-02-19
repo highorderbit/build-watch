@@ -48,6 +48,17 @@
     return [[self class] getDictionaryFromPlist:@"ServerNames"];
 }
 
+- (void) saveServerDashboardLinks:(NSDictionary *)dashboardLinks
+{
+    [[self class] saveDictionary:dashboardLinks
+                         toPlist:@"ServerDashboardLinks"];
+}
+
+- (NSDictionary *) getServerDashboardLinks
+{
+    return [[self class] getDictionaryFromPlist:@"ServerDashboardLinks"];
+}
+
 - (void) saveServerGroupSortOrder:(NSArray *)serverGroupNames
 {
     [[self class] saveArray:serverGroupNames toPlist:@"ServerGroupSortOrder"];

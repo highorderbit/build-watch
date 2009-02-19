@@ -40,6 +40,10 @@
     //     (NSString *) server url -> (NSString *) server name
     NSMutableDictionary * serverNames;
 
+    // Mapping of:
+    //     server url -> server dashboard link
+    NSMutableDictionary * serverDashboardLinks;
+
     // List of server group names (URLs) in the order configured by the user.
     NSMutableArray * serverGroupSortOrder;
     

@@ -24,6 +24,10 @@
 
 - (NSDictionary *) getServerNames;
 
+- (void) saveServerDashboardLinks:(NSDictionary *)dashboardLinks;
+
+- (NSDictionary *) getServerDashboardLinks;
+
 - (void) saveServerGroupSortOrder:(NSArray *)serverGroupNames;
 
 - (NSArray *) getServerGroupSortOrder;

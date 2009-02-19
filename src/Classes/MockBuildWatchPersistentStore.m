@@ -74,6 +74,14 @@
     return serverNames;
 }
 
+- (void) saveServerDashboardLinks:(NSDictionary *)dashboardLinks
+{}
+
+- (NSDictionary *) getServerDashboardLinks
+{
+    return nil;
+}
+
 - (void) saveServerGroupSortOrder:(NSArray *)ServerGroupNames
 {}
 

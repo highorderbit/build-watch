@@ -19,6 +19,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 - (void) setServers:(NSDictionary *)newServers;
 - (void) setServerGroupPatterns:(NSDictionary *)newServerGroupPatterns;
 - (void) setServerNames:(NSDictionary *)newServerNames;
+- (void) setServerDashboardLinks:(NSDictionary *)newDashboardLinks;
 - (void) setServerGroupSortOrder:(NSArray *)serverGroupNames;
 - (void) setServerUsernames:(NSDictionary *)newServerUsernames;
 - (void) setServerPasswords:(NSDictionary *)newServerPasswords;
@@ -61,6 +62,8 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [servers release];
     [serverGroupPatterns release];
     [serverNames release];
+    [serverDashboardLinks release];
+    [serverGroupSortOrder release];
     [serverUsernames release];
     [serverPasswords release];
     [serverGroupNameSelector release];
@@ -92,6 +95,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     NSString * allLocalizedName = NSLocalizedString(SERVER_GROUP_NAME_ALL, @"");
     [allServerNames setObject:allLocalizedName forKey:allLocalizedName];
     [self setServerNames:allServerNames];
+    [self setServerDashboardLinks:[persistentStore getServerDashboardLinks]];
     [self setServerGroupSortOrder:[persistentStore getServerGroupSortOrder]];
     
     [self setServerUsernames:[persistentStore getServerUsernames]];
@@ -138,6 +142,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [persistentStore saveServers:servers];
     [persistentStore saveServerGroupPatterns:serverGroupPatterns];
     [persistentStore saveServerNames:serverNames];
+    [persistentStore saveServerDashboardLinks:serverDashboardLinks];
     [persistentStore saveServerGroupSortOrder:serverGroupSortOrder];
     [persistentStore saveServerUsernames:serverUsernames];
     [self savePasswordsToKeychain];
@@ -302,6 +307,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
     [servers removeObjectForKey:serverGroupName];
     [serverNames removeObjectForKey:serverGroupName];
+    [serverDashboardLinks removeObjectForKey:serverGroupName];
     [serverGroupSortOrder removeObject:serverGroupName];
     [serverUsernames removeObjectForKey:serverGroupName];
     [serverPasswords removeObjectForKey:serverGroupName];
@@ -344,6 +350,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
         setObject:[NSString stringWithFormat:@"^%@$", report.link]
            forKey:report.link];
     [serverNames setObject:serverDisplayName forKey:report.link];
+    [serverDashboardLinks setObject:report.dashboardLink forKey:report.link];
     [serverGroupSortOrder addObject:report.link];
 
     [self report:report receivedFrom:report.link];
@@ -416,7 +423,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
 - (NSString *) dashboardLinkForServerGroupName:(NSString *)serverGroupName
 {
-    return @"TODO";
+    return [serverDashboardLinks objectForKey:serverGroupName];
 }
 
 - (NSUInteger) numberOfProjectsForServerGroupName:(NSString *)serverGroupName
@@ -534,6 +541,13 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     NSMutableDictionary * tempServerNames = [newServerNames mutableCopy];
     [serverNames release];
     serverNames = tempServerNames;
+}
+
+- (void) setServerDashboardLinks:(NSDictionary *)newDashboardLinks
+{
+    NSMutableDictionary * tempDashboardLinks = [newDashboardLinks mutableCopy];
+    [serverDashboardLinks release];
+    serverDashboardLinks = tempDashboardLinks;
 }
 
 - (void) setServerGroupSortOrder:(NSArray *)serverGroupNames
