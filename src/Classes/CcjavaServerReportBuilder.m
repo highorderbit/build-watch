@@ -148,7 +148,7 @@
     [result appendString:@"CruiseControl+Project%3Aname%3D"];
     [result appendString:projectName];
 
-    NSLog(@"Generated: '%@'.", result);
+    NSLog(@"Generated force build URL for CC Java server: '%@'.", result);
     return result;
 }
 
