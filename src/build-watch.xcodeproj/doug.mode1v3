@@ -275,7 +275,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {186, 806}}</string>
+							<string>{{0, 0}, {186, 760}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -287,14 +287,14 @@
 					<key>GeometryConfiguration</key>
 					<dict>
 						<key>Frame</key>
-						<string>{{0, 0}, {203, 824}}</string>
+						<string>{{0, 0}, {203, 778}}</string>
 						<key>GroupTreeTableConfiguration</key>
 						<array>
 							<string>MainColumn</string>
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>37 269 911 865 0 0 1920 1178 </string>
+						<string>19 59 911 819 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -329,14 +329,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {703, 646}}</string>
+								<string>{{0, 0}, {703, 610}}</string>
 								<key>RubberWindowFrame</key>
-								<string>37 269 911 865 0 0 1920 1178 </string>
+								<string>19 59 911 819 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>646pt</string>
+							<string>610pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -349,14 +349,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 651}, {703, 173}}</string>
+								<string>{{0, 615}, {703, 163}}</string>
 								<key>RubberWindowFrame</key>
-								<string>37 269 911 865 0 0 1920 1178 </string>
+								<string>19 59 911 819 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>173pt</string>
+							<string>163pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -375,9 +375,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>911F537D0F38C2C4002CBE03</string>
+				<string>91ECE72F0F4C841400F6B93B</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>911F537E0F38C2C4002CBE03</string>
+				<string>91ECE7300F4C841400F6B93B</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -514,7 +514,7 @@
 		<string>/Users/doug/dev/build-watch/src/build-watch.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>37 269 911 865 0 0 1920 1178 </string>
+	<string>19 59 911 819 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>

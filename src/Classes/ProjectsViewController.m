@@ -7,9 +7,7 @@
 @interface ProjectsViewController (Private)
 
 - (void) setVisibleProjects:(NSArray *)someVisibleProjects;
-
 - (void) updateVisibleProjects;
-
 - (void) updateCell:(ProjectTableViewCell *)cell
         withProject:(NSString *)project;
 
@@ -18,7 +16,6 @@
 @implementation ProjectsViewController
 
 @synthesize tableView;
-@synthesize projects;
 @synthesize delegate;
 @synthesize propertyProvider;
 
@@ -54,6 +51,8 @@
 
     NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selectedRow animated:NO];
+    
+    [delegate userDidDeselectProject];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -151,26 +150,6 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
         UITableViewCellAccessoryDisclosureIndicator;
 }
 
-- (BOOL)        tableView:(UITableView *)tv
-    canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
-
-- (NSIndexPath *)                  tableView:(UITableView *)tv
-    targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath 
-                         toProposedIndexPath:(NSIndexPath *)destinationIndexPath
-{
-    // Allow the proposed destination.
-    return destinationIndexPath;
-}
-
-- (void)     tableView:(UITableView *)tv
-    moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
-           toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-
 - (UITableViewCellEditingStyle) tableView:(UITableView *)tv
             editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -181,8 +160,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void) setProjects:(NSArray *)someProjects
 {
+    NSMutableArray * tempProjects = [someProjects mutableCopy];
     [projects release];
-    projects = [someProjects retain];
+    projects = tempProjects;
 
     [self updateVisibleProjects];
     
@@ -191,9 +171,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void) setVisibleProjects:(NSArray *)someVisibleProjects
 {
-    [someVisibleProjects retain];
+    NSMutableArray * tempVisibleProjects = [someVisibleProjects mutableCopy];
     [visibleProjects release];
-    visibleProjects = someVisibleProjects;
+    visibleProjects = tempVisibleProjects;
 }
 
 #pragma mark Project manipulation
@@ -206,6 +186,14 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     [super setEditing:editing animated:animated];
     
     [self updateVisibleProjects];
+    
+    if (animated) {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.2];
+        [UIView setAnimationTransition:UIViewAnimationTransitionNone
+                               forView:tableView
+                                 cache:YES];
+    }
     
     NSMutableArray * indexPathsOfHidden = [NSMutableArray array];
     for (NSInteger i = 0; i < projects.count; ++i) {
@@ -222,6 +210,9 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     }
     
     [tableView setEditing:editing animated:animated];
+    
+    if (animated)
+        [UIView commitAnimations];
     
     [tableView beginUpdates];
     

@@ -23,15 +23,15 @@
 
 #pragma mark ProjectSelector implementation
 
-- (void) selectProjectFrom:(NSArray *)projects
+- (void) selectProjectFrom:(NSArray *)projects animated:(BOOL)animated
 {
-    self.projectsViewController.projects = projects;
+    [self.projectsViewController setProjects:projects];
     UIViewController * topController =
         [self.navigationController topViewController] ;
     if (topController != self.projectsViewController)
         [self.navigationController
          pushViewController:self.projectsViewController
-                   animated:YES];
+                   animated:animated];
 }
 
 #pragma mark Accessors

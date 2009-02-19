@@ -96,6 +96,7 @@
 		91E84B970F4B2A670010B2A6 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E84B960F4B2A670010B2A6 /* SFHFKeychainUtils.m */; };
 		91E84BA20F4B2C1B0010B2A6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E84BA10F4B2C1B0010B2A6 /* Security.framework */; };
 		91E84BA80F4B332F0010B2A6 /* ServerUsernames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91E84BA70F4B332F0010B2A6 /* ServerUsernames.plist */; };
+		91ECE8640F4CD0FD00F6B93B /* NavigationState.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91ECE8630F4CD0FD00F6B93B /* NavigationState.plist */; };
 		91F09AA50F3A63370034528C /* ProjectReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AA40F3A63370034528C /* ProjectReport.m */; };
 		91F09AA80F3A657B0034528C /* ServerReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AA70F3A657B0034528C /* ServerReport.m */; };
 		91F09AD80F3A69A50034528C /* MockBuildService.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AD70F3A69A50034528C /* MockBuildService.m */; };
@@ -271,6 +272,7 @@
 		91E84B960F4B2A670010B2A6 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		91E84BA10F4B2C1B0010B2A6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		91E84BA70F4B332F0010B2A6 /* ServerUsernames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServerUsernames.plist; sourceTree = "<group>"; };
+		91ECE8630F4CD0FD00F6B93B /* NavigationState.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NavigationState.plist; sourceTree = "<group>"; };
 		91F09AA30F3A63370034528C /* ProjectReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectReport.h; sourceTree = "<group>"; };
 		91F09AA40F3A63370034528C /* ProjectReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectReport.m; sourceTree = "<group>"; };
 		91F09AA60F3A657B0034528C /* ServerReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerReport.h; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 		050888A20F45E11D0010569B /* PLists */ = {
 			isa = PBXGroup;
 			children = (
+				91ECE8630F4CD0FD00F6B93B /* NavigationState.plist */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				91D9ABD30F3DFE350035454C /* Servers.plist */,
 				91D9ABD70F3E01DE0035454C /* ServerGroupPatterns.plist */,
@@ -755,6 +758,7 @@
 				05C884210F49E72000E486EA /* ServerReportBuilders.plist in Resources */,
 				91E84BA80F4B332F0010B2A6 /* ServerUsernames.plist in Resources */,
 				05AA0C750F4BA7DB00E46412 /* ServerGroupSortOrder.plist in Resources */,
+				91ECE8640F4CD0FD00F6B93B /* NavigationState.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

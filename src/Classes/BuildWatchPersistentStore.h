@@ -67,4 +67,12 @@
 
 - (NSDictionary *) getServerReportBuilders;
 
+- (void) saveActiveServerGroupName:(NSString *)activeServerGroupName;
+
+- (NSString *) getActiveServerGroupName;
+
+- (void) saveActiveProjectId:(NSString *)activeProjectId;
+
+- (NSString *) getActiveProjectId;
+
 @end

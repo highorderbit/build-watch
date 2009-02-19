@@ -15,6 +15,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
 @interface BuildWatchAppController (Private)
 - (void) setActiveServerGroupName:(NSString *) activeServer;
+- (void) setActiveProjectId:(NSString *) activeProjectId;
 - (void) setServers:(NSDictionary *)newServers;
 - (void) setServerGroupPatterns:(NSDictionary *)newServerGroupPatterns;
 - (void) setServerNames:(NSDictionary *)newServerNames;
@@ -114,10 +115,22 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [self refreshAllServerData];
 
     [serverGroupNameSelector
-     selectServerGroupNamesFrom:[self sortedServerGroupNames]];
-
+     selectServerGroupNamesFrom:[self sortedServerGroupNames] animated:NO];
+    
+    [self setActiveServerGroupName:[persistentStore getActiveServerGroupName]];
+    [self setActiveProjectId:[persistentStore getActiveProjectId]];
+    
     if (servers.count == 0)
         [serverGroupCreator createServerGroup];
+    else if (activeServerGroupName) {
+        NSArray * activeProjectIds =
+            [self projectIdsForServerGroupName:activeServerGroupName];
+        [projectSelector selectProjectFrom:activeProjectIds animated:NO];
+        
+        if (activeProjectId)
+            [projectReporter reportDetailsForProject:activeProjectId
+                                            animated:NO];
+    }
 }
 
 - (void) persistState
@@ -137,6 +150,8 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [persistentStore saveProjectBuildSucceededStates:
      projectBuildSucceededStates];
     [persistentStore saveProjectTrackedStates:projectTrackedStates];
+    [persistentStore saveActiveServerGroupName:activeServerGroupName];
+    [persistentStore saveActiveProjectId:activeProjectId];
 }
 
 #pragma mark BuildServiceDelegate implementation
@@ -184,7 +199,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     
             if (serverMatchesActiveGroupNameRegEx)
                 [projectSelector
-                    selectProjectFrom:projectIdsForActiveServerGroup];
+                 selectProjectFrom:projectIdsForActiveServerGroup animated:YES];
         }
     }
 }
@@ -229,11 +244,13 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     NSLog(@"User selected server group name: %@.", serverGroupName);
     [self setActiveServerGroupName:serverGroupName];
     [projectSelector
-     selectProjectFrom:[self projectIdsForServerGroupName:serverGroupName]]; 
+     selectProjectFrom:[self projectIdsForServerGroupName:serverGroupName]
+     animated:YES]; 
 }
 
 - (void) userDidDeselectServerGroupName
 {
+    NSLog(@"User deselected server group name: %@.", activeServerGroupName);
     [self setActiveServerGroupName:nil]; 
 }
 
@@ -332,7 +349,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [self report:report receivedFrom:report.link];
 
     [serverGroupNameSelector 
-     selectServerGroupNamesFrom:[self sortedServerGroupNames]];
+     selectServerGroupNamesFrom:[self sortedServerGroupNames] animated:YES];
 }
 
 - (BOOL) isServerGroupUrlValid:(NSString *)url
@@ -375,7 +392,14 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 - (void) userDidSelectProject:(NSString *)project
 {
     NSLog(@"User selected project: %@.", project);
-    [projectReporter reportDetailsForProject:project];
+    [self setActiveProjectId:project];
+    [projectReporter reportDetailsForProject:project animated:YES];
+}
+
+- (void) userDidDeselectProject
+{
+    NSLog(@"User deselected project: %@.", activeProjectId);
+    [self setActiveProjectId:nil];
 }
 
 #pragma mark ServerGroupPropertyProvider protocol implementation
@@ -478,9 +502,16 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
 - (void) setActiveServerGroupName:(NSString *) server
 {
-    [server retain];
+    NSString * temp = [server copy];
     [activeServerGroupName release];
-    activeServerGroupName = server;
+    activeServerGroupName = temp;
+}
+
+- (void) setActiveProjectId:(NSString *) newActiveProjectId
+{
+    NSString * temp = [newActiveProjectId copy];
+    [activeProjectId release];
+    activeProjectId = temp;
 }
 
 - (void) setServers:(NSDictionary *)newServers
