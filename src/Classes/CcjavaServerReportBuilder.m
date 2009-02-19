@@ -123,7 +123,7 @@
 
 + (NSDate *) dateFromCruiseControlJavaString:(NSString *)string
 {
-    return [NSDate dateWithString:string format:@"yyyy-MM-dd'T'HH:mm:ss"];
+    return [NSDate dateFromString:string format:@"yyyy-MM-dd'T'HH:mm:ss"];
 }
 
 + (BOOL) buildSucceededFromString:(NSString *)string

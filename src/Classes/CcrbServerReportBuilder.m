@@ -13,6 +13,7 @@
 
 @interface CcrbServerReportBuilder (Private)
 + (NSString *) projectNameFromProjectTitle:(NSString *)projectTitle;
++ (NSDate *) dateFromCruiseControlRbString:(NSString *)dateAsString;
 + (BOOL) buildSucceededFromProjectTitle:(NSString *)projectTitle;
 + (NSString *) buildLabelFromProjectTitle:(NSString *)projectTitle;
 + (NSString *) forceBuildUrlForProject:(NSString *)projectName
@@ -85,7 +86,7 @@
                               objectAtIndex:0] stringValue];
         projectReport.label = [[self class] buildLabelFromProjectTitle:title];
         projectReport.pubDate =
-            [NSDate dateFromCruiseControlRbString:
+            [[self class] dateFromCruiseControlRbString:
              [[[projectNode elementsForName:@"pubDate"]
                               objectAtIndex:0] stringValue]];
         projectReport.link =
@@ -117,6 +118,12 @@
         return projectTitle;
 
     return [projectTitle substringWithRange:NSMakeRange(0, where.location)];
+}
+
++ (NSDate *) dateFromCruiseControlRbString:(NSString *)dateAsString
+{
+    return [NSDate dateFromString:dateAsString
+                           format:@"EEE, dd MMM yyyy HH:mm:ss 'Z'"];
 }
 
 + (BOOL) buildSucceededFromProjectTitle:(NSString *)projectTitle

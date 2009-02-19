@@ -6,9 +6,7 @@
 
 @interface NSDate (BuildServiceAdditions)
 
-+ (NSDate *) dateFromCruiseControlRbString:(NSString *)dateAsString;
-
-+ (NSDate *) dateWithString:(NSString *)string format:(NSString *)formatString;
++ (NSDate *) dateFromString:(NSString *)string format:(NSString *)formatString;
 
 - (NSString *) localizedString;
 

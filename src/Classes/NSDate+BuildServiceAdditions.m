@@ -6,14 +6,7 @@
 
 @implementation NSDate (BuildServiceAdditions)
 
-+ (NSDate *) dateFromCruiseControlRbString:(NSString *)dateAsString
-{
-    static NSString * DATE_FORMAT = @"EEE, dd MMM yyyy HH:mm:ss 'Z'";
-
-    return [[self class] dateWithString:dateAsString format:DATE_FORMAT];
-}
-
-+ (NSDate *) dateWithString:(NSString *)string format:(NSString *)formatString
++ (NSDate *) dateFromString:(NSString *)string format:(NSString *)formatString
 {
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = formatString;
