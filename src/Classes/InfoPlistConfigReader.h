@@ -3,10 +3,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ConfigReader.h"
 
-@interface NSDate (IsToday)
-
-- (BOOL) isToday;
-- (BOOL) isLessThanWeekAgo;
+@interface InfoPlistConfigReader : NSObject < ConfigReader >
 
 @end

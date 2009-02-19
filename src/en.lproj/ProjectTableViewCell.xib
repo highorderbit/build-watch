@@ -52,7 +52,7 @@
 							<object class="IBUILabel" id="23173300">
 								<reference key="NSNextResponder" ref="995734919"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{14, 37}, {196, 21}}</string>
+								<string key="NSFrame">{{14, 37}, {176, 21}}</string>
 								<reference key="NSSuperview" ref="995734919"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -75,12 +75,12 @@
 							<object class="IBUILabel" id="456500309">
 								<reference key="NSNextResponder" ref="995734919"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{218, 37}, {63, 21}}</string>
+								<string key="NSFrame">{{193, 37}, {88, 21}}</string>
 								<reference key="NSSuperview" ref="995734919"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="IBUIText">12:45 PM</string>
+								<string key="IBUIText">Wednesday</string>
 								<object class="NSFont" key="IBUIFont">
 									<string key="NSName">Helvetica</string>
 									<double key="NSSize">1.600000e+01</double>
@@ -92,6 +92,7 @@
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
+								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 								<float key="IBUIMinimumFontSize">1.000000e+01</float>
 								<int key="IBUITextAlignment">2</int>
 							</object>
@@ -182,8 +183,8 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="23173300"/>
-							<reference ref="456500309"/>
 							<reference ref="864264898"/>
+							<reference ref="456500309"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>

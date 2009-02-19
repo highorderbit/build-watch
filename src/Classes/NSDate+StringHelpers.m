@@ -18,11 +18,17 @@
 
 - (NSString *) shortDescription
 {
-    NSDateFormatter * formatter = [[[NSDateFormatter alloc] init]  autorelease];
+    NSDateFormatter * formatter = [[[NSDateFormatter alloc] init] autorelease];
     
     if ([self isToday])
         [formatter setTimeStyle:NSDateFormatterShortStyle];
-    else
+    else if ([self isLessThanWeekAgo]) {
+        // Seems like you should be able to set the date format on the current
+        // formatter instance, but it doesn't format properly, so...
+        formatter =
+            [[[NSDateFormatter alloc]
+              initWithDateFormat:@"%A" allowNaturalLanguage:NO] autorelease];
+    } else
         [formatter setDateStyle:NSDateFormatterShortStyle];
 
     return [formatter stringFromDate:self];

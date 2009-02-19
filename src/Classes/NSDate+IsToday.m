@@ -26,4 +26,9 @@
         [nowComponents year] == [selfComponents year];
 }
 
+- (BOOL) isLessThanWeekAgo
+{
+    return -[self timeIntervalSinceNow] < 60 * 60 * 24 * 6;
+}
+
 @end

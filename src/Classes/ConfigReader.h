@@ -4,9 +4,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NSDate (IsToday)
+@protocol ConfigReader
 
-- (BOOL) isToday;
-- (BOOL) isLessThanWeekAgo;
+- (id) valueForKey:(NSString *)key;
 
 @end
