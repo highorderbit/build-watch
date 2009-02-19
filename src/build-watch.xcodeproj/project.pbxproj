@@ -51,7 +51,6 @@
 		05F1867C0F3D1B4300024A3C /* NetworkBuildService.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F1867B0F3D1B4300024A3C /* NetworkBuildService.m */; };
 		05F186990F3D223D00024A3C /* NetworkBuildStatusUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F186980F3D223D00024A3C /* NetworkBuildStatusUpdater.m */; };
 		05FE3CA70F3DFAD600EE7FB9 /* GenericServerReportBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FE3CA60F3DFAD600EE7FB9 /* GenericServerReportBuilder.m */; };
-		05FE3CFE0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FE3CFD0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.m */; };
 		05FE3EB10F3E1BE500EE7FB9 /* CXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FE3E9F0F3E1BE500EE7FB9 /* CXMLDocument.m */; };
 		05FE3EB20F3E1BE500EE7FB9 /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FE3EA10F3E1BE500EE7FB9 /* CXMLDocument_CreationExtensions.m */; };
 		05FE3EB30F3E1BE500EE7FB9 /* CXMLDocument_PrivateExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 05FE3EA30F3E1BE500EE7FB9 /* CXMLDocument_PrivateExtensions.m */; };
@@ -196,8 +195,6 @@
 		05FE3CA00F3DF9E000EE7FB9 /* ServerReportBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerReportBuilder.h; sourceTree = "<group>"; };
 		05FE3CA50F3DFAD600EE7FB9 /* GenericServerReportBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericServerReportBuilder.h; sourceTree = "<group>"; };
 		05FE3CA60F3DFAD600EE7FB9 /* GenericServerReportBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericServerReportBuilder.m; sourceTree = "<group>"; };
-		05FE3CFC0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+BuildServiceAdditions.h"; sourceTree = "<group>"; };
-		05FE3CFD0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+BuildServiceAdditions.m"; sourceTree = "<group>"; };
 		05FE3E9E0F3E1BE500EE7FB9 /* CXMLDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument.h; sourceTree = "<group>"; };
 		05FE3E9F0F3E1BE500EE7FB9 /* CXMLDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument.m; sourceTree = "<group>"; };
 		05FE3EA00F3E1BE500EE7FB9 /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
@@ -466,8 +463,6 @@
 				054462B30F4933C10070ABBB /* NSError+BuildWatchAdditions.m */,
 				054462900F4932A20070ABBB /* NSString+BuildWatchAdditions.h */,
 				054462910F4932A20070ABBB /* NSString+BuildWatchAdditions.m */,
-				05FE3CFC0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.h */,
-				05FE3CFD0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.m */,
 				9114658B0F460949002A4BAB /* UIColor+BuildWatchColors.h */,
 				9114658C0F460949002A4BAB /* UIColor+BuildWatchColors.m */,
 				05A1FDA00F42237E00E2C085 /* NameValueTableViewCell.h */,
@@ -789,7 +784,6 @@
 				05F1867C0F3D1B4300024A3C /* NetworkBuildService.m in Sources */,
 				05F186990F3D223D00024A3C /* NetworkBuildStatusUpdater.m in Sources */,
 				05FE3CA70F3DFAD600EE7FB9 /* GenericServerReportBuilder.m in Sources */,
-				05FE3CFE0F3E010A00EE7FB9 /* NSDate+BuildServiceAdditions.m in Sources */,
 				05FE3EB10F3E1BE500EE7FB9 /* CXMLDocument.m in Sources */,
 				05FE3EB20F3E1BE500EE7FB9 /* CXMLDocument_CreationExtensions.m in Sources */,
 				05FE3EB30F3E1BE500EE7FB9 /* CXMLDocument_PrivateExtensions.m in Sources */,

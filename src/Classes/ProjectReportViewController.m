@@ -6,7 +6,7 @@
 #import "BuildDetailsViewController.h"
 #import "NameValueTableViewCell.h"
 #import "ForceBuildTableViewCell.h"
-#import "NSDate+BuildServiceAdditions.h"
+#import "NSDate+StringHelpers.h"
 #import "UIColor+BuildWatchColors.h"
 #import "NSDate+StringHelpers.h"
 
@@ -230,7 +230,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
             cell.name =
                 NSLocalizedString(@"projectdetails.builddate.label", @"");
             cell.value =
-                [[delegate pubDateForProject:projectId] localizedString];
+                [[delegate pubDateForProject:projectId] buildWatchDescription];
             break;
 
         case kBuildLabelRow:

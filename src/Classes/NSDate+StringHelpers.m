@@ -28,4 +28,13 @@
     return [formatter stringFromDate:self];
 }
 
++ (NSDate *) dateFromString:(NSString *)string format:(NSString *)formatString
+{
+    NSDateFormatter * formatter = [[[NSDateFormatter alloc] init] autorelease];
+    formatter.dateFormat = formatString;
+    NSDate * date = [formatter dateFromString:string];
+    
+    return date;
+}
+
 @end

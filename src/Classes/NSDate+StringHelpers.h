@@ -10,4 +10,6 @@
 
 - (NSString *) shortDescription;
 
++ (NSDate *) dateFromString:(NSString *)string format:(NSString *)formatString;
+
 @end

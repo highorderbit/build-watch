@@ -6,7 +6,7 @@
 #import "ServerReport.h"
 #import "ProjectReport.h"
 #import "NSString+BuildWatchAdditions.h"
-#import "NSDate+BuildServiceAdditions.h"
+#import "NSDate+StringHelpers.h"
 #import "NSError+BuildWatchAdditions.h"
 #import "TouchXML.h"
 #import "RegexKitLite.h"
