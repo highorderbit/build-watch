@@ -129,7 +129,12 @@
 
 + (NSDate *) dateFromCruiseControlNetString:(NSString *)string
 {
-    return [NSDate dateFromString:string format:@"yyyy-MM-dd'T'HH:mm:ss"];
+    //return [NSDate dateFromString:string format:@"yyyy-MM-dd'T'HH:mm:ss"];
+    NSDate * date = [NSDate dateFromString:string
+                                    format:@"yyyy-MM-dd'T'HH:mm:SS.SSSSZZZ"];
+    NSLog(@"My date is: '%@'", date);
+
+    return date;
 }
 
 + (BOOL) buildSucceededFromString:(NSString *)string
