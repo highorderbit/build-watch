@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>http://builder/my-server/</key>
-	<string>http://builder/</string>
-	<key>http://apple.com/builder/</key>
-	<string>http://www.apple.com/</string>
-	<key>http://microsoft.com/TeamSystem/default.aspx</key>
-	<string>http://www.microsoft.com/</string>
-	<key>http://openoffice.org/builds/</key>
-	<string>http://www.openoffice.org/</string>
-</dict>
+<dict/>
 </plist>

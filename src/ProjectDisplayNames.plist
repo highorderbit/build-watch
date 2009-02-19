@@ -1,30 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>http://builder/my-server/|Build Watch</key>
-	<string>Build Watch</string>
-	<key>http://builder/my-server/|Website</key>
-	<string>Website</string>
-	<key>http://builder/my-server/|Git Website</key>
-	<string>Git Website</string>
-	<key>http://apple.com/builder/|Mail</key>
-	<string>Mail</string>
-	<key>http://apple.com/builder/|Address Book</key>
-	<string>Address Book</string>
-	<key>http://apple.com/builder/|Safari</key>
-	<string>Safari</string>
-	<key>http://microsoft.com/TeamSystem/default.aspx|Windows 7</key>
-	<string>Windows 7</string>
-	<key>http://microsoft.com/TeamSystem/default.aspx|Visual Studio Team System 2007</key>
-	<string>Visual Studio Team System 2007</string>
-	<key>http://microsoft.com/TeamSystem/default.aspx|Microsoft Office System 2009</key>
-	<string>Microsoft Office System 2009</string>
-	<key>http://openoffice.org/builds/|OpenOffice</key>
-	<string>OpenOffice</string>
-	<key>http://openoffice.org/builds/|KDE</key>
-	<string>KDE</string>
-	<key>http://openoffice.org/builds/|GNOME</key>
-	<string>GNOME</string>
-</dict>
+<dict/>
 </plist>

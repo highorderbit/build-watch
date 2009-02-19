@@ -1,30 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>http://builder/my-server/|Build Watch</key>
-	<string>http://builder/my-server/projects/build/build-watch</string>
-	<key>http://builder/my-server/|Website</key>
-	<string>http://builder/my-server/projects/build/website</string>
-	<key>http://builder/my-server/|Git Website</key>
-	<string>http://builder/my-server/projects/build/git-website</string>
-	<key>http://apple.com/builder/|Mail</key>
-	<string>http://apple.com/projects/build/mail</string>
-	<key>http://apple.com/builder/|Address Book</key>
-	<string>http://apple.com/projects/build/address-book</string>
-	<key>http://apple.com/builder/|Safari</key>
-	<string>http://apple.com/projects/build/safari</string>
-	<key>http://microsoft.com/TeamSystem/default.aspx|Windows 7</key>
-	<string>http://microsoft.com/projects/build/team-system</string>
-	<key>http://microsoft.com/TeamSystem/default.aspx|Visual Studio Team System 2007</key>
-	<string>http://microsoft.com/projects/build/team-system</string>
-	<key>http://microsoft.com/TeamSystem/default.aspx|Microsoft Office System 2009</key>
-	<string>http://microsoft.com/projects/build/team-system</string>
-	<key>http://openoffice.org/builds/|OpenOffice</key>
-	<string>http://openoffice.org/projects/build/open-office</string>
-	<key>http://openoffice.org/builds/|KDE</key>
-	<string>http://openoffice.org/projects/build/kde</string>
-	<key>http://openoffice.org/builds/|GNOME</key>
-	<string>http://openoffice.org/projects/build/gnome</string>
-</dict>
+<dict/>
 </plist>

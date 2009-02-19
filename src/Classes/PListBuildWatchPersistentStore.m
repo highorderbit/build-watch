@@ -217,13 +217,12 @@
     
     NSFileManager * fileManager = [NSFileManager defaultManager];
     BOOL fileExists = [fileManager fileExistsAtPath:fullPath];
-    if (!fileExists) {
+    if (!fileExists) {        
         NSError * error = nil;
         NSString * bundlePath = [PlistUtils fullBundlePathForPlist:plist];
-        BOOL fileCopied =
-            [fileManager copyItemAtPath:bundlePath
-                                 toPath:fullPath
-                                  error:&error];
+        BOOL fileCopied = [fileManager copyItemAtPath:bundlePath
+                                               toPath:fullPath
+                                                error:&error];
         if (!fileCopied)
             NSLog([error description]);
     }
@@ -246,10 +245,9 @@
     if (!fileExists) {
         NSError * error = nil;
         NSString * bundlePath = [PlistUtils fullBundlePathForPlist:plist];
-        BOOL fileCopied =
-            [fileManager copyItemAtPath:bundlePath
-                                 toPath:fullPath
-                                  error:&error];
+        BOOL fileCopied = [fileManager copyItemAtPath:bundlePath
+                                               toPath:fullPath
+                                                error:&error];
         if (!fileCopied)
             NSLog([error description]);
     }

@@ -332,23 +332,9 @@
 		050888A20F45E11D0010569B /* PLists */ = {
 			isa = PBXGroup;
 			children = (
+				91C6EC0A0F4DD58A0028C75A /* State */,
 				8D1107310486CEB800E47090 /* Info.plist */,
-				91D9ABD30F3DFE350035454C /* Servers.plist */,
-				91D9AC560F3E12A60035454C /* ServerNames.plist */,
-				05A8E5860F4D1DB600F26AC2 /* ServerDashboardLinks.plist */,
-				05AA0C740F4BA7DB00E46412 /* ServerGroupSortOrder.plist */,
-				91D9ABD70F3E01DE0035454C /* ServerGroupPatterns.plist */,
-				91E84BA70F4B332F0010B2A6 /* ServerUsernames.plist */,
-				91D9ABD90F3E02BE0035454C /* ProjectDisplayNames.plist */,
-				91D9ABDB0F3E03B50035454C /* ProjectTrackedStates.plist */,
-				91E151B10F409FC2006D6A59 /* ProjectLinks.plist */,
-				05473A6A0F44AD4C003F5444 /* ProjectForceBuildLinks.plist */,
-				91844BA70F42459D00082108 /* ProjectLabels.plist */,
-				91E1523B0F40B792006D6A59 /* ProjectBuildSucceededStates.plist */,
-				91E1523C0F40B792006D6A59 /* ProjectDescriptions.plist */,
-				91E1523D0F40B792006D6A59 /* ProjectPubDates.plist */,
 				05C884200F49E72000E486EA /* ServerReportBuilders.plist */,
-				91ECE8630F4CD0FD00F6B93B /* NavigationState.plist */,
 			);
 			name = PLists;
 			sourceTree = "<group>";
@@ -664,6 +650,28 @@
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		91C6EC0A0F4DD58A0028C75A /* State */ = {
+			isa = PBXGroup;
+			children = (
+				91ECE8630F4CD0FD00F6B93B /* NavigationState.plist */,
+				91D9ABD90F3E02BE0035454C /* ProjectDisplayNames.plist */,
+				91D9ABDB0F3E03B50035454C /* ProjectTrackedStates.plist */,
+				91E151B10F409FC2006D6A59 /* ProjectLinks.plist */,
+				05473A6A0F44AD4C003F5444 /* ProjectForceBuildLinks.plist */,
+				91844BA70F42459D00082108 /* ProjectLabels.plist */,
+				91E1523B0F40B792006D6A59 /* ProjectBuildSucceededStates.plist */,
+				91E1523C0F40B792006D6A59 /* ProjectDescriptions.plist */,
+				91E1523D0F40B792006D6A59 /* ProjectPubDates.plist */,
+				91E84BA70F4B332F0010B2A6 /* ServerUsernames.plist */,
+				91D9ABD70F3E01DE0035454C /* ServerGroupPatterns.plist */,
+				05AA0C740F4BA7DB00E46412 /* ServerGroupSortOrder.plist */,
+				05A8E5860F4D1DB600F26AC2 /* ServerDashboardLinks.plist */,
+				91D9AC560F3E12A60035454C /* ServerNames.plist */,
+				91D9ABD30F3DFE350035454C /* Servers.plist */,
+			);
+			name = State;
 			sourceTree = "<group>";
 		};
 		91E84B940F4B2A160010B2A6 /* SFHFKeychainUtils */ = {
