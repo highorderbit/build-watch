@@ -7,18 +7,15 @@
 @interface PlistBuildWatchPersistentStore (Private)
 
 + (NSDictionary *) getDictionaryFromPlist:(NSString *)plist;
-
 + (void) saveDictionary:dictionary toPlist:(NSString *)plist;
-
 + (NSArray *) getArrayFromPlist:(NSString *)plist;
-
 + (void) saveArray:(NSArray *)array toPlist:(NSString *)plist;
 
 @end
 
 @implementation PlistBuildWatchPersistentStore
 
-#pragma mark BuildWatchPersistentStore protocal implementation
+#pragma mark BuildWatchPersistentStore implementation
 
 - (void) saveServers:(NSDictionary *)servers
 {
@@ -161,6 +158,47 @@
 {
     return [[self class] getDictionaryFromPlist:@"ServerReportBuilders"];
 }
+
+- (void) saveActiveServerGroupName:(NSString *)activeServerGroupName
+{
+    NSMutableDictionary * navigationState =
+        [[[self class] getDictionaryFromPlist:@"NavigationState"] mutableCopy];
+    if (activeServerGroupName)
+        [navigationState setObject:activeServerGroupName
+                            forKey:@"activeServerGroupName"];
+    else
+        [navigationState removeObjectForKey:@"activeServerGroupName"];
+    [[self class] saveDictionary:navigationState toPlist:@"NavigationState"];
+}
+
+- (NSString *) getActiveServerGroupName
+{
+    NSDictionary * navigationState =
+        [[self class] getDictionaryFromPlist:@"NavigationState"];
+    
+    return [navigationState objectForKey:@"activeServerGroupName"];
+}
+
+- (void) saveActiveProjectId:(NSString *)activeProjectId
+{    
+    NSMutableDictionary * navigationState =
+        [[[self class] getDictionaryFromPlist:@"NavigationState"] mutableCopy];
+    if (activeProjectId)
+        [navigationState setObject:activeProjectId forKey:@"activeProjectId"];
+    else
+        [navigationState removeObjectForKey:@"activeProjectId"];
+    [[self class] saveDictionary:navigationState toPlist:@"NavigationState"];    
+}
+
+- (NSString *) getActiveProjectId
+{
+    NSDictionary * navigationState =
+        [[self class] getDictionaryFromPlist:@"NavigationState"];
+    
+    return [navigationState objectForKey:@"activeProjectId"];
+}
+
+#pragma mark Private static helpers
 
 + (NSDictionary *) getDictionaryFromPlist:(NSString *)plist
 {

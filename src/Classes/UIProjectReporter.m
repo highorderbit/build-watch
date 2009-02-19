@@ -22,11 +22,11 @@
 
 #pragma mark ProjectReporter protocol methods
 
-- (void) reportDetailsForProject:(NSString *)projectId
+- (void) reportDetailsForProject:(NSString *)projectId animated:(BOOL)animated
 {
     self.projectReportViewController.projectId = projectId;
     [self.navigationController
-        pushViewController:self.projectReportViewController animated:YES];
+        pushViewController:self.projectReportViewController animated:animated];
 }
 
 #pragma mark Accessors

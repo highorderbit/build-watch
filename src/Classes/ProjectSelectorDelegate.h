@@ -8,6 +8,8 @@
 
 - (void) userDidSelectProject:(NSString *)project;
 
+- (void) userDidDeselectProject;
+
 - (void) setTrackedState:(BOOL)state onProject:(NSString *)project;
 
 - (NSString *) displayNameForCurrentProjectGroup;

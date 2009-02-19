@@ -22,11 +22,12 @@
 #pragma mark ServerSelector protocol methods
 
 - (void) selectServerGroupNamesFrom:(NSArray *)someServerGroupNames
+                           animated:(BOOL)animated
 {
     [self.serverViewController setServerGroupNames:someServerGroupNames];
     if (self.navigationController.visibleViewController != serverViewController)
         [self.navigationController pushViewController:self.serverViewController
-                                             animated:YES];
+                                             animated:animated];
 }
 
 #pragma mark Accessors

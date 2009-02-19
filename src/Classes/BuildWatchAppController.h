@@ -77,6 +77,7 @@
     NSObject<ServerDataRefresherDelegate> * serverDataRefresherDelegate;
     
     NSString * activeServerGroupName;
+    NSString * activeProjectId;
 }
 
 @property (nonatomic, retain) IBOutlet NSObject<BuildWatchPersistentStore> *

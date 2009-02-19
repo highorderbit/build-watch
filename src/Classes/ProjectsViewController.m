@@ -51,6 +51,8 @@
 
     NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selectedRow animated:NO];
+    
+    [delegate userDidDeselectProject];
 }
 
 - (void) viewWillDisappear:(BOOL)animated

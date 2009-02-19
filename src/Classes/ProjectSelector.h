@@ -7,7 +7,7 @@
 
 @protocol ProjectSelector
 
-- (void)selectProjectFrom:(NSArray *)someProjects;
+- (void)selectProjectFrom:(NSArray *)someProjects animated:(BOOL)animated;
 
 @end
 

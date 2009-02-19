@@ -7,6 +7,6 @@
 
 @protocol ProjectReporter
 
-- (void) reportDetailsForProject:(NSString *)projectId;
+- (void) reportDetailsForProject:(NSString *)projectId animated:(BOOL)animated;
 
 @end

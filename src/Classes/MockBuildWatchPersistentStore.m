@@ -166,6 +166,22 @@
     return nil;
 }
 
+- (void) saveActiveServerGroupName:(NSString *)activeServerGroupName
+{}
+
+- (NSString *) getActiveServerGroupName
+{
+    return nil;
+}
+
+- (void) saveActiveProjectId:(NSString *)activeProjectId
+{}
+
+- (NSString *) getActiveProjectId
+{
+    return nil;
+}
+
 #pragma mark Private methods
 
 + (NSDictionary *) mockServerList

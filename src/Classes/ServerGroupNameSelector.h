@@ -6,6 +6,7 @@
 
 @protocol ServerGroupNameSelector
 
-- (void)selectServerGroupNamesFrom:(NSArray *)someServerGroupNames;
+- (void)selectServerGroupNamesFrom:(NSArray *)someServerGroupNames
+                          animated:(BOOL)animated;
 
 @end
