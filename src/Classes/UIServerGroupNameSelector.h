@@ -25,6 +25,7 @@
 
 #pragma mark ServerSelector protocol methods
 
-- (void) selectServerGroupNamesFrom:(NSArray *)someServerGroupNames;
+- (void) selectServerGroupNamesFrom:(NSArray *)someServerGroupNames
+                           animated:(BOOL)animated;
 
 @end
