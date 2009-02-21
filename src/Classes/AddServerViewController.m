@@ -3,15 +3,42 @@
 //
 
 #import "AddServerViewController.h"
+#import "UITableViewCell+BuildWatchAdditions.h"
 
-static NSString * CellIdentifier = @"Cell";
+static NSString * TEXT_FIELD_TABLE_VIEW_CELL_IDENTIFIER =
+    @"TextFieldTableViewCellIdentifier";
+static NSString * STANDARD_TABLE_VIEW_CELL_IDENTIFIER =
+    @"StandardTableViewCellIdentifier";
 static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
+
+static const NSInteger NUM_SECTIONS = 2;
+enum Sections
+{
+    kInputSection,
+    kHelpSection
+};
+
+static const NSInteger NUM_INPUT_ROWS = 2;
+enum InputRows
+{
+    kUrlRow,
+    kRssSelectionRow
+};
+
+static const NSInteger NUM_HELP_ROWS = 1;
+enum HelpRows
+{
+    kHelpRow
+};
 
 @interface AddServerViewController (Private)
 - (void) userDidSave;
 - (void) userDidCancel;
-- (UITextField *)editServerUrlTextFieldWithFrame:(CGRect)frame
-                                             tag:(NSInteger)tag;
+- (NSString *) reuseIdentifierForCellAtIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewCell *) tableViewCellInstanceForIndexPath:(NSIndexPath *)indexPath
+                                        reuseIdentifier:(NSString *)identifier;
+- (UITextField *) editServerUrlTextFieldWithFrame:(CGRect)frame
+                                              tag:(NSInteger)tag;
 @end
 
 @implementation AddServerViewController
@@ -100,35 +127,82 @@ static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tv
 {
-    return 1;
+    return NUM_SECTIONS;
 }
 
 - (NSInteger) tableView:(UITableView *)tv
   numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    NSInteger nrows = 0;
+
+    switch (section) {
+        case kInputSection:
+            nrows = NUM_INPUT_ROWS;
+            break;
+        case kHelpSection:
+            nrows = NUM_HELP_ROWS;
+            break;
+    }
+
+    return nrows;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tv
           cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSString * reuseIdentifier =
+        [self reuseIdentifierForCellAtIndexPath:indexPath];
+
     UITableViewCell * cell =
-        [tv dequeueReusableCellWithIdentifier:CellIdentifier];
+        [tv dequeueReusableCellWithIdentifier:reuseIdentifier];
 
     if (cell == nil)
-        cell = self.editServerUrlCell;
+        cell =
+            [self tableViewCellInstanceForIndexPath:indexPath
+                                    reuseIdentifier:reuseIdentifier];
 
-    UITextField * textField =
-        (UITextField *) [cell viewWithTag:SERVER_URL_TEXT_FIELD_TAG];
-    textField.text = serverUrl;
+    switch (indexPath.section) {
+        case kInputSection:
+            switch (indexPath.row) {
+                case kUrlRow: {
+                    UITextField * textField = (UITextField *)
+                        [cell viewWithTag:SERVER_URL_TEXT_FIELD_TAG];
+                    textField.text = serverUrl;
+                    break;
+                }
+
+                case kRssSelectionRow:
+                    cell.text =
+                        NSLocalizedString(@"addserver.rsstype.label", @"");
+                    break;
+            }
+            break;
+
+        case kHelpSection:
+            switch (indexPath.row) {
+                case kHelpRow:
+                    cell.text = NSLocalizedString(@"addserver.help.label", @"");
+                    break;
+            }
+            break;
+    }
 
     return cell;
 }
 
-- (NSIndexPath *)tableView:(UITableView *)tableView
-  willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSIndexPath *) tableView:(UITableView *)tableView
+   willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return nil;  // selection is forbidden
+}
+
+- (UITableViewCellAccessoryType) tableView:(UITableView *)tableView
+          accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    return
+        (indexPath.section == kInputSection && indexPath.row == kUrlRow) ?
+        UITableViewCellAccessoryNone :
+        UITableViewCellAccessoryDisclosureIndicator;
 }
 
 #pragma mark UITextField delegate functions
@@ -196,7 +270,8 @@ static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
     if (editServerUrlCell == nil) {
         editServerUrlCell =
             [[UITableViewCell alloc]
-              initWithFrame:CGRectZero reuseIdentifier:CellIdentifier];
+              initWithFrame:CGRectZero
+            reuseIdentifier:TEXT_FIELD_TABLE_VIEW_CELL_IDENTIFIER];
 
         CGRect textFieldFrame = CGRectMake(10, 10, 285, 22);
         UITextField * textField =
@@ -211,8 +286,35 @@ static const NSInteger SERVER_URL_TEXT_FIELD_TAG = 1;
 
 #pragma mark Helper functions
 
-- (UITextField *)editServerUrlTextFieldWithFrame:(CGRect)frame
-                                             tag:(NSInteger)tag
+- (NSString *) reuseIdentifierForCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    return indexPath.section == kInputSection && indexPath.row == kUrlRow ?
+        TEXT_FIELD_TABLE_VIEW_CELL_IDENTIFIER :
+        STANDARD_TABLE_VIEW_CELL_IDENTIFIER;
+}
+
+- (UITableViewCell *) tableViewCellInstanceForIndexPath:(NSIndexPath *)indexPath
+                                        reuseIdentifier:(NSString *)identifier
+{
+    UITableViewCell * cell = nil;
+
+    switch (indexPath.section) {
+        case kInputSection:
+            cell =
+                indexPath.row == kUrlRow ?
+                self.editServerUrlCell :
+                [UITableViewCell standardTableViewCell:identifier];
+            break;
+        case kHelpSection:
+            cell = [UITableViewCell standardTableViewCell:identifier];
+            break;
+    }
+
+    return cell;
+}
+
+- (UITextField *) editServerUrlTextFieldWithFrame:(CGRect)frame
+                                              tag:(NSInteger)tag
 {
      UITextField * textField =
          [[[UITextField alloc] initWithFrame:frame] autorelease];
