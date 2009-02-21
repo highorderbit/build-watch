@@ -18,7 +18,9 @@ enum Sections
     kHelpSection
 };
 
-static const NSInteger NUM_INPUT_ROWS = 2;
+// Changing this constant to '2' will show the server type selection row.
+// Removing until this feature is revisited.
+static const NSInteger NUM_INPUT_ROWS = 1;
 enum InputRows
 {
     kUrlRow,
@@ -207,6 +209,8 @@ enum HelpRows
 {
     if (indexPath.section == kInputSection && indexPath.row == kRssSelectionRow)
         [delegate userDidSelectServerType];
+    else if (indexPath.section == kHelpSection)
+        [delegate userRequestsHelp];
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView *)tableView

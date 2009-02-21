@@ -12,6 +12,8 @@
 
 - (BOOL) isServerGroupUrlValid:(NSString *)serverUrl;
 
+- (void) userRequestsHelp;
+
 - (void) userDidSelectServerType;
 
 @end

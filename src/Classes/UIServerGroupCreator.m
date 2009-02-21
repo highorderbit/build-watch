@@ -6,6 +6,7 @@
 #import "AddServerViewController.h"
 #import "EditServerDetailsViewController.h"
 #import "SelectServerTypeViewController.h"
+#import "RssHelpViewController.h"
 #import "NetworkBuildService.h"
 #import "ServerReport.h"
 
@@ -27,6 +28,8 @@
 
 @synthesize selectServerTypeViewController;
 
+@synthesize rssHelpViewController;
+
 @synthesize serverGroupPropertyProvider;
 
 @synthesize buildService;
@@ -43,6 +46,7 @@
     [serverGroupCreatorDelegate release];
     [serverGroupEditorDelegate release];
     [selectServerTypeViewController release];
+    [rssHelpViewController release];
     [serverGroupPropertyProvider release];
     [buildService release];
     [buildServiceDelegate release];
@@ -100,6 +104,12 @@
 - (BOOL) isServerGroupUrlValid:(NSString *)url
 {
     return [serverGroupCreatorDelegate isServerGroupUrlValid:url];
+}
+
+- (void) userRequestsHelp
+{
+    [self.addServerNavigationController
+        pushViewController:self.rssHelpViewController animated:YES];
 }
 
 - (void) userDidSelectServerType
@@ -281,6 +291,16 @@
     }
 
     return selectServerTypeViewController;
+}
+
+- (RssHelpViewController *) rssHelpViewController
+{
+    if (rssHelpViewController == nil)
+        rssHelpViewController =
+            [[RssHelpViewController alloc]
+             initWithNibName:@"RssHelpView" bundle:nil];
+
+    return rssHelpViewController;
 }
 
 - (NSObject<BuildService> *)buildService

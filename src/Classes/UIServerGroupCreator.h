@@ -18,6 +18,7 @@
 @class AddServerViewController;
 @class EditServerDetailsViewController;
 @class SelectServerTypeViewController;
+@class RssHelpViewController;
 
 @interface UIServerGroupCreator : NSObject
                                   < ServerGroupCreator,
@@ -34,6 +35,8 @@
     EditServerDetailsViewController * editServerDetailsViewController;
 
     SelectServerTypeViewController * selectServerTypeViewController;
+
+    RssHelpViewController * rssHelpViewController;
 
     NSObject<ServerGroupCreatorDelegate> * serverGroupCreatorDelegate;
     NSObject<ServerGroupEditorDelegate> * serverGroupEditorDelegate;
@@ -57,6 +60,8 @@
 
 @property (nonatomic, retain) SelectServerTypeViewController *
     selectServerTypeViewController;
+
+@property (nonatomic, retain) RssHelpViewController * rssHelpViewController;
 
 @property (nonatomic, retain) IBOutlet NSObject<ServerGroupCreatorDelegate> *
     serverGroupCreatorDelegate;
