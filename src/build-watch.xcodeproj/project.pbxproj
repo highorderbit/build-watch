@@ -13,6 +13,10 @@
 		0524CE5E0F3CBC6600C020FE /* EditServerDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0524CE5C0F3CBC6600C020FE /* EditServerDetailsView.xib */; };
 		053A95120F3B998B0092763D /* UIProjectReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 053A95110F3B998B0092763D /* UIProjectReporter.m */; };
 		053A95150F3B9BF60092763D /* ProjectReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 053A95140F3B9BF60092763D /* ProjectReportViewController.m */; };
+		053BF5DA0F4F9B11004D3327 /* UITableViewCell+BuildWatchAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 053BF5D90F4F9B11004D3327 /* UITableViewCell+BuildWatchAdditions.m */; };
+		053BF6100F4FCC24004D3327 /* ServerTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053BF60E0F4FCC24004D3327 /* ServerTypeTableViewCell.xib */; };
+		053BF6290F508AEE004D3327 /* SelectServerTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 053BF6280F508AEE004D3327 /* SelectServerTypeViewController.m */; };
+		053BF62C0F5092E0004D3327 /* SelectServerTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053BF62A0F5092E0004D3327 /* SelectServerTypeView.xib */; };
 		054462920F4932A20070ABBB /* NSString+BuildWatchAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 054462910F4932A20070ABBB /* NSString+BuildWatchAdditions.m */; };
 		0544629E0F4932F60070ABBB /* XmlBoolObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 054462940F4932F60070ABBB /* XmlBoolObjectBuilder.m */; };
 		0544629F0F4932F60070ABBB /* XmlCompositeObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 054462960F4932F60070ABBB /* XmlCompositeObjectBuilder.m */; };
@@ -118,6 +122,13 @@
 		053A95110F3B998B0092763D /* UIProjectReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIProjectReporter.m; sourceTree = "<group>"; };
 		053A95130F3B9BF60092763D /* ProjectReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectReportViewController.h; sourceTree = "<group>"; };
 		053A95140F3B9BF60092763D /* ProjectReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectReportViewController.m; sourceTree = "<group>"; };
+		053BF5D80F4F9B11004D3327 /* UITableViewCell+BuildWatchAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+BuildWatchAdditions.h"; sourceTree = "<group>"; };
+		053BF5D90F4F9B11004D3327 /* UITableViewCell+BuildWatchAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+BuildWatchAdditions.m"; sourceTree = "<group>"; };
+		053BF60F0F4FCC24004D3327 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ServerTypeTableViewCell.xib; sourceTree = "<group>"; };
+		053BF6270F508AEE004D3327 /* SelectServerTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectServerTypeViewController.h; sourceTree = "<group>"; };
+		053BF6280F508AEE004D3327 /* SelectServerTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectServerTypeViewController.m; sourceTree = "<group>"; };
+		053BF62B0F5092E0004D3327 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SelectServerTypeView.xib; sourceTree = "<group>"; };
+		053BF6940F50ACFC004D3327 /* SelectServerTypeViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectServerTypeViewControllerDelegate.h; sourceTree = "<group>"; };
 		054462900F4932A20070ABBB /* NSString+BuildWatchAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BuildWatchAdditions.h"; sourceTree = "<group>"; };
 		054462910F4932A20070ABBB /* NSString+BuildWatchAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BuildWatchAdditions.m"; sourceTree = "<group>"; };
 		054462930F4932F60070ABBB /* XmlBoolObjectBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlBoolObjectBuilder.h; sourceTree = "<group>"; };
@@ -323,12 +334,14 @@
 				059CBDC00F3BAE7400010F3F /* ProjectReportView.xib */,
 				05A1001C0F42681B00E2C085 /* BuildDetailsView.xib */,
 				0524CCB90F3C86DB00C020FE /* AddServerView.xib */,
-				91D9ADDA0F3E3B050035454C /* AboutView.xib */,
+				053BF62A0F5092E0004D3327 /* SelectServerTypeView.xib */,
 				0524CE5C0F3CBC6600C020FE /* EditServerDetailsView.xib */,
+				91D9ADDA0F3E3B050035454C /* AboutView.xib */,
 				91ABDE260F4120A1003232A0 /* ServerTableViewCell.xib */,
 				05A1FD9C0F42225200E2C085 /* NameValueTableViewCell.xib */,
 				05D8AF970F43B3DA00F07532 /* ForceBuildTableViewCell.xib */,
 				917151D00F450F9100270997 /* ProjectTableViewCell.xib */,
+				053BF60E0F4FCC24004D3327 /* ServerTypeTableViewCell.xib */,
 			);
 			name = NIBs;
 			sourceTree = "<group>";
@@ -358,6 +371,9 @@
 				0524CE380F3CBA5F00C020FE /* EditServerDetailsViewController.h */,
 				0524CE390F3CBA5F00C020FE /* EditServerDetailsViewController.m */,
 				0524CEFC0F3CE52E00C020FE /* EditServerDetailsViewControllerDelegate.h */,
+				053BF6270F508AEE004D3327 /* SelectServerTypeViewController.h */,
+				053BF6280F508AEE004D3327 /* SelectServerTypeViewController.m */,
+				053BF6940F50ACFC004D3327 /* SelectServerTypeViewControllerDelegate.h */,
 			);
 			name = "Managing Servers";
 			sourceTree = "<group>";
@@ -456,6 +472,8 @@
 				054462B30F4933C10070ABBB /* NSError+BuildWatchAdditions.m */,
 				054462900F4932A20070ABBB /* NSString+BuildWatchAdditions.h */,
 				054462910F4932A20070ABBB /* NSString+BuildWatchAdditions.m */,
+				053BF5D80F4F9B11004D3327 /* UITableViewCell+BuildWatchAdditions.h */,
+				053BF5D90F4F9B11004D3327 /* UITableViewCell+BuildWatchAdditions.m */,
 				9114658B0F460949002A4BAB /* UIColor+BuildWatchColors.h */,
 				9114658C0F460949002A4BAB /* UIColor+BuildWatchColors.m */,
 				05A1FDA00F42237E00E2C085 /* NameValueTableViewCell.h */,
@@ -781,6 +799,8 @@
 				05AA0C750F4BA7DB00E46412 /* ServerGroupSortOrder.plist in Resources */,
 				91ECE8640F4CD0FD00F6B93B /* NavigationState.plist in Resources */,
 				05A8E5870F4D1DB600F26AC2 /* ServerDashboardLinks.plist in Resources */,
+				053BF6100F4FCC24004D3327 /* ServerTypeTableViewCell.xib in Resources */,
+				053BF62C0F5092E0004D3327 /* SelectServerTypeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -848,6 +868,8 @@
 				918179DE0F49DC64009C7617 /* NSDate+StringHelpers.m in Sources */,
 				91E84B970F4B2A670010B2A6 /* SFHFKeychainUtils.m in Sources */,
 				91C6EC400F4DD9B20028C75A /* InfoPlistConfigReader.m in Sources */,
+				053BF5DA0F4F9B11004D3327 /* UITableViewCell+BuildWatchAdditions.m in Sources */,
+				053BF6290F508AEE004D3327 /* SelectServerTypeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -868,6 +890,22 @@
 				0524CE5D0F3CBC6600C020FE /* en */,
 			);
 			name = EditServerDetailsView.xib;
+			sourceTree = "<group>";
+		};
+		053BF60E0F4FCC24004D3327 /* ServerTypeTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				053BF60F0F4FCC24004D3327 /* en */,
+			);
+			name = ServerTypeTableViewCell.xib;
+			sourceTree = "<group>";
+		};
+		053BF62A0F5092E0004D3327 /* SelectServerTypeView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				053BF62B0F5092E0004D3327 /* en */,
+			);
+			name = SelectServerTypeView.xib;
 			sourceTree = "<group>";
 		};
 		059CBD460F3BA40900010F3F /* Localizable.strings */ = {

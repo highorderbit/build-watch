@@ -10,12 +10,14 @@
 #import "ServerGroupPropertyProvider.h"
 #import "AddServerViewControllerDelegate.h"
 #import "EditServerDetailsViewControllerDelegate.h"
+#import "SelectServerTypeViewControllerDelegate.h"
 #import "BuildServiceDelegate.h"
 #import "BuildService.h"
 
 @class ServerReport;
 @class AddServerViewController;
 @class EditServerDetailsViewController;
+@class SelectServerTypeViewController;
 
 @interface UIServerGroupCreator : NSObject
                                   < ServerGroupCreator,
@@ -23,12 +25,15 @@
                                     ServerGroupPropertyProvider,
                                     AddServerViewControllerDelegate,
                                     EditServerDetailsViewControllerDelegate,
+                                    SelectServerTypeViewControllerDelegate,
                                     BuildServiceDelegate >
 {
     UINavigationController * rootNavigationController;
     UINavigationController * addServerNavigationController;
     AddServerViewController * addServerViewController;
     EditServerDetailsViewController * editServerDetailsViewController;
+
+    SelectServerTypeViewController * selectServerTypeViewController;
 
     NSObject<ServerGroupCreatorDelegate> * serverGroupCreatorDelegate;
     NSObject<ServerGroupEditorDelegate> * serverGroupEditorDelegate;
@@ -49,6 +54,9 @@
     addServerViewController;
 @property (nonatomic, retain) EditServerDetailsViewController *
     editServerDetailsViewController;
+
+@property (nonatomic, retain) SelectServerTypeViewController *
+    selectServerTypeViewController;
 
 @property (nonatomic, retain) IBOutlet NSObject<ServerGroupCreatorDelegate> *
     serverGroupCreatorDelegate;

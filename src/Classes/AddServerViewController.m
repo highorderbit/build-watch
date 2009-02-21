@@ -47,6 +47,7 @@ enum HelpRows
 @synthesize editServerUrlCell;
 @synthesize delegate;
 @synthesize serverUrl;
+@synthesize serverType;
 
 - (void)dealloc
 {
@@ -54,6 +55,7 @@ enum HelpRows
     [editServerUrlCell release];
     [delegate release];
     [serverUrl release];
+    [serverType release];
     [super dealloc];
 }
 
@@ -87,6 +89,9 @@ enum HelpRows
         NSLocalizedString(@"addserver.view.prompt", @"");
 
     self.navigationItem.rightBarButtonItem.enabled = serverUrl.length > 0;
+
+    NSIndexPath * selectedCell = [tableView indexPathForSelectedRow];
+    [tableView deselectRowAtIndexPath:selectedCell animated:NO];
 
     UITextField * textField = (UITextField *)
         [self.editServerUrlCell viewWithTag:SERVER_URL_TEXT_FIELD_TAG];
@@ -193,7 +198,15 @@ enum HelpRows
 - (NSIndexPath *) tableView:(UITableView *)tableView
    willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;  // selection is forbidden
+    return (indexPath.section == kInputSection && indexPath.row == kUrlRow) ?
+        nil : indexPath;
+}
+
+- (void)          tableView:(UITableView *)tableView
+    didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == kInputSection && indexPath.row == kRssSelectionRow)
+        [delegate userDidSelectServerType];
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView *)tableView

@@ -5,6 +5,7 @@
 #import "UIServerGroupCreator.h"
 #import "AddServerViewController.h"
 #import "EditServerDetailsViewController.h"
+#import "SelectServerTypeViewController.h"
 #import "NetworkBuildService.h"
 #import "ServerReport.h"
 
@@ -24,6 +25,8 @@
 @synthesize serverGroupCreatorDelegate;
 @synthesize serverGroupEditorDelegate;
 
+@synthesize selectServerTypeViewController;
+
 @synthesize serverGroupPropertyProvider;
 
 @synthesize buildService;
@@ -39,6 +42,7 @@
     [editServerDetailsViewController release];
     [serverGroupCreatorDelegate release];
     [serverGroupEditorDelegate release];
+    [selectServerTypeViewController release];
     [serverGroupPropertyProvider release];
     [buildService release];
     [buildServiceDelegate release];
@@ -96,6 +100,13 @@
 - (BOOL) isServerGroupUrlValid:(NSString *)url
 {
     return [serverGroupCreatorDelegate isServerGroupUrlValid:url];
+}
+
+- (void) userDidSelectServerType
+{
+    [self.addServerNavigationController
+        pushViewController:self.selectServerTypeViewController
+                  animated:YES];
 }
 
 #pragma mark EditServerDetailsViewControllerDelegate protocol implementation
@@ -172,7 +183,14 @@
     [addServerViewController viewWillAppear:NO];
 }
 
-#pragma mark ServerGroupPropertyProvider protocol implemetation
+#pragma mark SelectServerTypeViewControllerDelegate protocol implementation
+
+- (void) userDidSelectServerTypeName:(NSString *)serverTypeName
+{
+    addServerViewController.serverType = serverTypeName;
+}
+
+#pragma mark ServerGroupPropertyProvider protocol implementation
 
 - (NSString *) displayNameForServerGroupName:(NSString *)serverGroupName
 {
@@ -251,6 +269,18 @@
     }
 
     return editServerDetailsViewController;
+}
+
+- (SelectServerTypeViewController *) selectServerTypeViewController
+{
+    if (selectServerTypeViewController == nil) {
+        selectServerTypeViewController =
+            [[SelectServerTypeViewController alloc]
+             initWithNibName:@"SelectServerTypeView" bundle:nil];
+        selectServerTypeViewController.delegate = self;
+    }
+
+    return selectServerTypeViewController;
 }
 
 - (NSObject<BuildService> *)buildService

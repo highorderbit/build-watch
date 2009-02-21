@@ -16,6 +16,7 @@
     NSObject<AddServerViewControllerDelegate> * delegate;
 
     NSString * serverUrl;
+    NSString * serverType;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView * tableView;
@@ -23,5 +24,6 @@
 @property (nonatomic, retain) NSObject<AddServerViewControllerDelegate> *
     delegate;
 @property (nonatomic, copy) NSString * serverUrl;
+@property (nonatomic, copy) NSString * serverType;
 
 @end
