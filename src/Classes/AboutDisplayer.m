@@ -43,8 +43,17 @@
         [self initVersionLabel];
         aboutButton.style = UIBarButtonItemStyleDone;
         aboutButton.title = @"Done";
-    } else
+
+        [[UIApplication sharedApplication]
+         setStatusBarStyle:UIStatusBarStyleBlackOpaque
+                  animated:YES];
+    } else {
         [self hideAboutView];
+
+        [[UIApplication sharedApplication]
+         setStatusBarStyle:UIStatusBarStyleDefault
+                  animated:YES];
+    }
 }
 
 - (IBAction) displayWebsite:(id)sender
