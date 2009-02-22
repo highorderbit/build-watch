@@ -22,13 +22,9 @@
     
     if ([self isToday])
         [formatter setTimeStyle:NSDateFormatterShortStyle];
-    else if ([self isLessThanWeekAgo]) {
-        // Seems like you should be able to set the date format on the current
-        // formatter instance, but it doesn't format properly, so...
-        formatter =
-            [[[NSDateFormatter alloc]
-              initWithDateFormat:@"%A" allowNaturalLanguage:NO] autorelease];
-    } else
+    else if ([self isLessThanWeekAgo])
+        formatter.dateFormat = @"EEEE";
+    else
         [formatter setDateStyle:NSDateFormatterShortStyle];
 
     return [formatter stringFromDate:self];
