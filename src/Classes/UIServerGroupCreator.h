@@ -29,6 +29,7 @@
                                     SelectServerTypeViewControllerDelegate,
                                     BuildServiceDelegate >
 {
+    UIViewController * rootView;
     UINavigationController * rootNavigationController;
     UINavigationController * addServerNavigationController;
     AddServerViewController * addServerViewController;
@@ -49,6 +50,7 @@
     ServerReport * serverReport;
 }
 
+@property (nonatomic, retain) IBOutlet UIViewController * rootView;
 @property (nonatomic, retain) IBOutlet UINavigationController *
     rootNavigationController;
 @property (nonatomic, retain) UINavigationController *

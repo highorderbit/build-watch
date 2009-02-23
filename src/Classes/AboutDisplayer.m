@@ -13,14 +13,14 @@
 
 @implementation AboutDisplayer
 
-@synthesize navController;
+@synthesize rootView;
 @synthesize aboutButton;
 @synthesize versionLabel;
 @synthesize configReader;
 
 - (void) dealloc
 {
-    [navController release];
+    [rootView release];
     [aboutButton release];
     [versionLabel release];
     [configReader release];
@@ -39,7 +39,7 @@
 {
     if (!displayed) {
         displayed = YES;
-        [navController presentModalViewController:self animated:YES];
+        [rootView presentModalViewController:self animated:YES];
         [self initVersionLabel];
         aboutButton.style = UIBarButtonItemStyleDone;
         aboutButton.title = @"Done";
@@ -82,7 +82,7 @@
 - (void) hideAboutView
 {
     displayed = NO;
-    [navController dismissModalViewControllerAnimated:YES];
+    [rootView dismissModalViewControllerAnimated:YES];
     aboutButton.style = UIBarButtonItemStyleBordered;
     aboutButton.title = @"About";
 }

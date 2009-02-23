@@ -18,6 +18,7 @@
 
 @implementation UIServerGroupCreator
 
+@synthesize rootView;
 @synthesize rootNavigationController;
 @synthesize addServerNavigationController;
 @synthesize addServerViewController;
@@ -39,6 +40,7 @@
 
 - (void) dealloc
 {
+    [rootView release];
     [rootNavigationController release];
     [addServerNavigationController release];
     [addServerViewController release];
@@ -61,7 +63,7 @@
     self.addServerViewController.serverUrl = @"";
 
     [self.addServerNavigationController popToRootViewControllerAnimated:NO];
-    [self.rootNavigationController
+    [self.rootView
         presentModalViewController:self.addServerNavigationController
                           animated:YES];
 }
@@ -96,7 +98,7 @@
     [buildService cancelRefreshForServer:url];
 
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [self.rootNavigationController dismissModalViewControllerAnimated:YES];
+    [self.rootView dismissModalViewControllerAnimated:YES];
 
     [self endEditingSession];
 }
@@ -130,7 +132,7 @@
          serverGroupCreatedWithDisplayName:serverGroupDisplayName
                      andInitialBuildReport:serverReport];
 
-        [rootNavigationController dismissModalViewControllerAnimated:YES];
+        [rootView dismissModalViewControllerAnimated:YES];
     } else {
         [serverGroupEditorDelegate
             changeDisplayName:serverGroupDisplayName
@@ -145,7 +147,7 @@
 - (void) userDidCancelEditingServerGroupName:(NSString *)serverGroupName
 {
     if ([self isCreatingNewServer])
-        [rootNavigationController dismissModalViewControllerAnimated:YES];
+        [rootView dismissModalViewControllerAnimated:YES];
     else
         [rootNavigationController popViewControllerAnimated:YES];
 
