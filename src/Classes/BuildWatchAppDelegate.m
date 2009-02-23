@@ -44,15 +44,6 @@
     [window addSubview:toolbar];
     [window makeKeyAndVisible];
 
-    /*
-    NSObject<ServerPersistentStore> * store =
-        [[MockServerPersistentStore alloc] init];
-    appController = [[BuildWatchAppController alloc]
-        initWithPersistentStore:store
-              andServerSelector:serverSelector];
-    [store release];
-     */
-
     [appController start];
 }
 
