@@ -6,8 +6,6 @@
 #import "ServerGroupPropertyProvider.h"
 #import "EditServerDetailsViewControllerDelegate.h"
 
-@class ServerReport;
-
 @interface EditServerDetailsViewController : UIViewController
                                              < UITableViewDataSource,
                                                UITableViewDelegate,
@@ -19,7 +17,6 @@
     NSObject<EditServerDetailsViewControllerDelegate> * delegate;
 
     NSObject<ServerGroupPropertyProvider> * serverGroupPropertyProvider;
-    //ServerReport * serverReport;
 
     NSString * serverGroupName;  // what the user provides
     NSString * serverGroupDisplayName;  // what the user provides
@@ -31,7 +28,6 @@
     NSObject<EditServerDetailsViewControllerDelegate> * delegate;
 @property (nonatomic, retain) NSObject<ServerGroupPropertyProvider> *
     serverGroupPropertyProvider;
-//@property (nonatomic, copy) ServerReport * serverReport;
 @property (nonatomic, copy) NSString * serverGroupName;
 @property (nonatomic, copy) NSString * serverGroupDisplayName;
 

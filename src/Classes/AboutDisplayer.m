@@ -13,15 +13,13 @@
 
 @implementation AboutDisplayer
 
-@synthesize navController;
-@synthesize aboutButton;
+@synthesize rootViewController;
 @synthesize versionLabel;
 @synthesize configReader;
 
 - (void) dealloc
 {
-    [navController release];
-    [aboutButton release];
+    [rootViewController release];
     [versionLabel release];
     [configReader release];
     [super dealloc];
@@ -32,19 +30,25 @@
     [super awakeFromNib];
     
     displayed = NO;
-    self.navigationItem.title = @"About";
 }
 
 - (IBAction) displayAboutView:(id)sender
 {
     if (!displayed) {
         displayed = YES;
-        [navController presentModalViewController:self animated:YES];
+        [rootViewController presentModalViewController:self animated:YES];
         [self initVersionLabel];
-        aboutButton.style = UIBarButtonItemStyleDone;
-        aboutButton.title = @"Done";
-    } else
+
+        [[UIApplication sharedApplication]
+         setStatusBarStyle:UIStatusBarStyleBlackOpaque
+                  animated:YES];
+    } else {
         [self hideAboutView];
+
+        [[UIApplication sharedApplication]
+         setStatusBarStyle:UIStatusBarStyleDefault
+                  animated:YES];
+    }
 }
 
 - (IBAction) displayWebsite:(id)sender
@@ -73,9 +77,7 @@
 - (void) hideAboutView
 {
     displayed = NO;
-    [navController dismissModalViewControllerAnimated:YES];
-    aboutButton.style = UIBarButtonItemStyleBordered;
-    aboutButton.title = @"About";
+    [rootViewController dismissModalViewControllerAnimated:YES];
 }
 
 - (void) initVersionLabel

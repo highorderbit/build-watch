@@ -11,6 +11,7 @@
 @interface BuildWatchAppDelegate : NSObject <UIApplicationDelegate>
 {
     UIWindow *window;
+    UIViewController * rootViewController;
     UINavigationController *navigationController;
     UIToolbar * toolbar;
 
@@ -19,6 +20,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, retain) IBOutlet UIViewController * rootViewController;
 @property (nonatomic, retain) IBOutlet UINavigationController *
     navigationController;
 @property (nonatomic, retain) IBOutlet UIToolbar * toolbar;
