@@ -60,8 +60,17 @@
 {
     NSString * feedbackAddress =
         (NSString *) [configReader valueForKey:@"FeedbackAddress"];
+    
+    NSString * version =
+        (NSString *) [configReader valueForKey:@"CFBundleVersion"];
+    
+    NSString * subject =
+        [NSString stringWithFormat:@"Build Watch %@ feedback", version];
+    
     NSString * urlString =
-        [NSString stringWithFormat:@"mailto:%@", feedbackAddress];
+        [[NSString stringWithFormat:@"mailto:%@?subject=%@", feedbackAddress,
+         subject]
+         stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSURL * url = [[NSURL alloc] initWithString:urlString];
     [[UIApplication sharedApplication] openURL:url];
