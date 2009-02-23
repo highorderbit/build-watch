@@ -51,6 +51,9 @@
     // Configure and show the window
     [rootView addSubview:[navigationController view]];
     [rootView addSubview:toolbar];
+
+    [navigationController viewWillAppear:YES];
+    [rootViewController viewWillAppear:YES];
     [window addSubview:rootView];
     [window makeKeyAndVisible];
 
