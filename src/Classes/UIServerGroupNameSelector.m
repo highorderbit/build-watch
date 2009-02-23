@@ -25,9 +25,15 @@
                            animated:(BOOL)animated
 {
     [self.serverViewController setServerGroupNames:someServerGroupNames];
-    if (self.navigationController.visibleViewController != serverViewController)
+    UIViewController * topViewController =
+        self.navigationController.topViewController;
+
+    if (topViewController != serverViewController) {
+        self.serverViewController.navigationItem.title =
+            NSLocalizedString(@"servergroups.view.title", @"");
         [self.navigationController pushViewController:self.serverViewController
                                              animated:animated];
+    }
 }
 
 #pragma mark Accessors

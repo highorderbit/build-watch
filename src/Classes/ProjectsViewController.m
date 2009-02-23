@@ -31,34 +31,30 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    NSLog(@"%@: Awaking from nib.", self);
 }
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
     [self.navigationItem setRightBarButtonItem:self.editButtonItem animated:NO];
+    self.navigationItem.title = [delegate displayNameForCurrentProjectGroup];
+
     tableView.allowsSelectionDuringEditing = YES;
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    NSLog(@"%@: Displaying.", self);
-    
     [super viewWillAppear:animated];
 
     self.navigationItem.title = [delegate displayNameForCurrentProjectGroup];
-
     NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
     [tableView deselectRowAtIndexPath:selectedRow animated:NO];
-    
+
     [delegate userDidDeselectProject];
 }
 
 - (void) viewWillDisappear:(BOOL)animated
 {
-    NSLog(@"%@: Hiding.", self);
-    
     [super viewWillDisappear:animated];
 }
 

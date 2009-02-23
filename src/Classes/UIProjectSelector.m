@@ -28,10 +28,13 @@
     [self.projectsViewController setProjects:projects];
     UIViewController * topController =
         [self.navigationController topViewController];
-    if (topController != self.projectsViewController)
+    if (topController != self.projectsViewController) {
+        self.projectsViewController.navigationItem.title =
+            [delegate displayNameForCurrentProjectGroup];
         [self.navigationController
          pushViewController:self.projectsViewController
                    animated:animated];
+    }
 }
 
 #pragma mark Accessors

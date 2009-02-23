@@ -23,11 +23,11 @@
     [addBarButtonItem release];
     [super dealloc];
 }
-
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = @"Servers";
+    self.navigationItem.title =
+        NSLocalizedString(@"servergroups.view.title", @"");
 
     addBarButtonItem = [[UIBarButtonItem alloc]
          initWithBarButtonSystemItem:UIBarButtonSystemItemAdd

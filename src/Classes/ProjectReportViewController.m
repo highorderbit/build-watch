@@ -87,6 +87,9 @@ enum ActionRows
 
     self.headerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     self.tableView.tableHeaderView = headerView;
+
+    self.navigationItem.title =
+        NSLocalizedString(@"projectdetails.view.title", @"");
 }
 
 - (void)viewWillAppear:(BOOL)animated

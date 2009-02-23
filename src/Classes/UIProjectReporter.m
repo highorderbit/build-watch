@@ -27,11 +27,13 @@
     self.projectReportViewController.projectId = projectId;
     UIViewController * topController =
         [self.navigationController topViewController];
-    if (topController != self.projectReportViewController)
+    if (topController != self.projectReportViewController) {
+        self.projectReportViewController.navigationItem.title =
+            NSLocalizedString(@"projectdetails.view.title", @"");
         [self.navigationController
             pushViewController:self.projectReportViewController
             animated:animated];
-    else
+    } else
         [self.projectReportViewController viewWillAppear:NO];
 }
 
