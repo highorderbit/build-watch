@@ -23,7 +23,7 @@
                  owner:self
                options:nil];
 
-    return [nib objectAtIndex:1];
+    return [nib objectAtIndex:0];
 }
 
 - (void)dealloc
