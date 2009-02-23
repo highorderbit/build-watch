@@ -10,6 +10,7 @@
 @implementation BuildWatchAppDelegate
 
 @synthesize window;
+@synthesize rootViewController;
 @synthesize navigationController;
 @synthesize toolbar;
 @synthesize appController;
@@ -17,9 +18,10 @@
 
 - (void)dealloc
 {
+    [window release];
+    [rootViewController release];
     [navigationController release];
     [toolbar release];
-    [window release];
     [appController release];
     [serverGroupNameSelector release];
     [super dealloc];
@@ -32,16 +34,24 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
+    UIView * rootView = rootViewController.view;
+
     CGRect toolbarFrame = [toolbar frame];
     CGRect navFrame = [[navigationController view] frame];
     navFrame.size.height = navFrame.size.height - toolbarFrame.size.height;
+    navFrame.origin.y = 0.0;
     toolbarFrame.origin.y = navFrame.origin.y + navFrame.size.height;
     [[navigationController view] setFrame:navFrame];
     [toolbar setFrame:toolbarFrame];
 
+    CGRect rootFrame = [rootView frame];
+    rootFrame.origin.y = 20.0;  // slide down to make room for the status bar
+    [rootView setFrame:rootFrame];
+
     // Configure and show the window
-    [window addSubview:[navigationController view]];
-    [window addSubview:toolbar];
+    [rootView addSubview:[navigationController view]];
+    [rootView addSubview:toolbar];
+    [window addSubview:rootView];
     [window makeKeyAndVisible];
 
     [appController start];

@@ -7,7 +7,7 @@
 #import "ConfigReader.h"
 
 @interface AboutDisplayer : UIViewController {
-    UIViewController * rootView;
+    UIViewController * rootViewController;
     UIBarButtonItem * aboutButton;
     UILabel * versionLabel;
     NSObject<ConfigReader> * configReader;
@@ -15,7 +15,7 @@
     BOOL displayed;
 }
 
-@property (nonatomic, retain) IBOutlet UIViewController * rootView;
+@property (nonatomic, retain) IBOutlet UIViewController * rootViewController;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem * aboutButton;
 @property (nonatomic, retain) IBOutlet UILabel * versionLabel;
 @property (nonatomic, retain) IBOutlet NSObject<ConfigReader> * configReader;

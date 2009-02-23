@@ -161,7 +161,7 @@
 						</object>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 431}</string>
+				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
@@ -295,7 +295,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>AboutDisplayer</string>
 					<string>UIResponder</string>
-					<string>{{359, 372}, {320, 431}}</string>
+					<string>{{386, 513}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -354,14 +354,14 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>aboutButton</string>
 							<string>configReader</string>
-							<string>navController</string>
+							<string>rootViewController</string>
 							<string>versionLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIBarButtonItem</string>
 							<string>NSObject</string>
-							<string>UINavigationController</string>
+							<string>UIViewController</string>
 							<string>UILabel</string>
 						</object>
 					</object>
