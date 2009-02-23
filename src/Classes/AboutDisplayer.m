@@ -14,14 +14,12 @@
 @implementation AboutDisplayer
 
 @synthesize rootViewController;
-@synthesize aboutButton;
 @synthesize versionLabel;
 @synthesize configReader;
 
 - (void) dealloc
 {
     [rootViewController release];
-    [aboutButton release];
     [versionLabel release];
     [configReader release];
     [super dealloc];
@@ -40,8 +38,6 @@
         displayed = YES;
         [rootViewController presentModalViewController:self animated:YES];
         [self initVersionLabel];
-        aboutButton.style = UIBarButtonItemStyleDone;
-        aboutButton.title = @"Done";
 
         [[UIApplication sharedApplication]
          setStatusBarStyle:UIStatusBarStyleBlackOpaque
@@ -82,8 +78,6 @@
 {
     displayed = NO;
     [rootViewController dismissModalViewControllerAnimated:YES];
-    aboutButton.style = UIBarButtonItemStyleBordered;
-    aboutButton.title = @"About";
 }
 
 - (void) initVersionLabel
