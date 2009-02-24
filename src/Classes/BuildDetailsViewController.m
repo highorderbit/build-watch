@@ -3,6 +3,7 @@
 //
 
 #import "BuildDetailsViewController.h"
+#import "NSString+BuildWatchAdditions.h"
 
 @implementation BuildDetailsViewController
 
@@ -50,6 +51,21 @@
         displayName, bodyCss, description];
 
     [webView loadHTMLString:html baseURL:[NSURL URLWithString:@"/"]];
+}
+
+#pragma mark UIWebViewDelegate protocol implementation
+
+- (BOOL)               webView:(UIWebView *)webView
+    shouldStartLoadWithRequest:(NSURLRequest *)request
+                navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSURL * url = [request mainDocumentURL];
+    if (![[url absoluteString] beginsWithString:@"file:///"]) {
+        [[UIApplication sharedApplication] openURL:url];
+        return NO;
+    }
+
+    return YES;
 }
 
 @end

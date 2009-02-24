@@ -44,7 +44,7 @@
     if (*error) {
         *error = [NSError errorWithLocalizedDescription:
             NSLocalizedString(@"xml.parse.failed", @"")
-            rootCause:*error];
+                                              rootCause:*error];
         NSLog(@"Failed to parse XML: '%@', returning error: '%@'.", xmlString,
             *error);
 

@@ -13,6 +13,15 @@
     return [[[NSString alloc] initWithData:data encoding:encoding] autorelease];
 }
 
+- (BOOL) beginsWithString:(NSString *)s
+{
+    static const NSRange NOT_FOUND = { NSNotFound, 0 };
+
+    NSRange range = [self rangeOfString:s];
+    return !NSEqualRanges(range, NOT_FOUND) &&
+        range.location == 0 && range.length == s.length;
+}
+
 - (BOOL) endsWithString:(NSString *)s
 {
     static const NSRange NOT_FOUND = { NSNotFound, 0 };

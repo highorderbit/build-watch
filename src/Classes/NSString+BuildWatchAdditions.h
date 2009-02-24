@@ -9,6 +9,7 @@
 + (NSString *) stringWithData:(NSData *)data
                      encoding:(NSStringEncoding)encoding;
 
+- (BOOL) beginsWithString:(NSString *)s;
 - (BOOL) endsWithString:(NSString *)s;
 
 - (NSString *) stringByMatchingRegex:(NSString *)regex;

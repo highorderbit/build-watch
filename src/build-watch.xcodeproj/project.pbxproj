@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		051262E30F536278008637DB /* TeamCityServerReportBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 051262E20F536278008637DB /* TeamCityServerReportBuilder.m */; };
 		0524CCBB0F3C86DB00C020FE /* AddServerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0524CCB90F3C86DB00C020FE /* AddServerView.xib */; };
 		0524CCDF0F3C8A0900C020FE /* AddServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0524CCDE0F3C8A0900C020FE /* AddServerViewController.m */; };
 		0524CE3A0F3CBA5F00C020FE /* EditServerDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0524CE390F3CBA5F00C020FE /* EditServerDetailsViewController.m */; };
@@ -112,6 +113,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		051262E10F536278008637DB /* TeamCityServerReportBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamCityServerReportBuilder.h; sourceTree = "<group>"; };
+		051262E20F536278008637DB /* TeamCityServerReportBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamCityServerReportBuilder.m; sourceTree = "<group>"; };
 		0524CCBA0F3C86DB00C020FE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AddServerView.xib; sourceTree = "<group>"; };
 		0524CCDD0F3C8A0900C020FE /* AddServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddServerViewController.h; sourceTree = "<group>"; };
 		0524CCDE0F3C8A0900C020FE /* AddServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddServerViewController.m; sourceTree = "<group>"; };
@@ -457,6 +460,8 @@
 				05C883A40F49C88800E486EA /* CcjavaServerReportBuilder.m */,
 				05C883A60F49C89000E486EA /* CcnetServerReportBuilder.h */,
 				05C883A70F49C89000E486EA /* CcnetServerReportBuilder.m */,
+				051262E10F536278008637DB /* TeamCityServerReportBuilder.h */,
+				051262E20F536278008637DB /* TeamCityServerReportBuilder.m */,
 			);
 			name = "Build Service";
 			sourceTree = "<group>";
@@ -892,6 +897,7 @@
 				053BF5DA0F4F9B11004D3327 /* UITableViewCell+BuildWatchAdditions.m in Sources */,
 				053BF6290F508AEE004D3327 /* SelectServerTypeViewController.m in Sources */,
 				053BF6AF0F50B8CC004D3327 /* RssHelpViewController.m in Sources */,
+				051262E30F536278008637DB /* TeamCityServerReportBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

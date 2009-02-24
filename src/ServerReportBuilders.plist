@@ -8,5 +8,7 @@
 	<string>CcjavaServerReportBuilder</string>
 	<key>^.*/projects.rss$</key>
 	<string>CcrbServerReportBuilder</string>
+	<key>^.*/feed.html$</key>
+	<string>TeamCityServerReportBuilder</string>
 </dict>
 </plist>

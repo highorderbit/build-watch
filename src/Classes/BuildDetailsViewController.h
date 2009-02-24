@@ -6,6 +6,7 @@
 #import "ProjectPropertyProvider.h"
 
 @interface BuildDetailsViewController : UIViewController
+                                        < UIWebViewDelegate >
 {
     UILabel * headerLabel;
     UIImageView * headerImage;
