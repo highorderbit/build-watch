@@ -117,7 +117,6 @@
     if (*error) return nil;
     if (!link || link.length == 0) return [[self class] xmlParsingFailed:error];
 
-    //static NSString * regex = @"^(.*?)/(.*[/&])*buildTypeId=(.*)";
     static NSString * regex = @"^(.*://.*?)/(.*)*buildTypeId=(.*)";
     static NSString * replacementString = @"$1/ajax.html?add2Queue=$3";
 
