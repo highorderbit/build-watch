@@ -169,11 +169,6 @@
     return projectTrackedStates;
 }
 
-- (NSDictionary *) getServerReportBuilders
-{
-    return nil;
-}
-
 - (void) saveActiveServerGroupName:(NSString *)activeServerGroupName
 {}
 
