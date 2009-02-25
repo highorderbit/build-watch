@@ -2,13 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>^.*/XmlServerReport.aspx$</key>
+	<key>^.*/(?i:XmlServerReport.aspx)$</key>
 	<string>CcnetServerReportBuilder</string>
-	<key>^.*/cctray.xml$</key>
+	<key>^.*/(?i:cctray.xml)$</key>
 	<string>CcjavaServerReportBuilder</string>
-	<key>^.*/projects.rss$</key>
+	<key>^.*/(?i:projects.rss)$</key>
 	<string>CcrbServerReportBuilder</string>
-	<key>^.*/feed.html$</key>
+	<key>^.*/(?i:feed.html)$</key>
 	<string>TeamCityServerReportBuilder</string>
 </dict>
 </plist>
