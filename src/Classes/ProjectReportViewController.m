@@ -274,12 +274,31 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void) forceBuild
 {
-    [buildForcer
-     forceBuildForProject:projectId
-        withForceBuildUrl:[delegate forceBuildLinkForProject:projectId]];
+    NSString * forceBuildLink = [delegate forceBuildLinkForProject:projectId];
+    
+    if (forceBuildLink) {
+        [buildForcer forceBuildForProject:projectId
+                        withForceBuildUrl:forceBuildLink];
 
-    [self.forceBuildTableViewCell showActivity:
-        NSLocalizedString(@"projectdetails.forcebuild.started.label", @"")];
+        [self.forceBuildTableViewCell showActivity:
+         NSLocalizedString(@"projectdetails.forcebuild.started.label", @"")];
+    } else {
+        NSString * projectName = [delegate displayNameForProject:projectId];
+        NSString * alertMsg =
+            [NSString
+            stringWithFormat:
+            NSLocalizedString(@"forcebuild.link.missing.format.string", @""),
+            projectName];
+        NSString * title =
+            NSLocalizedString(@"forcebuild.link.missing.title", @"");
+        UIAlertView * alertView =
+            [[UIAlertView alloc] initWithTitle:title message:alertMsg
+            delegate:nil
+            cancelButtonTitle:NSLocalizedString(@"forcebuild.failed.ok", @"")
+            otherButtonTitles:nil];
+        [alertView show];
+        [alertView release];
+    }
 }
 
 - (void) emailReport
@@ -330,7 +349,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         NSString * alertMsg =
             [NSString stringWithFormat:@"The dashboard link for %@ isn't set.  Try refreshing all server data.", projectName];
         UIAlertView * alertView =
-            [[UIAlertView alloc] initWithTitle:@"Link not set"
+            [[UIAlertView alloc] initWithTitle:@"Dashboard link not set"
             message:alertMsg delegate:nil cancelButtonTitle:@"Dismiss"
             otherButtonTitles:nil];
         [alertView show];

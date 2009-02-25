@@ -43,8 +43,9 @@
 {
     NSLog(@"'%@': forcing project: '%@'.", project, projectForceBuildUrl);
 
-    NSURLRequest * req = [NSURLRequest requestWithURL:
-        [NSURL URLWithString:projectForceBuildUrl]];
+    NSURLRequest * req =
+        [NSURLRequest requestWithURL:
+                [NSURL URLWithString:projectForceBuildUrl]];
 
     NSURLConnection * connection =
         [[NSURLConnection alloc] initWithRequest:req
