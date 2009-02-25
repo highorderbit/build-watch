@@ -239,7 +239,7 @@ enum HelpRows
     return YES;
 }
 
-- (BOOL)textFieldShouldClear:(UITextField *)textField
+- (BOOL) textFieldShouldClear:(UITextField *)textField
 {
     self.serverUrl = @"";
     self.navigationItem.rightBarButtonItem.enabled = NO;
@@ -247,7 +247,7 @@ enum HelpRows
     return YES;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
+- (void) textFieldDidEndEditing:(UITextField *)textField
 {
     self.serverUrl = textField.text;
 }
@@ -290,7 +290,7 @@ enum HelpRows
               initWithFrame:CGRectZero
             reuseIdentifier:TEXT_FIELD_TABLE_VIEW_CELL_IDENTIFIER];
 
-        CGRect textFieldFrame = CGRectMake(10, 10, 285, 22);
+        CGRect textFieldFrame = CGRectMake(10.0, 10.0, 285.0, 22.0);
         UITextField * textField =
             [self editServerUrlTextFieldWithFrame:textFieldFrame
                                               tag:SERVER_URL_TEXT_FIELD_TAG];
