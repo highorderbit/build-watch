@@ -64,6 +64,7 @@
         NSString * updaterUrl = [updaters objectForKey:key];
         if ([serverUrl isEqualToString:updaterUrl]) {
             [[[self class] updaterFromKey:key] cancelUpdate];
+            NSLog(@"Successfully canceled update for URL: '%@'.", serverUrl);
             break;
         }
     }
@@ -118,12 +119,14 @@
            delegate:self];
 
     [updaters setObject:serverUrl forKey:[[self class] keyForUpdater:updater]];
+    NSLog(@"Created updater: '%@' for URL: '%@'.", updater, serverUrl);
 
     return [updater autorelease];
 }
 
 - (void) destroyUpdater:(NSObject<BuildStatusUpdater> *)updater
 {
+    NSLog(@"Destroying updater: '%@'.", updater);
     [updaters removeObjectForKey:[[self class] keyForUpdater:updater]];
 }
 
