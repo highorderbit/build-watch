@@ -56,6 +56,7 @@
     NSString * webAddress =
         (NSString *) [configReader valueForKey:@"Website"];
     NSURL * url = [[NSURL alloc] initWithString:webAddress];
+    
     [[UIApplication sharedApplication] openURL:url];
     [url release];
 }

@@ -31,6 +31,6 @@
 	<key>FeedbackAddress</key>
 	<string>feedback@highorderbit.com</string>
 	<key>Website</key>
-	<string>http://www.highorderbit.com</string>
+	<string>http://www.highorderbit.com?ref-id=build-watch</string>
 </dict>
 </plist>
