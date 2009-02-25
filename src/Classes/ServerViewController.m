@@ -8,10 +8,15 @@
 #import "ServerTableViewCell.h"
 #import "UIColor+BuildWatchColors.h"
 
+@interface ServerViewController (Private)
+
+- (void) setVisibleServerGroupNames;
+
+@end
+
 @implementation ServerViewController
 
 @synthesize tableView;
-@synthesize visibleServerGroupNames;
 @synthesize delegate;
 
 - (void) dealloc
@@ -23,6 +28,7 @@
     [addBarButtonItem release];
     [super dealloc];
 }
+
 - (void) viewDidLoad
 {
     [super viewDidLoad];
@@ -229,13 +235,10 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     [super setEditing:editing animated:animated];
 
     NSMutableArray * indexPaths = [NSMutableArray array];
-    NSMutableArray * visible = [NSMutableArray array];
 
     for (NSInteger i = 0; i < serverGroupNames.count; ++i) {
         NSString * serverGroupName = [serverGroupNames objectAtIndex:i];
-        if ([delegate canServerGroupBeDeleted:serverGroupName])
-            [visible addObject:serverGroupName];
-        else
+        if (![delegate canServerGroupBeDeleted:serverGroupName])
             [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
     }
     
@@ -243,13 +246,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     
     [tableView beginUpdates];
 
+    [self setVisibleServerGroupNames];
+    
     if (editing) {
-        self.visibleServerGroupNames = visible;
         [self.navigationItem setLeftBarButtonItem:nil animated:NO];
         [tableView deleteRowsAtIndexPaths:indexPaths
                          withRowAnimation:UITableViewRowAnimationBottom];
     } else {
-        self.visibleServerGroupNames = serverGroupNames;
         [self.navigationItem
             setLeftBarButtonItem:addBarButtonItem animated:NO];
         [tableView insertRowsAtIndexPaths:indexPaths
@@ -267,17 +270,27 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     [serverGroupNames release];
     serverGroupNames = tmp;
 
-    [visibleServerGroupNames release];
-    visibleServerGroupNames = [someServerGroupNames mutableCopy];
+    [self setVisibleServerGroupNames];
 
     [tableView reloadData];
 }
 
-- (void) setVisibleServerGroupNames:(NSMutableArray *)anotherArray
+- (void) setVisibleServerGroupNames
 {
-    [anotherArray retain];
     [visibleServerGroupNames release];
-    visibleServerGroupNames = anotherArray;
+    
+    if (self.editing) {
+        visibleServerGroupNames = [NSMutableArray array];
+        
+        for (NSInteger i = 0; i < serverGroupNames.count; ++i) {
+            NSString * serverGroupName = [serverGroupNames objectAtIndex:i];
+            if ([delegate canServerGroupBeDeleted:serverGroupName])
+                [visibleServerGroupNames addObject:serverGroupName];
+        }
+    } else
+        visibleServerGroupNames = serverGroupNames;
+    
+    [visibleServerGroupNames retain];
 }
 
 @end
