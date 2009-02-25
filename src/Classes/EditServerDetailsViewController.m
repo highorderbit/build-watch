@@ -191,7 +191,7 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
         [field.text stringByReplacingCharactersInRange:range withString:string];
 
     self.navigationItem.rightBarButtonItem.enabled =
-        !(range.location == 0 && range.length == 1);
+        serverGroupDisplayName.length > 0;
 
     return YES;
 }

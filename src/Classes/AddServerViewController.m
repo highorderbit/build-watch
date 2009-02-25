@@ -231,10 +231,8 @@ enum HelpRows
     self.serverUrl =
         [field.text stringByReplacingCharactersInRange:range withString:string];
 
-    BOOL enabled =
-        !(range.location == 0 && range.length == 1) &&
-        [delegate isServerGroupUrlValid:self.serverUrl];
-    self.navigationItem.rightBarButtonItem.enabled = enabled;
+    self.navigationItem.rightBarButtonItem.enabled =
+        serverUrl.length > 0 && [delegate isServerGroupUrlValid:serverUrl];
 
     return YES;
 }
