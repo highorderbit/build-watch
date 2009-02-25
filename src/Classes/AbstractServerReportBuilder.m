@@ -87,19 +87,20 @@
     if (*error)
         return [[self class] xmlParsingFailedWithRootCause:error];
 
-    NSMutableArray * projectReports =
-        [NSMutableArray arrayWithCapacity:projectNodes.count];
+    NSMutableDictionary * projectReports =
+        [NSMutableDictionary dictionaryWithCapacity:projectNodes.count];
 
     for (CXMLNode * projectNode in projectNodes) {
-        ProjectReport * report =
+        ProjectReport * projectReport =
             [[self class] projectReportFromNode:projectNode error:error];
         if (*error)
             return [[self class] xmlParsingFailedWithRootCause:error];
 
-        [projectReports addObject:report];
+        if (![projectReports objectForKey:projectReport.name])
+            [projectReports setObject:projectReport forKey:projectReport.name];
     }
 
-    report.projectReports = projectReports;
+    report.projectReports = [projectReports allValues];
 
     NSLog(@"From server URL: '%@' built server report: %@", url,
         [report longDescription]);
