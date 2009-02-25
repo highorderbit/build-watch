@@ -85,7 +85,7 @@
 {
     NSString * dashboardLink =
         [sourceUrl
-         stringByReplacingOccurrencesOfRegex:@"(.*)/XmlServerReport.aspx$"
+         stringByReplacingOccurrencesOfRegex:@"(.*)/(?i:XmlServerReport.aspx)$"
                                   withString:@"$1/"];
 
     if (dashboardLink == nil || dashboardLink.length == 0)

@@ -261,11 +261,11 @@ static NSMutableDictionary * serverUrlMappings;
         serverUrlMappings = [[NSMutableDictionary alloc] init];
 
         [serverUrlMappings setObject:[[self class] ccnetBuilder]
-                              forKey:@"^.*/XmlServerReport.aspx$"];
+                              forKey:@"^.*/(?i:XmlServerReport.aspx)$"];
         [serverUrlMappings setObject:[[self class] ccjavaBuilder]
-                              forKey:@"^.*/cctray.xml$"];
+                              forKey:@"^.*/(?i:cctray.xml)$"];
         [serverUrlMappings setObject:[[self class] ccrbBuilder]
-                              forKey:@"^.*/projects.rss$"];
+                              forKey:@"^.*/(?i:projects.rss)$"];
     }
 }
 

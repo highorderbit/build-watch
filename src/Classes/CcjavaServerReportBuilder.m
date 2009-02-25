@@ -86,7 +86,7 @@
 {
     NSString * dashboardLink =
         [sourceUrl
-         stringByReplacingOccurrencesOfRegex:@"(.*)/cctray.xml$"
+         stringByReplacingOccurrencesOfRegex:@"(.*)/(?i:cctray.xml)$"
                                   withString:@"$1/"];
 
     if (dashboardLink == nil || dashboardLink.length == 0)
