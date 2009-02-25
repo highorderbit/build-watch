@@ -123,7 +123,6 @@
                                        error:(NSError **)error
 {
     static NSString * regex =
-        //@"^(.*://.*?)(:\\d+)?/dashboard/(tab/)?build/detail/(.*)$";
         @"^(.*://.*?)(:\\d+)?/dashboard(/.*)*/(.*?)$";
     static NSString * replacementString =
         @"$1:8000/invoke?operation=build&"
