@@ -135,7 +135,10 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
             [self projectIdsForServerGroupName:activeServerGroupName];
         [projectSelector selectProjectFrom:activeProjectIds animated:NO];
         
-        if (activeProjectId)
+        NSArray * projectsForServerGroup =
+            [self projectIdsForServerGroupName:activeServerGroupName];
+        if (activeProjectId &&
+            [projectsForServerGroup containsObject:activeProjectId])
             [projectReporter reportDetailsForProject:activeProjectId
                                             animated:NO];
     }
