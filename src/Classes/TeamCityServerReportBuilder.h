@@ -3,10 +3,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ServerReportBuilder.h"
+#import "AbstractServerReportBuilder.h"
 
-@interface TeamCityServerReportBuilder : NSObject
-                                         < ServerReportBuilder >
+@interface TeamCityServerReportBuilder : AbstractServerReportBuilder
 {
 }
 

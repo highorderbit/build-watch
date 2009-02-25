@@ -3,8 +3,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AbstractServerReportBuilder.h"
 
-@interface CcjavaServerReportBuilder : NSObject
+@interface CcjavaServerReportBuilder : AbstractServerReportBuilder
 {
 }
 

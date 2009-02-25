@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		051262E30F536278008637DB /* TeamCityServerReportBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 051262E20F536278008637DB /* TeamCityServerReportBuilder.m */; };
+		0513C3CA0F538BC60008F6C2 /* AbstractServerReportBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0513C3C90F538BC60008F6C2 /* AbstractServerReportBuilder.m */; };
 		0524CCBB0F3C86DB00C020FE /* AddServerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0524CCB90F3C86DB00C020FE /* AddServerView.xib */; };
 		0524CCDF0F3C8A0900C020FE /* AddServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0524CCDE0F3C8A0900C020FE /* AddServerViewController.m */; };
 		0524CE3A0F3CBA5F00C020FE /* EditServerDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0524CE390F3CBA5F00C020FE /* EditServerDetailsViewController.m */; };
@@ -115,6 +116,8 @@
 /* Begin PBXFileReference section */
 		051262E10F536278008637DB /* TeamCityServerReportBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamCityServerReportBuilder.h; sourceTree = "<group>"; };
 		051262E20F536278008637DB /* TeamCityServerReportBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamCityServerReportBuilder.m; sourceTree = "<group>"; };
+		0513C3C80F538BC60008F6C2 /* AbstractServerReportBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractServerReportBuilder.h; sourceTree = "<group>"; };
+		0513C3C90F538BC60008F6C2 /* AbstractServerReportBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractServerReportBuilder.m; sourceTree = "<group>"; };
 		0524CCBA0F3C86DB00C020FE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AddServerView.xib; sourceTree = "<group>"; };
 		0524CCDD0F3C8A0900C020FE /* AddServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddServerViewController.h; sourceTree = "<group>"; };
 		0524CCDE0F3C8A0900C020FE /* AddServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddServerViewController.m; sourceTree = "<group>"; };
@@ -454,6 +457,8 @@
 				05F186930F3D21C700024A3C /* NetworkBuildStatusUpdater.h */,
 				05F186980F3D223D00024A3C /* NetworkBuildStatusUpdater.m */,
 				05FE3CA00F3DF9E000EE7FB9 /* ServerReportBuilder.h */,
+				0513C3C80F538BC60008F6C2 /* AbstractServerReportBuilder.h */,
+				0513C3C90F538BC60008F6C2 /* AbstractServerReportBuilder.m */,
 				05C883560F49BCD000E486EA /* CcrbServerReportBuilder.h */,
 				05C883570F49BCD000E486EA /* CcrbServerReportBuilder.m */,
 				05C883A30F49C88800E486EA /* CcjavaServerReportBuilder.h */,
@@ -898,6 +903,7 @@
 				053BF6290F508AEE004D3327 /* SelectServerTypeViewController.m in Sources */,
 				053BF6AF0F50B8CC004D3327 /* RssHelpViewController.m in Sources */,
 				051262E30F536278008637DB /* TeamCityServerReportBuilder.m in Sources */,
+				0513C3CA0F538BC60008F6C2 /* AbstractServerReportBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -3,153 +3,149 @@
 //
 
 #import "CcjavaServerReportBuilder.h"
-#import "ServerReport.h"
-#import "ProjectReport.h"
 #import "NSString+BuildWatchAdditions.h"
-#import "NSDate+StringHelpers.h"
-#import "NSError+BuildWatchAdditions.h"
-#import "TouchXML.h"
 #import "RegexKitLite.h"
-
-@interface CcjavaServerReportBuilder (Private)
-+ (NSString *) buildLabelFromString:(NSString *)string;
-+ (NSDate *) dateFromCruiseControlJavaString:(NSString *)string;
-+ (BOOL) buildSucceededFromString:(NSString *)string;
-+ (NSString *) forceBuildUrlForProject:(NSString *)projectName
-                               withUrl:(NSString *)link;
-@end
 
 @implementation CcjavaServerReportBuilder
 
-- (ServerReport *) serverReportFromUrl:(NSString *)url
-                                  data:(NSData *)data
-                                 error:(NSError **)error
++ (NSString *) serverNodeXpath
 {
-    NSString * xmlString =
-        [[[NSString alloc]
-          initWithData:data encoding:NSUTF8StringEncoding]
-          autorelease];
-
-    ServerReport * report = [ServerReport report];
-
-    CXMLDocument * xmlDoc = [[[CXMLDocument alloc]
-         initWithXMLString:xmlString options:0 error:error] autorelease];
-
-    if (*error) {
-        *error = [NSError errorWithLocalizedDescription:
-            NSLocalizedString(@"xml.parse.failed", @"")
-            rootCause:*error];
-        NSLog(@"Failed to parse XML: '%@', returning error: '%@'.", xmlString,
-            *error);
-
-        return nil;
-    }
-
-    NSArray * channels =
-        [[xmlDoc rootElement] nodesForXPath:@"//Projects" error:error];
-    if (*error || channels.count != 1) {
-        *error = [NSError errorWithLocalizedDescription:
-            NSLocalizedString(@"xml.parse.failed", @"")
-            rootCause:*error];
-        NSLog(@"Failed to parse XML: '%@', returning error: '%@'.", xmlString,
-            *error);
-
-        return nil;
-    }
-
-    CXMLElement * channel = [channels objectAtIndex:0];
-
-    report.name = NSLocalizedString(@"ccjava.serverreport.name", @"");
-    report.link = url;
-    report.dashboardLink =
-        [url stringByReplacingOccurrencesOfRegex:@"(.*)/cctray.xml$"
-                                      withString:@"$1"];
-
-    NSArray * projectNodes = [channel elementsForName:@"Project"];
-    NSMutableArray * projectReports =
-        [NSMutableArray arrayWithCapacity:projectNodes.count];
-
-    for (CXMLElement * projectNode in projectNodes) {
-        ProjectReport * projectReport = [ProjectReport report];
-
-        projectReport.name =
-            [[[projectNode nodesForXPath:@"./@name" error:error] objectAtIndex:0]
-              stringValue];
-
-        projectReport.description =
-            NSLocalizedString(@"ccserver.description.notprovided.message",
-                @"");
-
-        projectReport.label = [[self class] buildLabelFromString:
-            [[[projectNode nodesForXPath:@"./@lastBuildLabel" error:error]
-              objectAtIndex:0]
-             stringValue]];
-
-        projectReport.pubDate = [[self class] dateFromCruiseControlJavaString:
-            [[[projectNode nodesForXPath:@"./@lastBuildTime" error:error]
-              objectAtIndex:0]
-             stringValue]];
-
-        projectReport.link =
-            [[[projectNode nodesForXPath:@"./@webUrl" error:error]
-              objectAtIndex:0]
-             stringValue];
-
-        projectReport.buildSucceeded = [[self class] buildSucceededFromString:
-            [[[projectNode nodesForXPath:@"./@lastBuildStatus" error:error]
-              objectAtIndex:0] stringValue]];
-
-        projectReport.forceBuildLink =
-            [[self class] forceBuildUrlForProject:projectReport.name
-                                          withUrl:projectReport.link];
-
-        [projectReports addObject:projectReport];
-    }
-
-    report.projectReports = projectReports;
-
-    return report;
+    return @"//Projects";
 }
 
-#pragma mark Parsing helper functions
-
-+ (NSString *) buildLabelFromString:(NSString *)string
++ (NSString *) projectNodesXpath
 {
-    NSString * label = [string stringByMatchingRegex:@"^build\\.(\\d+.*)$"];
-
-    // sometimes labels are empty strings
-    return label ? label : @"";
+    return @"./Project";
 }
 
-+ (NSDate *) dateFromCruiseControlJavaString:(NSString *)string
++ (NSString *) projectNameXpath
 {
-    return [NSDate dateFromString:string format:@"yyyy-MM-dd'T'HH:mm:ss"];
+    return @"./@name";
 }
 
-+ (BOOL) buildSucceededFromString:(NSString *)string
++ (NSString *) projectBuildLabelXpath
 {
-    return [string isEqualToString:@"Success"];
+    return @"./@lastBuildLabel";
 }
 
-+ (NSString *) forceBuildUrlForProject:(NSString *)projectName
-                               withUrl:(NSString *)link
++ (NSString *) projectPubDateXpath
 {
-    static NSString * URL_FORMAT_STRING =
-        @"%@://%@:8000/invoke?operation=build&objectname=";
+    return @"./@lastBuildTime";
+}
 
-    NSLog(@"Extracting force build URL from: '%@' and '%@'.",
-            projectName, link);
++ (NSString *) projectLinkXpath
+{
+    return @"./@webUrl";
+}
 
-    NSURL * url = [NSURL URLWithString:link];
-    NSMutableString * result = [NSMutableString
-        stringWithFormat:URL_FORMAT_STRING, [url scheme], [url host]];
++ (NSString *) projectBuildSucceededXpath
+{
+    return @"./@lastBuildStatus";
+}
 
-    // append strings incrementally since URL encodings mess up the formats
-    [result appendString:@"CruiseControl+Project%3Aname%3D"];
-    [result appendString:projectName];
++ (NSString *) projectNameRegex
+{
+    return @"(^.*$)";
+}
 
-    NSLog(@"Generated force build URL for CC Java server: '%@'.", result);
-    return result;
++ (NSString *) projectBuildLabelRegex
+{
+    return @"^build\\.(\\d+.*)$";
+}
+
++ (NSString *) projectPubDateRegex
+{
+    return @"(^.*$)";
+}
+
++ (NSString *) projectLinkRegex
+{
+    return @"(^.*$)";
+}
+
++ (NSString *) projectBuildSucceededRegex
+{
+    return @"(Success)";
+}
+
++ (NSString *) projectPubDateFormatString
+{
+    return @"yyyy-MM-dd'T'HH:mm:ss";
+}
+
++ (NSString *) serverNameFromNode:(CXMLNode *)serverNode
+                        sourceUrl:(NSString *)sourceUrl
+                            error:(NSError **)error
+{
+    return NSLocalizedString(@"ccjava.serverreport.name", @"");
+}
+
++ (NSString *) serverDashboardLinkFromNode:(CXMLNode *)serverNode
+                                 sourceUrl:(NSString *)sourceUrl
+                                     error:(NSError **)error
+{
+    NSString * dashboardLink =
+        [sourceUrl
+         stringByReplacingOccurrencesOfRegex:@"(.*)/cctray.xml$"
+                                  withString:@"$1/"];
+
+    if (dashboardLink == nil || dashboardLink.length == 0)
+        return [[self class] xmlParsingFailed:error];
+    else
+        return dashboardLink;
+}
+
++ (NSString *) projectDescriptionFromNode:(CXMLNode *)node
+                                    error:(NSError **)error
+{
+    return NSLocalizedString(@"ccserver.description.notprovided.message", @"");
+}
+
++ (NSString *) projectBuildLabelFromNode:(CXMLNode *)node
+                                   error:(NSError **)error
+{
+    NSString * xpath = [[self class] projectBuildLabelXpath];
+    NSString * value =
+        [[self class] stringValueAtXpath:xpath fromNode:node error:error];
+    if (*error) return nil;
+
+    NSString * regex = [[self class] projectBuildLabelRegex];
+    NSString * label = [value stringByMatchingRegex:regex];
+
+    // some build labels for CC Java servers are left empty; this is okay
+    return
+        label == nil ?
+            NSLocalizedString(@"ccjava.buildlabel.empty", @"") :
+            label;
+}
+
++ (NSString *) projectForceBuildLinkFromNode:(CXMLNode *)node
+                                       error:(NSError **)error
+{
+    static NSString * regex =
+        //@"^(.*://.*?)(:\\d+)?/dashboard/(tab/)?build/detail/(.*)$";
+        @"^(.*://.*?)(:\\d+)?/dashboard(/.*)*/(.*?)$";
+    static NSString * replacementString =
+        @"$1:8000/invoke?operation=build&"
+         "objectname=CruiseControl+Project%3Aname%3D$4";
+
+    NSString * projectName =
+        [[self class] projectNameFromNode:node error:error];
+    if (*error) return nil;
+    if (!projectName) return [[self class] xmlParsingFailed:error];
+
+    NSString * link = [[self class] projectLinkFromNode:node error:error];
+    if (*error) return nil;
+    if (!link) return [[self class] xmlParsingFailed:error];
+
+    NSString * forceBuildLink =
+        [link stringByReplacingOccurrencesOfRegex:regex
+                                       withString:replacementString];
+
+    if (!forceBuildLink || forceBuildLink.length == 0)
+        return [[self class] xmlParsingFailed:error];
+
+    return forceBuildLink;
 }
 
 @end

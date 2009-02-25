@@ -32,4 +32,6 @@
      dashboardLink:(NSString *)aDashboardLink
            reports:(NSArray *)someReports;
 
+- (NSString *) longDescription;
+
 @end

@@ -3,6 +3,7 @@
 //
 
 #import "ServerReport.h"
+#import "ProjectReport.h"
 
 @implementation ServerReport
 
@@ -82,6 +83,23 @@
     [reports release];
 
     return report;
+}
+
+- (NSString *) longDescription
+{
+    NSMutableString * desc = [NSMutableString string];
+
+    [desc appendFormat:@"ServerReport: '%@'\n", self];
+    [desc appendFormat:@"Name: '%@'\n", self.name];
+    [desc appendFormat:@"Link: '%@'\n", self.link];
+    [desc appendFormat:@"Dashboard link: '%@'\n", self.dashboardLink];
+    [desc appendFormat:@"Num project reports: '%d'\n",
+        self.projectReports.count];
+
+    for (ProjectReport * report in self.projectReports)
+        [desc appendFormat:@"%@\n", [report longDescription]];
+
+    return desc;
 }
 
 @end

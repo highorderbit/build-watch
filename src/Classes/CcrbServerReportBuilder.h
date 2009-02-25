@@ -3,10 +3,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ServerReportBuilder.h"
+#import "AbstractServerReportBuilder.h"
 
-@interface CcrbServerReportBuilder : NSObject
-                                     < ServerReportBuilder >
+@interface CcrbServerReportBuilder : AbstractServerReportBuilder
 {
 }
 

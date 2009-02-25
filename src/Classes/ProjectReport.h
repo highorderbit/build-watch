@@ -24,4 +24,6 @@
 
 + (id)report;
 
+- (NSString *) longDescription;
+
 @end

@@ -45,4 +45,19 @@
     return report;
 }
 
+- (NSString *) longDescription
+{
+    NSMutableString * desc = [NSMutableString string];
+
+    [desc appendFormat:@"Name: '%@'\n", self.name];
+    [desc appendFormat:@"Label: '%@'\n", self.label];
+    [desc appendFormat:@"Description: '%@'\n", self.description];
+    [desc appendFormat:@"Pub date: '%@'\n", self.pubDate];
+    [desc appendFormat:@"Link: '%@'\n", self.link];
+    [desc appendFormat:@"Force build link: '%@'\n", self.forceBuildLink];
+    [desc appendFormat:@"Build succeeded: '%d'\n", self.buildSucceeded];
+
+    return desc;
+}
+
 @end

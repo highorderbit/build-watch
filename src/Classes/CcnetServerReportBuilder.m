@@ -3,165 +3,120 @@
 //
 
 #import "CcnetServerReportBuilder.h"
-#import "ServerReport.h"
-#import "ProjectReport.h"
-#import "NSString+BuildWatchAdditions.h"
-#import "NSDate+StringHelpers.h"
-#import "NSError+BuildWatchAdditions.h"
-#import "TouchXML.h"
 #import "RegexKitLite.h"
-
-@interface CcnetServerReportBuilder (Private)
-+ (NSString *) buildLabelFromString:(NSString *)string;
-+ (NSDate *) dateFromCruiseControlNetString:(NSString *)string;
-+ (BOOL) buildSucceededFromString:(NSString *)string;
-+ (NSString *) forceBuildUrlForProject:(NSString *)projectName
-                               withUrl:(NSString *)link;
-@end
 
 @implementation CcnetServerReportBuilder
 
-- (ServerReport *) serverReportFromUrl:(NSString *)url
-                                  data:(NSData *)data
-                                 error:(NSError **)error
++ (NSString *) serverNodeXpath
 {
-    NSString * xmlString =
-        [[[NSString alloc]
-          initWithData:data encoding:NSUTF8StringEncoding]
-          autorelease];
-
-    ServerReport * report = [ServerReport report];
-
-    CXMLDocument * xmlDoc = [[[CXMLDocument alloc]
-         initWithXMLString:xmlString options:0 error:error] autorelease];
-
-    if (*error) {
-        *error = [NSError errorWithLocalizedDescription:
-            NSLocalizedString(@"xml.parse.failed", @"")
-            rootCause:*error];
-        NSLog(@"Failed to parse XML: '%@', returning error: '%@'.", xmlString,
-            *error);
-
-        return nil;
-    }
-
-    NSArray * channels = [[xmlDoc rootElement] elementsForName:@"Projects"];
-    if (channels.count != 1) {
-        *error = [NSError errorWithLocalizedDescription:
-            NSLocalizedString(@"xml.parse.failed", @"")
-            rootCause:*error];
-        NSLog(@"Failed to parse XML: '%@', returning error: '%@'.", xmlString,
-            *error);
-
-        return nil;
-    }
-
-    CXMLElement * channel = [channels objectAtIndex:0];
-
-    report.name = NSLocalizedString(@"ccnet.serverreport.name", @"");
-    report.link = url;
-    report.dashboardLink =
-        [url stringByReplacingOccurrencesOfRegex:@"(.*)/XmlServerReport.aspx$"
-                                      withString:@"$1"];
-
-    NSArray * projectNodes = [channel nodesForXPath:@"//Project" error:error];
-    if (*error) {
-        *error = [NSError errorWithLocalizedDescription:
-                  NSLocalizedString(@"xml.parse.failed", @"")
-                                              rootCause:*error];
-        NSLog(@"Failed to parse XML: '%@', returning error: '%@'.", xmlString,
-              *error);
-
-        return nil;
-    }
-
-    NSMutableArray * projectReports =
-        [NSMutableArray arrayWithCapacity:projectNodes.count];
-
-    for (CXMLElement * projectNode in projectNodes) {
-        ProjectReport * projectReport = [ProjectReport report];
-
-        projectReport.name =
-            [[[projectNode nodesForXPath:@"./@name" error:error] objectAtIndex:0]
-              stringValue];
-
-        projectReport.description =
-            NSLocalizedString(@"ccserver.description.notprovided.message",
-                @"");
-
-        projectReport.label = [[self class] buildLabelFromString:
-            [[[projectNode nodesForXPath:@"./@lastBuildLabel" error:error]
-              objectAtIndex:0]
-             stringValue]];
-
-        projectReport.pubDate = [[self class] dateFromCruiseControlNetString:
-            [[[projectNode nodesForXPath:@"./@lastBuildTime" error:error]
-              objectAtIndex:0]
-             stringValue]];
-
-        projectReport.link =
-            [[[projectNode nodesForXPath:@"./@webUrl" error:error]
-              objectAtIndex:0]
-             stringValue];
-
-        projectReport.buildSucceeded = [[self class] buildSucceededFromString:
-            [[[projectNode nodesForXPath:@"./@lastBuildStatus" error:error]
-              objectAtIndex:0] stringValue]];
-
-        projectReport.forceBuildLink =
-            [[self class] forceBuildUrlForProject:projectReport.name
-                                          withUrl:projectReport.link];
-
-        [projectReports addObject:projectReport];
-    }
-
-    report.projectReports = projectReports;
-
-    return report;
+    return @"//Projects";
 }
 
-#pragma mark Parsing helper functions
-
-+ (NSString *) buildLabelFromString:(NSString *)string
++ (NSString *) projectNodesXpath
 {
-    return string;
+    return @"./Project";
 }
 
-+ (NSDate *) dateFromCruiseControlNetString:(NSString *)string
++ (NSString *) projectNameXpath
 {
-    static NSString * STRICT_FORMAT = @"yyyy-MM-dd'T'HH:mm:SS.SSSSZZZ";
-    static NSString * SAFE_FORMAT = @"yyyy-MM-dd'T'HH:mm:ss";
-
-    //
-    // Jump through an extra hoop here just to be safe. The strict format
-    // has been tested and works with the public cc.net server at:
-    //  http://ccnetlive.thoughtworks.com/ccnet/ViewFarmReport.aspx
-    // but I want to be defensive in case there are deviations out there.
-    // The safe format should always work. Returning nil will cause the
-    // application to crash.
-    //
-
-    NSDate * date = [NSDate dateFromString:string format:STRICT_FORMAT];
-    if (date == nil)
-        date = [NSDate dateFromString:string format:SAFE_FORMAT];
-
-    return date;
+    return @"./@name";
 }
 
-+ (BOOL) buildSucceededFromString:(NSString *)string
++ (NSString *) projectBuildLabelXpath
 {
-    return [string isEqualToString:@"Success"];
+    return @"./@lastBuildLabel";
 }
 
-+ (NSString *) forceBuildUrlForProject:(NSString *)projectName
-                               withUrl:(NSString *)link
++ (NSString *) projectPubDateXpath
+{
+    return @"./@lastBuildTime";
+}
+
++ (NSString *) projectLinkXpath
+{
+    return @"./@webUrl";
+}
+
++ (NSString *) projectBuildSucceededXpath
+{
+    return @"./@lastBuildStatus";
+}
+
++ (NSString *) projectNameRegex
+{
+    return @"(^.*$)";
+}
+
++ (NSString *) projectBuildLabelRegex
+{
+    return @"(^.*$)";
+}
+
++ (NSString *) projectPubDateRegex
+{
+    return @"(^.*$)";
+}
+
++ (NSString *) projectLinkRegex
+{
+    return @"(^.*$)";
+}
+
++ (NSString *) projectBuildSucceededRegex
+{
+    return @"(Success)";
+}
+
++ (NSString *) projectPubDateFormatString
+{
+    return @"yyyy-MM-dd'T'HH:mm:SS.SSSSZZZ";
+}
+
++ (NSString *) serverNameFromNode:(CXMLNode *)serverNode
+                        sourceUrl:(NSString *)sourceUrl
+                            error:(NSError **)error
+{
+    return NSLocalizedString(@"ccnet.serverreport.name", @"");
+}
+
++ (NSString *) serverDashboardLinkFromNode:(CXMLNode *)serverNode
+                                 sourceUrl:(NSString *)sourceUrl
+                                     error:(NSError **)error
+{
+    NSString * dashboardLink =
+        [sourceUrl
+         stringByReplacingOccurrencesOfRegex:@"(.*)/XmlServerReport.aspx$"
+                                  withString:@"$1/"];
+
+    if (dashboardLink == nil || dashboardLink.length == 0)
+        return [[self class] xmlParsingFailed:error];
+    else
+        return dashboardLink;
+}
+
++ (NSString *) projectDescriptionFromNode:(CXMLNode *)node
+                                    error:(NSError **)error
+{
+    return NSLocalizedString(@"ccserver.description.notprovided.message", @"");
+}
+
++ (NSString *) projectForceBuildLinkFromNode:(CXMLNode *)node
+                                       error:(NSError **)error
 {
     static NSString * regex =
         @"^(.*)/server/(.*)/project/.*/ViewLatestBuildReport.aspx$";
     static NSString * replacementString =
         @"$1/ViewFarmReport.aspx?serverName=$2";
 
-    NSLog(@"Building string from: '%@' and '%@'.", projectName, link);
+    NSString * projectName =
+        [[self class] projectNameFromNode:node error:error];
+    if (*error) return nil;
+    if (!projectName) return [[self class] xmlParsingFailed:error];
+
+    NSString * link = [[self class] projectLinkFromNode:node error:error];
+    if (*error) return nil;
+    if (!link) return [[self class] xmlParsingFailed:error];
+
     NSString * s =
         [link stringByReplacingOccurrencesOfRegex:regex
                                        withString:replacementString];
