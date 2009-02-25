@@ -723,7 +723,6 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [projectLinks removeObjectsForKeys:missingProjectIds];
     [projectForceBuildLinks removeObjectsForKeys:missingProjectIds];
     [projectBuildSucceededStates removeObjectsForKeys:missingProjectIds];
-    [projectTrackedStates removeObjectsForKeys:missingProjectIds];
     
     [missingProjectIds release];
 }

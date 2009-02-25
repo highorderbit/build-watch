@@ -18,10 +18,9 @@
 }
 
 @property (nonatomic, retain) IBOutlet UITableView * tableView;
-@property (nonatomic, copy) NSMutableArray * visibleServerGroupNames;
 @property (nonatomic, retain)
     NSObject<ServerGroupNameSelectorDelegate> * delegate;
 
-- (void)setServerGroupNames:(NSArray *)someServerGroupNames;
+- (void) setServerGroupNames:(NSArray *)someServerGroupNames;
 
 @end
