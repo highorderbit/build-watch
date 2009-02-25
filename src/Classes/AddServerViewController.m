@@ -113,23 +113,6 @@ enum HelpRows
     [textField resignFirstResponder];
 }
 
-// TODO: REMOVE ME BEFORE DEPLOYING
-- (BOOL)shouldAutorotateToInterfaceOrientation:
-(UIInterfaceOrientation)interfaceOrientation
-{
-    if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft)
-        self.serverUrl = @"http://builds.highorderbit.com/projects.rss";
-    else if (interfaceOrientation == UIInterfaceOrientationLandscapeRight)
-        self.serverUrl = @"http://megatron.local:8080/dashboard/cctray.xml";
-
-    UITextField * textField = (UITextField *)
-        [self.editServerUrlCell viewWithTag:SERVER_URL_TEXT_FIELD_TAG];
-    textField.text = serverUrl;
-    self.navigationItem.rightBarButtonItem.enabled = YES;
-
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 #pragma mark UITableView functions
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tv
