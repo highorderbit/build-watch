@@ -63,15 +63,11 @@
 - (void) connectionDidFinishLoading:(NSURLConnection *)conn
 {
     [delegate updater:self didReceiveData:data];
-    [connection release];
-    connection = nil;
 }
 
 - (void)connection:(NSURLConnection *)conn didFailWithError:(NSError *)error
 {
     [delegate updater:self didReceiveError:error];
-    [connection release];
-    connection = nil;
 }
 
 #pragma mark Accessors
