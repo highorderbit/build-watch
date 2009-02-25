@@ -8,7 +8,7 @@
 @implementation InfoPlistConfigReader
 
 - (id) valueForKey:(NSString *)key
-{
+{    
     NSString * fullPath = [PlistUtils fullBundlePathForPlist:@"Info"];
     NSDictionary * infoPList = [PlistUtils readDictionaryFromPlist:fullPath];
     

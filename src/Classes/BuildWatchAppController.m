@@ -8,6 +8,7 @@
 #import "ProjectReport.h"
 #import "RegexKitLite.h"
 #import "SFHFKeychainUtils.h"
+#import "PListUtils.h"
 
 @class Server, Project;
 
@@ -113,9 +114,12 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
      [persistentStore getProjectBuildSucceededStates]];
     
     [self setProjectTrackedStates:[persistentStore getProjectTrackedStates]];
-
-    [self setServerReportBuilders:[persistentStore getServerReportBuilders]];
     
+    NSString * fullPath =
+        [PlistUtils fullBundlePathForPlist:@"ServerReportBuilders"];
+    [self setServerReportBuilders:
+     [PlistUtils readDictionaryFromPlist:fullPath]];
+
     [self refreshAllServerData];
 
     [serverGroupNameSelector

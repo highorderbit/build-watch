@@ -69,8 +69,6 @@
 
 - (NSDictionary *) getProjectTrackedStates;
 
-- (NSDictionary *) getServerReportBuilders;
-
 - (void) saveActiveServerGroupName:(NSString *)activeServerGroupName;
 
 - (NSString *) getActiveServerGroupName;

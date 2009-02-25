@@ -29,8 +29,8 @@
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>FeedbackAddress</key>
-	<string>bw-feedback@highorderbit.com</string>
+	<string>feedback@highorderbit.com</string>
 	<key>Website</key>
-	<string>http://www.sandbox.highorderbit.com/home</string>
+	<string>http://www.highorderbit.com</string>
 </dict>
 </plist>

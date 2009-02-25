@@ -51,6 +51,8 @@
     [tableView deselectRowAtIndexPath:selectedRow animated:NO];
 
     [delegate userDidDeselectProject];
+
+    [tableView reloadData];
 }
 
 - (void) viewWillDisappear:(BOOL)animated

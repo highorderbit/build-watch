@@ -38,7 +38,7 @@
 							<object class="IBUILabel" id="224921629">
 								<reference key="NSNextResponder" ref="951980631"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{14, 13}, {182, 21}}</string>
+								<string key="NSFrame">{{14, 10}, {182, 24}}</string>
 								<reference key="NSSuperview" ref="951980631"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -61,7 +61,7 @@
 							<object class="IBUILabel" id="509717023">
 								<reference key="NSNextResponder" ref="951980631"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{14, 35}, {267, 21}}</string>
+								<string key="NSFrame">{{14, 34}, {267, 21}}</string>
 								<reference key="NSSuperview" ref="951980631"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -87,7 +87,7 @@
 							<object class="IBUILabel" id="545831118">
 								<reference key="NSNextResponder" ref="951980631"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{204, 12}, {77, 21}}</string>
+								<string key="NSFrame">{{204, 11}, {77, 21}}</string>
 								<reference key="NSSuperview" ref="951980631"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -239,7 +239,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UIResponder</string>
 					<string>ServerTableViewCell</string>
-					<string>{{127, 731}, {320, 64}}</string>
+					<string>{{156, 849}, {320, 64}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -292,6 +292,13 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/ServerTableViewCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">UITableViewCell</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/UITableViewCell+BuildWatchAdditions.h</string>
 					</object>
 				</object>
 			</object>

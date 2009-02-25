@@ -165,11 +165,6 @@
     return [[self class] getDictionaryFromPlist:@"ProjectTrackedStates"];
 }
 
-- (NSDictionary *) getServerReportBuilders
-{
-    return [[self class] getDictionaryFromPlist:@"ServerReportBuilders"];
-}
-
 - (void) saveActiveServerGroupName:(NSString *)activeServerGroupName
 {
     NSMutableDictionary * navigationState =

@@ -19,6 +19,7 @@
 #import "ServerGroupEditorDelegate.h"
 #import "ProjectPropertyProvider.h"
 #import "ServerGroupPropertyProvider.h"
+#import "ConfigReader.h"
 
 @interface BuildWatchAppController : NSObject
                                      < ServerGroupNameSelectorDelegate,
