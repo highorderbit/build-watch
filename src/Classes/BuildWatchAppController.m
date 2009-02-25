@@ -359,6 +359,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [serverGroupPatterns
         setObject:[NSString stringWithFormat:@"^%@$", report.link]
            forKey:report.link];
+    
     [serverNames setObject:serverDisplayName forKey:report.link];
     [serverDashboardLinks setObject:report.dashboardLink forKey:report.link];
     [serverGroupSortOrder addObject:report.link];
@@ -445,14 +446,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
 - (NSString *) displayNameForProject:(NSString *)project
 {
-    NSString * displayName = [projectDisplayNames objectForKey:project];
-    NSAssert2(
-        displayName != nil,
-        @"Unable to find display name for project %@.  Display names: %@",
-        project,
-        projectDisplayNames);
-    
-    return displayName;
+    return [projectDisplayNames objectForKey:project];
 }
 
 - (NSString *) labelForProject:(NSString *)project

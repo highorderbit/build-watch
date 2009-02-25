@@ -321,9 +321,21 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 - (void) visitWebsite
 {
     NSString * webAddress = [delegate linkForProject:projectId];
-    NSURL * url = [[NSURL alloc] initWithString:webAddress];
-    [[UIApplication sharedApplication] openURL:url];
-    [url release];
+    if (webAddress) {
+        NSURL * url = [[NSURL alloc] initWithString:webAddress];
+        [[UIApplication sharedApplication] openURL:url];
+        [url release];
+    } else {
+        NSString * projectName = [delegate displayNameForProject:projectId];
+        NSString * alertMsg =
+            [NSString stringWithFormat:@"The dashboard link for %@ isn't set.  Try refreshing all server data.", projectName];
+        UIAlertView * alertView =
+            [[UIAlertView alloc] initWithTitle:@"Link not set"
+            message:alertMsg delegate:nil cancelButtonTitle:@"Dismiss"
+            otherButtonTitles:nil];
+        [alertView show];
+        [alertView release];
+    }
 }
 
 #pragma mark BuildForcerDelegate protocol implememtation
