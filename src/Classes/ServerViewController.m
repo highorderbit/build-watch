@@ -251,12 +251,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     if (editing) {
         [self.navigationItem setLeftBarButtonItem:nil animated:NO];
         [tableView deleteRowsAtIndexPaths:indexPaths
-                         withRowAnimation:UITableViewRowAnimationBottom];
+                         withRowAnimation:UITableViewRowAnimationTop];
     } else {
         [self.navigationItem
             setLeftBarButtonItem:addBarButtonItem animated:NO];
         [tableView insertRowsAtIndexPaths:indexPaths
-                         withRowAnimation:UITableViewRowAnimationBottom];
+                         withRowAnimation:UITableViewRowAnimationTop];
     }
 
     [tableView endUpdates];
