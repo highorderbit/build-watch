@@ -112,6 +112,12 @@
 + (NSString *) projectForceBuildLinkFromNode:(CXMLNode *)node
                                        error:(NSError **)error
 {
+    //
+    // Force build URLs are of the form:
+    //   http://localhost:8111/ajax.html?add2Queue=bt3
+    // where 'bt3' is the buildTypeId provided in the build URL.
+    //
+
     NSString * link =
         [[self class] projectLinkFromNode:node error:error];
     if (*error) return nil;
