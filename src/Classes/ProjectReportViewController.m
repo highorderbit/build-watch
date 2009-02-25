@@ -350,7 +350,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
             [NSString stringWithFormat:@"The dashboard link for %@ isn't set.  Try refreshing all server data.", projectName];
         UIAlertView * alertView =
             [[UIAlertView alloc] initWithTitle:@"Dashboard link not set"
-            message:alertMsg delegate:nil cancelButtonTitle:@"Dismiss"
+            message:alertMsg delegate:nil cancelButtonTitle:@"OK"
             otherButtonTitles:nil];
         [alertView show];
         [alertView release];
