@@ -100,6 +100,8 @@ enum HelpRows
     textField.text = serverUrl;
     textField.enabled = YES;
     [textField becomeFirstResponder];
+
+    waiting = NO;
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -183,8 +185,10 @@ enum HelpRows
 - (NSIndexPath *) tableView:(UITableView *)tableView
    willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (indexPath.section == kInputSection && indexPath.row == kUrlRow) ?
-        nil : indexPath;
+    return
+        waiting ||
+        (indexPath.section == kInputSection && indexPath.row == kUrlRow) ?
+            nil : indexPath;
 }
 
 - (void)          tableView:(UITableView *)tableView
@@ -253,12 +257,16 @@ enum HelpRows
     textField.enabled = NO;
 
     [delegate addServerWithUrl:[[self.serverUrl copy] autorelease]];
+
+    waiting = YES;
 }
 
 - (void) userDidCancel
 {
     [delegate userDidCancelAddingServerWithUrl:
         [[self.serverUrl copy] autorelease]];
+
+    waiting = NO;
 }
 
 #pragma mark Accessor methods
