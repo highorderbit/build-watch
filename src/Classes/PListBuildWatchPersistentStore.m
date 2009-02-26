@@ -10,6 +10,7 @@
 + (void) saveDictionary:dictionary toPlist:(NSString *)plist;
 + (NSArray *) getArrayFromPlist:(NSString *)plist;
 + (void) saveArray:(NSArray *)array toPlist:(NSString *)plist;
++ (void) removePlistAndCopyDefaultFromBundle:(NSString *)plist;
 
 @end
 
@@ -204,6 +205,27 @@
     return [navigationState objectForKey:@"activeProjectId"];
 }
 
+- (void) restoreToDefaultState
+{
+    [[self class] removePlistAndCopyDefaultFromBundle:@"Servers"];
+    [[self class] removePlistAndCopyDefaultFromBundle:@"ServerGroupPatterns"];
+    [[self class] removePlistAndCopyDefaultFromBundle:@"ServerNames"];
+    [[self class] removePlistAndCopyDefaultFromBundle:@"ServerDashboardLinks"];
+    [[self class] removePlistAndCopyDefaultFromBundle:@"ServerGroupSortOrder"];
+    [[self class] removePlistAndCopyDefaultFromBundle:@"ServerUsernames"];
+    [[self class] removePlistAndCopyDefaultFromBundle:@"ProjectDisplayNames"];
+    [[self class] removePlistAndCopyDefaultFromBundle:@"ProjectLabels"];
+    [[self class] removePlistAndCopyDefaultFromBundle:@"ProjectDescriptions"];
+    [[self class] removePlistAndCopyDefaultFromBundle:@"ProjectPubDates"];
+    [[self class] removePlistAndCopyDefaultFromBundle:@"ProjectLinks"];
+    [[self class] 
+        removePlistAndCopyDefaultFromBundle:@"ProjectForceBuildLinks"];
+    [[self class]
+        removePlistAndCopyDefaultFromBundle:@"ProjectBuildSucceededStates"];
+    [[self class] removePlistAndCopyDefaultFromBundle:@"ProjectTrackedStates"];
+    [[self class] removePlistAndCopyDefaultFromBundle:@"NavigationState"];
+}
+
 #pragma mark Private static helpers
 
 + (NSDictionary *) getDictionaryFromPlist:(NSString *)plist
@@ -254,6 +276,29 @@
 {
     NSString * fullPath = [PlistUtils fullDocumentPathForPlist:plist];
     [PlistUtils writeArray:array toPlist:fullPath];
+}
+
++ (void) removePlistAndCopyDefaultFromBundle:(NSString *)plist
+{
+    NSString * fullPath = [PlistUtils fullDocumentPathForPlist:plist];
+    
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    BOOL fileExists = [fileManager fileExistsAtPath:fullPath];
+    if (fileExists) {
+        NSError * error = nil;
+        BOOL fileRemoved = [fileManager removeItemAtPath:fullPath error:&error];
+        
+        if (!fileRemoved)
+            NSLog([error description]);
+        else {
+            NSString * bundlePath = [PlistUtils fullBundlePathForPlist:plist];
+            BOOL fileCopied =
+            [fileManager copyItemAtPath:bundlePath toPath:fullPath
+                                  error:&error];
+            if (!fileCopied)
+                NSLog([error description]);
+        }
+    }    
 }
 
 @end

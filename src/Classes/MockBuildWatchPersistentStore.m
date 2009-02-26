@@ -185,6 +185,9 @@
     return nil;
 }
 
+- (void) restoreToDefaultState
+{}
+
 #pragma mark Private methods
 
 + (NSDictionary *) mockServerList

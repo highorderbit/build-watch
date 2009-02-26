@@ -77,4 +77,6 @@
 
 - (NSString *) getActiveProjectId;
 
+- (void) restoreToDefaultState;
+
 @end

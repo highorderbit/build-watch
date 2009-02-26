@@ -87,7 +87,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 }
 
 - (void) start
-{
+{    
     [self setServers:[persistentStore getServers]];
     [self setServerGroupPatterns:[persistentStore getServerGroupPatterns]];
 
@@ -119,7 +119,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
         [PlistUtils fullBundlePathForPlist:@"ServerReportBuilders"];
     [self setServerReportBuilders:
      [PlistUtils readDictionaryFromPlist:fullPath]];
-
+    
     [self refreshAllServerData];
 
     [serverGroupNameSelector
