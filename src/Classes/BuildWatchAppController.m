@@ -9,6 +9,7 @@
 #import "RegexKitLite.h"
 #import "SFHFKeychainUtils.h"
 #import "PListUtils.h"
+#import "InconsistentStateAlertViewDelegate.h"
 
 @class Server, Project;
 
@@ -44,6 +45,8 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 - (NSArray *) sortedServerGroupNames;
 - (void) loadPasswordsFromKeychain;
 - (void) savePasswordsToKeychain;
+- (void) loadStateFromPersistenceStore;
+- (BOOL) serverStateIsConsistent;
 + (NSString *) keyForProject:(NSString *)project andServer:(NSString *)server;
 @end
 
@@ -88,51 +91,48 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
 - (void) start
 {    
-    [self setServers:[persistentStore getServers]];
-    [self setServerDashboardLinks:[persistentStore getServerDashboardLinks]];
-    
-    [self setServerGroupPatterns:[persistentStore getServerGroupPatterns]];
-    [self setServerNames:[persistentStore getServerNames]];
-    [self setServerGroupSortOrder:[persistentStore getServerGroupSortOrder]];
-    
-    [self setServerUsernames:[persistentStore getServerUsernames]];
-    [self loadPasswordsFromKeychain];
-        
-    [self setProjectDisplayNames:[persistentStore getProjectDisplayNames]];
-    [self setProjectLabels:[persistentStore getProjectLabels]];
-    [self setProjectDescriptions:[persistentStore getProjectDescriptions]];
-    [self setProjectPubDates:[persistentStore getProjectPubDates]];
-    [self setProjectLinks:[persistentStore getProjectLinks]];
-    [self setProjectForceBuildLinks:
-     [persistentStore getProjectForceBuildLinks]];
+    [self loadStateFromPersistenceStore];
+    if (![self serverStateIsConsistent]) {
+        NSString * alertMsg =
+            NSLocalizedString(@"inconsistentstate.alert.message", @"");
+        NSString * title =
+        NSLocalizedString(@"inconsistentstate.alert.title", @"");
+        InconsistentStateAlertViewDelegate * alertDelegate =
+            [[InconsistentStateAlertViewDelegate alloc]
+            initWithAppController:self andPersistentStore:persistentStore];
+        UIAlertView * alertView =
+            [[UIAlertView alloc] initWithTitle:title message:alertMsg
+            delegate:alertDelegate
+            cancelButtonTitle:
+            NSLocalizedString(@"inconsistentstate.alert.restore", @"")
+            otherButtonTitles:
+            NSLocalizedString(@"inconsistentstate.alert.ignore", @""), nil];
+        [alertView show];
+        [alertView release];
+    } else
+        [self refreshDataAndDisplayInitialView];
+}
 
-    [self setProjectBuildSucceededStates:
-     [persistentStore getProjectBuildSucceededStates]];
-    
-    [self setProjectTrackedStates:[persistentStore getProjectTrackedStates]];
-    
-    NSString * fullPath =
-        [PlistUtils fullBundlePathForPlist:@"ServerReportBuilders"];
-    [self setServerReportBuilders:
-     [PlistUtils readDictionaryFromPlist:fullPath]];
-    
+- (void) refreshDataAndDisplayInitialView
+{
     [self refreshAllServerData];
-
+    
     [serverGroupNameSelector
      selectServerGroupNamesFrom:[self sortedServerGroupNames] animated:NO];
     
-    [self setActiveServerGroupName:[persistentStore getActiveServerGroupName]];
+    [self setActiveServerGroupName:
+     [persistentStore getActiveServerGroupName]];
     [self setActiveProjectId:[persistentStore getActiveProjectId]];
     
     if (servers.count == 0)
         [serverGroupCreator createServerGroup];
     else if (activeServerGroupName) {
         NSArray * activeProjectIds =
-            [self projectIdsForServerGroupName:activeServerGroupName];
+        [self projectIdsForServerGroupName:activeServerGroupName];
         [projectSelector selectProjectFrom:activeProjectIds animated:NO];
         
         NSArray * projectsForServerGroup =
-            [self projectIdsForServerGroupName:activeServerGroupName];
+        [self projectIdsForServerGroupName:activeServerGroupName];
         if (activeProjectId &&
             [projectsForServerGroup containsObject:activeProjectId])
             [projectReporter reportDetailsForProject:activeProjectId
@@ -779,6 +779,42 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
         if (!error)
             NSLog([error description]);
     }
+}
+
+- (void) loadStateFromPersistenceStore
+{
+    [self setServers:[persistentStore getServers]];
+    [self setServerDashboardLinks:[persistentStore getServerDashboardLinks]];
+    
+    [self setServerGroupPatterns:[persistentStore getServerGroupPatterns]];
+    [self setServerNames:[persistentStore getServerNames]];
+    [self setServerGroupSortOrder:[persistentStore getServerGroupSortOrder]];
+    
+    [self setServerUsernames:[persistentStore getServerUsernames]];
+    [self loadPasswordsFromKeychain];
+    
+    [self setProjectDisplayNames:[persistentStore getProjectDisplayNames]];
+    [self setProjectLabels:[persistentStore getProjectLabels]];
+    [self setProjectDescriptions:[persistentStore getProjectDescriptions]];
+    [self setProjectPubDates:[persistentStore getProjectPubDates]];
+    [self setProjectLinks:[persistentStore getProjectLinks]];
+    [self setProjectForceBuildLinks:
+     [persistentStore getProjectForceBuildLinks]];
+    
+    [self setProjectBuildSucceededStates:
+     [persistentStore getProjectBuildSucceededStates]];
+    
+    [self setProjectTrackedStates:[persistentStore getProjectTrackedStates]];
+    
+    NSString * fullPath =
+    [PlistUtils fullBundlePathForPlist:@"ServerReportBuilders"];
+    [self setServerReportBuilders:
+     [PlistUtils readDictionaryFromPlist:fullPath]];
+}
+
+- (BOOL) serverStateIsConsistent
+{
+    return [serverNames count] == [serverGroupPatterns count];
 }
 
 #pragma mark static utility functions

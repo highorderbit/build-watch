@@ -106,7 +106,7 @@
     serverDataRefresherDelegate;
 
 - (void) start;
-
+- (void) refreshDataAndDisplayInitialView;
 - (void) persistState;
  
 @end
