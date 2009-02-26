@@ -191,7 +191,7 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
         [field.text stringByReplacingCharactersInRange:range withString:string];
 
     self.navigationItem.rightBarButtonItem.enabled =
-        !(range.location == 0 && range.length == 1);
+        serverGroupDisplayName.length > 0;
 
     return YES;
 }
@@ -241,7 +241,7 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
               initWithFrame:CGRectZero
             reuseIdentifier:SettingsSectionCellIdentifier];
 
-        CGRect textFieldFrame = CGRectMake(10, 10, 285, 22);
+        CGRect textFieldFrame = CGRectMake(10.0, 10.0, 285.0, 22.0);
         UITextField * textField =
             [self editServerNameTextFieldWithFrame:textFieldFrame
                                                tag:SERVER_NAME_TEXT_FIELD_TAG];

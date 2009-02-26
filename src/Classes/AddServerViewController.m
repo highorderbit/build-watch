@@ -100,6 +100,8 @@ enum HelpRows
     textField.text = serverUrl;
     textField.enabled = YES;
     [textField becomeFirstResponder];
+
+    waiting = NO;
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -111,23 +113,6 @@ enum HelpRows
     UITextField * textField = (UITextField *)
         [self.editServerUrlCell viewWithTag:SERVER_URL_TEXT_FIELD_TAG];
     [textField resignFirstResponder];
-}
-
-// TODO: REMOVE ME BEFORE DEPLOYING
-- (BOOL)shouldAutorotateToInterfaceOrientation:
-(UIInterfaceOrientation)interfaceOrientation
-{
-    if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft)
-        self.serverUrl = @"http://builds.highorderbit.com/projects.rss";
-    else if (interfaceOrientation == UIInterfaceOrientationLandscapeRight)
-        self.serverUrl = @"http://megatron.local:8080/dashboard/cctray.xml";
-
-    UITextField * textField = (UITextField *)
-        [self.editServerUrlCell viewWithTag:SERVER_URL_TEXT_FIELD_TAG];
-    textField.text = serverUrl;
-    self.navigationItem.rightBarButtonItem.enabled = YES;
-
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma mark UITableView functions
@@ -200,8 +185,10 @@ enum HelpRows
 - (NSIndexPath *) tableView:(UITableView *)tableView
    willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (indexPath.section == kInputSection && indexPath.row == kUrlRow) ?
-        nil : indexPath;
+    return
+        waiting ||
+        (indexPath.section == kInputSection && indexPath.row == kUrlRow) ?
+            nil : indexPath;
 }
 
 - (void)          tableView:(UITableView *)tableView
@@ -231,15 +218,13 @@ enum HelpRows
     self.serverUrl =
         [field.text stringByReplacingCharactersInRange:range withString:string];
 
-    BOOL enabled =
-        !(range.location == 0 && range.length == 1) &&
-        [delegate isServerGroupUrlValid:self.serverUrl];
-    self.navigationItem.rightBarButtonItem.enabled = enabled;
+    self.navigationItem.rightBarButtonItem.enabled =
+        serverUrl.length > 0 && [delegate isServerGroupUrlValid:serverUrl];
 
     return YES;
 }
 
-- (BOOL)textFieldShouldClear:(UITextField *)textField
+- (BOOL) textFieldShouldClear:(UITextField *)textField
 {
     self.serverUrl = @"";
     self.navigationItem.rightBarButtonItem.enabled = NO;
@@ -247,7 +232,7 @@ enum HelpRows
     return YES;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
+- (void) textFieldDidEndEditing:(UITextField *)textField
 {
     self.serverUrl = textField.text;
 }
@@ -272,12 +257,16 @@ enum HelpRows
     textField.enabled = NO;
 
     [delegate addServerWithUrl:[[self.serverUrl copy] autorelease]];
+
+    waiting = YES;
 }
 
 - (void) userDidCancel
 {
     [delegate userDidCancelAddingServerWithUrl:
         [[self.serverUrl copy] autorelease]];
+
+    waiting = NO;
 }
 
 #pragma mark Accessor methods
@@ -290,7 +279,7 @@ enum HelpRows
               initWithFrame:CGRectZero
             reuseIdentifier:TEXT_FIELD_TABLE_VIEW_CELL_IDENTIFIER];
 
-        CGRect textFieldFrame = CGRectMake(10, 10, 285, 22);
+        CGRect textFieldFrame = CGRectMake(10.0, 10.0, 285.0, 22.0);
         UITextField * textField =
             [self editServerUrlTextFieldWithFrame:textFieldFrame
                                               tag:SERVER_URL_TEXT_FIELD_TAG];

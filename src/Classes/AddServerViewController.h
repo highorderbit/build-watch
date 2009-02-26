@@ -17,6 +17,8 @@
 
     NSString * serverUrl;
     NSString * serverType;
+
+    BOOL waiting;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView * tableView;

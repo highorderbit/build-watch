@@ -86,7 +86,7 @@
 {
     NSString * dashboardLink =
         [sourceUrl
-         stringByReplacingOccurrencesOfRegex:@"(.*)/cctray.xml$"
+         stringByReplacingOccurrencesOfRegex:@"(.*)/(?i:cctray.xml)$"
                                   withString:@"$1/"];
 
     if (dashboardLink == nil || dashboardLink.length == 0)
@@ -123,10 +123,10 @@
                                        error:(NSError **)error
 {
     static NSString * regex =
-        @"^(.*://.*?)(:\\d+)?/dashboard(/.*)*/(.*?)$";
+        @"^(.*://.*?)(:\\d+)?/dashboard(?:/.*)*/(?:.*?)$";
     static NSString * replacementString =
         @"$1:8000/invoke?operation=build&"
-         "objectname=CruiseControl+Project%3Aname%3D$4";
+         "objectname=CruiseControl+Project%3Aname%3D";
 
     NSString * projectName =
         [[self class] projectNameFromNode:node error:error];
@@ -144,7 +144,9 @@
     if (!forceBuildLink || forceBuildLink.length == 0)
         return [[self class] xmlParsingFailed:error];
 
-    return forceBuildLink;
+    return [forceBuildLink stringByAppendingFormat:@"%@",
+        [projectName stringByAddingPercentEscapesUsingEncoding:
+         NSUTF8StringEncoding]];
 }
 
 @end
