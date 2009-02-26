@@ -89,14 +89,10 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 - (void) start
 {    
     [self setServers:[persistentStore getServers]];
-    [self setServerGroupPatterns:[persistentStore getServerGroupPatterns]];
-
-    NSMutableDictionary * allServerNames =
-        [[[persistentStore getServerNames] mutableCopy] autorelease];
-    NSString * allLocalizedName = NSLocalizedString(SERVER_GROUP_NAME_ALL, @"");
-    [allServerNames setObject:allLocalizedName forKey:allLocalizedName];
-    [self setServerNames:allServerNames];
     [self setServerDashboardLinks:[persistentStore getServerDashboardLinks]];
+    
+    [self setServerGroupPatterns:[persistentStore getServerGroupPatterns]];
+    [self setServerNames:[persistentStore getServerNames]];
     [self setServerGroupSortOrder:[persistentStore getServerGroupSortOrder]];
     
     [self setServerUsernames:[persistentStore getServerUsernames]];
