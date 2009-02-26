@@ -1,0 +1,65 @@
+*** Business model ***
+
+Conceptual business entities:
+- Server
+- ServerGroup
+- Project
+- Build
+
+Descriptions:
+
+Server: A continuous integration server RSS web feed
+    - example key: http://builds.highorderbit.com/projects.rss
+    - unique
+ServerGroup: Represents a subset of Servers from all of those available
+    - example keys: all, http://builds.highorderbit.com/projects.rss
+    - unique
+Project: A software project setup for builds on a continuous integration server
+    - example key: Build Watch
+    - unique per server
+Build: The latest build of a project
+
+Properties:
+
+Server:
+    - key
+    - dashboardLink
+ServerGroup:
+    - key
+    - name
+    - pattern
+Project:
+    - key
+    - name
+    - dashboardLink
+    - latestBuild
+    - forceBuildLink
+Build:
+    - pubDate
+    - label
+    - description
+
+Implementation:
+
+Servers are tracked in an array called serverKeys.
+Server properties are tracked in dictionaries called dashboardLinks, for
+example.
+
+ServerGroups are tracked in an array called serverGroups.
+
+Projects are tracked in a dictionary of arrays.  The dictionary is indexed by
+server keys and the arrays contain project keys (not names).
+Project properties are tracked in dictionaries indexed by project keys.
+
+Because only the last build for a project is tracked, build properties are also
+indexed by project keys.  The naming convention is to include "build" in
+variable names.  Example names: buildPubDate, buildLabel, buildDescriptions
+
+*** Naming conventions ***
+
+- references to unique identifiers should contain the word "Key"
+    - examples: serverKeys, projectKey
+- references to display names and non-unique descriptions should contain "Name"
+    - examples: serverGroupName, projectName
+- dashboard links should contain "dashboardLinks"
+    - examples: serverDashboardLinks, projectDashboardLinks
