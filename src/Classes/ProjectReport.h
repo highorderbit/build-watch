@@ -6,21 +6,23 @@
 
 @interface ProjectReport : NSObject {
     NSString * name;
-    NSString * label;
-    NSString * description;
-    NSDate * pubDate;
-    NSString * link;
     NSString * forceBuildLink;
-    BOOL buildSucceeded;
+    
+    NSString * buildLabel;
+    NSString * buildDescription;
+    NSDate * buildPubDate;
+    NSString * buildDashboardLink;
+    BOOL buildSucceededState;
 }
 
 @property (nonatomic, copy) NSString * name;
-@property (nonatomic, copy) NSString * label;
-@property (nonatomic, copy) NSString * description;
-@property (nonatomic, copy) NSDate * pubDate;
-@property (nonatomic, copy) NSString * link;
 @property (nonatomic, copy) NSString * forceBuildLink;
-@property (nonatomic, assign) BOOL buildSucceeded;
+
+@property (nonatomic, copy) NSString * buildLabel;
+@property (nonatomic, copy) NSString * buildDescription;
+@property (nonatomic, copy) NSDate * buildPubDate;
+@property (nonatomic, copy) NSString * buildDashboardLink;
+@property (nonatomic, assign) BOOL buildSucceededState;
 
 + (id)report;
 

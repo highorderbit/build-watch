@@ -372,19 +372,19 @@
     NSMutableArray * reportProjectNames = [NSMutableArray array];
     for (ProjectReport * projectReport in report.projectReports)
         [reportProjectNames addObject:projectReport.name];
-    [serverKeys addObject:report.link];
+    [serverKeys addObject:report.key];
 
     [serverGroupPatterns
-        setObject:[NSString stringWithFormat:@"^%@$", report.link]
-           forKey:report.link];
+        setObject:[NSString stringWithFormat:@"^%@$", report.key]
+           forKey:report.key];
     [serverGroupRemovableStates setObject:[NSNumber numberWithBool:YES]
-                                   forKey:report.link];
+                                   forKey:report.key];
     
-    [serverGroupNames setObject:serverDisplayName forKey:report.link];
-    [serverDashboardLinks setObject:report.dashboardLink forKey:report.link];
-    [serverGroupSortOrder addObject:report.link];
+    [serverGroupNames setObject:serverDisplayName forKey:report.key];
+    [serverDashboardLinks setObject:report.dashboardLink forKey:report.key];
+    [serverGroupSortOrder addObject:report.key];
 
-    [self report:report receivedFrom:report.link];
+    [self report:report receivedFrom:report.key];
 
     [serverGroupNameSelector 
      selectServerGroupNamesFrom:[self sortedServerGroupNames] animated:YES];
@@ -731,14 +731,14 @@
         [projectForceBuildLinks setObject:projReport.forceBuildLink
                                    forKey:projectKey];
         
-        [buildLabels setObject:projReport.label forKey:projectKey];
-        [buildDescriptions setObject:projReport.description
+        [buildLabels setObject:projReport.buildLabel forKey:projectKey];
+        [buildDescriptions setObject:projReport.buildDescription
                                 forKey:projectKey];
-        [buildPubDates setObject:projReport.pubDate forKey:projectKey];
-        [buildReportLinks setObject:projReport.link forKey:projectKey];
+        [buildPubDates setObject:projReport.buildPubDate forKey:projectKey];
+        [buildReportLinks setObject:projReport.buildDashboardLink forKey:projectKey];
         
         [buildSucceededStates setObject:
-         [NSNumber numberWithBool:projReport.buildSucceeded]
+         [NSNumber numberWithBool:projReport.buildSucceededState]
                                         forKey:projectKey];
         
         if (![projectTrackedStates objectForKey:projectKey])
