@@ -24,6 +24,11 @@
 
 - (NSDictionary *) getServerGroupNames;
 
+- (void) saveServerGroupRemovableStates:
+    (NSDictionary *)serverGroupRemovableStates;
+
+- (NSDictionary *) getServerGroupRemovableStates;
+
 - (void) saveServerDashboardLinks:(NSDictionary *)dashboardLinks;
 
 - (NSDictionary *) getServerDashboardLinks;

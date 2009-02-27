@@ -8,12 +8,6 @@
 #import "ServerTableViewCell.h"
 #import "UIColor+BuildWatchColors.h"
 
-@interface ServerViewController (Private)
-
-- (void) setVisibleServerGroupNames;
-
-@end
-
 @implementation ServerViewController
 
 @synthesize tableView;
@@ -23,7 +17,6 @@
 {
     [tableView release];
     [serverGroupNames release];
-    [visibleServerGroupNames release];
     [delegate release];
     [addBarButtonItem release];
     [super dealloc];
@@ -52,7 +45,7 @@
     [tableView deselectRowAtIndexPath:selectedRow animated:NO];
 
     self.navigationItem.leftBarButtonItem.enabled =
-        visibleServerGroupNames.count > 0;
+        serverGroupNames.count > 0;
 
     [delegate userDidDeselectServerGroupName];
 
@@ -75,7 +68,7 @@
 - (NSInteger) tableView:(UITableView *)tv
   numberOfRowsInSection:(NSInteger)section
 {
-    return visibleServerGroupNames.count;
+    return serverGroupNames.count;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tv
@@ -97,7 +90,7 @@
     }
 
     NSString * serverGroupName =
-        [visibleServerGroupNames objectAtIndex:indexPath.row];
+        [serverGroupNames objectAtIndex:indexPath.row];
     
     cell.nameLabel.text =
         [delegate displayNameForServerGroupName:serverGroupName];
@@ -125,34 +118,43 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     return 64;
 }
 
+- (NSIndexPath *) tableView:(UITableView *)tv
+willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString * server = [serverGroupNames objectAtIndex:indexPath.row];
+    
+    return tv.editing && ![delegate canServerGroupBeDeleted:server] ?
+        nil : indexPath;
+}
+
 - (void)      tableView:(UITableView *)tv
 didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * server = [visibleServerGroupNames objectAtIndex:indexPath.row];
+    NSString * server = [serverGroupNames objectAtIndex:indexPath.row];
 
-    if (tv.editing)
-        [delegate editServerGroupName:server];
-    else
+    if (!tv.editing)
         [delegate userDidSelectServerGroupName:server];
+    else if([delegate canServerGroupBeDeleted:server])
+        [delegate editServerGroupName:server];
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView *)tv
           accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    return UITableViewCellAccessoryDisclosureIndicator;
+    NSString * serverGroupName =
+        [serverGroupNames objectAtIndex:indexPath.row];
+    
+    return [delegate canServerGroupBeDeleted:serverGroupName] || !self.editing ?
+        UITableViewCellAccessoryDisclosureIndicator :
+        UITableViewCellAccessoryNone;
 }
 
 - (UITableViewCellEditingStyle) tableView:(UITableView *)tv
             editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.editing)
-        return UITableViewCellEditingStyleDelete;
-
     NSString * serverGroupName =
-        [visibleServerGroupNames objectAtIndex:indexPath.row];
+        [serverGroupNames objectAtIndex:indexPath.row];
 
-    // return 'none' style for non-deletable server groups to disable the
-    // swipe-to-delete motion for those cells
     return [delegate canServerGroupBeDeleted:serverGroupName] ?
         UITableViewCellEditingStyleDelete : UITableViewCellEditingStyleNone;
 }
@@ -163,12 +165,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSString * serverGroupName =
-            [visibleServerGroupNames objectAtIndex:indexPath.row];
+            [serverGroupNames objectAtIndex:indexPath.row];
 
         [serverGroupNames removeObject:serverGroupName];
         [delegate deleteServerGroupWithName:serverGroupName];
         // remove locally last to avoid premature deallocation
-        [visibleServerGroupNames removeObjectAtIndex:indexPath.row];
+        [serverGroupNames removeObjectAtIndex:indexPath.row];
 
         [tableView deleteRowsAtIndexPaths:
             [NSArray arrayWithObject:indexPath]
@@ -195,31 +197,13 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
            toIndexPath:(NSIndexPath *)toIndexPath
 {
     NSObject * objectToMove =
-        [[visibleServerGroupNames
-         objectAtIndex:fromIndexPath.row] retain];
-    NSObject * currentObject =
-        [[visibleServerGroupNames
-         objectAtIndex:toIndexPath.row] retain];
+        [[serverGroupNames objectAtIndex:fromIndexPath.row] retain];
+    [serverGroupNames removeObjectAtIndex:fromIndexPath.row];
+    [serverGroupNames insertObject:objectToMove atIndex:toIndexPath.row];
 
-    // put the object in the right place among visible objects
-    [visibleServerGroupNames removeObjectAtIndex:fromIndexPath.row];
-    [visibleServerGroupNames insertObject:objectToMove atIndex:toIndexPath.row];
-
-    // figure out where to put it within all objects
-    NSUInteger source = [serverGroupNames indexOfObject:objectToMove];
-    NSAssert1(source != NSNotFound,
-        @"Unable to find object to move: '%@'.", objectToMove);
-    NSUInteger dest = [serverGroupNames indexOfObject:currentObject];
-    NSAssert1(source != NSNotFound,
-        @"Unable to find current object: '%@'.", currentObject);
-
-    [serverGroupNames removeObjectAtIndex:source];
-    [serverGroupNames insertObject:objectToMove atIndex:dest];
-
-    [delegate userDidSetServerGroupSortOrder:visibleServerGroupNames];
+    [delegate userDidSetServerGroupSortOrder:serverGroupNames];
 
     [objectToMove release];
-    [currentObject release];
 }
 
 #pragma mark Server manipulation buttons
@@ -235,31 +219,16 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
         [NSNumber numberWithBool:editing], self);
     
     [super setEditing:editing animated:animated];
-
-    NSMutableArray * indexPaths = [NSMutableArray array];
-
-    for (NSInteger i = 0; i < serverGroupNames.count; ++i) {
-        NSString * serverGroupName = [serverGroupNames objectAtIndex:i];
-        if (![delegate canServerGroupBeDeleted:serverGroupName])
-            [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
-    }
     
     [tableView setEditing:editing animated:animated];
     
     [tableView beginUpdates];
-
-    [self setVisibleServerGroupNames];
     
-    if (editing) {
+    if (editing)
         [self.navigationItem setLeftBarButtonItem:nil animated:NO];
-        [tableView deleteRowsAtIndexPaths:indexPaths
-                         withRowAnimation:UITableViewRowAnimationTop];
-    } else {
+    else
         [self.navigationItem
             setLeftBarButtonItem:addBarButtonItem animated:NO];
-        [tableView insertRowsAtIndexPaths:indexPaths
-                         withRowAnimation:UITableViewRowAnimationTop];
-    }
 
     [tableView endUpdates];
 }
@@ -272,27 +241,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     [serverGroupNames release];
     serverGroupNames = tmp;
 
-    [self setVisibleServerGroupNames];
-
     [tableView reloadData];
-}
-
-- (void) setVisibleServerGroupNames
-{
-    [visibleServerGroupNames release];
-    
-    if (self.editing) {
-        visibleServerGroupNames = [NSMutableArray array];
-        
-        for (NSInteger i = 0; i < serverGroupNames.count; ++i) {
-            NSString * serverGroupName = [serverGroupNames objectAtIndex:i];
-            if ([delegate canServerGroupBeDeleted:serverGroupName])
-                [visibleServerGroupNames addObject:serverGroupName];
-        }
-    } else
-        visibleServerGroupNames = serverGroupNames;
-    
-    [visibleServerGroupNames retain];
 }
 
 @end

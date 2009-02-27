@@ -93,6 +93,7 @@
 		918449EA0F4206F800082108 /* ServerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 918449E90F4206F800082108 /* ServerTableViewCell.m */; };
 		91844BA80F42459D00082108 /* BuildLabels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91844BA70F42459D00082108 /* BuildLabels.plist */; };
 		91A809A60F57101400ED8194 /* InconsistentStateAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A809A50F57101400ED8194 /* InconsistentStateAlertViewDelegate.m */; };
+		91A80B0C0F57749D00ED8194 /* ServerGroupRemovableStates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91A80B0B0F57749D00ED8194 /* ServerGroupRemovableStates.plist */; };
 		91ABDE280F4120A1003232A0 /* ServerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91ABDE260F4120A1003232A0 /* ServerTableViewCell.xib */; };
 		91C6EC400F4DD9B20028C75A /* InfoPlistConfigReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C6EC3F0F4DD9B20028C75A /* InfoPlistConfigReader.m */; };
 		91D9ABD40F3DFE350035454C /* Servers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABD30F3DFE350035454C /* Servers.plist */; };
@@ -286,6 +287,7 @@
 		91844BA70F42459D00082108 /* BuildLabels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BuildLabels.plist; sourceTree = "<group>"; };
 		91A809A40F57101400ED8194 /* InconsistentStateAlertViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InconsistentStateAlertViewDelegate.h; sourceTree = "<group>"; };
 		91A809A50F57101400ED8194 /* InconsistentStateAlertViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InconsistentStateAlertViewDelegate.m; sourceTree = "<group>"; };
+		91A80B0B0F57749D00ED8194 /* ServerGroupRemovableStates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServerGroupRemovableStates.plist; sourceTree = "<group>"; };
 		91ABDE270F4120A1003232A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ServerTableViewCell.xib; sourceTree = "<group>"; };
 		91C6EC3A0F4DD9560028C75A /* ConfigReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigReader.h; sourceTree = "<group>"; };
 		91C6EC3E0F4DD9B20028C75A /* InfoPlistConfigReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPlistConfigReader.h; sourceTree = "<group>"; };
@@ -735,6 +737,7 @@
 				05A8E5860F4D1DB600F26AC2 /* ServerDashboardLinks.plist */,
 				91D9AC560F3E12A60035454C /* ServerGroupNames.plist */,
 				91D9ABD30F3DFE350035454C /* Servers.plist */,
+				91A80B0B0F57749D00ED8194 /* ServerGroupRemovableStates.plist */,
 			);
 			name = State;
 			sourceTree = "<group>";
@@ -846,6 +849,7 @@
 				053BF6B20F50BA38004D3327 /* RssHelpView.xib in Resources */,
 				053BF7020F50CBC0004D3327 /* rss-help.html in Resources */,
 				053C91B10F585DFF00FD7B57 /* checkmark-blue.png in Resources */,
+				91A80B0C0F57749D00ED8194 /* ServerGroupRemovableStates.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
