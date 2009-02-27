@@ -20,8 +20,8 @@
 
     NSObject<ServerGroupPropertyProvider> * serverGroupPropertyProvider;
 
+    NSString * serverGroupKey;  // what the user provides
     NSString * serverGroupName;  // what the user provides
-    NSString * serverGroupDisplayName;  // what the user provides
 }
 
 @property (nonatomic, retain) IBOutlet UITableView * tableView;
@@ -30,7 +30,7 @@
     NSObject<EditServerDetailsViewControllerDelegate> * delegate;
 @property (nonatomic, retain) NSObject<ServerGroupPropertyProvider> *
     serverGroupPropertyProvider;
+@property (nonatomic, copy) NSString * serverGroupKey;
 @property (nonatomic, copy) NSString * serverGroupName;
-@property (nonatomic, copy) NSString * serverGroupDisplayName;
 
 @end

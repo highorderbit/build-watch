@@ -6,12 +6,10 @@
 
 @protocol ServerGroupPropertyProvider
 
-- (NSString *) displayNameForServerGroupName:(NSString *)serverGroupName;
+- (NSString *) displayNameForServerGroup:(NSString *)serverGroup;
 
-- (NSString *) linkForServerGroupName:(NSString *)serverGroupName;
+- (NSString *) dashboardLinkForServerGroup:(NSString *)serverGroup;
 
-- (NSString *) dashboardLinkForServerGroupName:(NSString *)serverGroupName;
-
-- (NSUInteger) numberOfProjectsForServerGroupName:(NSString *)serverGroupName;
+- (NSUInteger) numberOfProjectsForServerGroup:(NSString *)serverGroup;
 
 @end

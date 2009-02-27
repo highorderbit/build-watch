@@ -3,8 +3,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ServerGroupNameSelector.h"
-#import "ServerGroupNameSelectorDelegate.h"
+#import "ServerGroupSelector.h"
+#import "ServerGroupSelectorDelegate.h"
 
 @interface ServerViewController : UIViewController
                                   < UITableViewDelegate >
@@ -13,12 +13,12 @@
     UIBarButtonItem * addBarButtonItem;
 
     NSMutableArray * serverGroupNames;
-    NSObject<ServerGroupNameSelectorDelegate> * delegate;
+    NSObject<ServerGroupSelectorDelegate> * delegate;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView * tableView;
 @property (nonatomic, retain)
-    NSObject<ServerGroupNameSelectorDelegate> * delegate;
+    NSObject<ServerGroupSelectorDelegate> * delegate;
 
 - (void) setServerGroupNames:(NSArray *)someServerGroupNames;
 

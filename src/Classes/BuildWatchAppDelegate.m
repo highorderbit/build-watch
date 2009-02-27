@@ -13,7 +13,7 @@
 @synthesize navigationController;
 @synthesize toolbar;
 @synthesize appController;
-@synthesize serverGroupNameSelector;
+@synthesize serverGroupSelector;
 
 - (void)dealloc
 {
@@ -22,7 +22,7 @@
     [navigationController release];
     [toolbar release];
     [appController release];
-    [serverGroupNameSelector release];
+    [serverGroupSelector release];
     [super dealloc];
 }
 

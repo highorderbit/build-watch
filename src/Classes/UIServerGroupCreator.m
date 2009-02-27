@@ -70,12 +70,12 @@
 
 #pragma mark ServerGroupEditor protocol implementation
 
-- (void) editServerGroup:(NSString *)serverGroupName
+- (void) editServerGroup:(NSString *)serverGroupKey
 {
     EditServerDetailsViewController * controller =
         self.editServerDetailsViewController;
 
-    controller.serverGroupName = serverGroupName;
+    controller.serverGroupKey = serverGroupKey;
     controller.serverGroupPropertyProvider = self.serverGroupPropertyProvider;
 
     [self.rootNavigationController
@@ -204,31 +204,25 @@
 
 #pragma mark ServerGroupPropertyProvider protocol implementation
 
-- (NSString *) displayNameForServerGroupName:(NSString *)serverGroupName
+- (NSString *) displayNameForServerGroup:(NSString *)serverGroupKey
 {
     return serverReport ? serverReport.name :
         [serverGroupPropertyProvider
-         displayNameForServerGroupName:serverGroupName];
+         displayNameForServerGroup:serverGroupKey];
 }
 
-- (NSString *) linkForServerGroupName:(NSString *)serverGroupName
-{
-    return serverReport ? serverReport.key :
-        [serverGroupPropertyProvider linkForServerGroupName:serverGroupName];
-}
-
-- (NSString *) dashboardLinkForServerGroupName:(NSString *)serverGroupName;
+- (NSString *) dashboardLinkForServerGroup:(NSString *)serverGroupKey;
 {
     return serverReport ? serverReport.dashboardLink :
         [serverGroupPropertyProvider
-         dashboardLinkForServerGroupName:serverGroupName];
+         dashboardLinkForServerGroup:serverGroupKey];
 }
 
-- (NSUInteger) numberOfProjectsForServerGroupName:(NSString *)serverGroupName;
+- (NSUInteger) numberOfProjectsForServerGroup:(NSString *)serverGroupKey;
 {
     return serverReport ? serverReport.projectReports.count :
         [serverGroupPropertyProvider
-         numberOfProjectsForServerGroupName:serverGroupName];
+         numberOfProjectsForServerGroup:serverGroupKey];
 }
 
 #pragma mark Helper functions

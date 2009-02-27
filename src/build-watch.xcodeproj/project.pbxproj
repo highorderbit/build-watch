@@ -58,7 +58,6 @@
 		05D8AFE20F43CC3D00F07532 /* GenericBuildForcer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D8AFE10F43CC3D00F07532 /* GenericBuildForcer.m */; };
 		05DB30060F48CBD3005E1682 /* XmlConstantValueObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DB30050F48CBD3005E1682 /* XmlConstantValueObjectBuilder.m */; };
 		05E911050F3A056F00E646F6 /* BuildWatchAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E911040F3A056F00E646F6 /* BuildWatchAppController.m */; };
-		05E911E70F3A453300E646F6 /* UIServerGroupNameSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E911E60F3A453300E646F6 /* UIServerGroupNameSelector.m */; };
 		05E9121F0F3A4E7100E646F6 /* UIProjectSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E9121E0F3A4E7100E646F6 /* UIProjectSelector.m */; };
 		05F1867C0F3D1B4300024A3C /* NetworkBuildService.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F1867B0F3D1B4300024A3C /* NetworkBuildService.m */; };
 		05F186990F3D223D00024A3C /* NetworkBuildStatusUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F186980F3D223D00024A3C /* NetworkBuildStatusUpdater.m */; };
@@ -79,6 +78,7 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28C286E10D94DF7D0034E888 /* ServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* ServerViewController.m */; };
 		9114658D0F460949002A4BAB /* UIColor+BuildWatchColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 9114658C0F460949002A4BAB /* UIColor+BuildWatchColors.m */; };
+		9118F8D30F58A33800EAAB4A /* UIServerGroupSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 9118F8D20F58A33800EAAB4A /* UIServerGroupSelector.m */; };
 		911EDBD20F3CA58A00E17BC0 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 911EDBD10F3CA58A00E17BC0 /* RegexKitLite.m */; };
 		911EDDFE0F3D0DC300E17BC0 /* UIServerDataRefresher.m in Sources */ = {isa = PBXBuildFile; fileRef = 911EDDFD0F3D0DC300E17BC0 /* UIServerDataRefresher.m */; };
 		911EDE2F0F3D1B0D00E17BC0 /* UIServerDataRefresherDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 911EDE2E0F3D1B0D00E17BC0 /* UIServerDataRefresherDelegate.m */; };
@@ -215,11 +215,8 @@
 		05E911030F3A056F00E646F6 /* BuildWatchAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildWatchAppController.h; sourceTree = "<group>"; };
 		05E911040F3A056F00E646F6 /* BuildWatchAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildWatchAppController.m; sourceTree = "<group>"; };
 		05E911070F3A111500E646F6 /* BuildWatchPersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildWatchPersistentStore.h; sourceTree = "<group>"; };
-		05E911E50F3A453300E646F6 /* UIServerGroupNameSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIServerGroupNameSelector.h; sourceTree = "<group>"; };
-		05E911E60F3A453300E646F6 /* UIServerGroupNameSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIServerGroupNameSelector.m; sourceTree = "<group>"; };
 		05E9121A0F3A4E6800E646F6 /* ProjectSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectSelector.h; sourceTree = "<group>"; };
 		05E9121B0F3A4E6800E646F6 /* ProjectSelectorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectSelectorDelegate.h; sourceTree = "<group>"; };
-		05E9121C0F3A4E6800E646F6 /* ServerGroupNameSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerGroupNameSelector.h; sourceTree = "<group>"; };
 		05E9121D0F3A4E7100E646F6 /* UIProjectSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIProjectSelector.h; sourceTree = "<group>"; };
 		05E9121E0F3A4E7100E646F6 /* UIProjectSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIProjectSelector.m; sourceTree = "<group>"; };
 		05F1867A0F3D1B4300024A3C /* NetworkBuildService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkBuildService.h; sourceTree = "<group>"; };
@@ -263,6 +260,10 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9114658B0F460949002A4BAB /* UIColor+BuildWatchColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BuildWatchColors.h"; sourceTree = "<group>"; };
 		9114658C0F460949002A4BAB /* UIColor+BuildWatchColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BuildWatchColors.m"; sourceTree = "<group>"; };
+		9118F8CF0F58A33800EAAB4A /* ServerGroupSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerGroupSelector.h; sourceTree = "<group>"; };
+		9118F8D00F58A33800EAAB4A /* ServerGroupSelectorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerGroupSelectorDelegate.h; sourceTree = "<group>"; };
+		9118F8D10F58A33800EAAB4A /* UIServerGroupSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIServerGroupSelector.h; sourceTree = "<group>"; };
+		9118F8D20F58A33800EAAB4A /* UIServerGroupSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIServerGroupSelector.m; sourceTree = "<group>"; };
 		911EDBD00F3CA58A00E17BC0 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		911EDBD10F3CA58A00E17BC0 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		911EDDE40F3D0C4800E17BC0 /* ServerDataRefresher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerDataRefresher.h; sourceTree = "<group>"; };
@@ -304,7 +305,6 @@
 		91D9ADDB0F3E3B050035454C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AboutView.xib; sourceTree = "<group>"; };
 		91D9ADE00F3E47720035454C /* AboutDisplayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutDisplayer.h; sourceTree = "<group>"; };
 		91D9ADE10F3E47720035454C /* AboutDisplayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutDisplayer.m; sourceTree = "<group>"; };
-		91DC9DB20F3BB3CD003F87CF /* ServerGroupNameSelectorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerGroupNameSelectorDelegate.h; sourceTree = "<group>"; };
 		91E151B10F409FC2006D6A59 /* BuildReportLinks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BuildReportLinks.plist; sourceTree = "<group>"; };
 		91E1523B0F40B792006D6A59 /* BuildSucceededStates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BuildSucceededStates.plist; sourceTree = "<group>"; };
 		91E1523C0F40B792006D6A59 /* BuildDescriptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BuildDescriptions.plist; sourceTree = "<group>"; };
@@ -412,10 +412,10 @@
 		050888A40F45E3B30010569B /* Server Selection */ = {
 			isa = PBXGroup;
 			children = (
-				05E9121C0F3A4E6800E646F6 /* ServerGroupNameSelector.h */,
-				05E911E50F3A453300E646F6 /* UIServerGroupNameSelector.h */,
-				05E911E60F3A453300E646F6 /* UIServerGroupNameSelector.m */,
-				91DC9DB20F3BB3CD003F87CF /* ServerGroupNameSelectorDelegate.h */,
+				9118F8CF0F58A33800EAAB4A /* ServerGroupSelector.h */,
+				9118F8D00F58A33800EAAB4A /* ServerGroupSelectorDelegate.h */,
+				9118F8D10F58A33800EAAB4A /* UIServerGroupSelector.h */,
+				9118F8D20F58A33800EAAB4A /* UIServerGroupSelector.m */,
 				28C286DF0D94DF7D0034E888 /* ServerViewController.h */,
 				28C286E00D94DF7D0034E888 /* ServerViewController.m */,
 				918449E80F4206F800082108 /* ServerTableViewCell.h */,
@@ -873,7 +873,6 @@
 				28C286E10D94DF7D0034E888 /* ServerViewController.m in Sources */,
 				9149E0010F39142400A0E32C /* ProjectsViewController.m in Sources */,
 				05E911050F3A056F00E646F6 /* BuildWatchAppController.m in Sources */,
-				05E911E70F3A453300E646F6 /* UIServerGroupNameSelector.m in Sources */,
 				05E9121F0F3A4E7100E646F6 /* UIProjectSelector.m in Sources */,
 				91F09AA50F3A63370034528C /* ProjectReport.m in Sources */,
 				91F09AA80F3A657B0034528C /* ServerReport.m in Sources */,
@@ -932,6 +931,7 @@
 				05ADE8C40F57146000EA21F2 /* AsynchronousInvocation.m in Sources */,
 				91A809A60F57101400ED8194 /* InconsistentStateAlertViewDelegate.m in Sources */,
 				05ADEAB30F578A1B00EA21F2 /* TextFieldTableViewCell.m in Sources */,
+				9118F8D30F58A33800EAAB4A /* UIServerGroupSelector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

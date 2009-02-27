@@ -62,14 +62,14 @@
     serverDisplayNames = [[NSMutableDictionary alloc] init];
 }
 
-- (void) refreshingDataForServer:(NSString *)server
+- (void) refreshingDataForServer:(NSString *)serverKey
 {
     if (numOutstandingRequests == 0)
         [self showRefreshInProgressView];
 
     NSString * displayName =
-        [serverGroupPropertyProvider displayNameForServerGroupName:server];
-    [serverDisplayNames setObject:displayName forKey:server];
+        [serverGroupPropertyProvider displayNameForServerGroup:serverKey];
+    [serverDisplayNames setObject:displayName forKey:serverKey];
     numOutstandingRequests++;
 }
 

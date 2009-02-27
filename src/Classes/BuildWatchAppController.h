@@ -5,8 +5,8 @@
 #import <Foundation/Foundation.h>
 
 #import "BuildWatchPersistentStore.h"
-#import "ServerGroupNameSelector.h"
-#import "ServerGroupNameSelectorDelegate.h"
+#import "ServerGroupSelector.h"
+#import "ServerGroupSelectorDelegate.h"
 #import "ProjectSelector.h"
 #import "ProjectSelectorDelegate.h"
 #import "ProjectReporter.h"
@@ -22,7 +22,7 @@
 #import "ConfigReader.h"
 
 @interface BuildWatchAppController : NSObject
-                                     < ServerGroupNameSelectorDelegate,
+                                     < ServerGroupSelectorDelegate,
                                        ServerGroupPropertyProvider,
                                        ProjectPropertyProvider,
                                        BuildServiceDelegate,
@@ -71,7 +71,7 @@
 
     NSObject<BuildWatchPersistentStore> * persistentStore;
 
-    NSObject<ServerGroupNameSelector> * serverGroupNameSelector;
+    NSObject<ServerGroupSelector> * serverGroupNameSelector;
     NSObject<ProjectSelector> * projectSelector;
     NSObject<ProjectReporter> * projectReporter;
 
@@ -89,7 +89,7 @@
 @property (nonatomic, retain) IBOutlet NSObject<BuildWatchPersistentStore> *
     persistentStore;
 
-@property (nonatomic, retain) IBOutlet NSObject<ServerGroupNameSelector> *
+@property (nonatomic, retain) IBOutlet NSObject<ServerGroupSelector> *
     serverGroupNameSelector;
 @property (nonatomic, retain) IBOutlet NSObject<ProjectSelector> *
     projectSelector;

@@ -20,7 +20,7 @@ static const NSInteger NUMBER_OF_ROWS_IN_SETTINGS_SECTION = 1;
 static const NSInteger NUMBER_OF_ROWS_IN_DETAILS_SECTION = 3;
 enum DetailsSectionRows
 {
-    kLinkRow,
+    kKeyRow,
     kDashboardLinkRow,
     kNumberOfProjectsRow
 };
@@ -39,8 +39,8 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
 @synthesize editServerNameCell;
 @synthesize delegate;
 @synthesize serverGroupPropertyProvider;
+@synthesize serverGroupKey;
 @synthesize serverGroupName;
-@synthesize serverGroupDisplayName;
 
 - (void)dealloc
 {
@@ -48,8 +48,8 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
     [editServerNameCell release];
     [delegate release];
     [serverGroupPropertyProvider release];
+    [serverGroupKey release];
     [serverGroupName release];
-    [serverGroupDisplayName release];
     [super dealloc];
 }
 
@@ -78,16 +78,16 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
 {
     [super viewWillAppear:animated];
 
-    self.serverGroupDisplayName =
+    self.serverGroupName =
         [serverGroupPropertyProvider
-         displayNameForServerGroupName:serverGroupName];
+         displayNameForServerGroup:serverGroupKey];
 
     self.navigationItem.rightBarButtonItem.enabled =
-        serverGroupDisplayName.length > 0;
+        serverGroupName.length > 0;
 
     UITextField * textField = (UITextField *)
         [self.editServerNameCell viewWithTag:SERVER_NAME_TEXT_FIELD_TAG];
-    textField.text = self.serverGroupDisplayName;
+    textField.text = self.serverGroupName;
     [textField becomeFirstResponder];
 
     // view is cached once it's created and the table view is not repopulated
@@ -138,18 +138,16 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
     if (indexPath.section == kSettingsSection) {
         UITextField * textField =
             (UITextField *) [cell viewWithTag:SERVER_NAME_TEXT_FIELD_TAG];
-        textField.text = serverGroupDisplayName;
+        textField.text = serverGroupName;
     } else {
         NameValueTableViewCell * nameValueCell =
             (NameValueTableViewCell *) cell;
 
         switch (indexPath.row) {
-            case kLinkRow:
+            case kKeyRow:
                 [nameValueCell setName:
                  NSLocalizedString(@"editserverdetails.link.label", @"")];
-                [nameValueCell setValue:
-                 [serverGroupPropertyProvider
-                  linkForServerGroupName:serverGroupName]];
+                [nameValueCell setValue:serverGroupKey];
                 break;
 
             case kDashboardLinkRow:
@@ -158,7 +156,7 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
                     @"")];
                 [nameValueCell setValue:
                  [serverGroupPropertyProvider
-                  dashboardLinkForServerGroupName:serverGroupName]];
+                  dashboardLinkForServerGroup:serverGroupKey]];
                 break;
 
             case kNumberOfProjectsRow:
@@ -168,7 +166,7 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
                 [nameValueCell setValue:
                  [NSString stringWithFormat:@"%d",
                   [serverGroupPropertyProvider
-                   numberOfProjectsForServerGroupName:serverGroupName]]];
+                   numberOfProjectsForServerGroup:serverGroupKey]]];
                 break;
         }
     }
@@ -188,25 +186,25 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
     shouldChangeCharactersInRange:(NSRange)range
                 replacementString:(NSString *)string
 {
-    self.serverGroupDisplayName =
+    self.serverGroupName =
         [field.text stringByReplacingCharactersInRange:range withString:string];
 
     self.navigationItem.rightBarButtonItem.enabled =
-        serverGroupDisplayName.length > 0;
+        serverGroupName.length > 0;
 
     return YES;
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField
 {
-    self.serverGroupDisplayName = @"";
+    self.serverGroupName = @"";
     self.navigationItem.rightBarButtonItem.enabled = NO;
     return YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    self.serverGroupDisplayName = textField.text;
+    self.serverGroupName = textField.text;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -219,8 +217,8 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
 
 - (void) userDidSave
 {
-    NSString * name = [[serverGroupName copy] autorelease];
-    NSString * displayName = [[serverGroupDisplayName copy] autorelease];
+    NSString * name = [[serverGroupKey copy] autorelease];
+    NSString * displayName = [[serverGroupName copy] autorelease];
 
     [delegate userDidEditServerGroupName:name
                   serverGroupDisplayName:displayName];
@@ -229,7 +227,7 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
 - (void) userDidCancel
 {
     [delegate userDidCancelEditingServerGroupName:
-     [[serverGroupName copy] autorelease]];
+     [[serverGroupKey copy] autorelease]];
 }
 
 #pragma mark Accessors

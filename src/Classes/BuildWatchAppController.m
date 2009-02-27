@@ -50,7 +50,7 @@
 - (NSArray *) serversMatchingGroupKey:(NSString *)groupName;
 - (NSArray *) projectKeysForServer:(NSString *)server;
 - (NSArray *) projectKeysForServerGroupKey:(NSString *)serverGroupName;
-- (NSArray *) sortedServerGroupNames;
+- (NSArray *) sortedServerGroups;
 - (void) loadPasswordsFromKeychain;
 - (void) savePasswordsToKeychain;
 - (void) loadStateFromPersistenceStore;
@@ -135,7 +135,7 @@
     [self refreshAllServerData];
     
     [serverGroupNameSelector
-     selectServerGroupNamesFrom:[self sortedServerGroupNames] animated:NO];
+     selectServerGroupsFrom:[self sortedServerGroups] animated:NO];
     
     [self setActiveServerGroupName:
      [persistentStore getActiveServerGroupName]];
@@ -224,7 +224,7 @@
                  selectProjectFrom:projectIdsForActiveServerGroup animated:NO];
         } else
             [serverGroupNameSelector
-             selectServerGroupNamesFrom:[self sortedServerGroupNames]
+             selectServerGroupsFrom:[self sortedServerGroups]
              animated:NO];
         
         [newProjectKeys release];
@@ -264,7 +264,7 @@
 
 #pragma mark ServerSelectorDelegate protocol implementation
 
-- (void) userDidSelectServerGroupName:(NSString *)serverGroupkey
+- (void) userDidSelectServerGroup:(NSString *)serverGroupkey
 {
     NSLog(@"User selected server group name: %@.", serverGroupkey);
     [self setActiveServerGroupName:serverGroupkey];
@@ -273,16 +273,16 @@
      animated:YES]; 
 }
 
-- (void) userDidDeselectServerGroupName
+- (void) userDidDeselectServerGroup
 {
     NSLog(@"User deselected server group name: %@.", activeServerGroupName);
     [self setActiveServerGroupName:nil]; 
 }
 
 // Get the url for single-server server groups
-- (NSString *) webAddressForServerGroupName:(NSString *)serverGroupName
+- (NSString *) webAddressForServerGroup:(NSString *)serverGroupKey
 {
-    NSArray * serversInGroup = [self serversMatchingGroupKey:serverGroupName];
+    NSArray * serversInGroup = [self serversMatchingGroupKey:serverGroupKey];
     NSString * webAddress;
     int numServers = [serversInGroup count];
     if (numServers == 1)
@@ -296,12 +296,12 @@
     return webAddress;
 }
 
-- (int) numBrokenForServerGroupName:(NSString *)serverGroupName
+- (int) numBrokenForServerGroup:(NSString *)serverGroup
 {
     int numBrokenBuilds = 0;
     
     NSArray * serverGroupProjectKeys =
-        [self projectKeysForServerGroupKey:serverGroupName];
+        [self projectKeysForServerGroupKey:serverGroup];
     for (NSString * projectKey in serverGroupProjectKeys)
         if (![[buildSucceededStates objectForKey:projectKey] boolValue] &&
             [[projectTrackedStates objectForKey:projectKey] boolValue])
@@ -346,10 +346,10 @@
     [serverGroupCreator createServerGroup];
 }
 
-- (void) editServerGroupName:(NSString *)serverGroupName
+- (void) editServerGroup:(NSString *)serverGroup
 {
-    NSLog(@"User wants to edit server group: '%@'.", serverGroupName);
-    [serverGroupEditor editServerGroup:serverGroupName];
+    NSLog(@"User wants to edit server group: '%@'.", serverGroup);
+    [serverGroupEditor editServerGroup:serverGroup];
 }
 
 - (void) userDidSetServerGroupSortOrder:(NSArray *)newServerGroupNames
@@ -387,7 +387,7 @@
     [self report:report receivedFrom:report.key];
 
     [serverGroupNameSelector 
-     selectServerGroupNamesFrom:[self sortedServerGroupNames] animated:YES];
+     selectServerGroupsFrom:[self sortedServerGroups] animated:YES];
 }
 
 - (BOOL) isServerGroupUrlValid:(NSString *)url
@@ -442,9 +442,9 @@
 
 #pragma mark ServerGroupPropertyProvider protocol implementation
 
-- (NSString *) displayNameForServerGroupName:(NSString *)serverGroupName
+- (NSString *) displayNameForServerGroup:(NSString *)serverGroupKey
 {
-    return [serverGroupNames objectForKey:serverGroupName];
+    return [serverGroupNames objectForKey:serverGroupKey];
 }
 
 - (NSString *) linkForServerGroupName:(NSString *)serverGroupName
@@ -452,12 +452,12 @@
     return serverGroupName;
 }
 
-- (NSString *) dashboardLinkForServerGroupName:(NSString *)serverGroupName
+- (NSString *) dashboardLinkForServerGroup:(NSString *)serverGroupKey
 {
-    return [serverDashboardLinks objectForKey:serverGroupName];
+    return [serverDashboardLinks objectForKey:serverGroupKey];
 }
 
-- (NSUInteger) numberOfProjectsForServerGroupName:(NSString *)serverGroupKey
+- (NSUInteger) numberOfProjectsForServerGroup:(NSString *)serverGroupKey
 {
     return [[self projectKeysForServerGroupKey:serverGroupKey] count];
 }
@@ -782,7 +782,7 @@
     [buildSucceededStates removeObjectsForKeys:removedProjectKeys];
 }
 
-- (NSArray *) sortedServerGroupNames
+- (NSArray *) sortedServerGroups
 {
     return [[serverGroupSortOrder mutableCopy] autorelease];
 }

@@ -2,10 +2,10 @@
 //  Copyright 2009 High Order Bit, Inc.. All rights reserved.
 //
 
-#import "UIServerGroupNameSelector.h"
+#import "UIServerGroupSelector.h"
 #import "ServerViewController.h"
 
-@implementation UIServerGroupNameSelector
+@implementation UIServerGroupSelector
 
 @synthesize delegate;
 @synthesize navigationController;
@@ -21,10 +21,10 @@
 
 #pragma mark ServerSelector protocol methods
 
-- (void) selectServerGroupNamesFrom:(NSArray *)someServerGroupNames
-                           animated:(BOOL)animated
+- (void) selectServerGroupsFrom:(NSArray *)someServerGroupKeys
+                       animated:(BOOL)animated
 {
-    [self.serverViewController setServerGroupNames:someServerGroupNames];
+    [self.serverViewController setServerGroupNames:someServerGroupKeys];
     UIViewController * topViewController =
         self.navigationController.topViewController;
 

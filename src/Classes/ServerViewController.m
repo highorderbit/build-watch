@@ -47,7 +47,7 @@
     self.navigationItem.leftBarButtonItem.enabled =
         serverGroupNames.count > 0;
 
-    [delegate userDidDeselectServerGroupName];
+    [delegate userDidDeselectServerGroup];
 
     // ensure we are displaying the freshest data
     [tableView reloadData];
@@ -89,17 +89,15 @@
         cell.hidesAccessoryWhenEditing = NO;
     }
 
-    NSString * serverGroupName =
+    NSString * serverGroup =
         [serverGroupNames objectAtIndex:indexPath.row];
     
-    cell.nameLabel.text =
-        [delegate displayNameForServerGroupName:serverGroupName];
+    cell.nameLabel.text = [delegate displayNameForServerGroup:serverGroup];
     
     cell.webAddressLabel.text =
-        [delegate webAddressForServerGroupName:serverGroupName];
+        [delegate webAddressForServerGroup:serverGroup];
     
-    int numBroken =
-        [delegate numBrokenForServerGroupName:serverGroupName];
+    int numBroken = [delegate numBrokenForServerGroup:serverGroup];
     cell.brokenBuildsLabel.text =
         [NSString
          stringWithFormat:
@@ -133,9 +131,9 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     NSString * server = [serverGroupNames objectAtIndex:indexPath.row];
 
     if (!tv.editing)
-        [delegate userDidSelectServerGroupName:server];
+        [delegate userDidSelectServerGroup:server];
     else if([delegate canServerGroupBeDeleted:server])
-        [delegate editServerGroupName:server];
+        [delegate editServerGroup:server];
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView *)tv
