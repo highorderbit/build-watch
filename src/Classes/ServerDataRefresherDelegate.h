@@ -6,14 +6,11 @@
 
 @protocol ServerDataRefresherDelegate
 
-- (void) refreshingDataForServer:(NSString *)server
-                     displayName:(NSString *)displayName;
+- (void) refreshingDataForServer:(NSString *)server;
 
-- (void) didRefreshDataForServer:(NSString *)server
-                     displayName:(NSString *)displayName;
+- (void) didRefreshDataForServer:(NSString *)server;
 
 - (void) failedToRefreshDataForServer:(NSString *)server
-                          displayName:(NSString *)displayName
                                 error:(NSError *)error;
 
 @end

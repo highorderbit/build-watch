@@ -550,6 +550,8 @@
 				911EDE250F3D120700E17BC0 /* ServerDataRefresherDelegate.h */,
 				911EDDFC0F3D0DC300E17BC0 /* UIServerDataRefresher.h */,
 				911EDDFD0F3D0DC300E17BC0 /* UIServerDataRefresher.m */,
+				911EDE2D0F3D1B0D00E17BC0 /* UIServerDataRefresherDelegate.h */,
+				911EDE2E0F3D1B0D00E17BC0 /* UIServerDataRefresherDelegate.m */,
 			);
 			name = "Server Data Refreshing";
 			sourceTree = "<group>";
@@ -639,8 +641,6 @@
 		05FE3D560F3E0F8300EE7FB9 /* RegexKitLite */ = {
 			isa = PBXGroup;
 			children = (
-				911EDE2D0F3D1B0D00E17BC0 /* UIServerDataRefresherDelegate.h */,
-				911EDE2E0F3D1B0D00E17BC0 /* UIServerDataRefresherDelegate.m */,
 				911EDBD00F3CA58A00E17BC0 /* RegexKitLite.h */,
 				911EDBD10F3CA58A00E17BC0 /* RegexKitLite.m */,
 			);

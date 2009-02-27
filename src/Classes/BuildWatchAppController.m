@@ -174,9 +174,8 @@
 
 - (void) report:(ServerReport *)report receivedFrom:(NSString *)server
 {
-    [serverDataRefresherDelegate
-     didRefreshDataForServer:server
-                 displayName:[serverGroupNames objectForKey:server]];
+    [serverDataRefresherDelegate didRefreshDataForServer:server];
+
     if ([servers objectForKey:server]) {
         [self updatePropertiesForProjectReports:[report projectReports]
                                      withServer:server];
@@ -231,9 +230,7 @@
 {
     NSLog(@"Failed to refresh server: '%@'. '%@'.", serverUrl, error);
     [serverDataRefresherDelegate
-     failedToRefreshDataForServer:serverUrl
-                      displayName:[serverGroupNames objectForKey:serverUrl]
-                            error:error];
+     failedToRefreshDataForServer:serverUrl error:error];
 }
 
 - (NSObject<ServerReportBuilder> *) builderForServer:(NSString *)serverUrl
@@ -513,9 +510,7 @@
     NSArray * serverKeys = [servers allKeys];
     
     for (NSString * server in serverKeys) {
-        [serverDataRefresherDelegate
-         refreshingDataForServer:server
-                     displayName:[serverGroupNames objectForKey:server]];
+        [serverDataRefresherDelegate refreshingDataForServer:server];
         [buildService refreshDataForServer:server];
     }
 }

@@ -5,6 +5,7 @@
 #import <UIKit/UIKit.h>
 
 #import "ServerDataRefresherDelegate.h"
+#import "ServerGroupPropertyProvider.h"
 
 @interface UIServerDataRefresherDelegate : NSObject
                                          < ServerDataRefresherDelegate >
@@ -17,6 +18,9 @@
 
     NSMutableDictionary * failedServerRequests;
     NSMutableDictionary * serverDisplayNames;
+
+    IBOutlet NSObject<ServerGroupPropertyProvider> *
+        serverGroupPropertyProvider;
 }
 
 @end
