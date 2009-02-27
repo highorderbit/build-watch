@@ -240,7 +240,9 @@ enum HelpRows
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
-    [self userDidSave];
+    if (serverUrl.length > 0 && [delegate isServerGroupUrlValid:serverUrl])
+        [self userDidSave];
+
     return NO;
 }
 
@@ -340,7 +342,7 @@ enum HelpRows
     textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     textField.returnKeyType = UIReturnKeyDone;
     textField.keyboardType = UIKeyboardTypeURL;
-    textField.enablesReturnKeyAutomatically = YES;
+    textField.enablesReturnKeyAutomatically = NO;
 
     return textField;
 }
