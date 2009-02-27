@@ -5,13 +5,15 @@
 #import <UIKit/UIKit.h>
 #import "AddServerViewControllerDelegate.h"
 
+@class TextFieldTableViewCell;
+
 @interface AddServerViewController : UIViewController
                                      < UITableViewDataSource,
                                        UITableViewDelegate,
                                        UITextFieldDelegate >
 {
     UITableView * tableView;
-    UITableViewCell * editServerUrlCell;
+    TextFieldTableViewCell * editServerUrlCell;
 
     NSObject<AddServerViewControllerDelegate> * delegate;
 
@@ -22,7 +24,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet UITableView * tableView;
-@property (nonatomic, readonly) UITableViewCell * editServerUrlCell;
+@property (nonatomic, readonly) TextFieldTableViewCell * editServerUrlCell;
 @property (nonatomic, retain) NSObject<AddServerViewControllerDelegate> *
     delegate;
 @property (nonatomic, copy) NSString * serverUrl;

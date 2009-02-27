@@ -3,6 +3,7 @@
 //
 
 #import "EditServerDetailsViewController.h"
+#import "TextFieldTableViewCell.h"
 #import "NameValueTableViewCell.h"
 #import "ServerReport.h"
 
@@ -233,20 +234,17 @@ static const NSInteger SERVER_NAME_TEXT_FIELD_TAG = 1;
 
 #pragma mark Accessors
 
-- (UITableViewCell *) editServerNameCell
+- (TextFieldTableViewCell *) editServerNameCell
 {
     if (editServerNameCell == nil) {
-        editServerNameCell =
-            [[UITableViewCell alloc]
-              initWithFrame:CGRectZero
-            reuseIdentifier:SettingsSectionCellIdentifier];
+        editServerNameCell = [[TextFieldTableViewCell createInstance] retain];
 
         CGRect textFieldFrame = CGRectMake(10.0, 10.0, 285.0, 22.0);
         UITextField * textField =
             [self editServerNameTextFieldWithFrame:textFieldFrame
                                                tag:SERVER_NAME_TEXT_FIELD_TAG];
 
-        [editServerNameCell.contentView addSubview:textField];
+        editServerNameCell.textField = textField;
     }
 
     return editServerNameCell;
