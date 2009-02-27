@@ -1,5 +1,5 @@
 //
-//  Copyright 2009 High Order Bit, Inc.. All rights reserved.
+//  Copyright High Order Bit, Inc. 2009. All rights reserved.
 //
 
 #import "NetworkBuildService.h"
@@ -8,8 +8,72 @@
 #import "GenericServerReportBuilder.h"
 #import "ServerReport.h"
 #import "NSError+BuildWatchAdditions.h"
+#import "AsynchronousInvocation.h"
+
+@interface AsynchronousReportBuilder : NSObject
+{
+    NSObject<ServerReportBuilder> * builder;
+
+    NSString * serverUrl;
+    NSData * data;
+    NSError * error;
+
+    ServerReport * report;
+}
+
+@property (nonatomic, copy) NSString * serverUrl;
+@property (nonatomic, retain) NSObject<ServerReportBuilder> * builder;
+@property (nonatomic, copy) NSData * data;
+@property (nonatomic, copy) NSError * error;
+@property (nonatomic, copy) ServerReport * report;
+
+- (id) initWithBuilder:(NSObject<ServerReportBuilder> *)aBuilder
+             serverUrl:(NSString *)aServerUrl
+                  data:(NSData *)someData;
+
+- (void) buildServerReport;
+@end
+
+@implementation AsynchronousReportBuilder
+@synthesize serverUrl, builder, data, error, report;
+
+- (void) dealloc
+{
+    [builder release];
+    [serverUrl release];
+    [data release];
+    [error release];
+    [report release];
+    [super dealloc];
+}
+
+- (id) initWithBuilder:(NSObject<ServerReportBuilder> *)aBuilder
+             serverUrl:(NSString *)aServerUrl
+                  data:(NSData *)someData
+{
+    if (self = [super init]) {
+        self.builder = aBuilder;
+        self.serverUrl = aServerUrl;
+        self.data = someData;
+    }
+
+    return self;
+}
+
+- (void) buildServerReport
+{
+    NSError * err;
+
+    self.report = [builder serverReportFromUrl:serverUrl data:data error:&err];
+    if (err)
+        self.error = err;  // take ownership of the error object
+}
+@end
 
 @interface NetworkBuildService (Private)
+- (void) parseDataAsynchronously:(NSData *)data
+                         fromUrl:(NSString *)serverUrl
+                     withBuilder:(NSObject<ServerReportBuilder> *)builder;
 - (NSObject<BuildStatusUpdater> *) createUpdaterForServerUrl:
     (NSString *)serverUrl;
 - (void) destroyUpdater:(NSObject<BuildStatusUpdater> *)updater;
@@ -26,6 +90,7 @@
 {
     [delegate release];
     [updaters release];
+    [asyncBuilders release];
     [super dealloc];
 }
 
@@ -41,6 +106,7 @@
     if (self = [super init]) {
         self.delegate = aDelegate;
         updaters = [[NSMutableDictionary alloc] init];
+        asyncBuilders = [[NSMutableDictionary alloc] init];
     }
 
     return self;
@@ -68,9 +134,12 @@
 
             [updater cancelUpdate];
             [self destroyUpdater:updater];
+
             break;
         }
     }
+
+    [asyncBuilders removeObjectForKey:serverUrl];
 }
 
 #pragma mark BuildStatusUpdater protocol implementation
@@ -84,24 +153,62 @@
     NSObject<ServerReportBuilder> * builder =
         [delegate builderForServer:serverUrl];
 
-    ServerReport * report = nil;
     NSError * error = nil;
 
-    if (!builder)
+    if (builder)
+        [self parseDataAsynchronously:data
+                              fromUrl:serverUrl
+                          withBuilder:builder];
+    else {
         error = [NSError errorWithLocalizedDescription:
              NSLocalizedString(@"ccserver.unsupported.message", @"")];
-    else
-        report = [builder serverReportFromUrl:serverUrl
-                                         data:data
-                                        error:&error];
-
-    if (!builder || error)
         [delegate
             attemptToGetReportFromServer:serverUrl didFailWithError:error];
+    }
+}
+
+- (void) parseDataAsynchronously:(NSData *)data
+                         fromUrl:(NSString *)serverUrl
+                     withBuilder:(NSObject<ServerReportBuilder> *)builder
+{
+    AsynchronousReportBuilder * asyncBuilder =
+        [[AsynchronousReportBuilder alloc] initWithBuilder:builder
+                                                 serverUrl:serverUrl
+                                                      data:data];
+
+    SEL sel = @selector(buildServerReport);
+    NSMethodSignature * sig = [asyncBuilder methodSignatureForSelector:sel];
+    NSInvocation * invocation =
+        [NSInvocation invocationWithMethodSignature:sig];
+
+    [invocation setTarget:asyncBuilder];
+    [invocation setSelector:sel];
+    [invocation retainArguments];
+
+    AsynchronousInvocation * ai = [AsynchronousInvocation invocation];
+    [asyncBuilders setObject:ai forKey:serverUrl];
+
+    [ai executeInvocationAsynchronously:invocation
+                   returnValueRecipient:self
+                               selector:@selector(builderFinished:)];
+}
+
+- (void) builderFinished:(NSInvocation *)invocation
+{
+    AsynchronousReportBuilder * builder = [invocation target];
+
+    ServerReport * report = builder.report;
+    NSString * serverUrl = builder.serverUrl;
+    NSError * error = builder.error;
+
+    if (error)
+        [delegate
+         attemptToGetReportFromServer:serverUrl didFailWithError:error];
     else
         [delegate report:report receivedFrom:serverUrl];
 
-    [self destroyUpdater:updater];
+    [asyncBuilders removeObjectForKey:serverUrl];
+    [builder release];
 }
 
 - (void) updater:(NSObject<BuildStatusUpdater> *)updater

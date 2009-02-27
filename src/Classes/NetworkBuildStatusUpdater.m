@@ -57,6 +57,7 @@
 
 - (void) connection:(NSURLConnection *)conn didReceiveData:(NSData *)moreData
 {
+    NSLog(@"Appending data with %d bytes.", moreData.length);
     [data appendData:moreData];
 }
 
