@@ -13,7 +13,6 @@
     UIBarButtonItem * addBarButtonItem;
 
     NSMutableArray * serverGroupNames;
-    NSMutableArray * visibleServerGroupNames;
     NSObject<ServerGroupNameSelectorDelegate> * delegate;
 }
 

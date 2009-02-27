@@ -13,8 +13,6 @@
 
 @class Server, Project;
 
-static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
-
 @interface BuildWatchAppController (Private)
 
 - (void) setActiveServerGroupName:(NSString *) activeServer;
@@ -744,13 +742,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
 - (NSArray *) sortedServerGroupNames
 {
-    NSMutableArray * tempServerGroupNames =
-        [[serverGroupSortOrder mutableCopy] autorelease];
-    [tempServerGroupNames
-        insertObject:NSLocalizedString(SERVER_GROUP_NAME_ALL, @"")
-             atIndex:0];
-
-    return tempServerGroupNames;
+    return [[serverGroupSortOrder mutableCopy] autorelease];
 }
 
 - (NSArray *) serversMatchingGroupName:(NSString *)groupName
