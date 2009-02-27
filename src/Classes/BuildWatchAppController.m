@@ -150,18 +150,18 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 {
     [persistentStore saveServers:servers];
     [persistentStore saveServerGroupPatterns:serverGroupPatterns];
-    [persistentStore saveServerNames:serverGroupNames];
+    [persistentStore saveServerGroupNames:serverGroupNames];
     [persistentStore saveServerDashboardLinks:serverDashboardLinks];
     [persistentStore saveServerGroupSortOrder:serverGroupSortOrder];
     [persistentStore saveServerUsernames:serverUsernames];
     [self savePasswordsToKeychain];
-    [persistentStore saveProjectDisplayNames:projectNames];
-    [persistentStore saveProjectLabels:buildLabels];
-    [persistentStore saveProjectDescriptions:buildDescriptions];
-    [persistentStore saveProjectPubDates:buildPubDates];
-    [persistentStore saveProjectLinks:buildReportLinks];
+    [persistentStore saveProjectNames:projectNames];
+    [persistentStore saveBuildLabels:buildLabels];
+    [persistentStore saveBuildDescriptions:buildDescriptions];
+    [persistentStore saveBuildPubDates:buildPubDates];
+    [persistentStore saveBuildReportLinks:buildReportLinks];
     [persistentStore saveProjectForceBuildLinks:projectForceBuildLinks];
-    [persistentStore saveProjectBuildSucceededStates:
+    [persistentStore saveBuildSucceededStates:
      buildSucceededStates];
     [persistentStore saveProjectTrackedStates:projectTrackedStates];
     [persistentStore saveActiveServerGroupName:activeServerGroupName];
@@ -792,22 +792,22 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [self setServerDashboardLinks:[persistentStore getServerDashboardLinks]];
     
     [self setServerGroupPatterns:[persistentStore getServerGroupPatterns]];
-    [self setServerGroupNames:[persistentStore getServerNames]];
+    [self setServerGroupNames:[persistentStore getServerGroupNames]];
     [self setServerGroupSortOrder:[persistentStore getServerGroupSortOrder]];
     
     [self setServerUsernames:[persistentStore getServerUsernames]];
     [self loadPasswordsFromKeychain];
     
-    [self setProjectNames:[persistentStore getProjectDisplayNames]];
-    [self setBuildLabels:[persistentStore getProjectLabels]];
-    [self setBuildDescriptions:[persistentStore getProjectDescriptions]];
-    [self setBuildPubDates:[persistentStore getProjectPubDates]];
-    [self setBuildReportLinks:[persistentStore getProjectLinks]];
+    [self setProjectNames:[persistentStore getProjectNames]];
+    [self setBuildLabels:[persistentStore getBuildLabels]];
+    [self setBuildDescriptions:[persistentStore getBuildDescriptions]];
+    [self setBuildPubDates:[persistentStore getBuildPubDates]];
+    [self setBuildReportLinks:[persistentStore getBuildReportLinks]];
     [self setProjectForceBuildLinks:
      [persistentStore getProjectForceBuildLinks]];
     
     [self setBuildSucceededStates:
-     [persistentStore getProjectBuildSucceededStates]];
+     [persistentStore getBuildSucceededStates]];
     
     [self setProjectTrackedStates:[persistentStore getProjectTrackedStates]];
     

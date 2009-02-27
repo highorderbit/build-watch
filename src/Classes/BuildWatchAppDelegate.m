@@ -5,7 +5,6 @@
 #import "BuildWatchAppDelegate.h"
 #import "ServerViewController.h"
 #import "BuildWatchAppController.h"
-#import "MockBuildWatchPersistentStore.h"
 
 @implementation BuildWatchAppDelegate
 

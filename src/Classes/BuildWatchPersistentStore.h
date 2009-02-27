@@ -20,9 +20,9 @@
 
 - (NSDictionary *) getServerGroupPatterns;
 
-- (void) saveServerNames:(NSDictionary *)serverNames;
+- (void) saveServerGroupNames:(NSDictionary *)serverGroupNames;
 
-- (NSDictionary *) getServerNames;
+- (NSDictionary *) getServerGroupNames;
 
 - (void) saveServerDashboardLinks:(NSDictionary *)dashboardLinks;
 
@@ -36,34 +36,33 @@
 
 - (NSDictionary *) getServerUsernames;
 
-- (void) saveProjectDisplayNames:(NSDictionary *)projectDisplayNames;
+- (void) saveProjectNames:(NSDictionary *)projectNames;
 
-- (NSDictionary *) getProjectDisplayNames;
+- (NSDictionary *) getProjectNames;
 
-- (void) saveProjectLabels:(NSDictionary *)projectLabels;
+- (void) saveBuildLabels:(NSDictionary *)buildLabels;
 
-- (NSDictionary *) getProjectLabels;
+- (NSDictionary *) getBuildLabels;
 
-- (void) saveProjectDescriptions:(NSDictionary *)projectDescriptions;
+- (void) saveBuildDescriptions:(NSDictionary *)buildDescriptions;
 
-- (NSDictionary *) getProjectDescriptions;
+- (NSDictionary *) getBuildDescriptions;
 
-- (void) saveProjectPubDates:(NSDictionary *)projectPubDates;
+- (void) saveBuildPubDates:(NSDictionary *)buildPubDates;
 
-- (NSDictionary *) getProjectPubDates;
+- (NSDictionary *) getBuildPubDates;
 
-- (void) saveProjectLinks:(NSDictionary *)projectLinks;
+- (void) saveBuildReportLinks:(NSDictionary *)buildReportLinks;
 
-- (NSDictionary *) getProjectLinks;
+- (NSDictionary *) getBuildReportLinks;
 
 - (void) saveProjectForceBuildLinks:(NSDictionary *)projectForceBuildLinks;
 
 - (NSDictionary *) getProjectForceBuildLinks;
 
-- (void) saveProjectBuildSucceededStates:
-    (NSDictionary *)projectBuildSucceededStates;
+- (void) saveBuildSucceededStates:(NSDictionary *)buildSucceededStates;
 
-- (NSDictionary *) getProjectBuildSucceededStates;
+- (NSDictionary *) getBuildSucceededStates;
 
 - (void) saveProjectTrackedStates:(NSDictionary *)projectTrackedStates;
 
