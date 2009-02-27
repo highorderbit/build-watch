@@ -18,14 +18,14 @@
 
 #pragma mark BuildWatchPersistentStore implementation
 
-- (void) saveServers:(NSDictionary *)servers
+- (void) saveServerKeys:(NSArray *)serverKeys
 {
-    [[self class] saveDictionary:servers toPlist:@"Servers"];
+    [[self class] saveArray:serverKeys toPlist:@"ServerKeys"];
 }
 
-- (NSDictionary *) getServers
+- (NSArray *) getServerKeys
 {
-    return [[self class] getDictionaryFromPlist:@"Servers"];
+    return [[self class] getArrayFromPlist:@"ServerKeys"];
 }
 
 - (void) saveServerGroupPatterns:(NSDictionary *)serverGroupPatterns
@@ -93,6 +93,16 @@
     return [[self class] getDictionaryFromPlist:@"ServerUsernames"];
 }
 
+- (void) saveProjectKeys:(NSArray *)projectKeys
+{
+    [[self class] saveArray:projectKeys toPlist:@"ProjectKeys"];
+}
+
+- (NSArray *) getProjectKeys
+{
+    return [[self class] getArrayFromPlist:@"ProjectKeys"];
+}
+
 - (void) saveProjectNames:(NSDictionary *)projectNames
 {
     [[self class] saveDictionary:projectNames toPlist:@"ProjectNames"];
@@ -101,6 +111,17 @@
 - (NSDictionary *) getProjectNames
 {
     return [[self class] getDictionaryFromPlist:@"ProjectNames"];
+}
+
+- (void) saveProjectServerKeys:(NSDictionary *)projectServerKeys
+{
+    [[self class] saveDictionary:projectServerKeys
+                         toPlist:@"ProjectServerKeys"];
+}
+
+- (NSDictionary *) getProjectServerKeys
+{
+    return [[self class] getDictionaryFromPlist:@"ProjectServerKeys"];
 }
 
 - (void) saveBuildLabels:(NSDictionary *)buildLabels

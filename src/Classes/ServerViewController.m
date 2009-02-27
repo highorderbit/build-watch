@@ -164,17 +164,17 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
      forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        NSString * serverGroupName =
+        NSString * serverGroupKey =
             [serverGroupNames objectAtIndex:indexPath.row];
 
-        [serverGroupNames removeObject:serverGroupName];
-        [delegate deleteServerGroupWithName:serverGroupName];
-        // remove locally last to avoid premature deallocation
-        [serverGroupNames removeObjectAtIndex:indexPath.row];
+        [serverGroupNames removeObject:serverGroupKey];
+        [delegate deleteServerGroupWithKey:serverGroupKey];
 
         [tableView deleteRowsAtIndexPaths:
             [NSArray arrayWithObject:indexPath]
                     withRowAnimation:UITableViewRowAnimationFade];
+        
+        [tableView reloadData];
     }
 }
 

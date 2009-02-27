@@ -29,9 +29,7 @@
                                        ServerDataRefresher,
                                        ServerGroupEditorDelegate >
 {
-    // Servers are a list of URL strings.
-    //     (NSString *) server url -> (NSArray *) project names (NSString *)
-    NSMutableDictionary * servers;
+    NSMutableArray * serverKeys;
 
     // Mapping of:
     //     server url -> server dashboard link
@@ -53,9 +51,9 @@
     NSMutableDictionary * serverUsernames;
     NSMutableDictionary * serverPasswords;
     
-    // Various project properties, mapped as follows:
-    //     (NSString *) project id -> property value
+    NSMutableArray * projectKeys;
     NSMutableDictionary * projectNames;
+    NSMutableDictionary * projectServerKeys;
     NSMutableDictionary * projectForceBuildLinks;
     
     NSMutableDictionary * buildLabels;

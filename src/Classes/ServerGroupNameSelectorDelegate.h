@@ -18,7 +18,7 @@
 
 - (BOOL) canServerGroupBeDeleted:(NSString *)serverGroupName;
 
-- (void) deleteServerGroupWithName:(NSString *)serverGroupName;
+- (void) deleteServerGroupWithKey:(NSString *)serverGroupKey;
 
 - (void) createServerGroup;
 

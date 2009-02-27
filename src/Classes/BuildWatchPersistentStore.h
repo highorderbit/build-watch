@@ -6,15 +6,9 @@
 
 @protocol BuildWatchPersistentStore
 
-/**
- * Replaces existing set of servers with provided array of servers.
- */
-- (void)saveServers:(NSDictionary *)servers;
+- (void) saveServerKeys:(NSArray *)serverKeys;
 
-/**
- * Returns all servers stored in the underlying persistent store.
- */
-- (NSDictionary *)getServers;
+- (NSArray *) getServerKeys;
 
 - (void) saveServerGroupPatterns:(NSDictionary *)serverGroupPatterns;
 
@@ -41,9 +35,17 @@
 
 - (NSDictionary *) getServerUsernames;
 
+- (void) saveProjectKeys:(NSArray *)projectKeys;
+
+- (NSArray *) getProjectKeys;
+
 - (void) saveProjectNames:(NSDictionary *)projectNames;
 
 - (NSDictionary *) getProjectNames;
+
+- (void) saveProjectServerKeys:(NSDictionary *)projectServerKeys;
+
+- (NSDictionary *) getProjectServerKeys;
 
 - (void) saveBuildLabels:(NSDictionary *)buildLabels;
 
