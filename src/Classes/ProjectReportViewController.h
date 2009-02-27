@@ -25,6 +25,7 @@
     NSObject<ProjectPropertyProvider> * delegate;
 
     NSObject<BuildForcer> * buildForcer;
+    BOOL forcingBuild;
 }
 
 @property (nonatomic, retain) IBOutlet UIView * headerView;

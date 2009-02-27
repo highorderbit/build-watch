@@ -22,6 +22,7 @@
 		053BF6AF0F50B8CC004D3327 /* RssHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 053BF6AE0F50B8CC004D3327 /* RssHelpViewController.m */; };
 		053BF6B20F50BA38004D3327 /* RssHelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053BF6B00F50BA38004D3327 /* RssHelpView.xib */; };
 		053BF7020F50CBC0004D3327 /* rss-help.html in Resources */ = {isa = PBXBuildFile; fileRef = 053BF7010F50CBC0004D3327 /* rss-help.html */; };
+		053C91B10F585DFF00FD7B57 /* checkmark-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 053C91B00F585DFF00FD7B57 /* checkmark-blue.png */; };
 		054462920F4932A20070ABBB /* NSString+BuildWatchAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 054462910F4932A20070ABBB /* NSString+BuildWatchAdditions.m */; };
 		0544629E0F4932F60070ABBB /* XmlBoolObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 054462940F4932F60070ABBB /* XmlBoolObjectBuilder.m */; };
 		0544629F0F4932F60070ABBB /* XmlCompositeObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 054462960F4932F60070ABBB /* XmlCompositeObjectBuilder.m */; };
@@ -144,6 +145,7 @@
 		053BF6AE0F50B8CC004D3327 /* RssHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RssHelpViewController.m; sourceTree = "<group>"; };
 		053BF6B10F50BA38004D3327 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RssHelpView.xib; sourceTree = "<group>"; };
 		053BF7010F50CBC0004D3327 /* rss-help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "rss-help.html"; sourceTree = "<group>"; };
+		053C91B00F585DFF00FD7B57 /* checkmark-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark-blue.png"; sourceTree = "<group>"; };
 		054462900F4932A20070ABBB /* NSString+BuildWatchAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BuildWatchAdditions.h"; sourceTree = "<group>"; };
 		054462910F4932A20070ABBB /* NSString+BuildWatchAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BuildWatchAdditions.m"; sourceTree = "<group>"; };
 		054462930F4932F60070ABBB /* XmlBoolObjectBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlBoolObjectBuilder.h; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 				059CBE080F3BC7C800010F3F /* Icon.png */,
 				91F817560F43C7CE0078D366 /* IconWithoutShine.png */,
 				05473C460F44E45E003F5444 /* checkmark.png */,
+				053C91B00F585DFF00FD7B57 /* checkmark-blue.png */,
 				05A1FF920F425F7A00E2C085 /* build-broken.png */,
 				05A1FF8E0F425F3E00E2C085 /* build-succeeded.png */,
 			);
@@ -842,6 +845,7 @@
 				053BF62C0F5092E0004D3327 /* SelectServerTypeView.xib in Resources */,
 				053BF6B20F50BA38004D3327 /* RssHelpView.xib in Resources */,
 				053BF7020F50CBC0004D3327 /* rss-help.html in Resources */,
+				053C91B10F585DFF00FD7B57 /* checkmark-blue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

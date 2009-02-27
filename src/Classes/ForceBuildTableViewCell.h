@@ -6,15 +6,18 @@
 
 @interface ForceBuildTableViewCell : UITableViewCell
 {
+    UILabel * forceBuildLabel;
     UILabel * activityLabel;
     UIActivityIndicatorView * activityIndicator;
     UIImageView * checkmarkImage;
 }
 
+@property (nonatomic, retain) IBOutlet UILabel * forceBuildLabel;
 @property (nonatomic, retain) IBOutlet UILabel * activityLabel;
 @property (nonatomic, retain) IBOutlet UIActivityIndicatorView *
     activityIndicator;
 @property (nonatomic, retain) IBOutlet UIImageView * checkmarkImage;
+
 
 + (NSString *) reuseIdentifier;
 + (ForceBuildTableViewCell *) createInstance;

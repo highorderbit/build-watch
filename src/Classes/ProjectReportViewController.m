@@ -120,7 +120,10 @@ enum ActionRows
 
 - (void) viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
+
     [self.forceBuildTableViewCell resetDisplay:NO];
+    forcingBuild = NO;
 }
 
 #pragma mark UITableViewDelegate
@@ -275,13 +278,14 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 - (void) forceBuild
 {
     NSString * forceBuildLink = [delegate forceBuildLinkForProject:projectId];
-    
+
     if (forceBuildLink) {
         [buildForcer forceBuildForProject:projectId
                         withForceBuildUrl:forceBuildLink];
 
         [self.forceBuildTableViewCell showActivity:
          NSLocalizedString(@"projectdetails.forcebuild.started.label", @"")];
+        forcingBuild = YES;
     } else {
         NSString * projectName = [delegate displayNameForProject:projectId];
         NSString * alertMsg =
@@ -367,8 +371,12 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 - (void) buildForcedForProject:(NSString *)projectUrl
              withForceBuildUrl:(NSString *)projectForceBuildUrl
 {
-    [self.forceBuildTableViewCell showActivityCompletedSuccessfully:
-        NSLocalizedString(@"projectdetails.forcebuild.finished.label", @"")];
+    NSString * forceBuildLink = [delegate forceBuildLinkForProject:projectId];
+    if (forcingBuild && [projectForceBuildUrl isEqual:forceBuildLink]) {
+        [self.forceBuildTableViewCell showActivityCompletedSuccessfully:
+         NSLocalizedString(@"projectdetails.forcebuild.finished.label", @"")];
+        forcingBuild = NO;
+    }
 }
 
 - (void) forceBuildForProject:(NSString *)projectUrl
