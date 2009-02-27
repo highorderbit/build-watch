@@ -6,13 +6,15 @@
 #import "ServerGroupPropertyProvider.h"
 #import "EditServerDetailsViewControllerDelegate.h"
 
+@class TextFieldTableViewCell;
+
 @interface EditServerDetailsViewController : UIViewController
                                              < UITableViewDataSource,
                                                UITableViewDelegate,
                                                UITextFieldDelegate >
 {
     UITableView * tableView;
-    UITableViewCell * editServerNameCell;
+    TextFieldTableViewCell * editServerNameCell;
 
     NSObject<EditServerDetailsViewControllerDelegate> * delegate;
 
@@ -23,7 +25,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet UITableView * tableView;
-@property (nonatomic, readonly) UITableViewCell * editServerNameCell;
+@property (nonatomic, readonly) TextFieldTableViewCell * editServerNameCell;
 @property (nonatomic, retain)
     NSObject<EditServerDetailsViewControllerDelegate> * delegate;
 @property (nonatomic, retain) NSObject<ServerGroupPropertyProvider> *

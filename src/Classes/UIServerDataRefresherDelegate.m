@@ -25,6 +25,7 @@
     [view release];
     [failedServerRequests release];
     [serverDisplayNames release];
+    [serverGroupPropertyProvider release];
     [super dealloc];
 }
 
@@ -62,18 +63,20 @@
 }
 
 - (void) refreshingDataForServer:(NSString *)server
-                     displayName:(NSString *)displayName
-
 {
     if (numOutstandingRequests == 0)
         [self showRefreshInProgressView];
 
+    NSString * displayName =
+        [serverGroupPropertyProvider displayNameForServerGroupName:server];
+    [serverDisplayNames setObject:displayName forKey:server];
     numOutstandingRequests++;
 }
 
-- (void) didRefreshDataForServer:(NSString *)serverUrl
-                     displayName:(NSString *)displayName
+- (void) didRefreshDataForServer:(NSString *)server
 {
+    [serverDisplayNames removeObjectForKey:server];
+
     if (numOutstandingRequests == 1) {
         [self showRefreshCompletedView];
         [self showFailedUpdatesIfNecessary];
@@ -82,12 +85,10 @@
     numOutstandingRequests--;
 }
 
-- (void) failedToRefreshDataForServer:(NSString *)serverUrl
-                          displayName:(NSString *)displayName
+- (void) failedToRefreshDataForServer:(NSString *)server
                                 error:(NSError *)error
 {
-    [failedServerRequests setObject:error forKey:serverUrl];
-    [serverDisplayNames setObject:displayName forKey:serverUrl];
+    [failedServerRequests setObject:error forKey:server];
 
     if (numOutstandingRequests == 1) {
         [self showRefreshCompletedView];

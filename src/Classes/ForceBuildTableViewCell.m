@@ -6,6 +6,7 @@
 
 @implementation ForceBuildTableViewCell
 
+@synthesize forceBuildLabel;
 @synthesize activityLabel;
 @synthesize activityIndicator;
 @synthesize checkmarkImage;
@@ -28,6 +29,7 @@
 
 - (void)dealloc
 {
+    [forceBuildLabel release];
     [activityLabel release];
     [activityIndicator release];
     [checkmarkImage release];
@@ -41,11 +43,28 @@
     return self;
 }
 
+- (void) prepareForReuse
+{
+    [super prepareForReuse];
+    
+    [self resetDisplay:NO];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
+    if (selected) {
+        forceBuildLabel.textColor = [UIColor whiteColor];
+        activityLabel.textColor = [UIColor whiteColor];;
+        activityIndicator.activityIndicatorViewStyle =
+            UIActivityIndicatorViewStyleWhite;
+    } else {
+        forceBuildLabel.textColor = [UIColor blackColor];
+        activityLabel.textColor = [UIColor blackColor];
+        activityIndicator.activityIndicatorViewStyle =
+            UIActivityIndicatorViewStyleGray;
+    }
 }
 
 #pragma mark Control the display

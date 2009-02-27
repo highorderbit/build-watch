@@ -3,6 +3,7 @@
 //
 
 #import "AddServerViewController.h"
+#import "TextFieldTableViewCell.h"
 #import "UITableViewCell+BuildWatchAdditions.h"
 
 static NSString * TEXT_FIELD_TABLE_VIEW_CELL_IDENTIFIER =
@@ -271,20 +272,18 @@ enum HelpRows
 
 #pragma mark Accessor methods
 
-- (UITableViewCell *)editServerUrlCell
+- (TextFieldTableViewCell *)editServerUrlCell
 {
     if (editServerUrlCell == nil) {
         editServerUrlCell =
-            [[UITableViewCell alloc]
-              initWithFrame:CGRectZero
-            reuseIdentifier:TEXT_FIELD_TABLE_VIEW_CELL_IDENTIFIER];
+            [[TextFieldTableViewCell createInstance] retain];
 
         CGRect textFieldFrame = CGRectMake(10.0, 10.0, 285.0, 22.0);
         UITextField * textField =
             [self editServerUrlTextFieldWithFrame:textFieldFrame
                                               tag:SERVER_URL_TEXT_FIELD_TAG];
 
-        [editServerUrlCell.contentView addSubview:textField];
+        editServerUrlCell.textField = textField;
     }
 
     return editServerUrlCell;
