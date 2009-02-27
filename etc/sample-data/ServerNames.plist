@@ -10,5 +10,7 @@
 	<string>Microsoft Builds</string>
 	<key>http://openoffice.org/builds/</key>
 	<string>OpenOffice Builds</string>
+	<key>all</key>
+	<string>All Servers</string>
 </dict>
 </plist>

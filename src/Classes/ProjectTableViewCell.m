@@ -120,9 +120,15 @@
 
 - (void) updateBuildStatusLabelText
 {
-    NSString * statusDesc = buildSucceeded ? @"succeeded" : @"failed";
+    NSString * statusDesc =
+        buildSucceeded ?
+        NSLocalizedString(@"projecttableviewcell.succeeded", @"") :
+        NSLocalizedString(@"projecttableviewcell.failed", @"");
     buildStatusLabel.text =
-    [NSString stringWithFormat:@"Build %@ %@", buildLabel, statusDesc];
+        [NSString
+        stringWithFormat:
+        NSLocalizedString(@"projecttableviewcell.build.format.string", @""),
+        buildLabel, statusDesc];
 }
 
 #pragma mark Private static helper functions

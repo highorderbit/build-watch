@@ -31,13 +31,13 @@ ServerGroup:
 Project:
     - key
     - name
-    - dashboardLink
     - latestBuild
     - forceBuildLink
 Build:
     - pubDate
     - label
     - description
+    - reportLink
 
 Implementation:
 
@@ -62,4 +62,4 @@ variable names.  Example names: buildPubDate, buildLabel, buildDescriptions
 - references to display names and non-unique descriptions should contain "Name"
     - examples: serverGroupName, projectName
 - dashboard links should contain "dashboardLinks"
-    - examples: serverDashboardLinks, projectDashboardLinks
+    - examples: serverDashboardLinks, buildReportLinks

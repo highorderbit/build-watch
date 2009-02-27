@@ -108,7 +108,9 @@
     int numBroken =
         [delegate numBrokenForServerGroupName:serverGroupName];
     cell.brokenBuildsLabel.text =
-        [NSString stringWithFormat:@"%@ broken",
+        [NSString
+         stringWithFormat:
+         NSLocalizedString(@"servergroups.broken.format.string", @""),
          [NSNumber numberWithInt:numBroken]];
     [cell setBrokenBuildTextColor:
         numBroken == 0 ?

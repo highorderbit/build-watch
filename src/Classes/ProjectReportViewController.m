@@ -307,7 +307,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     NSString * buildLabel = [delegate labelForProject:projectId];
     NSString * buildStatus =
         [delegate buildSucceededStateForProject:projectId] ?
-        @"succeeded" : @"failed";
+        NSLocalizedString(@"projectdetails.email.succeeded", @"") :
+        NSLocalizedString(@"projectdetails.email.failed", @"");
     
     NSDate * pubDate = [delegate pubDateForProject:projectId];
     NSString * pubDateString = [pubDate buildWatchDescription];
@@ -315,20 +316,17 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     NSString * details = [delegate descriptionForProject:projectId];
     
     NSString * subject =
-        [NSString stringWithFormat:@"%@ build %@ %@",
+        [NSString stringWithFormat:
+         NSLocalizedString(@"projectdetails.email.subject", @""),
          displayName, buildLabel, buildStatus];
     NSString * body =
         [NSString stringWithFormat:
-         @"-- %@ build report --\n\n"
-         "Status:  %@\n"
-         "Date:  %@\n"
-         "Build:  %@\n\n"
-         "Web page:  %@\n\n"
-         "Details:\n\n%@",
+         NSLocalizedString(@"projectdetails.email.body", @""),
          displayName, buildStatus, pubDateString, buildLabel, webAddress,
          details];
     NSString * urlString =
-        [[NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
+        [[NSString stringWithFormat:
+         NSLocalizedString(@"projectdetails.email.url", @""),
          subject, body]
          stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
@@ -347,11 +345,18 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath
     } else {
         NSString * projectName = [delegate displayNameForProject:projectId];
         NSString * alertMsg =
-            [NSString stringWithFormat:@"The dashboard link for %@ isn't set.  Try refreshing all server data.", projectName];
+            [NSString stringWithFormat:
+             NSLocalizedString(
+             @"projectdetails.missingdashboardlink.alert.message", @""),
+             projectName];
         UIAlertView * alertView =
-            [[UIAlertView alloc] initWithTitle:@"Dashboard link not set"
-            message:alertMsg delegate:nil cancelButtonTitle:@"OK"
-            otherButtonTitles:nil];
+            [[UIAlertView alloc]
+             initWithTitle:NSLocalizedString(
+             @"projectdetails.missingdashboardlink.alert.title", @"")
+             message:alertMsg delegate:nil
+             cancelButtonTitle:NSLocalizedString(
+             @"projectdetails.missingdashboardlink.alert.ok", @"")
+             otherButtonTitles:nil];
         [alertView show];
         [alertView release];
     }

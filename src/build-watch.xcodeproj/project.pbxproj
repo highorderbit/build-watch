@@ -56,7 +56,6 @@
 		05D8AFE20F43CC3D00F07532 /* GenericBuildForcer.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D8AFE10F43CC3D00F07532 /* GenericBuildForcer.m */; };
 		05DB30060F48CBD3005E1682 /* XmlConstantValueObjectBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DB30050F48CBD3005E1682 /* XmlConstantValueObjectBuilder.m */; };
 		05E911050F3A056F00E646F6 /* BuildWatchAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E911040F3A056F00E646F6 /* BuildWatchAppController.m */; };
-		05E911100F3A11F700E646F6 /* MockBuildWatchPersistentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E9110F0F3A11F700E646F6 /* MockBuildWatchPersistentStore.m */; };
 		05E911E70F3A453300E646F6 /* UIServerGroupNameSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E911E60F3A453300E646F6 /* UIServerGroupNameSelector.m */; };
 		05E9121F0F3A4E7100E646F6 /* UIProjectSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 05E9121E0F3A4E7100E646F6 /* UIProjectSelector.m */; };
 		05F1867C0F3D1B4300024A3C /* NetworkBuildService.m in Sources */ = {isa = PBXBuildFile; fileRef = 05F1867B0F3D1B4300024A3C /* NetworkBuildService.m */; };
@@ -90,20 +89,21 @@
 		918179D20F49D629009C7617 /* NSDate+IsToday.m in Sources */ = {isa = PBXBuildFile; fileRef = 918179D10F49D629009C7617 /* NSDate+IsToday.m */; };
 		918179DE0F49DC64009C7617 /* NSDate+StringHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 918179DD0F49DC64009C7617 /* NSDate+StringHelpers.m */; };
 		918449EA0F4206F800082108 /* ServerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 918449E90F4206F800082108 /* ServerTableViewCell.m */; };
-		91844BA80F42459D00082108 /* ProjectLabels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91844BA70F42459D00082108 /* ProjectLabels.plist */; };
+		91844BA80F42459D00082108 /* BuildLabels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91844BA70F42459D00082108 /* BuildLabels.plist */; };
+		91A809A60F57101400ED8194 /* InconsistentStateAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A809A50F57101400ED8194 /* InconsistentStateAlertViewDelegate.m */; };
 		91ABDE280F4120A1003232A0 /* ServerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91ABDE260F4120A1003232A0 /* ServerTableViewCell.xib */; };
 		91C6EC400F4DD9B20028C75A /* InfoPlistConfigReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 91C6EC3F0F4DD9B20028C75A /* InfoPlistConfigReader.m */; };
 		91D9ABD40F3DFE350035454C /* Servers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABD30F3DFE350035454C /* Servers.plist */; };
 		91D9ABD80F3E01DE0035454C /* ServerGroupPatterns.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABD70F3E01DE0035454C /* ServerGroupPatterns.plist */; };
-		91D9ABDA0F3E02BE0035454C /* ProjectDisplayNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABD90F3E02BE0035454C /* ProjectDisplayNames.plist */; };
+		91D9ABDA0F3E02BE0035454C /* ProjectNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABD90F3E02BE0035454C /* ProjectNames.plist */; };
 		91D9ABDC0F3E03B50035454C /* ProjectTrackedStates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ABDB0F3E03B50035454C /* ProjectTrackedStates.plist */; };
-		91D9AC570F3E12A60035454C /* ServerNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9AC560F3E12A60035454C /* ServerNames.plist */; };
+		91D9AC570F3E12A60035454C /* ServerGroupNames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91D9AC560F3E12A60035454C /* ServerGroupNames.plist */; };
 		91D9ADDC0F3E3B050035454C /* AboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D9ADDA0F3E3B050035454C /* AboutView.xib */; };
 		91D9ADE20F3E47720035454C /* AboutDisplayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D9ADE10F3E47720035454C /* AboutDisplayer.m */; };
-		91E151B20F409FC2006D6A59 /* ProjectLinks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91E151B10F409FC2006D6A59 /* ProjectLinks.plist */; };
-		91E1523E0F40B792006D6A59 /* ProjectBuildSucceededStates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91E1523B0F40B792006D6A59 /* ProjectBuildSucceededStates.plist */; };
-		91E1523F0F40B792006D6A59 /* ProjectDescriptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91E1523C0F40B792006D6A59 /* ProjectDescriptions.plist */; };
-		91E152400F40B792006D6A59 /* ProjectPubDates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91E1523D0F40B792006D6A59 /* ProjectPubDates.plist */; };
+		91E151B20F409FC2006D6A59 /* BuildReportLinks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91E151B10F409FC2006D6A59 /* BuildReportLinks.plist */; };
+		91E1523E0F40B792006D6A59 /* BuildSucceededStates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91E1523B0F40B792006D6A59 /* BuildSucceededStates.plist */; };
+		91E1523F0F40B792006D6A59 /* BuildDescriptions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91E1523C0F40B792006D6A59 /* BuildDescriptions.plist */; };
+		91E152400F40B792006D6A59 /* BuildPubDates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91E1523D0F40B792006D6A59 /* BuildPubDates.plist */; };
 		91E84B970F4B2A670010B2A6 /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E84B960F4B2A670010B2A6 /* SFHFKeychainUtils.m */; };
 		91E84BA20F4B2C1B0010B2A6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E84BA10F4B2C1B0010B2A6 /* Security.framework */; };
 		91E84BA80F4B332F0010B2A6 /* ServerUsernames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91E84BA70F4B332F0010B2A6 /* ServerUsernames.plist */; };
@@ -207,8 +207,6 @@
 		05E911030F3A056F00E646F6 /* BuildWatchAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildWatchAppController.h; sourceTree = "<group>"; };
 		05E911040F3A056F00E646F6 /* BuildWatchAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildWatchAppController.m; sourceTree = "<group>"; };
 		05E911070F3A111500E646F6 /* BuildWatchPersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildWatchPersistentStore.h; sourceTree = "<group>"; };
-		05E9110E0F3A11F700E646F6 /* MockBuildWatchPersistentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockBuildWatchPersistentStore.h; sourceTree = "<group>"; };
-		05E9110F0F3A11F700E646F6 /* MockBuildWatchPersistentStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockBuildWatchPersistentStore.m; sourceTree = "<group>"; };
 		05E911E50F3A453300E646F6 /* UIServerGroupNameSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIServerGroupNameSelector.h; sourceTree = "<group>"; };
 		05E911E60F3A453300E646F6 /* UIServerGroupNameSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIServerGroupNameSelector.m; sourceTree = "<group>"; };
 		05E9121A0F3A4E6800E646F6 /* ProjectSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectSelector.h; sourceTree = "<group>"; };
@@ -280,24 +278,26 @@
 		91817B800F4A3A48009C7617 /* ProjectPropertyProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectPropertyProvider.h; sourceTree = "<group>"; };
 		918449E80F4206F800082108 /* ServerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerTableViewCell.h; sourceTree = "<group>"; };
 		918449E90F4206F800082108 /* ServerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerTableViewCell.m; sourceTree = "<group>"; };
-		91844BA70F42459D00082108 /* ProjectLabels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectLabels.plist; sourceTree = "<group>"; };
+		91844BA70F42459D00082108 /* BuildLabels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BuildLabels.plist; sourceTree = "<group>"; };
+		91A809A40F57101400ED8194 /* InconsistentStateAlertViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InconsistentStateAlertViewDelegate.h; sourceTree = "<group>"; };
+		91A809A50F57101400ED8194 /* InconsistentStateAlertViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InconsistentStateAlertViewDelegate.m; sourceTree = "<group>"; };
 		91ABDE270F4120A1003232A0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ServerTableViewCell.xib; sourceTree = "<group>"; };
 		91C6EC3A0F4DD9560028C75A /* ConfigReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigReader.h; sourceTree = "<group>"; };
 		91C6EC3E0F4DD9B20028C75A /* InfoPlistConfigReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPlistConfigReader.h; sourceTree = "<group>"; };
 		91C6EC3F0F4DD9B20028C75A /* InfoPlistConfigReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoPlistConfigReader.m; sourceTree = "<group>"; };
 		91D9ABD30F3DFE350035454C /* Servers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Servers.plist; sourceTree = "<group>"; };
 		91D9ABD70F3E01DE0035454C /* ServerGroupPatterns.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServerGroupPatterns.plist; sourceTree = "<group>"; };
-		91D9ABD90F3E02BE0035454C /* ProjectDisplayNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectDisplayNames.plist; sourceTree = "<group>"; };
+		91D9ABD90F3E02BE0035454C /* ProjectNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectNames.plist; sourceTree = "<group>"; };
 		91D9ABDB0F3E03B50035454C /* ProjectTrackedStates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectTrackedStates.plist; sourceTree = "<group>"; };
-		91D9AC560F3E12A60035454C /* ServerNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServerNames.plist; sourceTree = "<group>"; };
+		91D9AC560F3E12A60035454C /* ServerGroupNames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServerGroupNames.plist; sourceTree = "<group>"; };
 		91D9ADDB0F3E3B050035454C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AboutView.xib; sourceTree = "<group>"; };
 		91D9ADE00F3E47720035454C /* AboutDisplayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutDisplayer.h; sourceTree = "<group>"; };
 		91D9ADE10F3E47720035454C /* AboutDisplayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutDisplayer.m; sourceTree = "<group>"; };
 		91DC9DB20F3BB3CD003F87CF /* ServerGroupNameSelectorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerGroupNameSelectorDelegate.h; sourceTree = "<group>"; };
-		91E151B10F409FC2006D6A59 /* ProjectLinks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectLinks.plist; sourceTree = "<group>"; };
-		91E1523B0F40B792006D6A59 /* ProjectBuildSucceededStates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectBuildSucceededStates.plist; sourceTree = "<group>"; };
-		91E1523C0F40B792006D6A59 /* ProjectDescriptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectDescriptions.plist; sourceTree = "<group>"; };
-		91E1523D0F40B792006D6A59 /* ProjectPubDates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProjectPubDates.plist; sourceTree = "<group>"; };
+		91E151B10F409FC2006D6A59 /* BuildReportLinks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BuildReportLinks.plist; sourceTree = "<group>"; };
+		91E1523B0F40B792006D6A59 /* BuildSucceededStates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BuildSucceededStates.plist; sourceTree = "<group>"; };
+		91E1523C0F40B792006D6A59 /* BuildDescriptions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BuildDescriptions.plist; sourceTree = "<group>"; };
+		91E1523D0F40B792006D6A59 /* BuildPubDates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BuildPubDates.plist; sourceTree = "<group>"; };
 		91E84B950F4B2A670010B2A6 /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFKeychainUtils.h; sourceTree = "<group>"; };
 		91E84B960F4B2A670010B2A6 /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFKeychainUtils.m; sourceTree = "<group>"; };
 		91E84BA10F4B2C1B0010B2A6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
@@ -482,8 +482,6 @@
 				054462AA0F49335A0070ABBB /* PListBuildWatchPersistentStore.m */,
 				054462AB0F49335A0070ABBB /* PListUtils.h */,
 				054462AC0F49335A0070ABBB /* PListUtils.m */,
-				05E9110E0F3A11F700E646F6 /* MockBuildWatchPersistentStore.h */,
-				05E9110F0F3A11F700E646F6 /* MockBuildWatchPersistentStore.m */,
 			);
 			name = Persistence;
 			sourceTree = "<group>";
@@ -553,6 +551,8 @@
 				05E911040F3A056F00E646F6 /* BuildWatchAppController.m */,
 				1D3623240D0F684500981E51 /* BuildWatchAppDelegate.h */,
 				1D3623250D0F684500981E51 /* BuildWatchAppDelegate.m */,
+				91A809A40F57101400ED8194 /* InconsistentStateAlertViewDelegate.h */,
+				91A809A50F57101400ED8194 /* InconsistentStateAlertViewDelegate.m */,
 			);
 			name = "App Controller";
 			sourceTree = "<group>";
@@ -713,19 +713,19 @@
 			isa = PBXGroup;
 			children = (
 				91ECE8630F4CD0FD00F6B93B /* NavigationState.plist */,
-				91D9ABD90F3E02BE0035454C /* ProjectDisplayNames.plist */,
+				91D9ABD90F3E02BE0035454C /* ProjectNames.plist */,
 				91D9ABDB0F3E03B50035454C /* ProjectTrackedStates.plist */,
-				91E151B10F409FC2006D6A59 /* ProjectLinks.plist */,
+				91E151B10F409FC2006D6A59 /* BuildReportLinks.plist */,
 				05473A6A0F44AD4C003F5444 /* ProjectForceBuildLinks.plist */,
-				91844BA70F42459D00082108 /* ProjectLabels.plist */,
-				91E1523B0F40B792006D6A59 /* ProjectBuildSucceededStates.plist */,
-				91E1523C0F40B792006D6A59 /* ProjectDescriptions.plist */,
-				91E1523D0F40B792006D6A59 /* ProjectPubDates.plist */,
+				91844BA70F42459D00082108 /* BuildLabels.plist */,
+				91E1523B0F40B792006D6A59 /* BuildSucceededStates.plist */,
+				91E1523C0F40B792006D6A59 /* BuildDescriptions.plist */,
+				91E1523D0F40B792006D6A59 /* BuildPubDates.plist */,
 				91E84BA70F4B332F0010B2A6 /* ServerUsernames.plist */,
 				91D9ABD70F3E01DE0035454C /* ServerGroupPatterns.plist */,
 				05AA0C740F4BA7DB00E46412 /* ServerGroupSortOrder.plist */,
 				05A8E5860F4D1DB600F26AC2 /* ServerDashboardLinks.plist */,
-				91D9AC560F3E12A60035454C /* ServerNames.plist */,
+				91D9AC560F3E12A60035454C /* ServerGroupNames.plist */,
 				91D9ABD30F3DFE350035454C /* Servers.plist */,
 			);
 			name = State;
@@ -809,17 +809,17 @@
 				0524CE5E0F3CBC6600C020FE /* EditServerDetailsView.xib in Resources */,
 				91D9ABD40F3DFE350035454C /* Servers.plist in Resources */,
 				91D9ABD80F3E01DE0035454C /* ServerGroupPatterns.plist in Resources */,
-				91D9ABDA0F3E02BE0035454C /* ProjectDisplayNames.plist in Resources */,
+				91D9ABDA0F3E02BE0035454C /* ProjectNames.plist in Resources */,
 				91D9ABDC0F3E03B50035454C /* ProjectTrackedStates.plist in Resources */,
-				91D9AC570F3E12A60035454C /* ServerNames.plist in Resources */,
+				91D9AC570F3E12A60035454C /* ServerGroupNames.plist in Resources */,
 				91D9ADDC0F3E3B050035454C /* AboutView.xib in Resources */,
-				91E151B20F409FC2006D6A59 /* ProjectLinks.plist in Resources */,
-				91E1523E0F40B792006D6A59 /* ProjectBuildSucceededStates.plist in Resources */,
-				91E1523F0F40B792006D6A59 /* ProjectDescriptions.plist in Resources */,
-				91E152400F40B792006D6A59 /* ProjectPubDates.plist in Resources */,
+				91E151B20F409FC2006D6A59 /* BuildReportLinks.plist in Resources */,
+				91E1523E0F40B792006D6A59 /* BuildSucceededStates.plist in Resources */,
+				91E1523F0F40B792006D6A59 /* BuildDescriptions.plist in Resources */,
+				91E152400F40B792006D6A59 /* BuildPubDates.plist in Resources */,
 				91ABDE280F4120A1003232A0 /* ServerTableViewCell.xib in Resources */,
 				05A1FD9E0F42225200E2C085 /* NameValueTableViewCell.xib in Resources */,
-				91844BA80F42459D00082108 /* ProjectLabels.plist in Resources */,
+				91844BA80F42459D00082108 /* BuildLabels.plist in Resources */,
 				05A1FF900F425F3E00E2C085 /* build-succeeded.png in Resources */,
 				05A1FF930F425F7A00E2C085 /* build-broken.png in Resources */,
 				05A1001E0F42681B00E2C085 /* BuildDetailsView.xib in Resources */,
@@ -852,7 +852,6 @@
 				28C286E10D94DF7D0034E888 /* ServerViewController.m in Sources */,
 				9149E0010F39142400A0E32C /* ProjectsViewController.m in Sources */,
 				05E911050F3A056F00E646F6 /* BuildWatchAppController.m in Sources */,
-				05E911100F3A11F700E646F6 /* MockBuildWatchPersistentStore.m in Sources */,
 				05E911E70F3A453300E646F6 /* UIServerGroupNameSelector.m in Sources */,
 				05E9121F0F3A4E7100E646F6 /* UIProjectSelector.m in Sources */,
 				91F09AA50F3A63370034528C /* ProjectReport.m in Sources */,
@@ -910,6 +909,7 @@
 				051262E30F536278008637DB /* TeamCityServerReportBuilder.m in Sources */,
 				0513C3CA0F538BC60008F6C2 /* AbstractServerReportBuilder.m in Sources */,
 				05ADE8C40F57146000EA21F2 /* AsynchronousInvocation.m in Sources */,
+				91A809A60F57101400ED8194 /* InconsistentStateAlertViewDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

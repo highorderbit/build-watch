@@ -39,19 +39,19 @@
     return [[self class] getDictionaryFromPlist:@"ServerGroupPatterns"];
 }
 
-- (void) saveServerNames:(NSDictionary *)serverNames
+- (void) saveServerGroupNames:(NSDictionary *)serverGroupNames
 {
-    [[self class] saveDictionary:serverNames toPlist:@"ServerNames"];
+    [[self class] saveDictionary:serverGroupNames toPlist:@"ServerGroupNames"];
 }
 
-- (NSDictionary *) getServerNames
+- (NSDictionary *) getServerGroupNames
 {
-    return [[self class] getDictionaryFromPlist:@"ServerNames"];
+    return [[self class] getDictionaryFromPlist:@"ServerGroupNames"];
 }
 
-- (void) saveServerDashboardLinks:(NSDictionary *)dashboardLinks
+- (void) saveServerDashboardLinks:(NSDictionary *)serverDashboardLinks
 {
-    [[self class] saveDictionary:dashboardLinks
+    [[self class] saveDictionary:serverDashboardLinks
                          toPlist:@"ServerDashboardLinks"];
 }
 
@@ -80,56 +80,55 @@
     return [[self class] getDictionaryFromPlist:@"ServerUsernames"];
 }
 
-- (void) saveProjectDisplayNames:(NSDictionary *)projectDisplayNames
+- (void) saveProjectNames:(NSDictionary *)projectNames
 {
-    [[self class] saveDictionary:projectDisplayNames
-                         toPlist:@"ProjectDisplayNames"];
+    [[self class] saveDictionary:projectNames toPlist:@"ProjectNames"];
 }
 
-- (NSDictionary *) getProjectDisplayNames
+- (NSDictionary *) getProjectNames
 {
-    return [[self class] getDictionaryFromPlist:@"ProjectDisplayNames"];
+    return [[self class] getDictionaryFromPlist:@"ProjectNames"];
 }
 
-- (void) saveProjectLabels:(NSDictionary *)projectLabels
+- (void) saveBuildLabels:(NSDictionary *)buildLabels
 {
-    [[self class] saveDictionary:projectLabels toPlist:@"ProjectLabels"];
+    [[self class] saveDictionary:buildLabels toPlist:@"BuildLabels"];
 }
 
-- (NSDictionary *) getProjectLabels
+- (NSDictionary *) getBuildLabels
 {
-    return [[self class] getDictionaryFromPlist:@"ProjectLabels"];
+    return [[self class] getDictionaryFromPlist:@"BuildLabels"];
 }
 
-- (void) saveProjectDescriptions:(NSDictionary *)projectDescriptions
+- (void) saveBuildDescriptions:(NSDictionary *)buildDescriptions
 {
-    [[self class] saveDictionary:projectDescriptions
-                         toPlist:@"ProjectDescriptions"];
+    [[self class] saveDictionary:buildDescriptions
+                         toPlist:@"BuildDescriptions"];
 }
 
-- (NSDictionary *) getProjectDescriptions
+- (NSDictionary *) getBuildDescriptions
 {
-    return [[self class] getDictionaryFromPlist:@"ProjectDescriptions"];
+    return [[self class] getDictionaryFromPlist:@"BuildDescriptions"];
 }
 
-- (void) saveProjectPubDates:(NSDictionary *)projectPubDates
+- (void) saveBuildPubDates:(NSDictionary *)buildPubDates
 {
-    [[self class] saveDictionary:projectPubDates toPlist:@"ProjectPubDates"];
+    [[self class] saveDictionary:buildPubDates toPlist:@"BuildPubDates"];
 }
 
-- (NSDictionary *) getProjectPubDates
+- (NSDictionary *) getBuildPubDates
 {
-    return [[self class] getDictionaryFromPlist:@"ProjectPubDates"];
+    return [[self class] getDictionaryFromPlist:@"BuildPubDates"];
 }
 
-- (void) saveProjectLinks:(NSDictionary *)projectLinks
+- (void) saveBuildReportLinks:(NSDictionary *)buildReportLinks
 {
-    [[self class] saveDictionary:projectLinks toPlist:@"ProjectLinks"];
+    [[self class] saveDictionary:buildReportLinks toPlist:@"BuildReportLinks"];
 }
 
-- (NSDictionary *) getProjectLinks
+- (NSDictionary *) getBuildReportLinks
 {
-    return [[self class] getDictionaryFromPlist:@"ProjectLinks"];
+    return [[self class] getDictionaryFromPlist:@"BuildReportLinks"];
 }
 
 - (void) saveProjectForceBuildLinks:(NSDictionary *)projectForceBuildLinks
@@ -143,16 +142,15 @@
     return [[self class] getDictionaryFromPlist:@"ProjectForceBuildLinks"];
 }
 
-- (void) saveProjectBuildSucceededStates:
-    (NSDictionary *)projectBuildSucceededStates
+- (void) saveBuildSucceededStates:(NSDictionary *)buildSucceededStates
 {
-    [[self class] saveDictionary:projectBuildSucceededStates
-                         toPlist:@"ProjectBuildSucceededStates"];
+    [[self class] saveDictionary:buildSucceededStates
+                         toPlist:@"BuildSucceededStates"];
 }
 
-- (NSDictionary *) getProjectBuildSucceededStates
+- (NSDictionary *) getBuildSucceededStates
 {
-    return [[self class] getDictionaryFromPlist:@"ProjectBuildSucceededStates"];
+    return [[self class] getDictionaryFromPlist:@"BuildSucceededStates"];
 }
 
 - (void) saveProjectTrackedStates:(NSDictionary *)projectTrackedStates
@@ -209,19 +207,19 @@
 {
     [[self class] removePlistAndCopyDefaultFromBundle:@"Servers"];
     [[self class] removePlistAndCopyDefaultFromBundle:@"ServerGroupPatterns"];
-    [[self class] removePlistAndCopyDefaultFromBundle:@"ServerNames"];
+    [[self class] removePlistAndCopyDefaultFromBundle:@"ServerGroupNames"];
     [[self class] removePlistAndCopyDefaultFromBundle:@"ServerDashboardLinks"];
     [[self class] removePlistAndCopyDefaultFromBundle:@"ServerGroupSortOrder"];
     [[self class] removePlistAndCopyDefaultFromBundle:@"ServerUsernames"];
-    [[self class] removePlistAndCopyDefaultFromBundle:@"ProjectDisplayNames"];
-    [[self class] removePlistAndCopyDefaultFromBundle:@"ProjectLabels"];
-    [[self class] removePlistAndCopyDefaultFromBundle:@"ProjectDescriptions"];
-    [[self class] removePlistAndCopyDefaultFromBundle:@"ProjectPubDates"];
-    [[self class] removePlistAndCopyDefaultFromBundle:@"ProjectLinks"];
+    [[self class] removePlistAndCopyDefaultFromBundle:@"ProjectNames"];
+    [[self class] removePlistAndCopyDefaultFromBundle:@"BuildLabels"];
+    [[self class] removePlistAndCopyDefaultFromBundle:@"BuildDescriptions"];
+    [[self class] removePlistAndCopyDefaultFromBundle:@"BuildPubDates"];
+    [[self class] removePlistAndCopyDefaultFromBundle:@"BuildReportLinks"];
     [[self class] 
         removePlistAndCopyDefaultFromBundle:@"ProjectForceBuildLinks"];
     [[self class]
-        removePlistAndCopyDefaultFromBundle:@"ProjectBuildSucceededStates"];
+        removePlistAndCopyDefaultFromBundle:@"BuildSucceededStates"];
     [[self class] removePlistAndCopyDefaultFromBundle:@"ProjectTrackedStates"];
     [[self class] removePlistAndCopyDefaultFromBundle:@"NavigationState"];
 }

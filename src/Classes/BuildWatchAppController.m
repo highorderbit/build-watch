@@ -9,29 +9,35 @@
 #import "RegexKitLite.h"
 #import "SFHFKeychainUtils.h"
 #import "PListUtils.h"
+#import "InconsistentStateAlertViewDelegate.h"
 
 @class Server, Project;
 
 static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
 @interface BuildWatchAppController (Private)
+
 - (void) setActiveServerGroupName:(NSString *) activeServer;
 - (void) setActiveProjectId:(NSString *) activeProjectId;
+
 - (void) setServers:(NSDictionary *)newServers;
-- (void) setServerGroupPatterns:(NSDictionary *)newServerGroupPatterns;
-- (void) setServerNames:(NSDictionary *)newServerNames;
 - (void) setServerDashboardLinks:(NSDictionary *)newDashboardLinks;
-- (void) setServerGroupSortOrder:(NSArray *)serverGroupNames;
 - (void) setServerUsernames:(NSDictionary *)newServerUsernames;
 - (void) setServerPasswords:(NSDictionary *)newServerPasswords;
-- (void) setProjectDisplayNames:(NSDictionary *)newProjectDisplayNames;
-- (void) setProjectLabels:(NSDictionary *)newProjectLabels;
-- (void) setProjectDescriptions:(NSDictionary *)newProjectDescriptions;
-- (void) setProjectPubDates:(NSDictionary *)newProjectPubDates;
-- (void) setProjectLinks:(NSDictionary *)newProjectLinks;
+
+- (void) setServerGroupNames:(NSDictionary *)newServerGroupNames;
+- (void) setServerGroupPatterns:(NSDictionary *)newServerGroupPatterns;
+- (void) setServerGroupSortOrder:(NSArray *)serverGroupNames;
+
+- (void) setProjectNames:(NSDictionary *)newProjectNames;
 - (void) setProjectForceBuildLinks:(NSDictionary *)newProjectForceBuildLinks;
-- (void) setProjectBuildSucceededStates:
-    (NSDictionary *)newProjectBuildSucceededStates;
+
+- (void) setBuildLabels:(NSDictionary *)newBuildLabels;
+- (void) setBuildDescriptions:(NSDictionary *)newBuildDescriptions;
+- (void) setBuildPubDates:(NSDictionary *)newBuildPubDates;
+- (void) setBuildSucceededStates:(NSDictionary *)newbuildSucceededStates;
+- (void) setBuildReportLinks:(NSDictionary *)newBuildLinks;
+
 - (void) setProjectTrackedStates:(NSDictionary *)newProjectTrackedStates;
 - (void) setServerReportBuilders:(NSDictionary *)newServerReportBuilders;
 - (void) updatePropertiesForProjectReports:(NSArray *)projectReports
@@ -44,7 +50,10 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 - (NSArray *) sortedServerGroupNames;
 - (void) loadPasswordsFromKeychain;
 - (void) savePasswordsToKeychain;
+- (void) loadStateFromPersistenceStore;
+- (BOOL) serverStateIsConsistent;
 + (NSString *) keyForProject:(NSString *)project andServer:(NSString *)server;
+
 @end
 
 @implementation BuildWatchAppController
@@ -62,7 +71,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 {
     [servers release];
     [serverGroupPatterns release];
-    [serverNames release];
+    [serverGroupNames release];
     [serverDashboardLinks release];
     [serverGroupSortOrder release];
     [serverUsernames release];
@@ -70,13 +79,13 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [serverGroupNameSelector release];
     [projectSelector release];
     [projectReporter release];
-    [projectDisplayNames release];
-    [projectLabels release];
-    [projectDescriptions release];
-    [projectPubDates release];
-    [projectLinks release];
+    [projectNames release];
+    [buildLabels release];
+    [buildDescriptions release];
+    [buildPubDates release];
+    [buildReportLinks release];
     [projectForceBuildLinks release];
-    [projectBuildSucceededStates release];
+    [buildSucceededStates release];
     [projectTrackedStates release];
     [serverReportBuilders release];
     [persistentStore release];
@@ -88,51 +97,48 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
 - (void) start
 {    
-    [self setServers:[persistentStore getServers]];
-    [self setServerDashboardLinks:[persistentStore getServerDashboardLinks]];
-    
-    [self setServerGroupPatterns:[persistentStore getServerGroupPatterns]];
-    [self setServerNames:[persistentStore getServerNames]];
-    [self setServerGroupSortOrder:[persistentStore getServerGroupSortOrder]];
-    
-    [self setServerUsernames:[persistentStore getServerUsernames]];
-    [self loadPasswordsFromKeychain];
-        
-    [self setProjectDisplayNames:[persistentStore getProjectDisplayNames]];
-    [self setProjectLabels:[persistentStore getProjectLabels]];
-    [self setProjectDescriptions:[persistentStore getProjectDescriptions]];
-    [self setProjectPubDates:[persistentStore getProjectPubDates]];
-    [self setProjectLinks:[persistentStore getProjectLinks]];
-    [self setProjectForceBuildLinks:
-     [persistentStore getProjectForceBuildLinks]];
+    [self loadStateFromPersistenceStore];
+    if (![self serverStateIsConsistent]) {
+        NSString * alertMsg =
+            NSLocalizedString(@"inconsistentstate.alert.message", @"");
+        NSString * title =
+        NSLocalizedString(@"inconsistentstate.alert.title", @"");
+        InconsistentStateAlertViewDelegate * alertDelegate =
+            [[InconsistentStateAlertViewDelegate alloc]
+            initWithAppController:self andPersistentStore:persistentStore];
+        UIAlertView * alertView =
+            [[UIAlertView alloc] initWithTitle:title message:alertMsg
+            delegate:alertDelegate
+            cancelButtonTitle:
+            NSLocalizedString(@"inconsistentstate.alert.restore", @"")
+            otherButtonTitles:
+            NSLocalizedString(@"inconsistentstate.alert.ignore", @""), nil];
+        [alertView show];
+        [alertView release];
+    } else
+        [self refreshDataAndDisplayInitialView];
+}
 
-    [self setProjectBuildSucceededStates:
-     [persistentStore getProjectBuildSucceededStates]];
-    
-    [self setProjectTrackedStates:[persistentStore getProjectTrackedStates]];
-    
-    NSString * fullPath =
-        [PlistUtils fullBundlePathForPlist:@"ServerReportBuilders"];
-    [self setServerReportBuilders:
-     [PlistUtils readDictionaryFromPlist:fullPath]];
-    
+- (void) refreshDataAndDisplayInitialView
+{
     [self refreshAllServerData];
-
+    
     [serverGroupNameSelector
      selectServerGroupNamesFrom:[self sortedServerGroupNames] animated:NO];
     
-    [self setActiveServerGroupName:[persistentStore getActiveServerGroupName]];
+    [self setActiveServerGroupName:
+     [persistentStore getActiveServerGroupName]];
     [self setActiveProjectId:[persistentStore getActiveProjectId]];
     
     if (servers.count == 0)
         [serverGroupCreator createServerGroup];
     else if (activeServerGroupName) {
         NSArray * activeProjectIds =
-            [self projectIdsForServerGroupName:activeServerGroupName];
+        [self projectIdsForServerGroupName:activeServerGroupName];
         [projectSelector selectProjectFrom:activeProjectIds animated:NO];
         
         NSArray * projectsForServerGroup =
-            [self projectIdsForServerGroupName:activeServerGroupName];
+        [self projectIdsForServerGroupName:activeServerGroupName];
         if (activeProjectId &&
             [projectsForServerGroup containsObject:activeProjectId])
             [projectReporter reportDetailsForProject:activeProjectId
@@ -144,19 +150,19 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 {
     [persistentStore saveServers:servers];
     [persistentStore saveServerGroupPatterns:serverGroupPatterns];
-    [persistentStore saveServerNames:serverNames];
+    [persistentStore saveServerGroupNames:serverGroupNames];
     [persistentStore saveServerDashboardLinks:serverDashboardLinks];
     [persistentStore saveServerGroupSortOrder:serverGroupSortOrder];
     [persistentStore saveServerUsernames:serverUsernames];
     [self savePasswordsToKeychain];
-    [persistentStore saveProjectDisplayNames:projectDisplayNames];
-    [persistentStore saveProjectLabels:projectLabels];
-    [persistentStore saveProjectDescriptions:projectDescriptions];
-    [persistentStore saveProjectPubDates:projectPubDates];
-    [persistentStore saveProjectLinks:projectLinks];
+    [persistentStore saveProjectNames:projectNames];
+    [persistentStore saveBuildLabels:buildLabels];
+    [persistentStore saveBuildDescriptions:buildDescriptions];
+    [persistentStore saveBuildPubDates:buildPubDates];
+    [persistentStore saveBuildReportLinks:buildReportLinks];
     [persistentStore saveProjectForceBuildLinks:projectForceBuildLinks];
-    [persistentStore saveProjectBuildSucceededStates:
-     projectBuildSucceededStates];
+    [persistentStore saveBuildSucceededStates:
+     buildSucceededStates];
     [persistentStore saveProjectTrackedStates:projectTrackedStates];
     [persistentStore saveActiveServerGroupName:activeServerGroupName];
     [persistentStore saveActiveProjectId:activeProjectId];
@@ -168,7 +174,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 {
     [serverDataRefresherDelegate
      didRefreshDataForServer:server
-                 displayName:[serverNames objectForKey:server]];
+                 displayName:[serverGroupNames objectForKey:server]];
     if ([servers objectForKey:server]) {
         [self updatePropertiesForProjectReports:[report projectReports]
                                      withServer:server];
@@ -224,7 +230,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     NSLog(@"Failed to refresh server: '%@'. '%@'.", serverUrl, error);
     [serverDataRefresherDelegate
      failedToRefreshDataForServer:serverUrl
-                      displayName:[serverNames objectForKey:serverUrl]
+                      displayName:[serverGroupNames objectForKey:serverUrl]
                             error:error];
 }
 
@@ -291,7 +297,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     
     NSArray * projectIds = [self projectIdsForServerGroupName:serverGroupName];
     for (NSString * projectId in projectIds)
-        if (![[projectBuildSucceededStates objectForKey:projectId] boolValue] &&
+        if (![[buildSucceededStates objectForKey:projectId] boolValue] &&
             [[projectTrackedStates objectForKey:projectId] boolValue])
             numBrokenBuilds++;
     
@@ -312,10 +318,10 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
     NSArray * projectIds = [self projectIdsForServer:serverGroupName];
     for (NSString * projectId in projectIds)
-        [projectDisplayNames removeObjectForKey:projectId];
+        [projectNames removeObjectForKey:projectId];
 
     [servers removeObjectForKey:serverGroupName];
-    [serverNames removeObjectForKey:serverGroupName];
+    [serverGroupNames removeObjectForKey:serverGroupName];
     [serverDashboardLinks removeObjectForKey:serverGroupName];
     [serverGroupSortOrder removeObject:serverGroupName];
     [serverUsernames removeObjectForKey:serverGroupName];
@@ -333,9 +339,9 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     [serverGroupEditor editServerGroup:serverGroupName];
 }
 
-- (void) userDidSetServerGroupSortOrder:(NSArray *)serverGroupNames
+- (void) userDidSetServerGroupSortOrder:(NSArray *)newServerGroupNames
 {
-    [self setServerGroupSortOrder:serverGroupNames];
+    [self setServerGroupSortOrder:newServerGroupNames];
 }
 
 #pragma mark ServerGroupCreatorDelegate protocol implementation
@@ -350,16 +356,16 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
      * Consider refactoring into a dedicated 'add server group' function.
      */
 
-    NSMutableArray * projectNames = [NSMutableArray array];
+    NSMutableArray * reportProjectNames = [NSMutableArray array];
     for (ProjectReport * projectReport in report.projectReports)
-        [projectNames addObject:projectReport.name];
-    [servers setObject:projectNames forKey:report.link];
+        [reportProjectNames addObject:projectReport.name];
+    [servers setObject:reportProjectNames forKey:report.link];
 
     [serverGroupPatterns
         setObject:[NSString stringWithFormat:@"^%@$", report.link]
            forKey:report.link];
     
-    [serverNames setObject:serverDisplayName forKey:report.link];
+    [serverGroupNames setObject:serverDisplayName forKey:report.link];
     [serverDashboardLinks setObject:report.dashboardLink forKey:report.link];
     [serverGroupSortOrder addObject:report.link];
 
@@ -379,7 +385,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 - (void) changeDisplayName:(NSString *)serverGroupDisplayName
         forServerGroupName:(NSString *)serverGroupName
 {
-    [serverNames setObject:serverGroupDisplayName forKey:serverGroupName];
+    [serverGroupNames setObject:serverGroupDisplayName forKey:serverGroupName];
 }
 
 #pragma mark Authentication accessors
@@ -423,7 +429,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
 - (NSString *) displayNameForServerGroupName:(NSString *)serverGroupName
 {
-    return [serverNames objectForKey:serverGroupName];
+    return [serverGroupNames objectForKey:serverGroupName];
 }
 
 - (NSString *) linkForServerGroupName:(NSString *)serverGroupName
@@ -445,27 +451,27 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
 - (NSString *) displayNameForProject:(NSString *)project
 {
-    return [projectDisplayNames objectForKey:project];
+    return [projectNames objectForKey:project];
 }
 
 - (NSString *) labelForProject:(NSString *)project
 {
-    return [projectLabels objectForKey:project];
+    return [buildLabels objectForKey:project];
 }
 
 - (NSString *) descriptionForProject:(NSString *)project
 {
-    return [projectDescriptions objectForKey:project];
+    return [buildDescriptions objectForKey:project];
 }
 
 - (NSDate *) pubDateForProject:(NSString *)project
 {
-    return [projectPubDates objectForKey:project];
+    return [buildPubDates objectForKey:project];
 }
 
 - (NSString *) linkForProject:(NSString *)project
 {
-    return [projectLinks objectForKey:project];
+    return [buildReportLinks objectForKey:project];
 }
 
 - (NSString *) forceBuildLinkForProject:(NSString *)project
@@ -475,12 +481,12 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
 
 - (BOOL) buildSucceededStateForProject:(NSString *)project
 {
-    return [[projectBuildSucceededStates objectForKey:project] boolValue];
+    return [[buildSucceededStates objectForKey:project] boolValue];
 }
 
 - (NSString *) displayNameForCurrentProjectGroup
 {
-    return [serverNames objectForKey:activeServerGroupName];
+    return [serverGroupNames objectForKey:activeServerGroupName];
 }
 
 - (BOOL) trackedStateForProject:(NSString *)project
@@ -503,7 +509,7 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     for (NSString * server in serverKeys) {
         [serverDataRefresherDelegate
          refreshingDataForServer:server
-                     displayName:[serverNames objectForKey:server]];
+                     displayName:[serverGroupNames objectForKey:server]];
         [buildService refreshDataForServer:server];
     }
 }
@@ -539,23 +545,24 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     serverGroupPatterns = tempGroupNamePatterns;
 }
 
-- (void) setServerNames:(NSDictionary *)newServerNames
+- (void) setServerGroupNames:(NSDictionary *)newServerGroupNames
 {
-    NSMutableDictionary * tempServerNames = [newServerNames mutableCopy];
-    [serverNames release];
-    serverNames = tempServerNames;
+    NSMutableDictionary * tempServerNames = [newServerGroupNames mutableCopy];
+    [serverGroupNames release];
+    serverGroupNames = tempServerNames;
 }
 
-- (void) setServerDashboardLinks:(NSDictionary *)newDashboardLinks
+- (void) setServerDashboardLinks:(NSDictionary *)newServerDashboardLinks
 {
-    NSMutableDictionary * tempDashboardLinks = [newDashboardLinks mutableCopy];
+    NSMutableDictionary * tempDashboardLinks =
+        [newServerDashboardLinks mutableCopy];
     [serverDashboardLinks release];
     serverDashboardLinks = tempDashboardLinks;
 }
 
-- (void) setServerGroupSortOrder:(NSArray *)serverGroupNames
+- (void) setServerGroupSortOrder:(NSArray *)newServerGroupSortOrder
 {
-    NSMutableArray * temp = [serverGroupNames mutableCopy];
+    NSMutableArray * temp = [newServerGroupSortOrder mutableCopy];
     [serverGroupSortOrder release];
     serverGroupSortOrder = temp;
 }
@@ -576,44 +583,42 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     serverPasswords = tempServerPasswords;
 }
 
-- (void) setProjectDisplayNames:(NSDictionary *)newProjectDisplayNames;
+- (void) setProjectNames:(NSDictionary *)newProjectNames;
 {
     NSMutableDictionary * tempProjectDisplayNames =
-        [newProjectDisplayNames mutableCopy];
-    [projectDisplayNames release];
-    projectDisplayNames = tempProjectDisplayNames;
+        [newProjectNames mutableCopy];
+    [projectNames release];
+    projectNames = tempProjectDisplayNames;
 }
 
-- (void) setProjectLabels:(NSDictionary *)newProjectLabels
+- (void) setBuildLabels:(NSDictionary *)newBuildLabels
 {
-    NSMutableDictionary * tempProjectLabels =
-        [newProjectLabels mutableCopy];
-    [projectLabels release];
-    projectLabels = tempProjectLabels;
-    
+    NSMutableDictionary * tempProjectLabels = [newBuildLabels mutableCopy];
+    [buildLabels release];
+    buildLabels = tempProjectLabels;
 }
 
-- (void) setProjectDescriptions:(NSDictionary *)newProjectDescriptions
+- (void) setBuildDescriptions:(NSDictionary *)newBuildDescriptions
 {
     NSMutableDictionary * tempProjectDescriptions =
-        [newProjectDescriptions mutableCopy];
-    [projectDescriptions release];
-    projectDescriptions = tempProjectDescriptions;
+        [newBuildDescriptions mutableCopy];
+    [buildDescriptions release];
+    buildDescriptions = tempProjectDescriptions;
 }
 
-- (void) setProjectPubDates:(NSDictionary *)newProjectPubDates
+- (void) setBuildPubDates:(NSDictionary *)newBuildPubDates
 {
     NSMutableDictionary * tempProjectPubDates =
-        [newProjectPubDates mutableCopy];
-    [projectPubDates release];
-    projectPubDates = tempProjectPubDates;
+        [newBuildPubDates mutableCopy];
+    [buildPubDates release];
+    buildPubDates = tempProjectPubDates;
 }
 
-- (void) setProjectLinks:(NSDictionary *)newProjectLinks
+- (void) setBuildReportLinks:(NSDictionary *)newBuildReportLinks
 {
-    NSMutableDictionary * tempProjectLinks = [newProjectLinks mutableCopy];
-    [projectLinks release];
-    projectLinks = tempProjectLinks;
+    NSMutableDictionary * tempProjectLinks = [newBuildReportLinks mutableCopy];
+    [buildReportLinks release];
+    buildReportLinks = tempProjectLinks;
 }
 
 - (void) setProjectForceBuildLinks:(NSDictionary *)newProjectForceBuildLinks
@@ -624,13 +629,13 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
     projectForceBuildLinks = tempProjectForceBuildLinks;
 }
 
-- (void) setProjectBuildSucceededStates:
+- (void) setBuildSucceededStates:
     (NSDictionary *)newProjectBuildSucceededStates
 {
     NSMutableDictionary * tempProjectBuildSucceededStates =
         [newProjectBuildSucceededStates mutableCopy];
-    [projectBuildSucceededStates release];
-    projectBuildSucceededStates = tempProjectBuildSucceededStates;
+    [buildSucceededStates release];
+    buildSucceededStates = tempProjectBuildSucceededStates;
 }
 
 - (void) setProjectTrackedStates:(NSDictionary *)newProjectTrackedStates
@@ -681,15 +686,15 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
         NSString * projectKey =
         [[self class] keyForProject:projReport.name andServer:server];
         
-        [projectDisplayNames setObject:projReport.name forKey:projectKey];
-        [projectLabels setObject:projReport.label forKey:projectKey];
-        [projectDescriptions setObject:projReport.description
+        [projectNames setObject:projReport.name forKey:projectKey];
+        [buildLabels setObject:projReport.label forKey:projectKey];
+        [buildDescriptions setObject:projReport.description
                                 forKey:projectKey];
-        [projectPubDates setObject:projReport.pubDate forKey:projectKey];
-        [projectLinks setObject:projReport.link forKey:projectKey];
+        [buildPubDates setObject:projReport.pubDate forKey:projectKey];
+        [buildReportLinks setObject:projReport.link forKey:projectKey];
         [projectForceBuildLinks setObject:projReport.forceBuildLink
                                    forKey:projectKey];
-        [projectBuildSucceededStates setObject:
+        [buildSucceededStates setObject:
          [NSNumber numberWithBool:projReport.buildSucceeded]
                                         forKey:projectKey];
         
@@ -709,26 +714,26 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
             [missingProjectIds
              addObject:[[self class]keyForProject:project andServer:server]];
     
-    [projectDisplayNames removeObjectsForKeys:missingProjectIds];
-    [projectLabels removeObjectsForKeys:missingProjectIds];
-    [projectDescriptions removeObjectsForKeys:missingProjectIds];
-    [projectPubDates removeObjectsForKeys:missingProjectIds];
-    [projectLinks removeObjectsForKeys:missingProjectIds];
+    [projectNames removeObjectsForKeys:missingProjectIds];
+    [buildLabels removeObjectsForKeys:missingProjectIds];
+    [buildDescriptions removeObjectsForKeys:missingProjectIds];
+    [buildPubDates removeObjectsForKeys:missingProjectIds];
+    [buildReportLinks removeObjectsForKeys:missingProjectIds];
     [projectForceBuildLinks removeObjectsForKeys:missingProjectIds];
-    [projectBuildSucceededStates removeObjectsForKeys:missingProjectIds];
+    [buildSucceededStates removeObjectsForKeys:missingProjectIds];
     
     [missingProjectIds release];
 }
 
 - (NSArray *) sortedServerGroupNames
 {
-    NSMutableArray * serverGroupNames =
+    NSMutableArray * tempServerGroupNames =
         [[serverGroupSortOrder mutableCopy] autorelease];
-    [serverGroupNames
+    [tempServerGroupNames
         insertObject:NSLocalizedString(SERVER_GROUP_NAME_ALL, @"")
              atIndex:0];
 
-    return serverGroupNames;
+    return tempServerGroupNames;
 }
 
 - (NSArray *) serversMatchingGroupName:(NSString *)groupName
@@ -779,6 +784,42 @@ static NSString * SERVER_GROUP_NAME_ALL = @"servergroups.all.label";
         if (!error)
             NSLog([error description]);
     }
+}
+
+- (void) loadStateFromPersistenceStore
+{
+    [self setServers:[persistentStore getServers]];
+    [self setServerDashboardLinks:[persistentStore getServerDashboardLinks]];
+    
+    [self setServerGroupPatterns:[persistentStore getServerGroupPatterns]];
+    [self setServerGroupNames:[persistentStore getServerGroupNames]];
+    [self setServerGroupSortOrder:[persistentStore getServerGroupSortOrder]];
+    
+    [self setServerUsernames:[persistentStore getServerUsernames]];
+    [self loadPasswordsFromKeychain];
+    
+    [self setProjectNames:[persistentStore getProjectNames]];
+    [self setBuildLabels:[persistentStore getBuildLabels]];
+    [self setBuildDescriptions:[persistentStore getBuildDescriptions]];
+    [self setBuildPubDates:[persistentStore getBuildPubDates]];
+    [self setBuildReportLinks:[persistentStore getBuildReportLinks]];
+    [self setProjectForceBuildLinks:
+     [persistentStore getProjectForceBuildLinks]];
+    
+    [self setBuildSucceededStates:
+     [persistentStore getBuildSucceededStates]];
+    
+    [self setProjectTrackedStates:[persistentStore getProjectTrackedStates]];
+    
+    NSString * fullPath =
+    [PlistUtils fullBundlePathForPlist:@"ServerReportBuilders"];
+    [self setServerReportBuilders:
+     [PlistUtils readDictionaryFromPlist:fullPath]];
+}
+
+- (BOOL) serverStateIsConsistent
+{
+    return [serverGroupNames count] == [serverGroupPatterns count];
 }
 
 #pragma mark static utility functions

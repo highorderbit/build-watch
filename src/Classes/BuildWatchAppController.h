@@ -33,17 +33,17 @@
     //     (NSString *) server url -> (NSArray *) project names (NSString *)
     NSMutableDictionary * servers;
 
-    // Server groups are mapped as follows:
-    //     (NSString *) groupName -> (NSString *) reg ex of matching servers
-    NSMutableDictionary * serverGroupPatterns;
-    
-    // Server names are mapped as follows:
-    //     (NSString *) server url -> (NSString *) server name
-    NSMutableDictionary * serverNames;
-
     // Mapping of:
     //     server url -> server dashboard link
     NSMutableDictionary * serverDashboardLinks;
+    
+    // Server names are mapped as follows:
+    //     (NSString *) server url -> (NSString *) server name
+    NSMutableDictionary * serverGroupNames;
+    
+    // Server groups are mapped as follows:
+    //     (NSString *) groupName -> (NSString *) reg ex of matching servers
+    NSMutableDictionary * serverGroupPatterns;
 
     // List of server group names (URLs) in the order configured by the user.
     NSMutableArray * serverGroupSortOrder;
@@ -53,13 +53,14 @@
     
     // Various project properties, mapped as follows:
     //     (NSString *) project id -> property value
-    NSMutableDictionary * projectDisplayNames;
-    NSMutableDictionary * projectLabels;
-    NSMutableDictionary * projectDescriptions;
-    NSMutableDictionary * projectPubDates;
-    NSMutableDictionary * projectLinks;
+    NSMutableDictionary * projectNames;
     NSMutableDictionary * projectForceBuildLinks;
-    NSMutableDictionary * projectBuildSucceededStates;
+    
+    NSMutableDictionary * buildLabels;
+    NSMutableDictionary * buildDescriptions;
+    NSMutableDictionary * buildPubDates;
+    NSMutableDictionary * buildSucceededStates;
+    NSMutableDictionary * buildReportLinks;
     
     // Project tracked states, set by user, mapped as follows:
     //     (NSString *) project id -> (NSNumber *) tracked
@@ -106,7 +107,7 @@
     serverDataRefresherDelegate;
 
 - (void) start;
-
+- (void) refreshDataAndDisplayInitialView;
 - (void) persistState;
  
 @end
