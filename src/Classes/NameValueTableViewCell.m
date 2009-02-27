@@ -35,10 +35,14 @@
 {
     [super setSelected:selected animated:animated];
 
-    UIColor * nameColor = selected ?
-        [[self class] nameSelectedColor] : [[self class] nameColor];
-    UIColor * valueColor = selected ?
-        [[self class] valueSelectedColor] : [[self class] valueColor];
+    UIColor * nameColor, * valueColor;
+    if (selected && self.selectionStyle != UITableViewCellSelectionStyleNone) {
+        nameColor = [[self class] nameSelectedColor];
+        valueColor = [[self class] valueSelectedColor];
+    } else {
+        nameColor = [[self class] nameColor];
+        valueColor = [[self class] valueColor];
+    }
 
     nameLabel.textColor = nameColor;
     valueLabel.textColor = valueColor;
