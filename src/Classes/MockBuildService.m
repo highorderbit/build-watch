@@ -44,28 +44,28 @@
     
     ServerReport * report = [[ServerReport alloc] init];
     report.name = @"CruiseControl RSS feed";
-    report.link = server;
+    report.key = server;
     
     ProjectReport * projReport1 = [[ProjectReport alloc] init];
     projReport1.name = @"BrokenApp build 7.10 failed";
-    projReport1.description =
+    projReport1.buildDescription =
         @"&lt;pre&gt;Build was manually requested&lt;/pre&gt;";
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"EEE, dd MMM yyyy HH:mm:ss 'Z'";
-    projReport1.pubDate =
+    projReport1.buildPubDate =
         [dateFormatter dateFromString:@"Tue, 03 Feb 2009 04:34:11 Z"];
-    projReport1.link = @"http://10.0.1.100:3333/builds/BrokenApp/7.10";
-    projReport1.buildSucceeded =
+    projReport1.buildDashboardLink = @"http://10.0.1.100:3333/builds/BrokenApp/7.10";
+    projReport1.buildSucceededState =
         [[self class] buildSucceededFromProjectName:projReport1.name];
     
     ProjectReport * projReport2 = [[ProjectReport alloc] init];
     projReport2.name = @"RandomApp build 4.5 success";
-    projReport2.description =
+    projReport2.buildDescription =
         @"&lt;pre&gt;Build was manually requested&lt;/pre&gt;";
-    projReport2.pubDate =
+    projReport2.buildPubDate =
         [dateFormatter dateFromString:@"Tue, 03 Feb 2009 03:50:25 Z"];
-    projReport2.link = @"http://10.0.1.100:3333/builds/RandomApp/4.5";
-    projReport2.buildSucceeded =
+    projReport2.buildDashboardLink = @"http://10.0.1.100:3333/builds/RandomApp/4.5";
+    projReport2.buildSucceededState =
         [[self class] buildSucceededFromProjectName:projReport2.name];
     
     [dateFormatter release];

@@ -7,12 +7,12 @@
 @implementation ProjectReport
 
 @synthesize name;
-@synthesize label;
-@synthesize description;
-@synthesize pubDate;
-@synthesize link;
+@synthesize buildLabel;
+@synthesize buildDescription;
+@synthesize buildPubDate;
+@synthesize buildDashboardLink;
 @synthesize forceBuildLink;
-@synthesize buildSucceeded;
+@synthesize buildSucceededState;
 
 + (id) report
 {
@@ -22,10 +22,10 @@
 - (void) dealloc
 {
     [name release];
-    [label release];
-    [description release];
-    [pubDate release];
-    [link release];
+    [buildLabel release];
+    [buildDescription release];
+    [buildPubDate release];
+    [buildDashboardLink release];
     [forceBuildLink release];
     [super dealloc];
 }
@@ -35,12 +35,12 @@
     ProjectReport * report = [[[self class] allocWithZone:zone] init];
 
     report.name = self.name;
-    report.label = self.label;
-    report.description = self.description;
-    report.pubDate = self.pubDate;
-    report.link = self.link;
+    report.buildLabel = self.buildLabel;
+    report.buildDescription = self.buildDescription;
+    report.buildPubDate = self.buildPubDate;
+    report.buildDashboardLink = self.buildDashboardLink;
     report.forceBuildLink = self.forceBuildLink;
-    report.buildSucceeded = self.buildSucceeded;
+    report.buildSucceededState = self.buildSucceededState;
 
     return report;
 }
@@ -50,12 +50,12 @@
     NSMutableString * desc = [NSMutableString string];
 
     [desc appendFormat:@"Name: '%@'\n", self.name];
-    [desc appendFormat:@"Label: '%@'\n", self.label];
-    [desc appendFormat:@"Description: '%@'\n", self.description];
-    [desc appendFormat:@"Pub date: '%@'\n", self.pubDate];
-    [desc appendFormat:@"Link: '%@'\n", self.link];
+    [desc appendFormat:@"Label: '%@'\n", self.buildLabel];
+    [desc appendFormat:@"Description: '%@'\n", self.buildDescription];
+    [desc appendFormat:@"Pub date: '%@'\n", self.buildPubDate];
+    [desc appendFormat:@"Link: '%@'\n", self.buildDashboardLink];
     [desc appendFormat:@"Force build link: '%@'\n", self.forceBuildLink];
-    [desc appendFormat:@"Build succeeded: '%d'\n", self.buildSucceeded];
+    [desc appendFormat:@"Build succeeded: '%d'\n", self.buildSucceededState];
 
     return desc;
 }

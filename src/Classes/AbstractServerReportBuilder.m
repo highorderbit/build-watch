@@ -74,7 +74,7 @@
     if (*error)
         return [[self class] xmlParsingFailedWithRootCause:error];
 
-    report.link = url;
+    report.key = url;
     report.dashboardLink =
         [[self class] serverDashboardLinkFromNode:serverNode
                                         sourceUrl:url
@@ -151,23 +151,23 @@
         [[self class] projectNameFromNode:projectNode error:error];
     if (*error) return nil;
 
-    projectReport.description =
+    projectReport.buildDescription =
         [[self class] projectDescriptionFromNode:projectNode error:error];
     if (*error) return nil;
 
-    projectReport.label =
+    projectReport.buildLabel =
         [[self class] projectBuildLabelFromNode:projectNode error:error];
     if (*error) return nil;
 
-    projectReport.pubDate =
+    projectReport.buildPubDate =
         [[self class] projectPubDateFromNode:projectNode error:error];
     if (*error) return nil;
 
-    projectReport.link =
+    projectReport.buildDashboardLink =
         [[self class] projectLinkFromNode:projectNode error:error];
     if (*error) return nil;
 
-    projectReport.buildSucceeded =
+    projectReport.buildSucceededState =
         [[self class] projectBuildSucceededFromNode:projectNode error:error];
     if (*error) return nil;
 

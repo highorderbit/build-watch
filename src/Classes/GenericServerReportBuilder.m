@@ -45,7 +45,7 @@
     ServerReport * report =
         [[builder constructObjectFromXml:[xmlDoc rootElement] error:error]
          lastObject];
-    report.link = url;
+    report.key = url;
 
     NSLog(@"Constructed: '%@'.", report);
     return report;

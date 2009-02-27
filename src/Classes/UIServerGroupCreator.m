@@ -213,7 +213,7 @@
 
 - (NSString *) linkForServerGroupName:(NSString *)serverGroupName
 {
-    return serverReport ? serverReport.link :
+    return serverReport ? serverReport.key :
         [serverGroupPropertyProvider linkForServerGroupName:serverGroupName];
 }
 
