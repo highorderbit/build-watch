@@ -44,6 +44,8 @@
     // Server groups are mapped as follows:
     //     (NSString *) groupName -> (NSString *) reg ex of matching servers
     NSMutableDictionary * serverGroupPatterns;
+    
+    NSMutableDictionary * serverGroupRemovableStates;
 
     // List of server group names (URLs) in the order configured by the user.
     NSMutableArray * serverGroupSortOrder;

@@ -49,6 +49,19 @@
     return [[self class] getDictionaryFromPlist:@"ServerGroupNames"];
 }
 
+- (void) saveServerGroupRemovableStates:
+    (NSDictionary *)serverGroupRemovableStates
+{
+    [[self class] saveDictionary:serverGroupRemovableStates
+                         toPlist:@"ServerGroupRemovableStates"];
+}
+
+- (NSDictionary *) getServerGroupRemovableStates
+{
+    return [[self class] getDictionaryFromPlist:@"ServerGroupRemovableStates"];
+}
+
+
 - (void) saveServerDashboardLinks:(NSDictionary *)serverDashboardLinks
 {
     [[self class] saveDictionary:serverDashboardLinks
