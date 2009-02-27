@@ -277,18 +277,12 @@ enum HelpRows
     if (editServerUrlCell == nil) {
         editServerUrlCell =
             [[TextFieldTableViewCell createInstance] retain];
-        /*
-            [[UITableViewCell alloc]
-              initWithFrame:CGRectZero
-            reuseIdentifier:TEXT_FIELD_TABLE_VIEW_CELL_IDENTIFIER];
-         */
 
         CGRect textFieldFrame = CGRectMake(10.0, 10.0, 285.0, 22.0);
         UITextField * textField =
             [self editServerUrlTextFieldWithFrame:textFieldFrame
                                               tag:SERVER_URL_TEXT_FIELD_TAG];
 
-        //[editServerUrlCell.contentView addSubview:textField];
         editServerUrlCell.textField = textField;
     }
 
