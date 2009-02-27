@@ -384,6 +384,7 @@
     [serverDashboardLinks setObject:report.dashboardLink forKey:report.key];
     [serverGroupSortOrder addObject:report.key];
 
+    [serverDataRefresherDelegate refreshingDataForServer:report.key];
     [self report:report receivedFrom:report.key];
 
     [serverGroupNameSelector 
