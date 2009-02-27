@@ -53,6 +53,7 @@
     xmlString = [[self class] hackXmlStringIfNecessary:xmlString];
 
     ServerReport * report = [ServerReport report];
+    NSLog(@"Report retain count: %d.", [report retainCount]);
 
     CXMLDocument * xmlDoc = [[[CXMLDocument alloc]
          initWithXMLString:xmlString options:0 error:error] autorelease];
@@ -102,8 +103,8 @@
 
     report.projectReports = [projectReports allValues];
 
-    NSLog(@"From server URL: '%@' built server report: %@", url,
-        [report longDescription]);
+    NSLog(@"From server URL: '%@' built server report: (%d) %@", url,
+        [report retainCount], [report longDescription]);
 
     return report;
 }

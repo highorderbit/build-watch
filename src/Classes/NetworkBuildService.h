@@ -1,5 +1,5 @@
 //
-//  Copyright 2009 High Order Bit, Inc.. All rights reserved.
+//  Copyright High Order Bit, Inc. 2009. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -14,6 +14,7 @@
     NSObject<BuildServiceDelegate> * delegate;
 
     NSMutableDictionary * updaters;
+    NSMutableDictionary * asyncBuilders;
 }
 
 @property (nonatomic, retain) IBOutlet NSObject<BuildServiceDelegate> *
