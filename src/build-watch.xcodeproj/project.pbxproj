@@ -45,7 +45,7 @@
 		05A1FF930F425F7A00E2C085 /* build-broken.png in Resources */ = {isa = PBXBuildFile; fileRef = 05A1FF920F425F7A00E2C085 /* build-broken.png */; };
 		05A8E5870F4D1DB600F26AC2 /* ServerDashboardLinks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05A8E5860F4D1DB600F26AC2 /* ServerDashboardLinks.plist */; };
 		05AA0C750F4BA7DB00E46412 /* ServerGroupSortOrder.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05AA0C740F4BA7DB00E46412 /* ServerGroupSortOrder.plist */; };
-		05ADE8C40F57146000EA21F2 /* ThreadedServerReportBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 05ADE8C30F57146000EA21F2 /* ThreadedServerReportBuilder.m */; };
+		05ADE8C40F57146000EA21F2 /* AsynchronousInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 05ADE8C30F57146000EA21F2 /* AsynchronousInvocation.m */; };
 		05C8834E0F49B82E00E486EA /* ServerReportBuilderFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C8834D0F49B82E00E486EA /* ServerReportBuilderFactory.m */; };
 		05C883580F49BCD000E486EA /* CcrbServerReportBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C883570F49BCD000E486EA /* CcrbServerReportBuilder.m */; };
 		05C883A50F49C88800E486EA /* CcjavaServerReportBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 05C883A40F49C88800E486EA /* CcjavaServerReportBuilder.m */; };
@@ -183,8 +183,8 @@
 		05A1FF920F425F7A00E2C085 /* build-broken.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "build-broken.png"; sourceTree = "<group>"; };
 		05A8E5860F4D1DB600F26AC2 /* ServerDashboardLinks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServerDashboardLinks.plist; sourceTree = "<group>"; };
 		05AA0C740F4BA7DB00E46412 /* ServerGroupSortOrder.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServerGroupSortOrder.plist; sourceTree = "<group>"; };
-		05ADE8C20F57146000EA21F2 /* ThreadedServerReportBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadedServerReportBuilder.h; sourceTree = "<group>"; };
-		05ADE8C30F57146000EA21F2 /* ThreadedServerReportBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadedServerReportBuilder.m; sourceTree = "<group>"; };
+		05ADE8C20F57146000EA21F2 /* AsynchronousInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynchronousInvocation.h; sourceTree = "<group>"; };
+		05ADE8C30F57146000EA21F2 /* AsynchronousInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynchronousInvocation.m; sourceTree = "<group>"; };
 		05C8834C0F49B82E00E486EA /* ServerReportBuilderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerReportBuilderFactory.h; sourceTree = "<group>"; };
 		05C8834D0F49B82E00E486EA /* ServerReportBuilderFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerReportBuilderFactory.m; sourceTree = "<group>"; };
 		05C883560F49BCD000E486EA /* CcrbServerReportBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CcrbServerReportBuilder.h; sourceTree = "<group>"; };
@@ -470,8 +470,6 @@
 				05C883A70F49C89000E486EA /* CcnetServerReportBuilder.m */,
 				051262E10F536278008637DB /* TeamCityServerReportBuilder.h */,
 				051262E20F536278008637DB /* TeamCityServerReportBuilder.m */,
-				05ADE8C20F57146000EA21F2 /* ThreadedServerReportBuilder.h */,
-				05ADE8C30F57146000EA21F2 /* ThreadedServerReportBuilder.m */,
 			);
 			name = "Build Service";
 			sourceTree = "<group>";
@@ -509,6 +507,8 @@
 				918179DD0F49DC64009C7617 /* NSDate+StringHelpers.m */,
 				05622F7A0F4B6B7C009BF44B /* ServerGroupPropertyProvider.h */,
 				91817B800F4A3A48009C7617 /* ProjectPropertyProvider.h */,
+				05ADE8C20F57146000EA21F2 /* AsynchronousInvocation.h */,
+				05ADE8C30F57146000EA21F2 /* AsynchronousInvocation.m */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -909,7 +909,7 @@
 				053BF6AF0F50B8CC004D3327 /* RssHelpViewController.m in Sources */,
 				051262E30F536278008637DB /* TeamCityServerReportBuilder.m in Sources */,
 				0513C3CA0F538BC60008F6C2 /* AbstractServerReportBuilder.m in Sources */,
-				05ADE8C40F57146000EA21F2 /* ThreadedServerReportBuilder.m in Sources */,
+				05ADE8C40F57146000EA21F2 /* AsynchronousInvocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

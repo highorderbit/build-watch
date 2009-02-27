@@ -8,8 +8,7 @@
 #import "GenericServerReportBuilder.h"
 #import "ServerReport.h"
 #import "NSError+BuildWatchAdditions.h"
-#import "ThreadedServerReportBuilder.h"
-
+#import "AsynchronousInvocation.h"
 
 @interface AsynchronousReportBuilder : NSObject
 {
@@ -36,7 +35,6 @@
 @end
 
 @implementation AsynchronousReportBuilder
-
 @synthesize serverUrl, builder, data, error, report;
 
 - (void) dealloc
@@ -70,9 +68,7 @@
     if (err)
         self.error = err;  // take ownership of the error object
 }
-
 @end
-
 
 @interface NetworkBuildService (Private)
 - (void) parseDataAsynchronously:(NSData *)data
