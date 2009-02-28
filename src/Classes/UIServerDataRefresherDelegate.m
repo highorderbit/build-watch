@@ -3,6 +3,7 @@
 //
 
 #import "UIServerDataRefresherDelegate.h"
+#import "NSDate+StringHelpers.h"
 
 @interface UIServerDataRefresherDelegate (Private)
 - (void) showRefreshInProgressView;
@@ -35,7 +36,8 @@
     
     // initialize refresh label
     refreshLabel = [[UILabel alloc] init];
-    [refreshLabel setText:@"Checking for build updates..."];
+    [refreshLabel
+        setText:NSLocalizedString(@"server.refresh.checking.label", @"")];
     refreshLabel.adjustsFontSizeToFitWidth = YES;
     refreshLabel.backgroundColor =
         [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
@@ -142,15 +144,16 @@
     [activityIndicator stopAnimating];
 
     NSDate * currentDate = [NSDate date];
-    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"M/d/yy h:mm aa";
-    NSString * dateString = [dateFormatter stringFromDate:currentDate];
+    NSString * dateString = [currentDate buildWatchDescription];
 
-    [updateLabel setText:[NSString stringWithFormat:@"Updated %@", dateString]];
+    [updateLabel
+        setText:
+        [NSString
+        stringWithFormat:NSLocalizedString(
+        @"server.refresh.update.format.string", @""),
+        dateString]];
+
     [view addSubview:updateLabel];
-
-    [dateFormatter release];
-
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
