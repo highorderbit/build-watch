@@ -95,6 +95,7 @@
 		918179DE0F49DC64009C7617 /* NSDate+StringHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 918179DD0F49DC64009C7617 /* NSDate+StringHelpers.m */; };
 		918449EA0F4206F800082108 /* ServerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 918449E90F4206F800082108 /* ServerTableViewCell.m */; };
 		91844BA80F42459D00082108 /* BuildLabels.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91844BA70F42459D00082108 /* BuildLabels.plist */; };
+		9187143D0F5DA823005FB197 /* AboutIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9187143C0F5DA823005FB197 /* AboutIcon.png */; };
 		91A809A60F57101400ED8194 /* InconsistentStateAlertViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 91A809A50F57101400ED8194 /* InconsistentStateAlertViewDelegate.m */; };
 		91A80B0C0F57749D00ED8194 /* ServerGroupRemovableStates.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91A80B0B0F57749D00ED8194 /* ServerGroupRemovableStates.plist */; };
 		91ABDE280F4120A1003232A0 /* ServerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91ABDE260F4120A1003232A0 /* ServerTableViewCell.xib */; };
@@ -116,7 +117,6 @@
 		91F09AA50F3A63370034528C /* ProjectReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AA40F3A63370034528C /* ProjectReport.m */; };
 		91F09AA80F3A657B0034528C /* ServerReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AA70F3A657B0034528C /* ServerReport.m */; };
 		91F09AD80F3A69A50034528C /* MockBuildService.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F09AD70F3A69A50034528C /* MockBuildService.m */; };
-		91F817570F43C7CE0078D366 /* IconWithoutShine.png in Resources */ = {isa = PBXBuildFile; fileRef = 91F817560F43C7CE0078D366 /* IconWithoutShine.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -291,6 +291,7 @@
 		918449E80F4206F800082108 /* ServerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerTableViewCell.h; sourceTree = "<group>"; };
 		918449E90F4206F800082108 /* ServerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerTableViewCell.m; sourceTree = "<group>"; };
 		91844BA70F42459D00082108 /* BuildLabels.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BuildLabels.plist; sourceTree = "<group>"; };
+		9187143C0F5DA823005FB197 /* AboutIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AboutIcon.png; sourceTree = "<group>"; };
 		91A809A40F57101400ED8194 /* InconsistentStateAlertViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InconsistentStateAlertViewDelegate.h; sourceTree = "<group>"; };
 		91A809A50F57101400ED8194 /* InconsistentStateAlertViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InconsistentStateAlertViewDelegate.m; sourceTree = "<group>"; };
 		91A80B0B0F57749D00ED8194 /* ServerGroupRemovableStates.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ServerGroupRemovableStates.plist; sourceTree = "<group>"; };
@@ -322,7 +323,6 @@
 		91F09AAD0F3A67090034528C /* BuildServiceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildServiceDelegate.h; sourceTree = "<group>"; };
 		91F09AD60F3A69A50034528C /* MockBuildService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MockBuildService.h; sourceTree = "<group>"; };
 		91F09AD70F3A69A50034528C /* MockBuildService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MockBuildService.m; sourceTree = "<group>"; };
-		91F817560F43C7CE0078D366 /* IconWithoutShine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconWithoutShine.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,8 +343,8 @@
 		050888A00F45E0900010569B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9187143C0F5DA823005FB197 /* AboutIcon.png */,
 				059CBE080F3BC7C800010F3F /* Icon.png */,
-				91F817560F43C7CE0078D366 /* IconWithoutShine.png */,
 				05473C460F44E45E003F5444 /* checkmark.png */,
 				053C91B00F585DFF00FD7B57 /* checkmark-blue.png */,
 				05A1FF920F425F7A00E2C085 /* build-broken.png */,
@@ -842,7 +842,6 @@
 				05D8AF990F43B3DA00F07532 /* ForceBuildTableViewCell.xib in Resources */,
 				05473A6B0F44AD4C003F5444 /* ProjectForceBuildLinks.plist in Resources */,
 				05473C470F44E45E003F5444 /* checkmark.png in Resources */,
-				91F817570F43C7CE0078D366 /* IconWithoutShine.png in Resources */,
 				917151D20F450F9100270997 /* ProjectTableViewCell.xib in Resources */,
 				05C884210F49E72000E486EA /* ServerReportBuilders.plist in Resources */,
 				91E84BA80F4B332F0010B2A6 /* ServerUsernames.plist in Resources */,
@@ -858,6 +857,7 @@
 				9125BA790F585F5B000872C5 /* ServerKeys.plist in Resources */,
 				9125BA7B0F585F67000872C5 /* ProjectKeys.plist in Resources */,
 				9125BA7D0F585F80000872C5 /* ProjectServerKeys.plist in Resources */,
+				9187143D0F5DA823005FB197 /* AboutIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

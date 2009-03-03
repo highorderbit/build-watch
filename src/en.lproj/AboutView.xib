@@ -66,7 +66,7 @@
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">Icon.png</string>
+							<string key="NSResourceName">AboutIcon.png</string>
 						</object>
 					</object>
 					<object class="IBUILabel" id="832658511">
@@ -350,7 +350,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>AboutDisplayer</string>
 					<string>UIResponder</string>
-					<string>{{386, 513}, {320, 460}}</string>
+					<string>{{536, 595}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
