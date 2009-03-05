@@ -754,14 +754,12 @@
     NSMutableArray * missingProjectKeys = [[NSMutableArray alloc] init];
 
     for (NSString * projectKey in projectKeys) {
-        NSString * projectServer = [projectServerKeys objectForKey:serverKey];
+        NSString * projectServer = [projectServerKeys objectForKey:projectKey];
         BOOL missing =
             [serverKey isEqual:projectServer] &&
             ![newProjectKeys containsObject:projectKey];
         if (missing)
-            [missingProjectKeys
-                addObject:[[self class]keyForProject:projectKey
-                andServer:serverKey]];
+            [missingProjectKeys addObject:projectKey];
     }
         
     [self removeProjectWithKeys:missingProjectKeys];
