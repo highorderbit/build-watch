@@ -165,6 +165,7 @@
 
     EditServerDetailsViewController * controller =
         self.editServerDetailsViewController;
+    controller.serverGroupKey = report.key;
     controller.serverGroupPropertyProvider = self;
 
     self.serverReport = report;

@@ -20,7 +20,7 @@
 
     NSObject<ServerGroupPropertyProvider> * serverGroupPropertyProvider;
 
-    NSString * serverGroupKey;  // what the user provides
+    NSString * serverGroupKey;
     NSString * serverGroupName;  // what the user provides
 }
 

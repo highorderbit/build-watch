@@ -53,7 +53,6 @@
     xmlString = [[self class] hackXmlStringIfNecessary:xmlString];
 
     ServerReport * report = [ServerReport report];
-    NSLog(@"Report retain count: %d.", [report retainCount]);
 
     CXMLDocument * xmlDoc = [[[CXMLDocument alloc]
          initWithXMLString:xmlString options:0 error:error] autorelease];
@@ -82,6 +81,8 @@
     if (*error)
         return [[self class] xmlParsingFailedWithRootCause:error];
 
+    report.key = url;
+
     NSString * projectsXpath = [[self class] projectNodesXpath];
     NSArray * projectNodes =
         [serverNode nodesForXPath:projectsXpath error:error];
@@ -103,8 +104,8 @@
 
     report.projectReports = [projectReports allValues];
 
-    NSLog(@"From server URL: '%@' built server report: (%d) %@", url,
-        [report retainCount], [report longDescription]);
+    NSLog(@"From server URL: '%@' built server report: %@", url,
+        [report longDescription]);
 
     return report;
 }
