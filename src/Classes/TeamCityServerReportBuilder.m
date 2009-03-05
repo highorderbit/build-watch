@@ -131,7 +131,9 @@
                                        withString:replacementString];
 
     return forceBuildLink ?
-        forceBuildLink : [[self class] xmlParsingFailed:error];
+        [forceBuildLink
+         stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] :
+        [[self class] xmlParsingFailed:error];
 }
 
 @end

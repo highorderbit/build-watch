@@ -248,7 +248,9 @@
     NSString * regex = [[self class] projectLinkRegex];
     NSString * link = [value stringByMatchingRegex:regex];
 
-    return link == nil ? [[self class] xmlParsingFailed:error] : link;
+    return link == nil ?
+        [[self class] xmlParsingFailed:error] :
+        [link stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 + (BOOL) projectBuildSucceededFromNode:(CXMLNode *)node
@@ -277,7 +279,9 @@
     NSString * forceBuildLink = [value stringByMatchingRegex:regex];
 
     return forceBuildLink == nil ?
-        [[self class] xmlParsingFailed:error] : forceBuildLink;
+        [[self class] xmlParsingFailed:error] :
+        [forceBuildLink
+         stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 + (NSString *) stringValueAtXpath:(NSString *)xpath

@@ -92,7 +92,8 @@
     if (dashboardLink == nil || dashboardLink.length == 0)
         return [[self class] xmlParsingFailed:error];
     else
-        return dashboardLink;
+        return [dashboardLink
+            stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 + (NSString *) projectDescriptionFromNode:(CXMLNode *)node

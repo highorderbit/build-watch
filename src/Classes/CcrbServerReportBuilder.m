@@ -134,7 +134,8 @@
     if (forceBuildUrl == nil || forceBuildUrl.length == 0)
         return [[self class] xmlParsingFailed:error];
 
-    return forceBuildUrl;
+    return [forceBuildUrl
+        stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 @end
