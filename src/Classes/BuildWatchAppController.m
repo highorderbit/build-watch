@@ -773,6 +773,7 @@
     [projectNames removeObjectsForKeys:removedProjectKeys];
     [projectServerKeys removeObjectsForKeys:removedProjectKeys];
     [projectForceBuildLinks removeObjectsForKeys:removedProjectKeys];
+    [projectTrackedStates removeObjectsForKeys:removedProjectKeys];
     
     [buildLabels removeObjectsForKeys:removedProjectKeys];
     [buildDescriptions removeObjectsForKeys:removedProjectKeys];
