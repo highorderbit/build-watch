@@ -1073,7 +1073,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: High Order Bit, Inc.";
 				CURRENT_PROJECT_VERSION = 0.0.1;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1081,6 +1081,7 @@
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CF3A0D2B-1816-45BA-91BB-6A697B4F25FB";
 				SDKROOT = iphoneos2.1;
 			};
 			name = Distribution;
@@ -1134,7 +1135,7 @@
 					"-lxml2",
 					"-licucore",
 				);
-				PRODUCT_NAME = "build-watch";
+				PRODUCT_NAME = "Build Watch";
 			};
 			name = Release;
 		};
@@ -1151,7 +1152,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D8FAC8AE-20E3-489E-8C46-4A4FF58EEFA7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BC64FE89-3535-4380-A787-5ECF822A9830";
 				SDKROOT = iphoneos2.1;
 			};
 			name = Debug;
@@ -1160,7 +1161,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Debay";
 				CURRENT_PROJECT_VERSION = 0.0.1;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1168,6 +1169,7 @@
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BC64FE89-3535-4380-A787-5ECF822A9830";
 				SDKROOT = iphoneos2.1;
 			};
 			name = Release;
