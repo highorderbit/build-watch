@@ -33,7 +33,7 @@
 }
 
 + (id)reportWithName:(NSString *)aName
-                key:(NSString *)aLink
+                 key:(NSString *)aLink
        dashboardLink:(NSString *)aDashboardLink
       projectReports:(NSArray *)someReports
 {
@@ -50,14 +50,14 @@
 }
 
 - (id)initWithName:(NSString *)aName
-              key:(NSString *)aLink
+               key:(NSString *)aLink
 {
     return [self initWithName:aName key:aLink dashboardLink:nil reports:nil];
 }
 
 - (id)initWithName:(NSString *)aName
-              key:(NSString *)aLink
-       dashboardLink:(NSString *)aDashboardLink
+               key:(NSString *)aLink
+     dashboardLink:(NSString *)aDashboardLink
            reports:(NSArray *)someReports
 {
     if (self = [super init]) {
