@@ -1,0 +1,23 @@
+Public CC.NET Server:
+Dashboard:
+http://ccnetlive.thoughtworks.com/ccnet/ViewFarmReport.aspx
+RSS:
+http://ccnetlive.thoughtworks.com/ccnet/XmlServerReport.aspx
+
+Public CC.java Server:
+Dashboard:
+http://cclive.thoughtworks.com/dashboard/dashboard
+RSS:
+http://cclive.thoughtworks.com/dashboard/cctray.xml
+
+Public CC.rb Server:
+Dashboard:
+http://cruisecontrolrb.thoughtworks.com/projects
+RSS:
+http://cruisecontrolrb.thoughtworks.com/projects.rss
+
+Public TeamCity Server:
+Dashboard:
+http://teamcity.jetbrains.com/overview.html
+RSS:
+http://teamcity.jetbrains.com/feed.html
