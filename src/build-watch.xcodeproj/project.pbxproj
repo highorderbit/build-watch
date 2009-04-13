@@ -1161,7 +1161,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Debay";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Douglas Kurth";
 				CURRENT_PROJECT_VERSION = 0.0.1;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1169,7 +1169,7 @@
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6C0F1DE5-0A2C-4A4C-B318-11E733DEFF6A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21F339C3-A6D0-4D95-9073-98E16204BA7F";
 				SDKROOT = iphoneos2.1;
 			};
 			name = Release;
