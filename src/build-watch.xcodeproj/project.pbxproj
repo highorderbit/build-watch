@@ -1069,6 +1069,77 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		052171840F9A6E23001C3618 /* Debug - Doug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Debay";
+				CURRENT_PROJECT_VERSION = 0.0.1;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lxml2";
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6C0F1DE5-0A2C-4A4C-B318-11E733DEFF6A";
+				SDKROOT = iphoneos2.1;
+			};
+			name = "Debug - Doug";
+		};
+		052171850F9A6E23001C3618 /* Debug - Doug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = build_watch_Prefix.pch;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-licucore",
+				);
+				PRODUCT_NAME = "Build Watch";
+			};
+			name = "Debug - Doug";
+		};
+		052171860F9A6E26001C3618 /* Release - Doug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Douglas Kurth";
+				CURRENT_PROJECT_VERSION = 0.0.1;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
+				OTHER_LDFLAGS = "-lxml2";
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21F339C3-A6D0-4D95-9073-98E16204BA7F";
+				SDKROOT = iphoneos2.1;
+			};
+			name = "Release - Doug";
+		};
+		052171870F9A6E26001C3618 /* Release - Doug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = build_watch_Prefix.pch;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-licucore",
+				);
+				PRODUCT_NAME = "Build Watch";
+			};
+			name = "Release - Doug";
+		};
 		056FD8CD0F38E11A000225C6 /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1103,7 +1174,7 @@
 			};
 			name = Distribution;
 		};
-		1D6058940D05DD3E006BFB54 /* Debug */ = {
+		1D6058940D05DD3E006BFB54 /* Debug - John */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1120,9 +1191,9 @@
 				);
 				PRODUCT_NAME = "Build Watch";
 			};
-			name = Debug;
+			name = "Debug - John";
 		};
-		1D6058950D05DD3E006BFB54 /* Release */ = {
+		1D6058950D05DD3E006BFB54 /* Release - John */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1137,9 +1208,9 @@
 				);
 				PRODUCT_NAME = "Build Watch";
 			};
-			name = Release;
+			name = "Release - John";
 		};
-		C01FCF4F08A954540054247B /* Debug */ = {
+		C01FCF4F08A954540054247B /* Debug - John */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -1152,16 +1223,16 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6C0F1DE5-0A2C-4A4C-B318-11E733DEFF6A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "335857F5-F9FC-4CCD-88D0-60568E136519";
 				SDKROOT = iphoneos2.1;
 			};
-			name = Debug;
+			name = "Debug - John";
 		};
-		C01FCF5008A954540054247B /* Release */ = {
+		C01FCF5008A954540054247B /* Release - John */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Douglas Kurth";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Debay";
 				CURRENT_PROJECT_VERSION = 0.0.1;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1169,10 +1240,10 @@
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21F339C3-A6D0-4D95-9073-98E16204BA7F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "335857F5-F9FC-4CCD-88D0-60568E136519";
 				SDKROOT = iphoneos2.1;
 			};
-			name = Release;
+			name = "Release - John";
 		};
 /* End XCBuildConfiguration section */
 
@@ -1180,22 +1251,26 @@
 		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "build-watch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1D6058940D05DD3E006BFB54 /* Debug */,
-				1D6058950D05DD3E006BFB54 /* Release */,
+				1D6058940D05DD3E006BFB54 /* Debug - John */,
+				052171850F9A6E23001C3618 /* Debug - Doug */,
+				1D6058950D05DD3E006BFB54 /* Release - John */,
+				052171870F9A6E26001C3618 /* Release - Doug */,
 				056FD8CE0F38E11A000225C6 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Release - John";
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "build-watch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C01FCF4F08A954540054247B /* Debug */,
-				C01FCF5008A954540054247B /* Release */,
+				C01FCF4F08A954540054247B /* Debug - John */,
+				052171840F9A6E23001C3618 /* Debug - Doug */,
+				C01FCF5008A954540054247B /* Release - John */,
+				052171860F9A6E26001C3618 /* Release - Doug */,
 				056FD8CD0F38E11A000225C6 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Release - John";
 		};
 /* End XCConfigurationList section */
 	};
