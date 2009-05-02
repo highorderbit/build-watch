@@ -188,12 +188,21 @@
                 message:error.localizedDescription
                delegate:self
       cancelButtonTitle:NSLocalizedString(@"addserver.error.alert.ok", @"")
-      otherButtonTitles:nil]
-         autorelease];
+      otherButtonTitles:NSLocalizedString(@"addserver.error.help.label", @""),
+           nil] autorelease];
 
     [alertView show];
 
     [addServerViewController viewWillAppear:NO];
+}
+
+#pragma mark UIAlertViewDelegate protocol implementation
+
+ - (void) alertView:(UIAlertView *)alertView
+       clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)  // help button
+        [self userRequestsHelp];
 }
 
 #pragma mark SelectServerTypeViewControllerDelegate protocol implementation
