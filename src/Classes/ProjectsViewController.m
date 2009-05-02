@@ -48,7 +48,7 @@
 
     self.navigationItem.title = [delegate displayNameForCurrentProjectGroup];
     NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
-    [tableView deselectRowAtIndexPath:selectedRow animated:NO];
+    [tableView deselectRowAtIndexPath:selectedRow animated:animated];
 
     [delegate userDidDeselectProject];
 

@@ -38,7 +38,7 @@
 							<object class="IBUILabel" id="864264898">
 								<reference key="NSNextResponder" ref="995734919"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{14, 10}, {267, 24}}</string>
+								<string key="NSFrame">{{14, 10}, {278, 24}}</string>
 								<reference key="NSSuperview" ref="995734919"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -61,7 +61,7 @@
 							<object class="IBUILabel" id="23173300">
 								<reference key="NSNextResponder" ref="995734919"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{14, 36}, {176, 21}}</string>
+								<string key="NSFrame">{{14, 36}, {187, 21}}</string>
 								<reference key="NSSuperview" ref="995734919"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -84,7 +84,7 @@
 							<object class="IBUILabel" id="456500309">
 								<reference key="NSNextResponder" ref="995734919"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{193, 36}, {88, 21}}</string>
+								<string key="NSFrame">{{203, 36}, {89, 21}}</string>
 								<reference key="NSSuperview" ref="995734919"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -106,7 +106,7 @@
 								<int key="IBUITextAlignment">2</int>
 							</object>
 						</object>
-						<string key="NSFrameSize">{281, 66}</string>
+						<string key="NSFrameSize">{297, 66}</string>
 						<reference key="NSSuperview" ref="668939751"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -126,7 +126,7 @@
 				</object>
 				<bool key="IBUIOpaque">NO</bool>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
-				<int key="IBUIAccessoryType">2</int>
+				<int key="IBUIAccessoryType">1</int>
 				<reference key="IBUIContentView" ref="995734919"/>
 				<string key="IBUIReuseIdentifier">ProjectTableViewCell</string>
 			</object>
@@ -231,7 +231,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UIResponder</string>
 					<string>ProjectTableViewCell</string>
-					<string>{{186, 701}, {320, 66}}</string>
+					<string>{{603, 500}, {320, 66}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

@@ -42,7 +42,7 @@
     [super viewWillAppear:animated];
 
     NSIndexPath * selectedRow = [tableView indexPathForSelectedRow];
-    [tableView deselectRowAtIndexPath:selectedRow animated:NO];
+    [tableView deselectRowAtIndexPath:selectedRow animated:animated];
 
     self.navigationItem.leftBarButtonItem.enabled =
         serverGroupNames.count > 0;
