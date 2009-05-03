@@ -124,10 +124,9 @@
                                        error:(NSError **)error
 {
     static NSString * regex =
-        @"^(.*://.*?)(:\\d+)?/dashboard(?:/.*)*/(?:.*?)$";
+        @"^((?:.*://.*?)(?::\\d+)?)/dashboard(?:/.*)*/(?:.*?)$";
     static NSString * replacementString =
-        @"$1:8000/invoke?operation=build&"
-         "objectname=CruiseControl+Project%3Aname%3D";
+        @"$1/dashboard/forcebuild.ajax?projectName=";
 
     NSString * projectName =
         [[self class] projectNameFromNode:node error:error];
