@@ -17,8 +17,9 @@
 </head>
 <body>
     <p>
-    In order to process your CruiseControl server's build reports, you must
-    provide Build Watch with the URL of your server dashboard's RSS feed.
+    In order to process your continuous integration server's build reports,
+    you must provide Build Watch with the URL of your server dashboard's
+    RSS feed.
     </p>
 
     <p>
@@ -63,5 +64,18 @@
     looking at the dashboard with the word "dashboard" in the URL, as in the
     example above.
     </p>
+
+    <h3>Hudson</h3>
+    <p>
+    Hudson provides a number of RSS feeds. Build Watch needs to be supplied
+    with the feed that's compatible with CCTray. This URL is simply your
+    server's dashboard URL with "cc.xml" appended to the end. For example,
+    if your Hudson server's dashboard URL is:
+    </p>
+    <p class="example">http://builder.com:8080</p>
+    <p>
+    Then the RSS feed you should provide to Build Watch will be:
+    </p>
+    <p class="example">http://builder.com:8080/cc.xml</p>
 </body>
 </html>
