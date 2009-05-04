@@ -137,38 +137,13 @@
                                        error:(NSError **)error
 {
     //
-    // http://localhost:8080/job/Hudson%20Test%20Project/build?delay=0sec
+    // Example URL:
+    //   http://localhost:8080/job/Hudson%20Test%20Project/build?delay=0sec
     //
-
-    //static NSString * regex =
-    //    @"^((?:.*://.*?)(?::\\d+)?)/dashboard(?:/.*)*/(?:.*?)$";
-
-    /*
-    static NSString * replacementString =
-        @"$1/dashboard/forcebuild.ajax?projectName=";
-
-    NSString * projectName =
-        [[self class] projectNameFromNode:node error:error];
-    if (*error) return nil;
-    if (!projectName) return [[self class] xmlParsingFailed:error];
-     */
 
     NSString * link = [[self class] projectLinkFromNode:node error:error];
     if (*error) return nil;
     if (!link) return [[self class] xmlParsingFailed:error];
-
-    /*
-    NSString * forceBuildLink =
-        [link stringByReplacingOccurrencesOfRegex:regex
-                                       withString:replacementString];
-
-    if (!forceBuildLink || forceBuildLink.length == 0)
-        return [[self class] xmlParsingFailed:error];
-
-    return [forceBuildLink stringByAppendingFormat:@"%@",
-        [projectName stringByAddingPercentEscapesUsingEncoding:
-         NSUTF8StringEncoding]];
-    */
 
     return [link stringByAppendingString:@"build?delay=0sec"];
 }
