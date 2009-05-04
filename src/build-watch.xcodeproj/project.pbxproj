@@ -1227,7 +1227,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "335857F5-F9FC-4CCD-88D0-60568E136519";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EE7AC89D-DF5B-472D-9B06-34678028F08C";
 				SDKROOT = iphoneos2.1;
 			};
 			name = "Debug - John";
@@ -1244,7 +1244,7 @@
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "335857F5-F9FC-4CCD-88D0-60568E136519";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EE7AC89D-DF5B-472D-9B06-34678028F08C";
 				SDKROOT = iphoneos2.1;
 			};
 			name = "Release - John";
