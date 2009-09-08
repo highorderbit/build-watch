@@ -273,7 +273,7 @@
                                                toPath:fullPath
                                                 error:&error];
         if (!fileCopied)
-            NSLog([error description]);
+            NSLog(@"%@", [error description]);
     }
     
     return [PlistUtils readDictionaryFromPlist:fullPath];
@@ -298,7 +298,7 @@
                                                toPath:fullPath
                                                 error:&error];
         if (!fileCopied)
-            NSLog([error description]);
+            NSLog(@"%@", [error description]);
     }
 
     return [PlistUtils readArrayFromPlist:fullPath];
@@ -321,14 +321,14 @@
         BOOL fileRemoved = [fileManager removeItemAtPath:fullPath error:&error];
         
         if (!fileRemoved)
-            NSLog([error description]);
+            NSLog(@"%@", [error description]);
         else {
             NSString * bundlePath = [PlistUtils fullBundlePathForPlist:plist];
             BOOL fileCopied =
             [fileManager copyItemAtPath:bundlePath toPath:fullPath
                                   error:&error];
             if (!fileCopied)
-                NSLog([error description]);
+                NSLog(@"%@", [error description]);
         }
     }    
 }

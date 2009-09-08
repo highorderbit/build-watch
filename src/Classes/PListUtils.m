@@ -45,7 +45,7 @@
         errorDescription:&errorDesc];
 
     if (!temp) {
-        NSLog(errorDesc);
+        NSLog(@"%@", errorDesc);
 
         // must be released by caller per Apple documentation
         [errorDesc release];  
@@ -66,7 +66,7 @@
     if (plistData)
         [plistData writeToFile:path atomically:YES];
     else {
-        NSLog(errorDesc);
+        NSLog(@"%@", errorDesc);
 
         // must be released by caller per Apple documentation
         [errorDesc release];  
