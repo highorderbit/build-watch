@@ -6,6 +6,8 @@
 	<string>CcnetServerReportBuilder</string>
 	<key>^.*/(?i:cctray.xml)$</key>
 	<string>CcjavaServerReportBuilder</string>
+	<key>^.*/(?i:cc.xml)$</key>
+	<string>HudsonServerReportBuilder</string>
 	<key>^.*/(?i:projects.rss)$</key>
 	<string>CcrbServerReportBuilder</string>
 	<key>^.*/(?i:feed.html)$</key>

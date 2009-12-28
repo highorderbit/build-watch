@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		051262E30F536278008637DB /* TeamCityServerReportBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 051262E20F536278008637DB /* TeamCityServerReportBuilder.m */; };
 		0513C3CA0F538BC60008F6C2 /* AbstractServerReportBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 0513C3C90F538BC60008F6C2 /* AbstractServerReportBuilder.m */; };
+		05179DBC0FAF524600D988A3 /* HudsonServerReportBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 05179DBB0FAF524600D988A3 /* HudsonServerReportBuilder.m */; };
 		0524CCBB0F3C86DB00C020FE /* AddServerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0524CCB90F3C86DB00C020FE /* AddServerView.xib */; };
 		0524CCDF0F3C8A0900C020FE /* AddServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0524CCDE0F3C8A0900C020FE /* AddServerViewController.m */; };
 		0524CE3A0F3CBA5F00C020FE /* EditServerDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0524CE390F3CBA5F00C020FE /* EditServerDetailsViewController.m */; };
@@ -125,6 +126,8 @@
 		051262E20F536278008637DB /* TeamCityServerReportBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamCityServerReportBuilder.m; sourceTree = "<group>"; };
 		0513C3C80F538BC60008F6C2 /* AbstractServerReportBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractServerReportBuilder.h; sourceTree = "<group>"; };
 		0513C3C90F538BC60008F6C2 /* AbstractServerReportBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractServerReportBuilder.m; sourceTree = "<group>"; };
+		05179DBA0FAF524600D988A3 /* HudsonServerReportBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudsonServerReportBuilder.h; sourceTree = "<group>"; };
+		05179DBB0FAF524600D988A3 /* HudsonServerReportBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudsonServerReportBuilder.m; sourceTree = "<group>"; };
 		0524CCBA0F3C86DB00C020FE /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AddServerView.xib; sourceTree = "<group>"; };
 		0524CCDD0F3C8A0900C020FE /* AddServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddServerViewController.h; sourceTree = "<group>"; };
 		0524CCDE0F3C8A0900C020FE /* AddServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddServerViewController.m; sourceTree = "<group>"; };
@@ -483,6 +486,8 @@
 				05C883A40F49C88800E486EA /* CcjavaServerReportBuilder.m */,
 				05C883A60F49C89000E486EA /* CcnetServerReportBuilder.h */,
 				05C883A70F49C89000E486EA /* CcnetServerReportBuilder.m */,
+				05179DBA0FAF524600D988A3 /* HudsonServerReportBuilder.h */,
+				05179DBB0FAF524600D988A3 /* HudsonServerReportBuilder.m */,
 				051262E10F536278008637DB /* TeamCityServerReportBuilder.h */,
 				051262E20F536278008637DB /* TeamCityServerReportBuilder.m */,
 			);
@@ -936,6 +941,7 @@
 				91A809A60F57101400ED8194 /* InconsistentStateAlertViewDelegate.m in Sources */,
 				05ADEAB30F578A1B00EA21F2 /* TextFieldTableViewCell.m in Sources */,
 				9118F8D30F58A33800EAAB4A /* UIServerGroupSelector.m in Sources */,
+				05179DBC0FAF524600D988A3 /* HudsonServerReportBuilder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1178,6 +1184,74 @@
 			};
 			name = Distribution;
 		};
+		05FD3B680FAF7DAE00CAB0F0 /* Distribution - Beta Users - John */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Debay";
+				CURRENT_PROJECT_VERSION = 0.0.1;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
+				OTHER_LDFLAGS = "-lxml2";
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "113276B5-85EA-4707-AF31-51D9354BA5CA";
+				SDKROOT = iphoneos2.1;
+			};
+			name = "Distribution - Beta Users - John";
+		};
+		05FD3B690FAF7DAE00CAB0F0 /* Distribution - Beta Users - John */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = build_watch_Prefix.pch;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-licucore",
+				);
+				PRODUCT_NAME = "Build Watch";
+			};
+			name = "Distribution - Beta Users - John";
+		};
+		05FD3B6A0FAF7DB400CAB0F0 /* Distribution - Beta Users - Doug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: John Debay";
+				CURRENT_PROJECT_VERSION = 0.0.1;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
+				OTHER_LDFLAGS = "-lxml2";
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "113276B5-85EA-4707-AF31-51D9354BA5CA";
+				SDKROOT = iphoneos2.1;
+			};
+			name = "Distribution - Beta Users - Doug";
+		};
+		05FD3B6B0FAF7DB400CAB0F0 /* Distribution - Beta Users - Doug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = build_watch_Prefix.pch;
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
+				INFOPLIST_FILE = Info.plist;
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-licucore",
+				);
+				PRODUCT_NAME = "Build Watch";
+			};
+			name = "Distribution - Beta Users - Doug";
+		};
 		1D6058940D05DD3E006BFB54 /* Debug - John */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1227,7 +1301,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "335857F5-F9FC-4CCD-88D0-60568E136519";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "673A86B7-3643-4B98-86EC-5FC4F2D7EDA4";
 				SDKROOT = iphoneos2.1;
 			};
 			name = "Debug - John";
@@ -1244,7 +1318,7 @@
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "335857F5-F9FC-4CCD-88D0-60568E136519";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "673A86B7-3643-4B98-86EC-5FC4F2D7EDA4";
 				SDKROOT = iphoneos2.1;
 			};
 			name = "Release - John";
@@ -1259,6 +1333,8 @@
 				052171850F9A6E23001C3618 /* Debug - Doug */,
 				1D6058950D05DD3E006BFB54 /* Release - John */,
 				052171870F9A6E26001C3618 /* Release - Doug */,
+				05FD3B690FAF7DAE00CAB0F0 /* Distribution - Beta Users - John */,
+				05FD3B6B0FAF7DB400CAB0F0 /* Distribution - Beta Users - Doug */,
 				056FD8CE0F38E11A000225C6 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1271,6 +1347,8 @@
 				052171840F9A6E23001C3618 /* Debug - Doug */,
 				C01FCF5008A954540054247B /* Release - John */,
 				052171860F9A6E26001C3618 /* Release - Doug */,
+				05FD3B680FAF7DAE00CAB0F0 /* Distribution - Beta Users - John */,
+				05FD3B6A0FAF7DB400CAB0F0 /* Distribution - Beta Users - Doug */,
 				056FD8CD0F38E11A000225C6 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;

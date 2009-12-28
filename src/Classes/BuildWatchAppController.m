@@ -813,7 +813,7 @@
                                                 error:&error];
         
         if (!error)
-            NSLog([error description]);
+            NSLog(@"%@", [error description]);
         else
             [serverPasswords setObject:password forKey:server];
     }
@@ -833,7 +833,7 @@
                                    error:&error];
         
         if (!error)
-            NSLog([error description]);
+            NSLog(@"%@", [error description]);
     }
 }
 

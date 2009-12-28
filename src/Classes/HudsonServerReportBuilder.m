@@ -2,11 +2,11 @@
 //  Copyright High Order Bit, Inc. 2009. All rights reserved.
 //
 
-#import "CcjavaServerReportBuilder.h"
+#import "HudsonServerReportBuilder.h"
 #import "NSString+BuildWatchAdditions.h"
 #import "RegexKitLite.h"
 
-@implementation CcjavaServerReportBuilder
+@implementation HudsonServerReportBuilder
 
 + (NSString *) serverNodeXpath
 {
@@ -50,7 +50,7 @@
 
 + (NSString *) projectBuildLabelRegex
 {
-    return @"^build\\.(\\d+.*)$";
+    return @"(^.*$)";
 }
 
 + (NSString *) projectPubDateRegex
@@ -77,7 +77,7 @@
                         sourceUrl:(NSString *)sourceUrl
                             error:(NSError **)error
 {
-    return NSLocalizedString(@"ccjava.serverreport.name", @"");
+    return NSLocalizedString(@"hudson.serverreport.name", @"");
 }
 
 + (NSString *) serverDashboardLinkFromNode:(CXMLNode *)serverNode
@@ -99,7 +99,7 @@
 + (NSString *) projectDescriptionFromNode:(CXMLNode *)node
                                     error:(NSError **)error
 {
-    return NSLocalizedString(@"ccserver.description.notprovided.message", @"");
+    return NSLocalizedString(@"hudson.description.notprovided.message", @"");
 }
 
 + (NSString *) projectBuildLabelFromNode:(CXMLNode *)node
@@ -120,33 +120,32 @@
             label;
 }
 
++ (NSDate *) projectPubDateFromNode:(CXMLNode *)node error:(NSError **)error
+{
+    NSDate * utcDate = [super projectPubDateFromNode:node error:error];
+    if (*error)
+        return nil;
+
+    // Hudson uses UTC timestamps, so make sure our NSDate, which
+    // has a time for the local time zone, is adjusted appropriately.
+    NSTimeZone * local = [NSTimeZone localTimeZone];
+    return [utcDate addTimeInterval:[local secondsFromGMT]];
+}
+
+
 + (NSString *) projectForceBuildLinkFromNode:(CXMLNode *)node
                                        error:(NSError **)error
 {
-    static NSString * regex =
-        @"^((?:.*://.*?)(?::\\d+)?)/dashboard(?:/.*)*/(?:.*?)$";
-    static NSString * replacementString =
-        @"$1/dashboard/forcebuild.ajax?projectName=";
-
-    NSString * projectName =
-        [[self class] projectNameFromNode:node error:error];
-    if (*error) return nil;
-    if (!projectName) return [[self class] xmlParsingFailed:error];
+    //
+    // Example URL:
+    //   http://localhost:8080/job/Hudson%20Test%20Project/build?delay=0sec
+    //
 
     NSString * link = [[self class] projectLinkFromNode:node error:error];
     if (*error) return nil;
     if (!link) return [[self class] xmlParsingFailed:error];
 
-    NSString * forceBuildLink =
-        [link stringByReplacingOccurrencesOfRegex:regex
-                                       withString:replacementString];
-
-    if (!forceBuildLink || forceBuildLink.length == 0)
-        return [[self class] xmlParsingFailed:error];
-
-    return [forceBuildLink stringByAppendingFormat:@"%@",
-        [projectName stringByAddingPercentEscapesUsingEncoding:
-         NSUTF8StringEncoding]];
+    return [link stringByAppendingString:@"build?delay=0sec"];
 }
 
 @end

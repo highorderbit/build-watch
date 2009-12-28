@@ -94,7 +94,7 @@ enum HelpRows
     self.navigationItem.rightBarButtonItem.enabled = serverUrl.length > 0;
 
     NSIndexPath * selectedCell = [tableView indexPathForSelectedRow];
-    [tableView deselectRowAtIndexPath:selectedCell animated:NO];
+    [tableView deselectRowAtIndexPath:selectedCell animated:YES];
 
     UITextField * textField = (UITextField *)
         [self.editServerUrlCell viewWithTag:SERVER_URL_TEXT_FIELD_TAG];
